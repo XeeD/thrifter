@@ -13,6 +13,12 @@ module UrlHelper
       else raise "section url not found"
     end
   end
+
+  def get_form_url(form)
+    case form
+      else raise "form url not found"
+    end
+  end
 end
 
 World do

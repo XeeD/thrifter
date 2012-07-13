@@ -1,6 +1,6 @@
 # encoding: UTF-8
 
-#Given states
+#Given statements
 Pokud /^jsem přihlášený jako "(.*?)"$/ do |role|
   pending
 end
@@ -13,7 +13,7 @@ Pokud /^existuje "(.*?)" "(.*?)"$/ do |model, identificator|
   pending
 end
 
-#When states
+#When statements
 Když /^kliknu na odkaz "(.*?)"$/ do |link|
   click_link "#{link}"
 end
@@ -22,7 +22,7 @@ Když /^kliknu na tlačítko "(.*?)"$/ do |button|
   click_button "#{button}"
 end
 
-Když /^vyplním údaj "(.*?)" hodnotou "(.*?)"$/ do |key, value|
+Když /^vyplním údaj "(.*?)" hodnotou "(.*?)"$/ do |field, value|
   fill_in "#{key}", :with => "#{value}"
 end
 
@@ -31,11 +31,14 @@ Když /^otevřu sekci "(.*?)"$/ do |section|
 end
 
 Když /^otevřu formulář "(.*?)"$/ do |form|
-  pending
-  #visit "#{get_form_url(form)}"
+  visit "#{get_form_url(form)}"
 end
 
-#Then states
+Když /^změním hodnotu pole "(.*?)" na "(.*?)"$/ do |field, new_value|
+  pending
+end
+
+#Then statements
 Pak /^bych měl vidět zprávu "(.*?)"$/ do |message|
   response.should contain("#{message}")
 end
