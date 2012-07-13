@@ -23,7 +23,7 @@ end
 gem 'jquery-rails'
 
 #Test environment
-group :development, :test do
+group :test do
   gem 'cucumber-rails'
   gem 'webrat'
   gem 'rspec-rails'
