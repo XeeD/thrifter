@@ -16,6 +16,7 @@ module UrlHelper
 
   def get_form_url(form)
     case form
+      when ""
       else raise "form url not found"
     end
   end
