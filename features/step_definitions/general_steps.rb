@@ -1,6 +1,6 @@
 # encoding: UTF-8
 
-#Given statements
+# Given statements
 Pokud /^jsem přihlášený jako "(.*?)"$/ do |role|
   pending
 end
@@ -13,7 +13,7 @@ Pokud /^existuje "(.*?)" "(.*?)"$/ do |model, identificator|
   pending
 end
 
-#When statements
+# When statements
 Když /^kliknu na odkaz "(.*?)"$/ do |link|
   click_link "#{link}"
 end
@@ -38,7 +38,7 @@ Když /^změním hodnotu pole "(.*?)" na "(.*?)"$/ do |field, new_value|
   pending
 end
 
-#Then statements
+# Then statements
 Pak /^bych měl vidět zprávu "(.*?)"$/ do |message|
   response.should contain("#{message}")
 end

@@ -23,7 +23,7 @@ end
 
 gem 'jquery-rails'
 
-#Test environment
+# Test environment
 group :test do
   gem 'cucumber-rails'
   gem 'webrat'
