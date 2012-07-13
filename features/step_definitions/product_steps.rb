@@ -1,14 +1,14 @@
 # encoding: UTF-8
 
-#Given statements
+# Given statements
 
 
-#When statements
+# When statements
 Když /^u produktu "(.*?)" kliknu na "(.*?)"$/ do |name, link|
   pending
 end
 
-#Then statements
+# Then statements
 Pak /^produkt "(.*?)" by měl být vytvořen$/ do |name|
   pending
 end
@@ -20,4 +20,3 @@ end
 Pak /^název produktu by měl být "(.*?)"$/ do |name|
   pending
 end
-
