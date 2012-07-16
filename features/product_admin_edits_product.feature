@@ -7,9 +7,10 @@ Požadavek: Produktový admin edituje produkt
 
   Kontext:
     Pokud jsem přihlášený jako "produktový admin"
+
   Scénář: zobrazení konkrétního produktu v seznamu produktů
-    A produkt "LG GB3133TIJW" existuje
-    Když otevřu sekci "administrace produktů"
+    A existuje "produkt" "LG GB3133TIJW"
+    Když otevřu sekci "Produkty -> Správa produktů"
     Pak bych měl vidět seznam "produktů"
     A měl bych vidět produkt se jménem "LG GB3133TIJW"
 
