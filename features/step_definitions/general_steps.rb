@@ -2,7 +2,7 @@
 
 # Given statements
 Pokud /^jsem přihlášený jako "(.*?)"$/ do |role|
-  pending
+  true
 end
 
 Pokud /^jsem v sekci "(.*?)"$/ do |section|
@@ -27,11 +27,11 @@ Když /^vyplním údaj "(.*?)" hodnotou "(.*?)"$/ do |field, value|
 end
 
 Když /^otevřu sekci "(.*?)"$/ do |section|
-  #visit "#{get_section_url(section)}"
+  visit "#{get_section_url(section)}"
 end
 
 Když /^otevřu formulář "(.*?)"$/ do |form|
-  #visit "#{get_form_url(form)}"
+  visit "#{get_form_url(form)}"
 end
 
 Když /^změním hodnotu pole "(.*?)" na "(.*?)"$/ do |field, new_value|
