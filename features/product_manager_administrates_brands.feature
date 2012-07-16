@@ -3,7 +3,7 @@ Požadavek: Produktový manager spravuje značky
 
   Abych mohl spravovat značky
   Jako produktový manager
-  Chci mít možnost
+  Chci mít možnost jejich snadné administrace
 
   Kontext:
     Pokud jsem přihlášený jako "produktový manager"
