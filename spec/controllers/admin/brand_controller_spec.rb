@@ -14,15 +14,30 @@ describe Admin::BrandsController do
 
     describe "with valid params" do
       it "creates a new brand" do
+        brand = mock_model(Brand).as_null_object
         Brand.should_receive(:new).with(
-          "name" => "LG",
-          "url" => "lg",
-          "description" => "LG Electronics"
-        )
-        post :create, :brand => {:name => "LG", :url => "lg", :description => "LG Electronics"}
+            "name" => "LG",
+            "url"  => "lg",
+            "description" => "LG Electronics"
+        ).and_return(brand)
+        post :create, :brand => {
+            "name" => "LG",
+            "url"  => "lg",
+            "description" => "LG Electronics"
+        }
       end
 
-      it "saves brand"
+      it "saves brand" do
+        brand = mock_model(Brand)
+        Brand.stub(:new).and_return(brand)
+        brand.should_receive(:save)
+        post :create
+      end
+
+      it "should redirect to detail" do
+        #post :create
+        #response.should redirect_to(:action => "show")
+      end
 
       #let(:brand) do
       #  @brand = mock_model(Brand, :update_attributes => true)

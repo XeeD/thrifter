@@ -1,6 +1,4 @@
 class Admin::BrandsController < Admin::AdminController
-  before_filter :load_object
-
   def index
 
   end
@@ -10,6 +8,14 @@ class Admin::BrandsController < Admin::AdminController
   end
 
   def create
+    @brand = Brand.new(params[:brand])
+
+    if @brand.save
+
+    else
+
+    end
+    redirect_to admin_brand_path(@brand.id)
   end
 
   def show
@@ -22,11 +28,5 @@ class Admin::BrandsController < Admin::AdminController
 
   def update
 
-  end
-
-  private
-  def load_object
-    @brand = Brand.find(params[:id]) unless params[:id].blank?
-    @brand ||= Brand.new(params[:brand])
   end
 end
