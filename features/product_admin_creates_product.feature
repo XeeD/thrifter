@@ -7,6 +7,7 @@ Požadavek: Produktový admin vytváří nový produkt
 
   Kontext:
     Pokud jsem přihlášený jako "produktový admin"
+
   Scénář: otevření formuláře pro přidání nového produktu
     Když otevřu sekci "administraci produktů"
     A kliknu na odkaz "Přidat nový produkt"
