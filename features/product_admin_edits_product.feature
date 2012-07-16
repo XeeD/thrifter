@@ -9,13 +9,13 @@ Požadavek: Produktový admin edituje produkt
     Pokud jsem přihlášený jako "produktový admin"
   Scénář: zobrazení konkrétního produktu v seznamu produktů
     A produkt "LG GB3133TIJW" existuje
-    Když otevřu sekci "administraci produktů"
+    Když otevřu sekci "administrace produktů"
     Pak bych měl vidět seznam "produktů"
     A měl bych vidět produkt se jménem "LG GB3133TIJW"
 
   Scénář: zobrazení editace konkrétního produktu
     A jsem v sekci "administrace produktů"
-    A existuje "produkt" "LG GB3133TIJW"
+    A produkt "LG GB3133TIJW" existuje
     Když u produktu "LG GB3133TIJW" kliknu na "Editovat"
     Pak bych měl vidět formulář "editace produktu"
     A název produktu by měl být "LG GB3133TIJW"

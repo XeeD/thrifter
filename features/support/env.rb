@@ -56,7 +56,7 @@ Before do
 end
 
 After do |scenario|
-  DatabaseCleaner.clear
+  DatabaseCleaner.clean
 end
 
 # Possible values are :truncation and :transaction
