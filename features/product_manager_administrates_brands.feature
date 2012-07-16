@@ -22,7 +22,7 @@ Požadavek: Produktový manager spravuje značky
 
   Scénář: smazání existující značky
     A jsem v sekci "administrace značek"
-    A existuje "značka" "LG"
+    A značka "LG" existuje
     Když otevřu sekci "administraci značek"
     A kliknu na odkaz "Smazat"
     Pak bych měl vidět zprávu "Značka LG byla smazána"

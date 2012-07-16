@@ -10,7 +10,7 @@ end
 
 def get_form_url(form)
   case form
-    when ""
+    when "přidání nové značky" then "/admin/new"
     else raise "form url not found"
   end
 end
