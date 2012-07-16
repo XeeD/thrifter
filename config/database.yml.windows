@@ -1,0 +1,16 @@
+development:
+  adapter: mysql2
+  encoding: utf8
+  host: localhost
+  database: thrifter_development
+  username: thrifter
+
+test:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: thrifter_test
+  pool: 5
+  username: root
+  password:
+  socket: /var/run/mysqld/mysqld.sock

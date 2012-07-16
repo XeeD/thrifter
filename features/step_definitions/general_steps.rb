@@ -2,11 +2,11 @@
 
 # Given statements
 Pokud /^jsem přihlášený jako "(.*?)"$/ do |role|
-  pending
+  true
 end
 
 Pokud /^jsem v sekci "(.*?)"$/ do |section|
-  pending
+  #visit(get_section_url(section))
 end
 
 Pokud /^existuje "(.*?)" "(.*?)"$/ do |model, identificator|
@@ -23,7 +23,7 @@ Když /^kliknu na tlačítko "(.*?)"$/ do |button|
 end
 
 Když /^vyplním údaj "(.*?)" hodnotou "(.*?)"$/ do |field, value|
-  fill_in "#{key}", :with => "#{value}"
+  fill_in "#{field}", :with => "#{value}"
 end
 
 Když /^otevřu sekci "(.*?)"$/ do |section|
@@ -40,7 +40,7 @@ end
 
 # Then statements
 Pak /^bych měl vidět zprávu "(.*?)"$/ do |message|
-  response.should contain("#{message}")
+  page.should have_content("#{message}")
 end
 
 Pak /^bych měl vidět formulář "(.*?)"$/ do |form|
@@ -50,3 +50,4 @@ end
 Pak /^bych měl vidět seznam "(.*?)"$/ do |form|
   pending
 end
+

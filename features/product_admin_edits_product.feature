@@ -16,7 +16,7 @@ Požadavek: Produktový admin edituje produkt
 
   Scénář: zobrazení editace konkrétního produktu
     A jsem v sekci "administrace produktů"
-    A existuje "produkt" "LG GB3133TIJW"
+    A produkt "LG GB3133TIJW" existuje
     Když u produktu "LG GB3133TIJW" kliknu na "Editovat"
     Pak bych měl vidět formulář "editace produktu"
     A název produktu by měl být "LG GB3133TIJW"
