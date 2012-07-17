@@ -28,11 +28,7 @@ describe Admin::BrandsController do
     # VALID
     describe "with valid parameters" do
       it "should create a new brand" do
-        Brand.should_receive(:new).with(
-            "name" => "LG",
-            "url"  => "lg",
-            "description" => "LG Electronics"
-        ).and_return(brand)
+        Brand.should_receive(:new).and_return(brand)
 
         post :create, :brand => {
             "name" => "LG",
@@ -40,6 +36,8 @@ describe Admin::BrandsController do
             "description" => "LG Electronics"
         }
       end
+
+      it "creates brand with exactly the given parameters"
 
       it "should save brand" do
         brand.should_receive(:save)
@@ -59,16 +57,15 @@ describe Admin::BrandsController do
 
     # INVALID
     describe "with invalid parameters" do
-
-      it "should not save brand"
-
       it "should render new template" do
         brand.stub(:save).and_return(false)
         post :create
         response.should render_template("new")
       end
 
-      it "should have an error notice"
+      it "should have an error notice" do
+        flash[:error].should_not be_blank
+      end
     end
   end
 end
