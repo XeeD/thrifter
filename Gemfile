@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.2'
 gem 'mysql2'
 gem 'jquery-rails'
-gem 'decent_exposure', :git => "https://github.com/voxdolo/decent_exposure"
 gem 'haml-rails'
 gem 'formtastic'
 
