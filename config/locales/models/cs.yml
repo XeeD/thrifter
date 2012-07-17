@@ -1,0 +1,14 @@
+cs:
+  activerecord:
+    models:
+      brand: Značka
+    attributes:
+      brand:
+        name: "Název"
+        url: "Název v odkazu"
+        description: "Popis"
+  helpers:
+    submit:
+      brand:
+        create: "Vytvořit novou značku"
+        update: "Uložit"
