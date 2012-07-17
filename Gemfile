@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.2'
 gem 'mysql2'
 gem 'jquery-rails'
+gem 'decent_exposure'
 
 # Gems used only for compiling assets
 group :assets do
@@ -18,7 +19,7 @@ end
 
 # Test environment
 group :test do
-  gem 'cucumber-rails'
+  gem 'cucumber-rails', require: false
   gem 'database_cleaner'
   gem 'rspec-rails'
   gem 'autotest-rails'
