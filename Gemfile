@@ -4,6 +4,8 @@ gem 'rails', '3.2.2'
 gem 'mysql2'
 gem 'jquery-rails'
 gem 'decent_exposure'
+gem 'haml-rails'
+gem 'formtastic'
 
 # Gems used only for compiling assets
 group :assets do
@@ -22,5 +24,7 @@ group :test do
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
   gem 'rspec-rails'
+  gem 'shoulda'
   gem 'autotest-rails'
+  gem 'autotest-inotify', :platforms => :ruby_19
 end
