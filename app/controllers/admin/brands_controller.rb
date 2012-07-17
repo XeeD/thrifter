@@ -1,32 +1,29 @@
-class Admin::BrandsController < Admin::AdminController
-  def index
+# encoding: UTF-8
 
+class Admin::BrandsController < Admin::AdminController
+  expose(:brands)
+  expose(:brand)
+
+  def index
   end
 
   def new
-
   end
 
   def create
-    @brand = Brand.new(params[:brand])
-
-    if @brand.save
-
+    if brand.save
+      redirect_to admin_brands_path, :notice => "Značka #{brand.name} byla vytvořena"
     else
-
+      render :action => :new
     end
-    redirect_to admin_brand_path(@brand.id)
   end
 
   def show
-
   end
 
   def edit
-
   end
 
   def update
-
   end
 end
