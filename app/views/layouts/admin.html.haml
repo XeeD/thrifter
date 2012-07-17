@@ -1,0 +1,12 @@
+!!! 5
+%html
+    %head
+        %title Thrifter
+            %link{ :rel => "admin", :media => "all" }
+            %csrf_meta_tags
+    %body
+        - flash.each do |type, value|
+            .flash{ :class => type.to_s }
+                = value
+
+        = yield
