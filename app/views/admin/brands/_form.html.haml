@@ -1,3 +1,5 @@
-= form_for([:admin, brand]) do |f|
-    = f.text_field :name
+= semantic_form_for([:admin, brand]) do |f|
+  = f.input :name
+
+  = f.actions do
     = f.submit
