@@ -27,3 +27,8 @@ group :test do
   gem 'autotest-rails'
   gem 'autotest-inotify', :platforms => :ruby_19
 end
+
+group :darwin do
+  gem 'autotest-fsevent'
+  gem 'autotest-growl'
+end
