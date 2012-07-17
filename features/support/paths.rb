@@ -2,9 +2,8 @@
 
 def get_section_url(section)
   case section
-    when "administrace produktů" then "/admin/produkty/"
-    when "administrace značek"   then "/admin/znacky/"
-      #admin_products_path
+    when "administrace produktů" then admin_products_path
+    when "administrace značek"   then admin_brands_path
     else raise "section url for '#{section}' was not found"
   end
 end

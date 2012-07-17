@@ -6,7 +6,7 @@ Pokud /^jsem přihlášený jako "(.*?)"$/ do |role|
 end
 
 Pokud /^jsem v sekci "(.*?)"$/ do |section|
-  #visit(get_section_url(section))
+  visit(get_section_url(section))
 end
 
 Pokud /^existuje "(.*?)" "(.*?)"$/ do |model, identificator|
@@ -38,13 +38,19 @@ Když /^změním hodnotu pole "(.*?)" na "(.*?)"$/ do |field, new_value|
   pending
 end
 
-# Then statements
-Pak /^bych měl vidět zprávu "(.*?)"$/ do |message|
-  page.should have_content("#{message}")
+Když /^vyplním formulář údaji:$/ do |form_values|
+  form_values.hashes.each do |row|
+    row.each_pair { |field, value| fill_in field, with: value }
+  end
 end
 
-Pak /^bych měl vidět formulář "(.*?)"$/ do |form|
-  pending
+# Then statements
+Pak /^bych měl vidět zprávu "(.*?)"$/ do |message|
+  page.should have_content(message)
+end
+
+Pak /^bych měl vidět nadpis "(.*?)"$/ do |heading|
+  find("h2").should have_content(heading)
 end
 
 Pak /^bych měl vidět seznam "(.*?)"$/ do |form|

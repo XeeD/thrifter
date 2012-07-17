@@ -7,23 +7,25 @@ Požadavek: Produktový manager spravuje značky
 
   Kontext:
     Pokud jsem přihlášený jako "produktový manager"
+
   Scénář: vytvoření nové značky
     Když otevřu sekci "administrace značek"
     A kliknu na odkaz "Přidat novou značku"
-    Pak bych měl vidět formulář "přidání nové značky"
+    Pak bych měl vidět nadpis "Nová značka"
 
   Scénář: přidání nové značky přes formulář
-    A jsem v sekci "administrace značek"
-    Když otevřu formulář "přidání nové značky"
-    A vyplním údaj "název" hodnotou "LG"
-    A kliknu na tlačítko "Přidat značku"
+    Pokud jsem v sekci "administrace značek"
+    Když kliknu na odkaz "Přidat novou značku"
+    A vyplním formulář údaji:
+      | Název | Název v odkazu | Popis          |
+      | LG    | lg             | LG Electronics |
+    A kliknu na tlačítko "Vytvořit novou značku"
     Pak bych měl vidět zprávu "Značka LG byla vytvořena"
     A značka "LG" by měla být vytvořena
 
   Scénář: smazání existující značky
-    A jsem v sekci "administrace značek"
+    Pokud jsem v sekci "administrace značek"
     A značka "LG" existuje
-    Když otevřu sekci "administraci značek"
-    A kliknu na odkaz "Smazat"
+    Když kliknu na odkaz "Smazat"
     Pak bych měl vidět zprávu "Značka LG byla smazána"
     A značka "LG" by měla být smazána
