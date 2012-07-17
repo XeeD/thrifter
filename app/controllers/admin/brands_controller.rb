@@ -11,10 +11,10 @@ class Admin::BrandsController < Admin::AdminController
   end
 
   def create
-    #@brand = Brand.new(params[:brand])
     if brand.save
-      redirect_to admin_brands_path, flash: {error: "Značka #{brand.name} byla vytvořena"}
+      redirect_to admin_brands_path, notice: "Značka #{brand.name} byla vytvořena"
     else
+      flash.now[:notice] = "Chyba při ukládání nové značky"
       render :action => :new
     end
   end

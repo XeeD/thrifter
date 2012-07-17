@@ -57,14 +57,22 @@ describe Admin::BrandsController do
 
     # INVALID
     describe "with invalid parameters" do
-      it "should render new template" do
+      before do
         brand.stub(:save).and_return(false)
-        post :create
+      end
+
+      def post_with_invalid_params
+        post :create, brand: {}
+      end
+
+      it "renders form for new brand again" do
+        post_with_invalid_params
         response.should render_template("new")
       end
 
-      it "should have an error notice" do
-        flash[:error].should_not be_blank
+      it "set an error notice" do
+        post_with_invalid_params
+        flash.now[:notice].should_not be_blank
       end
     end
   end
