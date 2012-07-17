@@ -11,3 +11,5 @@
       %tr
         %th= brand.name
         %td
+          %ul.actions
+            %li= link_to "Smazat", admin_brand_path(brand), method: :delete, confirm: "Opravdu smazat značku #{brand.name}?"

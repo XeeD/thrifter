@@ -2,7 +2,7 @@
 
 # Given statements
 Pokud /^značka "(.*?)" existuje$/ do |name|
-  Brand.exists?(:name => name)
+  Brand.create!(name: "LG", url: "lg", description: "LG Electronics")
 end
 
 # When statements

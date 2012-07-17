@@ -24,8 +24,8 @@ Požadavek: Produktový manager spravuje značky
     A značka "LG" by měla být vytvořena
 
   Scénář: smazání existující značky
-    Pokud jsem v sekci "administrace značek"
-    A značka "LG" existuje
+    Pokud značka "LG" existuje
+    A jsem v sekci "administrace značek"
     Když kliknu na odkaz "Smazat"
     Pak bych měl vidět zprávu "Značka LG byla smazána"
     A značka "LG" by měla být smazána
