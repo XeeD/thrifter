@@ -14,5 +14,5 @@ Pak /^značka "(.*?)" by měla být smazána$/ do |name|
 end
 
 Pak /^značka "(.*?)" by měla být vytvořena$/ do |name|
-  pending
+  find("#brands").should have_content("LG")
 end

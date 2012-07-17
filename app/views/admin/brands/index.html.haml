@@ -1,3 +1,13 @@
 %h2 Značky
 %ul.action_links
   %li= link_to "Přidat novou značku", new_admin_brand_path
+
+%table#brands
+  %thead
+    %th Název značky
+    %td Akce
+  %tbody
+    -for brand in brands
+      %tr
+        %th= brand.name
+        %td
