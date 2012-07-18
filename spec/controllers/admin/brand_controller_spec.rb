@@ -132,19 +132,23 @@ describe Admin::BrandsController do
       Brand.stub!(:find).and_return(brand)
     end
 
-    #it "should find brand and return object" do
-    #  Brand.should_receive(:find).and_return(brand)
-    #  get :edit, id: brand.id
-    #end
-
     # VALID
     describe "with valid parameters" do
       before do
-        brand.stub!(:update_attributes).and_return(true)
+        #brand.stub!(:update_attributes).and_return(true)
       end
 
       def put_with_valid_params
-        put :update, id: brand.id, brand: {}
+        put :update, id: brand.id, brand: {
+            name: "Samsung",
+            url:  "samsung",
+            description: "Samsung"
+        }
+      end
+
+      it "should recieve find" do
+        Brand.should_receive(:find).and_return(brand)
+        put_with_valid_params
       end
 
       it "should redirect to brands" do
