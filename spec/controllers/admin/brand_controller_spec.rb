@@ -24,6 +24,13 @@ describe Admin::BrandsController do
     end
   end
 
+  describe "GET edit" do
+    it "renders editation form" do
+      get :edit, id: brand.id
+      response.should be_success
+    end
+  end
+
   # CREATE
   describe "POST create" do
     before do
@@ -36,16 +43,16 @@ describe Admin::BrandsController do
         Brand.should_receive(:new).and_return(brand)
 
         post :create, :brand => {
-            "name" => "LG",
-            "url"  => "lg",
-            "description" => "LG Electronics"
+            name: "LG",
+            url:  "lg",
+            description: "LG Electronics"
         }
       end
 
       it "creates brand with exactly the given parameters"
 
       it "should save brand" do
-        brand.should_receive(:save)
+        brand.should_receive(:save).and_return(true)
         post :create
       end
 
@@ -77,7 +84,7 @@ describe Admin::BrandsController do
 
       it "set an error notice" do
         post_with_invalid_params
-        flash.now[:notice].should_not be_blank
+        flash.now[:error].should_not be_blank
       end
     end
   end
@@ -107,7 +114,7 @@ describe Admin::BrandsController do
     end
 
     it "displays message with delete brand's name" do
-      brand.stub(:name => "LG")
+      brand.stub(name: "LG")
       delete_brand
       flash[:notice].should include(brand.name)
     end
@@ -115,30 +122,61 @@ describe Admin::BrandsController do
     it "displays error message when brand doesn't exist" do
       Brand.stub(:find).and_raise(ActiveRecord::RecordNotFound)
       delete :destroy, id: brand.id + 1
-      flash[:notice].should include("Neznámá značka")
+      flash[:error].should_not be_blank
+    end
+  end
+
+  # EDIT
+  describe "POST update" do
+    before do
+      Brand.stub!(:find).and_return(brand)
+    end
+
+    #it "should find brand and return object" do
+    #  Brand.should_receive(:find).and_return(brand)
+    #  get :edit, id: brand.id
+    #end
+
+    # VALID
+    describe "with valid parameters" do
+      before do
+        brand.stub!(:update_attributes).and_return(true)
+      end
+
+      def put_with_valid_params
+        put :update, id: brand.id, brand: {}
+      end
+
+      it "should redirect to brands" do
+        put_with_valid_params
+        response.should redirect_to(admin_brands_url)
+      end
+
+      it "should have a flash notice" do
+        put_with_valid_params
+        flash[:notice].should_not be_blank
+      end
+    end
+
+    # INVALID
+    describe "with invalid parameters" do
+      before do
+        brand.stub!(:update_attributes).and_return(false)
+      end
+
+      def put_with_invalid_params
+        put :update, id: brand.id, brand: {}
+      end
+
+      it "renders form for editing again" do
+        put_with_invalid_params
+        response.should render_template("edit")
+      end
+
+      it "set an error notice" do
+        put_with_invalid_params
+        flash[:error].should_not be_blank
+      end
     end
   end
 end
-
-#let(:brand) do
-#  @brand = mock_model(Brand, :update_attributes => true)
-#  Brand.stub!(:find).with("1").and_return(@brand)
-#end
-
-#it "should find brand and return object" do
-#  Brand.should_receive(:find).with("1").and_return(@brand)
-#end
-
-#it "should update brand attributes" do
-#  @brand.should_receive(:update_attributes).and_return(true)
-#  put :update, :id => "1", :brand => {}
-#end
-
-#it "should redirect to the brand's show page" do
-#  response.should redirect_to(admin_brand_url(@brand))
-#end
-
-#it "should have a flash notice" do
-#  put :update, :id => "1", :bird => {}
-#  flash[:notice].should_not be_blank
-#end

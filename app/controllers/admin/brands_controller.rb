@@ -11,8 +11,20 @@ class Admin::BrandsController < Admin::AdminController
     if brand.save
       redirect_to admin_brands_url, notice: "Značka #{brand.name} byla vytvořena"
     else
-      flash.now[:notice] = "Chyba při ukládání nové značky"
+      flash.now[:error] = "Chyba při ukládání nové značky"
       render :action => :new
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    if brand.update_attributes(params[:brand])
+      redirect_to admin_brands_url, notice: "Značka #{brand.name} byla upravena"
+    else
+      flash.now[:error] = "Chyba při upravování značky #{brand.name}"
+      render :action => :edit
     end
   end
 
@@ -20,7 +32,7 @@ class Admin::BrandsController < Admin::AdminController
     brand.destroy
     flash[:notice] = "Značka #{brand.name} byla smazána"
   rescue ActiveRecord::RecordNotFound
-    flash[:notice] = "Neznámá značka"
+    flash[:error] = "Neznámá značka"
   ensure
     redirect_to admin_brands_url
   end
