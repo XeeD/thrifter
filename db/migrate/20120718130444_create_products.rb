@@ -15,7 +15,7 @@ class CreateProducts < ActiveRecord::Migration
       t.integer :recommended_price, limit: 6
       t.integer :purchase_price, limit: 6
       t.integer :recycling_fee, limit: 4
-      t.integer :warranty, limit: 3
+      t.integer :waranty, limit: 3
       t.decimal :vat_rate, :scale => 1, :precision => 3
 
       t.string :state, default: :new
@@ -29,6 +29,7 @@ class CreateProducts < ActiveRecord::Migration
 
       # Associations
       t.belongs_to :brand
+
     end
 
     add_index :products, :url, unique: true
