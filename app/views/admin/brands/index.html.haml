@@ -2,15 +2,19 @@
 %ul.action_links
   %li= link_to "Přidat novou značku", new_admin_brand_path
 
-%table#brands
-  %thead
-    %th Název značky
-    %td Akce
-  %tbody
-    -for brand in brands
-      %tr
-        %th= brand.name
-        %td
-          %ul.actions
-            %li= link_to "Smazat", admin_brand_path(brand), method: :delete, confirm: "Opravdu smazat značku #{brand.name}?"
-            %li= link_to "Upravit", edit_admin_brand_path(brand)
+- unless brands.empty?
+  %table#brands
+    %thead
+      %th Název značky
+      %td Akce
+    %tbody
+      - for brand in brands
+        %tr
+          %th= brand.name
+          %td
+            %ul.actions
+              %li= link_to "Smazat", admin_brand_path(brand), method: :delete, confirm: "Opravdu smazat značku #{brand.name}?"
+              %li= link_to "Upravit", edit_admin_brand_path(brand)
+- else
+  .empty_set
+    Zatím nejsou vytvořeny žádné značky
