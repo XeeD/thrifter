@@ -39,4 +39,4 @@ Požadavek: Produktový manager spravuje značky
       | Samsung | samsung        | Samsung  |
     A kliknu na tlačítko "Uložit"
     Pak bych měl vidět zprávu "Značka Samsung byla upravena"
-    A značka "Samsung" by měla být vytvořena
+    A značka "Samsung" by měla být upravena
