@@ -128,45 +128,45 @@ describe Admin::BrandsController do
   end
 
   # EDIT
-  describe "POST update" do
-    before do
-      Brand.stub!(:find).and_return(brand)
-    end
-
-    # VALID
-    describe "with valid parameters" do
-      def valid_brand_attributes
-        {
-            "name" => "Samsung",
-            "url" => "samsung",
-            "description" => "Samsung"
-        }
+    describe "POST update" do
+      before do
+        Brand.stub!(:find).and_return(brand)
       end
 
-      def put_with_valid_attributes
-        put :update, id: brand.id, brand: valid_brand_attributes
-      end
+      # VALID
+      describe "with valid parameters" do
+        def valid_brand_attributes
+          {
+              "name" => "Samsung",
+              "url" => "samsung",
+              "description" => "Samsung"
+          }
+        end
 
-      it "receives find" do
-        Brand.should_receive(:find).and_return(brand)
-        put_with_valid_attributes
-      end
+        def put_with_valid_attributes
+          put :update, id: brand.id, brand: valid_brand_attributes
+        end
 
-      it "updates brand's attributes" do
-        brand.should_receive(:update_attributes).with(valid_brand_attributes).once.and_return(true)
-        put_with_valid_attributes
-      end
+        it "receives find with brand's id" do
+          Brand.should_receive(:find).with(brand.id).and_return(brand)
+          put_with_valid_attributes
+        end
 
-      it "should redirect to brands" do
-        put_with_valid_attributes
-        response.should redirect_to(admin_brands_url)
-      end
+        it "updates brand's attributes" do
+          brand.should_receive(:update_attributes).with(valid_brand_attributes).once.and_return(true)
+          put_with_valid_attributes
+        end
 
-      it "should have a flash notice" do
-        put_with_valid_attributes
-        flash[:notice].should_not be_blank
+        it "should redirect to brands" do
+          put_with_valid_attributes
+          response.should redirect_to(admin_brands_url)
+        end
+
+        it "should have a flash notice" do
+          put_with_valid_attributes
+          flash[:notice].should_not be_blank
+        end
       end
-    end
 
     # INVALID
     describe "with invalid parameters" do
@@ -178,8 +178,8 @@ describe Admin::BrandsController do
         put :update, id: brand.id, brand: {}
       end
 
-      it "receives find" do
-        Brand.should_receive(:find).and_return(brand)
+      it "receives find with brand's id" do
+        Brand.should_receive(:find).with(brand.id).and_return(brand)
         put_with_invalid_params
       end
 
