@@ -43,12 +43,4 @@ ActiveRecord::Schema.define(:version => 20120718130444) do
     t.integer  "brand_id"
   end
 
-  add_index "products", ["brand_id"], :name => "index_products_on_brand_id"
-  add_index "products", ["external_id"], :name => "index_products_on_external_id"
-  add_index "products", ["initial_data_source"], :name => "index_products_on_initial_data_source"
-  add_index "products", ["model_name"], :name => "index_products_on_model_name"
-  add_index "products", ["name"], :name => "index_products_on_name"
-  add_index "products", ["top_product"], :name => "index_products_on_top_product"
-  add_index "products", ["url"], :name => "index_products_on_url"
-
 end
