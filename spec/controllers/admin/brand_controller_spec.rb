@@ -148,7 +148,7 @@ describe Admin::BrandsController do
         end
 
         it "receives find with brand's id" do
-          Brand.should_receive(:find).with(brand.id).and_return(brand)
+          Brand.should_receive(:find).with(brand.id.to_s).and_return(brand)
           put_with_valid_attributes
         end
 
@@ -179,7 +179,7 @@ describe Admin::BrandsController do
       end
 
       it "receives find with brand's id" do
-        Brand.should_receive(:find).with(brand.id).and_return(brand)
+        Brand.should_receive(:find).with(brand.id.to_s).and_return(brand)
         put_with_invalid_params
       end
 
