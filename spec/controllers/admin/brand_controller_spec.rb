@@ -39,17 +39,18 @@ describe Admin::BrandsController do
 
     # VALID
     describe "with valid parameters" do
-      it "should create a new brand" do
-        Brand.should_receive(:new).and_return(brand)
-
-        post :create, :brand => {
-            name: "LG",
-            url:  "lg",
-            description: "LG Electronics"
+      def valid_brand_attributes
+        {
+            "name" => "LG",
+            "url" => "lg",
+            "description" => "LG Electronics"
         }
       end
 
-      it "creates brand with exactly the given parameters"
+      it "creates brand with exactly the given parameters" do
+        Brand.should_receive(:new).with(valid_brand_attributes).once
+        post :create, :brand => valid_brand_attributes
+      end
 
       it "should save brand" do
         brand.should_receive(:save).and_return(true)
