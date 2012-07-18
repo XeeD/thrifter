@@ -74,24 +74,7 @@ describe Product do
 
   context "with valid attributes" do
     it "should be valid" do
-      pending
-      Products.new(
-          name: "",
-          model_name: "",
-          short_description: "",
-          description: "",
-          default_price: "",
-          recomended_price: "",
-          purchase_price: "",
-          recycling_fee: "",
-          vat_rate: "",
-          external_id: "",
-          state: "",
-          url: "",
-          is_gray_import: "",
-          warranty: "",
-          in_top_producxt: ""
-      ).should be_valid
+      Product.new(valid_attributes).should be_valid
     end
   end
 end
