@@ -7,8 +7,7 @@ module SimpleExposure
     delegate :exposure_with_block?, :to => :exposure
     attr_reader :controller, :exposure
 
-    def initialize(exposure, controller)
-      @controller = controller
+    def initialize(exposure)
       @exposure = exposure
     end
 
@@ -24,21 +23,21 @@ module SimpleExposure
       exposure_name.to_s.classify.constantize
     end
 
-    def find
+    def find(params)
       if exposure_with_block?
         eval_block_for_exposure
       elsif exposed_collection?
         find_plural
       else
-        find_singular
+        find_singular(params)
       end
     end
 
-    def find_singular
-      if !param(id_for_exposure_name).nil?
-        model.find(param(id_for_exposure_name))
-      elsif !param(:id).nil?
-        model.find(param(:id))
+    def find_singular(params)
+      if !params[id_for_exposure_name].nil?
+        model.find(params[id_for_exposure_name])
+      elsif !params[:id].nil?
+        model.find(params[:id])
       else
         model.new
       end
@@ -54,10 +53,6 @@ module SimpleExposure
 
     def id_for_exposure_name
       (exposure_name.to_s + "_id").to_sym
-    end
-
-    def param(param_name)
-      controller.send(:params)[param_name]
     end
   end
 end

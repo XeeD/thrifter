@@ -7,11 +7,10 @@ end
 module SimpleExposure
   describe ActiveRecordHook do
     let(:params) { Hash.new }
-    let(:controller) { stub(params: params) }
     let(:exposure) { Exposure.new(:brand) }
     let(:collection_exposure) { Exposure.new(:brands) }
-    let(:hook) { ActiveRecordHook.new(exposure, controller) }
-    let(:collection_hook) { ActiveRecordHook.new(collection_exposure, controller) }
+    let(:hook) { ActiveRecordHook.new(exposure) }
+    let(:collection_hook) { ActiveRecordHook.new(collection_exposure) }
 
     before do
       hook.stub(:pluralize) do |name|
@@ -44,20 +43,6 @@ module SimpleExposure
       end
     end
 
-    context "#param" do
-      let(:params) { mock("params").as_null_object }
-
-      it "delegates to controller" do
-        controller.should_receive(:params).once
-        hook.param(:id)
-      end
-
-      it "finds parameter value in controller" do
-        params.should_receive(:[]).with(:id).once
-        hook.param(:id)
-      end
-    end
-
     context "#find" do
       context "with singular exposure name" do
         context "with :id defined in params" do
@@ -66,14 +51,14 @@ module SimpleExposure
 
           it "finds the resource by id" do
             Brand.should_receive(:find).with(params[:id])
-            hook.find
+            hook.find(params)
           end
 
           it "uses id from params" do
             hook.stub(:model).and_return(brand_mock)
-            hook.should_receive(:param).with(:brand_id).and_return(nil)
-            hook.should_receive(:param).with(:id)
-            hook.find
+            params.should_receive(:[]).with(:brand_id).and_return(nil)
+            params.should_receive(:[]).with(:id)
+            hook.find(params)
           end
         end
 
@@ -81,14 +66,14 @@ module SimpleExposure
           let(:params) { {:brand_id => "5", :id => "4"} }
           it "finds the resource by the id" do
             Brand.should_receive(:find).with(params[:brand_id])
-            hook.find
+            hook.find(params)
           end
         end
 
         context "with no id defined in params" do
           it "returns new instance" do
             Brand.should_receive(:new).once
-            hook.find
+            hook.find(params)
           end
         end
       end
@@ -96,17 +81,17 @@ module SimpleExposure
       context "with plural exposure name" do
         it "finds the resources using default scope" do
           Brand.should_receive(:all).once
-          collection_hook.find
+          collection_hook.find(params)
         end
       end
 
       context "using exposure with block" do
         let(:block) { Proc.new {} }
-        let(:exposure) { Exposure.new(:brand, &block) }
+        let(:exposure) { Exposure.new(:brand, block) }
 
         it "should use the block to retrieve the resource" do
           block.should_receive(:call).once
-          hook.find
+          hook.find(params)
         end
       end
     end

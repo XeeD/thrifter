@@ -1,11 +1,13 @@
 require "simple_exposure/exposure"
+require "simple_exposure/active_record_hook"
 
 module SimpleExposure
   module Expose
-    def expose(name, options={}, &block)
-      exposure = Exposure.new(name, &block)
+    def expose(name, &block)
+      exposure = Exposure.new(name, block)
+      active_record_hook = ActiveRecordHook.new(exposure)
       define_method(name) do
-        Brand.find(params[:id])
+        active_record_hook.find(params)
       end
       helper_method name
       hide_action name

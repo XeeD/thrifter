@@ -14,6 +14,10 @@ module SimpleExposure
       let(:params) { {} }
       let(:controller) { controller = BrandController.new }
 
+      before do
+        controller.stub!(:params).and_return(params)
+      end
+
       it "defines method with exposed name" do
         controller.should respond_to(:brand)
       end
@@ -27,29 +31,52 @@ module SimpleExposure
       end
 
       it "creates new Exposure with given name" do
-        Exposure.should_receive(:new).with(:brands)
+        Exposure.should_receive(:new).with(:brands, nil)
         controller.class.expose(:brands)
       end
 
       it "creates new Exposure with given name and block" do
         block = Proc.new {}
-        Exposure.should_receive(:new).once.with(:cats, block)
-        controller.class.expose(:cats) { eee }
+        Exposure.should_receive(:new).once.with(:brands, block)
+        controller.class.expose(:brands, &block)
       end
-
-      it "creates new instance of ActiveRecordHook"
 
       context "singular name" do
         context "with params[:id]" do
-          let(:params) { {:id => 5} }
-
-          before do
-            controller.stub!(:params).and_return(params)
-          end
+          let(:params) { {id: 5} }
 
           it "finds the resource by that id" do
+            controller.stub!(:params).and_return(params)
             Brand.should_receive(:find).with(params[:id])
             controller.brand
+          end
+        end
+
+        context "with params[:'exposure_name'_id]" do
+          let(:params) { {brand_id: 6, id: 4} }
+
+          it "finds the resource by that id" do
+            Brand.should_receive(:find).with(params[:brand_id])
+            controller.brand
+          end
+        end
+      end
+
+      context "plural name" do
+        context "with no block given" do
+          it "uses model's default scope to find resource" do
+            controller.class.expose(:brands)
+            Brand.should_receive(:all).once
+            controller.brands
+          end
+        end
+
+        context "with block given" do
+          it "uses the block to find resource" do
+            block = Proc.new {}
+            controller.class.expose(:brands, &block)
+            block.should_receive(:call).once
+            controller.brands
           end
         end
       end
