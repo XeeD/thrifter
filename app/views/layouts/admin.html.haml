@@ -1,14 +1,18 @@
-!!! 5
+!!!
 %html
-    %head
-        %title Thrifter
+  %head
+    %title Thrifter
+    = stylesheet_link_tag "admin", :media => "all"
+    = javascript_include_tag "admin/application"
+    = csrf_meta_tags
 
-        = stylesheet_link_tag "admin", :media => "all"
-        = javascript_include_tag "admin/application"
-        = csrf_meta_tags
     %body
-        - flash.each do |type, value|
-            .flash{ :class => type.to_s }
-                = value
+      - flash.each do |type, value|
+        .flash{ :class => type.to_s }
+          = value
 
-        = yield
+      %ul#menu
+        %li= link_to "Značky", admin_brands_path
+        %li= link_to "Produkty", admin_products_path
+
+      = yield
