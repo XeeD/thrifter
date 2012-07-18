@@ -2,7 +2,7 @@
 
 # Given statements
 Pokud /^značka "(.*?)" existuje$/ do |name|
-  Brand.create!(name: "LG", url: "lg", description: "LG Electronics")
+  Brand.create!(name: "#{name}", url: "lg", description: "LG Electronics")
 end
 
 # When statements
@@ -10,9 +10,9 @@ end
 # Then statements
 
 Pak /^značka "(.*?)" by měla být smazána$/ do |name|
-  Brand.exists?(:name => name)
+  find("#brands").should_not have_content("#{name}")
 end
 
 Pak /^značka "(.*?)" by měla být vytvořena$/ do |name|
-  find("#brands").should have_content("LG")
+  find("#brands").should have_content("#{name}")
 end

@@ -29,3 +29,14 @@ Požadavek: Produktový manager spravuje značky
     Když kliknu na odkaz "Smazat"
     Pak bych měl vidět zprávu "Značka LG byla smazána"
     A značka "LG" by měla být smazána
+
+  Scénář: upravení existující značky přes formulář
+    Pokud značka "LG" existuje
+    A jsem v sekci "administrace značek"
+    Když kliknu na odkaz "Upravit"
+    A vyplním formulář údaji:
+      | Název   | Název v odkazu | Popis    |
+      | Samsung | samsung        | Samsung  |
+    A kliknu na tlačítko "Uložit"
+    Pak bych měl vidět zprávu "Značka Samsung byla upravena"
+    A značka "Samsung" by měla být vytvořena
