@@ -19,6 +19,6 @@ Pak /^značka "(.*?)" by měla být smazána$/ do |name|
   find("#brands").should_not have_content("#{name}")
 end
 
-Pak /^značka "(.*?)" by měla být (vytvořena|upravena)$/ do |name, action|
+Pak /^značka "(.*?)" by měla být (?:vytvořena|upravena)$/ do |name|
   find("#brands").should have_content("#{name}")
 end

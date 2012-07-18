@@ -12,6 +12,6 @@ Pak /^produkt "(.*?)" by měl být smazán$/ do |name|
   find("#products").should_not have_content("#{name}")
 end
 
-Pak /^produkt "(.*?)" by měl být (vytvořen|upraven)$/ do |name, action|
+Pak /^produkt "(.*?)" by měl být (?:vytvořen|upraven)$/ do |name|
   find("#products").should have_content("#{name}")
 end
