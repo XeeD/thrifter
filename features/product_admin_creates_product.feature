@@ -11,11 +11,14 @@ Požadavek: Produktový admin vytváří nový produkt
   Scénář: otevření formuláře pro přidání nového produktu
     Když otevřu sekci "administrace produktů"
     A kliknu na odkaz "Přidat nový produkt"
-    Pak bych měl vidět formulář "přidání nového produktu"
+    Pak bych měl vidět nadpis "Nový produkt"
 
   Scénář: přidání nového produktu přes formulář
-    Když otevřu formulář "přidání nového produktu"
-    A vyplním údaj "název" hodnotou "LG GB3133TIJW"
-    A kliknu na tlačítko "Přidat výrobek"
+    Pokud jsem v sekci "administrace produktů"
+    Když kliknu na odkaz "Přidat nový produkt"
+    A vyplním formulář údaji:
+      | Název         | Název odkazu  |
+      | LG GB3133TIJW | lg-gb3133tijw |
+    A kliknu na tlačítko "Vytvořit výrobek"
     Pak bych měl vidět zprávu "Produkt LG GB3133TIJW byl vytvořen"
     A produkt "LG GB3133TIJW" by měl být vytvořen

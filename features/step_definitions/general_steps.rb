@@ -56,4 +56,3 @@ end
 Pak /^bych měl vidět seznam "(.*?)"$/ do |form|
   pending
 end
-
