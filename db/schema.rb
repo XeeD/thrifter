@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(:version => 20120718130444) do
     t.integer  "recommended_price",   :limit => 8
     t.integer  "purchase_price",      :limit => 8
     t.integer  "recycling_fee"
-    t.integer  "waranty",             :limit => 3
+    t.integer  "warranty",            :limit => 3
     t.decimal  "vat_rate",                           :precision => 3, :scale => 1
     t.string   "state",                                                            :default => "new"
     t.text     "admin_comment"
