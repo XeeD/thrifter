@@ -135,30 +135,35 @@ describe Admin::BrandsController do
 
     # VALID
     describe "with valid parameters" do
-      before do
-        #brand.stub!(:update_attributes).and_return(true)
-      end
-
-      def put_with_valid_params
-        put :update, id: brand.id, brand: {
-            name: "Samsung",
-            url:  "samsung",
-            description: "Samsung"
+      def valid_brand_attributes
+        {
+            "name" => "Samsung",
+            "url" => "samsung",
+            "description" => "Samsung"
         }
       end
 
-      it "should recieve find" do
+      def put_with_valid_attributes
+        put :update, id: brand.id, brand: valid_brand_attributes
+      end
+
+      it "receives find" do
         Brand.should_receive(:find).and_return(brand)
-        put_with_valid_params
+        put_with_valid_attributes
+      end
+
+      it "updates brand's attributes" do
+        brand.should_receive(:update_attributes).with(valid_brand_attributes).once.and_return(true)
+        put_with_valid_attributes
       end
 
       it "should redirect to brands" do
-        put_with_valid_params
+        put_with_valid_attributes
         response.should redirect_to(admin_brands_url)
       end
 
       it "should have a flash notice" do
-        put_with_valid_params
+        put_with_valid_attributes
         flash[:notice].should_not be_blank
       end
     end
@@ -171,6 +176,16 @@ describe Admin::BrandsController do
 
       def put_with_invalid_params
         put :update, id: brand.id, brand: {}
+      end
+
+      it "receives find" do
+        Brand.should_receive(:find).and_return(brand)
+        put_with_invalid_params
+      end
+
+      it "doesn't update brand's attributes" do
+        brand.should_receive(:update_attributes).and_return(false)
+        put_with_invalid_params
       end
 
       it "renders form for editing again" do
