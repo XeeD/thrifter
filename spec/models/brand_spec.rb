@@ -7,7 +7,11 @@ describe Brand do
 
   context "with valid attributes" do
     it "should be valid" do
-      Brand.new(:name => "LG", :url => "lg", :description => "LG Electronics").should be_valid
+      Brand.new(
+          name: "LG",
+          url:  "lg",
+          description: "LG Electronics"
+      ).should be_valid
     end
   end
 end
