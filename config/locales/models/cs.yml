@@ -7,8 +7,17 @@ cs:
         name: "Název"
         url: "Název v odkazu"
         description: "Popis"
+      category:
+        short_name: "Název"
+        url: "Název v odkazu"
+        plural_name: "Celý název (mn. č.)"
+        singular_name: "Celý název (j. č.)"
+        category_type: "Typ kategorie"
   helpers:
     submit:
       brand:
         create: "Vytvořit novou značku"
-        update: "Uložit"
+        update: "Uložit značku"
+      category:
+        create: "Vytvořit novou kategorii"
+        update: "Uložit kategorii"
