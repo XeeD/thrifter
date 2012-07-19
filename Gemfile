@@ -37,7 +37,7 @@ end
 
 group :linux do
   gem 'activerecord-postgresql-adapter'
-  group :development, :test
+  group :development, :test do
     gem 'autotest-inotify'
   end
 end
