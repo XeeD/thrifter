@@ -27,6 +27,9 @@ module Admin
         flash.now[:error] = "Chyba při upravování značky #{brand.name}"
         render :action => :edit
       end
+    rescue ActiveRecord::RecordNotFound
+      flash[:error] = "Neexistující značka"
+      redirect_to admin_brands_url
     end
 
     def destroy

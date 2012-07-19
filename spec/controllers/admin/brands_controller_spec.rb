@@ -173,6 +173,7 @@ describe Admin::BrandsController do
     context "with invalid parameters" do
       before do
         brand.stub!(:update_attributes).and_return(false)
+        Brand.stub!(:find).and_return(brand)
       end
 
       def put_with_invalid_params
