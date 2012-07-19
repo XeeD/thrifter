@@ -2,11 +2,30 @@ cs:
   activerecord:
     models:
       brand: Značka
+      category: Kategorie
+      product: Produkt
     attributes:
       brand:
         name: "Název"
         url: "Název v odkazu"
         description: "Popis"
+      product:
+        name: "Celý název"
+        model_name: "Model"
+        url: "Název v odkazu"
+        external_id: "Číslo v Cézaru"
+        ean_code: "Čárový kód (EAN)"
+        short_description: "Stručný popis"
+        description: "Popis"
+        default_price: "Výchozí cena"
+        recommended_price: "Doporučená cena"
+        purchase_price: "Nákupní cena"
+        recycling_fee: "PHE"
+        warranty: "Záruka"
+        vat_rate: "% DPH"
+        admin_comment: "Poznámka"
+        gray_import: "Šedý dovoz"
+        top_produkt: "Top produkt"
       category:
         short_name: "Název"
         url: "Název v odkazu"
@@ -21,3 +40,6 @@ cs:
       category:
         create: "Vytvořit novou kategorii"
         update: "Uložit kategorii"
+      product:
+        create: "Vytvořit nový produkt"
+        update: "Uložit produkt"
