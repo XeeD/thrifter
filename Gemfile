@@ -32,3 +32,7 @@ group :darwin do
   gem 'autotest-fsevent'
   gem 'autotest-growl'
 end
+
+group :linux do
+  gem 'activerecord-postgresql-adapter'
+end
