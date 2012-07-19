@@ -1,0 +1,7 @@
+%li{:id => dom_id(category)}
+  = category.short_name
+
+  = content_tag :ul do
+    - for child in category.children
+      = render :partial => "node", :locals => {:category => child }
+  - end unless category.leaf?
