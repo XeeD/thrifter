@@ -3,6 +3,7 @@
   = f.input :url
   = f.input :plural_name
   = f.input :singular_name
+  = f.input :category_type, :as => :select, :collection => Category::CATEGORY_TYPES
 
   = f.actions do
     = f.submit

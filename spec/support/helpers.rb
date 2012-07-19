@@ -20,11 +20,13 @@ module Helpers
     }.stringify_keys
   end
 
-  def valid_brand_attributes
+  def valid_category_attributes
     {
-        name: "LG",
-        url: "lg",
-        description: "LG Electronics"
+        short_name: "Pračky",
+        url: "pracky",
+        plural_name: "Pračky",
+        singulare_name: "Pračka",
+        category_type: "navigational"
     }.stringify_keys
   end
 

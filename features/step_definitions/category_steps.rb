@@ -2,11 +2,11 @@
 
 # Given statements
 Pokud /^kategorie "(.*?)" existuje$/ do |name|
-  Category.create!(short_name: "#{name}", url: "pracky", plural_name: "Pračky", singular_name: "Pračka")
+  Category.create!(short_name: "#{name}", url: "pracky", plural_name: "Pračky", singular_name: "Pračka", category_type: "navigational")
 end
 
 Pokud /^jsem v editaci kategorie "(.*?)"$/ do |name|
-  step "značka \"#{name}\" existuje"
+  step "kategorie \"#{name}\" existuje"
   step 'jsem v sekci "administrace kategorií"'
   step 'kliknu na odkaz "Upravit"'
 end

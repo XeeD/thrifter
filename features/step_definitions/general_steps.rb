@@ -15,19 +15,23 @@ end
 
 # When statements
 Když /^kliknu na odkaz "(.*?)"$/ do |link|
-  click_link "#{link}"
+  click_link link.to_s
 end
 
 Když /^kliknu na tlačítko "(.*?)"$/ do |button|
-  click_button "#{button}"
+  click_button button.to_s
 end
 
 Když /^vyplním údaj "(.*?)" hodnotou "(.*?)"$/ do |field, value|
-  fill_in "#{field}", :with => "#{value}"
+  fill_in field.to_s, :with => value.to_s
+end
+
+Když /^vyberu hodnotu "(.*?)" ze seznamu "(.*?)"$/ do |value, field|
+  select value.to_s, :from => field.to_s
 end
 
 Když /^otevřu sekci "(.*?)"$/ do |section|
-  visit "#{get_section_url(section)}"
+  visit get_section_url(section).to_s
 end
 
 Když /^vyplním formulář údaji:$/ do |form_values|
