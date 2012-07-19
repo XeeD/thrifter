@@ -30,14 +30,6 @@ Když /^otevřu sekci "(.*?)"$/ do |section|
   visit "#{get_section_url(section)}"
 end
 
-Když /^otevřu formulář "(.*?)"$/ do |form|
-  visit "#{get_form_url(form)}"
-end
-
-Když /^změním hodnotu pole "(.*?)" na "(.*?)"$/ do |field, new_value|
-  pending
-end
-
 Když /^vyplním formulář údaji:$/ do |form_values|
   form_values.hashes.each do |row|
     row.each_pair { |field, value| fill_in field, with: value }
