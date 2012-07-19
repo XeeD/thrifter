@@ -129,9 +129,6 @@ describe Admin::BrandsController do
 
   # EDIT
   describe "POST update" do
-    before do
-      Brand.stub!(:find).and_return(brand)
-    end
 
     # VALID
     context "with valid parameters" do
@@ -141,6 +138,10 @@ describe Admin::BrandsController do
             "url" => "samsung",
             "description" => "Samsung"
         }
+      end
+
+      before do
+        Brand.stub!(:find).and_return(brand)
       end
 
       def put_with_valid_attributes
@@ -197,21 +198,21 @@ describe Admin::BrandsController do
         put_with_invalid_params
         flash[:error].should_not be_blank
       end
+    end
 
-      context "with non-existing bramd id" do
-        def post_with_invalid_id
-          post :update, :id => brand.id + 1
-        end
+    context "with non-existing bramd id" do
+      def post_with_invalid_id
+        post :update, :id => brand.id + 1
+      end
 
-        it "redirects to index" do
-          post_with_invalid_id
-          response.should redirect_to(admin_brands_url)
-        end
+      it "redirects to index" do
+        post_with_invalid_id
+        response.should redirect_to(admin_brands_url)
+      end
 
-        it "sets error message" do
-          post_with_invalid_id
-          flash.now[:error].should_not be_blank
-        end
+      it "sets error message" do
+        post_with_invalid_id
+        flash.now[:error].should_not be_blank
       end
     end
   end
