@@ -31,6 +31,14 @@ module Admin
       redirect_to admin_products_url
     end
 
+    def destroy
+      product.destroy
+    rescue ActiveRecord::RecordNotFound
+      flash[:error] = "Nelze najít daný produkt"
+    ensure
+          redirect_to admin_products_url
+    end
+
     private
 
     def product

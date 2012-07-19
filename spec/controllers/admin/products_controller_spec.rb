@@ -153,6 +153,47 @@ module Admin
       end
     end
 
-    describe "PU"
+    describe "DELETE destroy" do
+      context "with valid product id" do
+        def delete_product
+          delete :destroy, :id => product.id
+        end
+
+        before do
+          Product.stub(:find).and_return(product)
+        end
+
+        it "finds the product" do
+          Product.should_receive(:find).with(product.id.to_s).once
+          delete_product
+        end
+
+        it "redirects back to index" do
+          delete_product
+          response.should redirect_to(admin_products_url)
+        end
+
+        it "destroys the product" do
+          product.should_receive(:destroy).once
+          delete_product
+        end
+      end
+
+      context "with non-existing product id" do
+        def delete_invalid_product
+          delete :destroy, :id => product.id + 1
+        end
+
+        it "redirects back to index" do
+          delete_invalid_product
+          response.should redirect_to(admin_products_url)
+        end
+
+        it "sets error message" do
+          delete_invalid_product
+          flash[:error].should_not be_blank
+        end
+      end
+    end
   end
 end
