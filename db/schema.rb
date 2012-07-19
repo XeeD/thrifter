@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120718130444) do
+ActiveRecord::Schema.define(:version => 20120719081039) do
 
   create_table "brands", :force => true do |t|
     t.string "name",        :limit => 100
@@ -19,10 +19,29 @@ ActiveRecord::Schema.define(:version => 20120718130444) do
     t.text   "description"
   end
 
+  create_table "categories", :force => true do |t|
+    t.string  "short_name",    :limit => 80
+    t.string  "url",           :limit => 120
+    t.string  "plural_name",   :limit => 120
+    t.string  "singular_name", :limit => 120
+    t.string  "category_type", :limit => 20
+    t.integer "lft"
+    t.integer "rgt"
+    t.integer "parent_id"
+    t.integer "depth"
+    t.integer "shop_id"
+  end
+
+  add_index "categories", ["depth"], :name => "index_categories_on_depth"
+  add_index "categories", ["lft"], :name => "index_categories_on_lft"
+  add_index "categories", ["parent_id"], :name => "index_categories_on_parent_id"
+  add_index "categories", ["rgt"], :name => "index_categories_on_rgt"
+  add_index "categories", ["url"], :name => "index_categories_on_url", :unique => true
+
   create_table "products", :force => true do |t|
     t.string   "name",                :limit => 301
     t.string   "model_name",          :limit => 150
-    t.string   "url",                 :limit => 301,                                                             :null => false
+    t.string   "url",                 :limit => 301
     t.integer  "external_id",         :limit => 8
     t.string   "ean_code",            :limit => 13
     t.text     "short_description"
@@ -31,7 +50,7 @@ ActiveRecord::Schema.define(:version => 20120718130444) do
     t.integer  "recommended_price",   :limit => 8
     t.integer  "purchase_price",      :limit => 8
     t.integer  "recycling_fee"
-    t.integer  "warranty",            :limit => 3
+    t.integer  "warranty"
     t.decimal  "vat_rate",                           :precision => 3, :scale => 1
     t.string   "state",                                                            :default => "new"
     t.text     "admin_comment"
@@ -47,7 +66,7 @@ ActiveRecord::Schema.define(:version => 20120718130444) do
   add_index "products", ["external_id"], :name => "index_products_on_external_id"
   add_index "products", ["initial_data_source"], :name => "index_products_on_initial_data_source"
   add_index "products", ["model_name"], :name => "index_products_on_model_name"
-  add_index "products", ["name"], :name => "index_products_on_name", :length => {"name"=>255}
+  add_index "products", ["name"], :name => "index_products_on_name"
   add_index "products", ["top_product"], :name => "index_products_on_top_product"
   add_index "products", ["url"], :name => "index_products_on_url", :unique => true
 
