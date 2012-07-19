@@ -33,10 +33,11 @@ module Admin
 
     def destroy
       product.destroy
+      flash[:notice] = "Produkt #{product.name} byl smazán"
     rescue ActiveRecord::RecordNotFound
       flash[:error] = "Nelze najít daný produkt"
     ensure
-          redirect_to admin_products_url
+      redirect_to admin_products_url
     end
 
     private
@@ -46,5 +47,11 @@ module Admin
     end
 
     helper_method :product
+
+    def products
+      @products ||= Product.all
+    end
+
+    helper_method :products
   end
 end

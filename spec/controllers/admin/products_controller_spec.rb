@@ -5,25 +5,25 @@ module Admin
     let(:product) { mock_model(Product).as_null_object }
 
     describe "GET index" do
-      it "renders index action" do
+      it "renders 'index' template" do
         get :index
-        response.should be_success
+        response.should render_template("index")
       end
 
       context "when rendering views" do
         render_views
 
         it "calls Product#all" do
-          Product.should_receive(:all).with(nil).once.and_return([product])
+          Product.should_receive(:all).with(no_args).once.and_return([product])
           get :index
         end
       end
     end
 
     describe "GET new" do
-      it "renders new action" do
+      it "renders 'new' template" do
         get :new
-        response.should be_success
+        response.should render_template("new")
       end
 
       context "when rendering views" do
@@ -32,6 +32,11 @@ module Admin
         it "calls Product#new" do
           Product.should_receive(:new).with(nil).once.and_return(product)
           get :new
+        end
+
+        it "shows form" do
+          get :new
+          response.body.should have_selector("form")
         end
       end
     end
@@ -63,20 +68,20 @@ module Admin
           post_valid_attributes
         end
 
-        it "sets the notice message with product name" do
+        it "sets notice message containing product name" do
           product.stub(:name).and_return("LG GB3133TIJW")
           post_valid_attributes
           flash[:notice].should include(product.name)
         end
       end
 
-      # Invalid
+      # Invalid attributes
       context "with invalid attributes" do
         before do
           Product.stub(:save).and_return(false)
         end
 
-        it "renders the template for new again" do
+        it "renders the template 'new' again" do
           post :create
           response.should render_template("new")
         end
@@ -89,16 +94,36 @@ module Admin
     end
 
     describe "GET edit" do
-      render_views
-
-      it "renders edit form" do
-        Product.stub(:find).and_return(product)
+      def get_edit
         get :edit, :id => product.id
-        response.body.should have_selector("form")
+      end
+
+      it "renders template 'edit'" do
+        get_edit
+        response.should render_template("edit")
+      end
+
+      context "when rendering views" do
+        render_views
+
+        before do
+          Product.stub(:find).and_return(product)
+        end
+
+        it "finds the product" do
+          Product.should_receive(:find).with(product.id.to_s).once
+          get_edit
+        end
+
+        it "renders edit form" do
+          get :edit, :id => product.id
+          response.body.should have_selector("form")
+        end
       end
     end
 
     describe "PUT update" do
+      # Valid attributes
       context "with valid attributes" do
         def put_update
           put :update, :id => product.id, :product => valid_product_attributes
@@ -124,6 +149,7 @@ module Admin
         end
       end
 
+      # Invalid attributes
       context "with invalid attributes" do
         def put_invalid_update
           put :update, :id => product.id, :product => {}
@@ -185,6 +211,12 @@ module Admin
         it "destroys the product" do
           product.should_receive(:destroy).once
           delete_product
+        end
+
+        it "sets notice message containing product name" do
+          product.stub(:name).and_return("LG GB3133TIJW")
+          delete_product
+          flash[:notice].should include(product.name)
         end
       end
 
