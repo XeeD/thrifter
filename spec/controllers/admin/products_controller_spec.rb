@@ -52,13 +52,13 @@ module Admin
           Product.stub(:new).and_return(product.new_instance)
         end
 
-        it "creates new instance of product with those attributes" do
+        it "creates new instance of Product with those attributes" do
           Product.should_receive(:new).with(valid_product_attributes).once
           post_valid_attributes
         end
 
         it "redirects to index" do
-          post_valid_attributes
+          post :create
           response.should redirect_to(admin_products_url)
         end
 
@@ -68,9 +68,9 @@ module Admin
           post_valid_attributes
         end
 
-        it "sets notice message containing product name" do
+        it "sets notice message containing product's name" do
           product.stub(:name).and_return("LG GB3133TIJW")
-          post_valid_attributes
+          post :create
           flash[:notice].should include(product.name)
         end
       end
@@ -126,7 +126,7 @@ module Admin
       # Valid attributes
       context "with valid attributes" do
         def put_update
-          put :update, :id => product.id, :product => valid_product_attributes
+          put :update, id: product.id, product: valid_product_attributes
         end
 
         before do
@@ -151,8 +151,8 @@ module Admin
 
       # Invalid attributes
       context "with invalid attributes" do
-        def put_invalid_update
-          put :update, :id => product.id, :product => {}
+        def put_invalid_attributes
+          put :update, id: product.id, product: {}
         end
 
         before do
@@ -161,12 +161,12 @@ module Admin
         end
 
         it "renders edit action again" do
-          put_invalid_update
+          put_invalid_attributes
           response.should render_template("edit")
         end
 
         it "sets error message for current request" do
-          put_invalid_update
+          put_invalid_attributes
           flash.now[:error].should_not be_blank
         end
       end
@@ -203,7 +203,7 @@ module Admin
           delete_product
         end
 
-        it "redirects back to index" do
+        it "redirects to index" do
           delete_product
           response.should redirect_to(admin_products_url)
         end
@@ -214,7 +214,7 @@ module Admin
         end
 
         it "sets notice message containing product name" do
-          product.stub(:name).and_return("LG GB3133TIJW")
+          product.stub(name: "LG GB3133TIJW")
           delete_product
           flash[:notice].should include(product.name)
         end
