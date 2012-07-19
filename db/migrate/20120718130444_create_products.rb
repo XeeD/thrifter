@@ -3,7 +3,7 @@ class CreateProducts < ActiveRecord::Migration
     create_table :products, :force => true do |t|
       t.string :name, limit: 301
       t.string :model_name, limit: 150
-      t.string :url, limit: 300
+      t.string :url, limit: 301
 
       t.integer :external_id, limit: 6
       t.string :ean_code, limit: 13, null: false
@@ -34,7 +34,7 @@ class CreateProducts < ActiveRecord::Migration
 
     add_index :products, :url, unique: true
 
-    %w(name model_name url external_id initial_data_source top_product brand_id).each do |index|
+    %w(name model_name external_id initial_data_source top_product brand_id).each do |index|
       add_index :products, index.to_sym
     end
   end
