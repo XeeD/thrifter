@@ -64,3 +64,5 @@ end
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
 Cucumber::Rails::Database.javascript_strategy = :truncation
 
+# Sets up the Rails environment for Cucumber
+Cucumber::Rails::World.use_transactional_fixtures

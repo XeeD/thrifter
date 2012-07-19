@@ -1,0 +1,17 @@
+lg_fridge:
+  name: "LG GB3133TIJW"
+  model_name: "GB3133TIJW"
+  url: "lg-gb3133-tijw"
+  external_id: "2124567"
+  ean_code:
+  short_description: "Perfektní lednice"
+  description: "No-FROST lednice"
+  default_price: 12990
+  recommended_price: 15990
+  purchase_price: 9000
+  recycling_fee: 217
+  warranty: 24
+  vat_rate: 20.0
+  admin_comment:
+  gray_import: false
+  top_product: false
