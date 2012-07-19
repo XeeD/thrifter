@@ -12,7 +12,7 @@ module Admin
       if brand.save
         redirect_to admin_brands_url, notice: "Značka #{brand.name} byla vytvořena"
       else
-        flash.now[:error] = "Chyba při ukládání nové značky"
+        flash.now[:error] = "Chyba při vytváření nové značky"
         render :action => :new
       end
     end

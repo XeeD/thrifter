@@ -3,24 +3,6 @@ require 'spec_helper'
 
 describe Product do
 
-  def valid_attributes
-    {
-        name: "LG GB3133TIJW",
-        model_name: "GB3133TIJW",
-        short_description: "Chladnička",
-        description: "No-Frost chladnička...",
-        default_price: "12990",
-        recommended_price: "15990",
-        purchase_price: "9000",
-        recycling_fee: "217",
-        vat_rate: "20",
-        external_id: "2123456",
-        url: "lg-gb3133tijw",
-        gray_import: "",
-        warranty: "24"
-    }
-  end
-
   # Validations
   # name
   it { should validate_presence_of(:name) }
@@ -34,7 +16,7 @@ describe Product do
   it { should validate_presence_of(:url) }
   it { should ensure_length_of(:url).is_at_most(301) }
   it {
-    Product.create(valid_attributes)
+    Product.create(valid_product_attributes)
     should validate_uniqueness_of(:url)
   }
 
@@ -74,7 +56,7 @@ describe Product do
 
   context "with valid attributes" do
     it "should be valid" do
-      Product.new(valid_attributes).should be_valid
+      Product.new(valid_product_attributes).should be_valid
     end
   end
 end
