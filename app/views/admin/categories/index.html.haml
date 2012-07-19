@@ -18,3 +18,7 @@
 - else
   .empty_set
     Zatím nejsou vytvořeny žádné kategorie
+
+%ul
+  - for root in Category.roots
+    =render partial: "node", locals: {category: root}

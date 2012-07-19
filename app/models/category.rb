@@ -1,6 +1,10 @@
 # encoding: UTF-8
 
 class Category < ActiveRecord::Base
+  acts_as_nested_set
+
+  attr_protected :lft, :rgt
+
   CATEGORY_TYPES = {"Navigační" => "navigational", "Produktová" => "product_list", "Přídavná" => "additional"}
 
   validates :short_name, :url, :plural_name, :category_type, presence: true
