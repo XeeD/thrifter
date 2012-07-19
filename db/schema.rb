@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120719081039) do
+ActiveRecord::Schema.define(:version => 20120719141903) do
 
   create_table "brands", :force => true do |t|
     t.string "name",        :limit => 100
@@ -41,21 +41,21 @@ ActiveRecord::Schema.define(:version => 20120719081039) do
   create_table "products", :force => true do |t|
     t.string   "name",                :limit => 301
     t.string   "model_name",          :limit => 150
-    t.string   "url",                 :limit => 301
+    t.string   "url",                 :limit => 301,                                                             :null => false
     t.integer  "external_id",         :limit => 8
-    t.string   "ean_code",            :limit => 13
+    t.integer  "ean_code"
     t.text     "short_description"
     t.text     "description"
     t.integer  "default_price",       :limit => 8
     t.integer  "recommended_price",   :limit => 8
     t.integer  "purchase_price",      :limit => 8
     t.integer  "recycling_fee"
-    t.integer  "warranty"
+    t.integer  "warranty",            :limit => 3
     t.decimal  "vat_rate",                           :precision => 3, :scale => 1
     t.string   "state",                                                            :default => "new"
     t.text     "admin_comment"
     t.string   "initial_data_source",                                              :default => "manually_added"
-    t.boolean  "gray_import",                                                      :default => false
+    t.boolean  "grey_import",                                                      :default => false
     t.boolean  "top_product",                                                      :default => false
     t.datetime "created_at",                                                                                     :null => false
     t.datetime "updated_at",                                                                                     :null => false
