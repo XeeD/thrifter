@@ -34,7 +34,7 @@ describe Admin::BrandsController do
   # CREATE
   describe "POST create" do
     before do
-      Brand.stub(:new).and_return(brand)
+      Brand.stub!(:new).and_return(brand)
     end
 
     # VALID
@@ -49,7 +49,7 @@ describe Admin::BrandsController do
 
       it "creates brand with exactly the given parameters" do
         Brand.should_receive(:new).with(valid_brand_attributes).once
-        post :create, :brand => valid_brand_attributes
+        post :create, brand: valid_brand_attributes
       end
 
       it "should save brand" do
@@ -57,9 +57,9 @@ describe Admin::BrandsController do
         post :create
       end
 
-      it "should redirect to detail" do
+      it "should redirect to index" do
         post :create
-        response.should redirect_to(:action => "index")
+        response.should redirect_to(action: "index")
       end
 
       it "should have a flash notice" do
