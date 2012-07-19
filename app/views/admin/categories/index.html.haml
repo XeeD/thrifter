@@ -1,3 +1,20 @@
 %h2 Kategorie
 %ul.action_links
   %li= link_to "Přidat novou kategorii", new_admin_category_path
+
+- unless categories.empty?
+  %table#categories
+    %thead
+      %th Název značky
+      %td Akce
+    %tbody
+      - for category in categories
+        %tr
+          %th= category.short_name
+          %td
+            %ul.actions
+              %li= link_to "Smazat", admin_category_path(category), method: :delete, confirm: "Opravdu smazat značku #{category.short_name}?"
+              %li= link_to "Upravit", edit_admin_category_path(category)
+- else
+  .empty_set
+    Zatím nejsou vytvořeny žádné kategorie
