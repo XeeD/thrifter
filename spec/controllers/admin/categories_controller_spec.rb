@@ -112,7 +112,8 @@ module Admin
         end
 
         it "finds the category" do
-          Category.should_receive(:find).with(category.id.to_s).once
+          Category.should_receive(:find)#.with(category.id.to_s).once
+          get :edit, :id => category.id
         end
 
         it "renders edit form" do

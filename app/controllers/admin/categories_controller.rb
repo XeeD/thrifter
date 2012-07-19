@@ -2,6 +2,7 @@
 
 module Admin
   class CategoriesController < AdminController
+
     def new
     end
 
