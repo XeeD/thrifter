@@ -89,10 +89,10 @@ module Admin
       end
     end
 
-    describe "POST update" do
+    describe "PUT update" do
       context "with valid attributes" do
-        def post_update
-          post :update, :id => product.id, :product => valid_product_attributes
+        def put_update
+          put :update, :id => product.id, :product => valid_product_attributes
         end
 
         before do
@@ -101,23 +101,23 @@ module Admin
 
         it "finds the product" do
           Product.should_receive(:find).with(product.id.to_s).once.and_return(product)
-          post_update
+          put_update
         end
 
         it "redirects to index" do
-          post_update
+          put_update
           response.should redirect_to(admin_products_url)
         end
 
         it "updates attributes" do
           product.should_receive(:update_attributes).with(valid_product_attributes).once
-          post_update
+          put_update
         end
       end
 
       context "with invalid attributes" do
-        def post_invalid_update
-          post :update, :id => product.id, :product => valid_product_attributes.delete(:model_name)
+        def put_invalid_update
+          put :update, :id => product.id, :product => valid_product_attributes.delete(:model_name)
         end
 
         before do
@@ -126,31 +126,33 @@ module Admin
         end
 
         it "renders edit action again" do
-          post_invalid_update
+          put_invalid_update
           response.should render_template("edit")
         end
 
         it "sets error message for current request" do
-          post_invalid_update
+          put_invalid_update
           flash.now[:error].should_not be_blank
         end
       end
 
       context "with non-existing product id" do
-        def post_with_invalid_id
-          post :update, :id => product.id + 1
+        def put_with_invalid_id
+          put :update, :id => product.id + 1
         end
 
         it "redirects to index" do
-          post_with_invalid_id
+          put_with_invalid_id
           response.should redirect_to(admin_products_url)
         end
 
         it "sets error message" do
-          post_with_invalid_id
+          put_with_invalid_id
           flash.now[:error].should_not be_blank
         end
       end
     end
+
+    describe "PU"
   end
 end
