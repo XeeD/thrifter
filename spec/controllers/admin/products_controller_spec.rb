@@ -5,9 +5,18 @@ module Admin
     let(:product) { mock_model(Product).as_null_object }
 
     describe "GET index" do
-      it "renders index" do
+      it "renders index action" do
         get :index
         response.should be_success
+      end
+
+      context "when rendering views" do
+        render_views
+
+        it "calls Product#all" do
+          Product.should_receive(:all).with(nil).once.and_return([product])
+          get :index
+        end
       end
     end
 
@@ -35,7 +44,7 @@ module Admin
         end
 
         before do
-          Product.stub(:new).and_return(product)
+          Product.stub(:new).and_return(product.new_instance)
         end
 
         it "creates new instance of product with those attributes" do
@@ -44,17 +53,17 @@ module Admin
         end
 
         it "redirects to index" do
-          post :create
           post_valid_attributes
+          response.should redirect_to(admin_products_url)
         end
 
-        it "tries to save the record" do
+        it "saves the record" do
           Product.stub(:new).and_return(product)
           product.should_receive(:save).and_return(true)
           post_valid_attributes
         end
 
-        it "sets the flash message" do
+        it "sets the notice message with product name" do
           product.stub(:name).and_return("LG GB3133TIJW")
           post_valid_attributes
           flash[:notice].should include(product.name)
@@ -104,20 +113,20 @@ module Admin
           put_update
         end
 
-        it "redirects to index" do
-          put_update
-          response.should redirect_to(admin_products_url)
-        end
-
         it "updates attributes" do
           product.should_receive(:update_attributes).with(valid_product_attributes).once
           put_update
+        end
+
+        it "redirects to index" do
+          put_update
+          response.should redirect_to(admin_products_url)
         end
       end
 
       context "with invalid attributes" do
         def put_invalid_update
-          put :update, :id => product.id, :product => valid_product_attributes.delete(:model_name)
+          put :update, :id => product.id, :product => {}
         end
 
         before do

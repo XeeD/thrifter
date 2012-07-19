@@ -2,36 +2,29 @@
 require 'spec_helper'
 
 describe Admin::BrandsController do
-  let(:brand) {
-    mock_model(Brand).as_null_object
-  }
-
-  before do
-    Admin::BrandsController.stub!(:brand).and_return(brand)
-  end
+  let(:brand) { mock_model(Brand).as_null_object }
 
   describe "GET index" do
-    it "renders index of all brands" do
+    it "renders index action" do
       get :index
-      response.should be_success
+      response.should render_template("index")
     end
   end
 
   describe "GET new" do
-    it "renders new form" do
+    it "renders new action" do
       get :new
-      response.should be_success
+      response.should render_template("new")
     end
   end
 
   describe "GET edit" do
-    it "renders editation form" do
+    it "renders edit action" do
       get :edit, id: brand.id
-      response.should be_success
+      response.should render_template("edit")
     end
   end
 
-  # CREATE
   describe "POST create" do
     before do
       Brand.stub!(:new).and_return(brand)
