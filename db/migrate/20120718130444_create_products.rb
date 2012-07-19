@@ -1,6 +1,6 @@
 class CreateProducts < ActiveRecord::Migration
   def change
-    create_table :products, :force => true do |t|
+    create_table :products, force: true do |t|
       t.string :name, limit: 301
       t.string :model_name, limit: 150
       t.string :url, limit: 301
@@ -16,7 +16,7 @@ class CreateProducts < ActiveRecord::Migration
       t.integer :purchase_price, limit: 6
       t.integer :recycling_fee, limit: 4
       t.integer :warranty, limit: 3
-      t.decimal :vat_rate, :scale => 1, :precision => 3
+      t.decimal :vat_rate, scale: 1, precision: 3
 
       t.string :state, default: :new
       t.text :admin_comment
@@ -29,12 +29,15 @@ class CreateProducts < ActiveRecord::Migration
 
       # Associations
       t.belongs_to :brand
-
     end
 
     # Change url column to ASCII in MySQL
-    if ActiveRecord::Base.connection.class == ActiveRecord::ConnectionAdapters::Mysql2Adapter
-      execute %{ALTER TABLE products MODIFY url varchar(301) COLLATE ascii_general_ci NOT NULL}
+    begin
+      if ActiveRecord::Base.connection.class == ActiveRecord::ConnectionAdapters::Mysql2Adapter
+        execute %{ALTER TABLE products MODIFY url varchar(301) COLLATE ascii_general_ci NOT NULL}
+      end
+    rescue
+      # Adapter doesn't exist'
     end
 
     add_index :products, :url, unique: true
