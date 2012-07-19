@@ -1,12 +1,14 @@
 class Product < ActiveRecord::Base
-  validates :name, :model_name, :url, :short_description, :description,
-            :default_price, :recommended_price, :purchase_price,
-            :warranty, :recycling_fee, :vat_rate, :external_id,
-            presence: true
-  validates :default_price, :recommended_price, :purchase_price, :warranty,
-            :recycling_fee, :vat_rate, :external_id,
-            numericality: {only_integer: true}
-  validates :name,       length: {maximum: 301}
-  validates :model_name, length: {maximum: 150}
-  validates :url,        length: {maximum: 301}, uniqueness: true
+  validates :name, presence: true, length: {maximum: 301}
+  validates :model_name, presence: true, length: {maximum: 150}
+  validates :url, presence: true, length: {maximum: 301}, uniqueness: true
+  validates :short_description, presence: true
+  validates :description, presence: true
+  validates :default_price, presence: true, numericality: {only_integer: true}
+  validates :recommended_price, presence: true, numericality: {only_integer: true}
+  validates :purchase_price, presence: true, numericality: {only_integer: true}
+  validates :warranty, presence: true, numericality: {only_integer: true}
+  validates :recycling_fee, presence: true, numericality: {only_integer: true}
+  validates :vat_rate, presence: true, numericality: {only_integer: true}
+  validates :external_id, presence: true, numericality: {only_integer: true}
 end
