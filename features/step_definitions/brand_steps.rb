@@ -16,7 +16,11 @@ end
 # Then statements
 
 Pak /^značka "(.*?)" by měla být smazána$/ do |name|
-  find("#brands").should_not have_content("#{name}")
+  begin
+    find("#brands").should_not have_content("#{name}")
+  rescue Capybara::ElementNotFound
+    page.should have_selector(".empty_set")
+  end
 end
 
 Pak /^značka "(.*?)" by měla být (?:vytvořena|upravena)$/ do |name|

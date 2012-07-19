@@ -22,10 +22,13 @@ end
 group :test do
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
-  gem 'rspec-rails'
   gem 'shoulda'
   gem 'autotest-rails'
   gem 'autotest-inotify', :platforms => :ruby_19
+end
+
+group :development, :test do
+  gem 'rspec-rails'
 end
 
 group :darwin do
