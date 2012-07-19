@@ -12,7 +12,7 @@ module Admin
       if brand.save
         redirect_to admin_brands_url, notice: "Značka #{brand.name} byla vytvořena"
       else
-        flash.now[:error] = "Chyba při ukládání nové značky"
+        flash.now[:error] = "Chyba při vytváření nové značky"
         render :action => :new
       end
     end
@@ -27,6 +27,9 @@ module Admin
         flash.now[:error] = "Chyba při upravování značky #{brand.name}"
         render :action => :edit
       end
+    rescue ActiveRecord::RecordNotFound
+      flash[:error] = "Neexistující značka"
+      redirect_to admin_brands_url
     end
 
     def destroy

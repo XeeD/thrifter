@@ -38,7 +38,7 @@ describe Admin::BrandsController do
     end
 
     # VALID
-    describe "with valid parameters" do
+    context "with valid parameters" do
       def valid_brand_attributes
         {
             "name" => "LG",
@@ -69,7 +69,7 @@ describe Admin::BrandsController do
     end
 
     # INVALID
-    describe "with invalid parameters" do
+    context "with invalid parameters" do
       before do
         brand.stub(:save).and_return(false)
       end
@@ -128,50 +128,52 @@ describe Admin::BrandsController do
   end
 
   # EDIT
-    describe "POST update" do
+  describe "POST update" do
+
+    # VALID
+    context "with valid parameters" do
+      def valid_brand_attributes
+        {
+            "name" => "Samsung",
+            "url" => "samsung",
+            "description" => "Samsung"
+        }
+      end
+
       before do
         Brand.stub!(:find).and_return(brand)
       end
 
-      # VALID
-      describe "with valid parameters" do
-        def valid_brand_attributes
-          {
-              "name" => "Samsung",
-              "url" => "samsung",
-              "description" => "Samsung"
-          }
-        end
-
-        def put_with_valid_attributes
-          put :update, id: brand.id, brand: valid_brand_attributes
-        end
-
-        it "receives find with brand's id" do
-          Brand.should_receive(:find).with(brand.id.to_s).and_return(brand)
-          put_with_valid_attributes
-        end
-
-        it "updates brand's attributes" do
-          brand.should_receive(:update_attributes).with(valid_brand_attributes).once.and_return(true)
-          put_with_valid_attributes
-        end
-
-        it "should redirect to brands" do
-          put_with_valid_attributes
-          response.should redirect_to(admin_brands_url)
-        end
-
-        it "should have a flash notice" do
-          put_with_valid_attributes
-          flash[:notice].should_not be_blank
-        end
+      def put_with_valid_attributes
+        put :update, id: brand.id, brand: valid_brand_attributes
       end
 
+      it "receives find with brand's id" do
+        Brand.should_receive(:find).with(brand.id.to_s).and_return(brand)
+        put_with_valid_attributes
+      end
+
+      it "updates brand's attributes" do
+        brand.should_receive(:update_attributes).with(valid_brand_attributes).once.and_return(true)
+        put_with_valid_attributes
+      end
+
+      it "should redirect to brands" do
+        put_with_valid_attributes
+        response.should redirect_to(admin_brands_url)
+      end
+
+      it "should have a flash notice" do
+        put_with_valid_attributes
+        flash[:notice].should_not be_blank
+      end
+    end
+
     # INVALID
-    describe "with invalid parameters" do
+    context "with invalid parameters" do
       before do
         brand.stub!(:update_attributes).and_return(false)
+        Brand.stub!(:find).and_return(brand)
       end
 
       def put_with_invalid_params
@@ -196,6 +198,22 @@ describe Admin::BrandsController do
       it "set an error notice" do
         put_with_invalid_params
         flash[:error].should_not be_blank
+      end
+    end
+
+    context "with non-existing bramd id" do
+      def post_with_invalid_id
+        post :update, :id => brand.id + 1
+      end
+
+      it "redirects to index" do
+        post_with_invalid_id
+        response.should redirect_to(admin_brands_url)
+      end
+
+      it "sets error message" do
+        post_with_invalid_id
+        flash.now[:error].should_not be_blank
       end
     end
   end

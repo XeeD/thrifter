@@ -24,7 +24,6 @@ group :test do
   gem 'database_cleaner'
   gem 'shoulda'
   gem 'autotest-rails'
-  gem 'autotest-inotify', :platforms => :ruby_19
 end
 
 group :development, :test do
@@ -38,4 +37,7 @@ end
 
 group :linux do
   gem 'activerecord-postgresql-adapter'
+  group :development, :test do
+    gem 'autotest-inotify'
+  end
 end
