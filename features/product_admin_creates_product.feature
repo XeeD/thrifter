@@ -17,8 +17,11 @@ Požadavek: Produktový admin vytváří nový produkt
     Pokud jsem v sekci "administrace produktů"
     Když kliknu na odkaz "Přidat nový produkt"
     A vyplním formulář údaji:
-      | Název         | Název odkazu  |
-      | LG GB3133TIJW | lg-gb3133tijw |
-    A kliknu na tlačítko "Vytvořit výrobek"
-    Pak bych měl vidět zprávu "Produkt LG GB3133TIJW byl vytvořen"
+      | Celý název    | Model         | Název v odkazu | Číslo v Cézaru | Stručný popis     |
+      | LG GB3133TIJW | LG GB3133TIJW | lg-gb3133tijw  | 2124567        | Perfektní lednice |
+    A pokračuji ve vyplňování formuláře:
+      | Popis            | Výchozí cena | Doporučená cena | Nákupní cena | PHE | Záruka | % DPH |
+      | No-Frost lednice | 12990        | 15990           | 9000         | 217 | 24     | 20    |
+    A kliknu na tlačítko "Vytvořit nový produkt"
+    Pak bych měl vidět zprávu "Nový produkt LG GB3133TIJW byl vytvořen"
     A produkt "LG GB3133TIJW" by měl být vytvořen

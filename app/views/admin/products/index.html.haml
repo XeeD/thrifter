@@ -3,4 +3,17 @@
 %ul.action_links
   %li.create_new= link_to "Přidat nový produkt", new_admin_product_path
 
-- products
+- unless products.empty?
+  %table#products
+    %thead
+      %tr
+        %th Název produktu
+        %td Akce
+    %tbody
+      - for product in products
+        %tr
+          %th= product.name
+          %td
+            %ul.actions
+              %li= link_to "Editovat", edit_admin_product_path(product)
+              %li= link_to "Smazat", admin_product_path(product), :method => :delete

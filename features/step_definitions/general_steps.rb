@@ -36,9 +36,13 @@ Když /^vyplním formulář údaji:$/ do |form_values|
   end
 end
 
+Když /^pokračuji ve vyplňování formuláře:$/ do |form_values|
+  step "vyplním formulář údaji:", form_values
+end
+
 # Then statements
 Pak /^bych měl vidět zprávu "(.*?)"$/ do |message|
-  page.should have_content(message)
+  find("#flash_messages .notice").should have_content(message)
 end
 
 Pak /^bych měl vidět nadpis "(.*?)"$/ do |heading|
