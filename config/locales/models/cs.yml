@@ -25,7 +25,7 @@ cs:
         vat_rate: "% DPH"
         admin_comment: "Poznámka"
         gray_import: "Šedý dovoz"
-        top_produkt: "Top produkt"
+        top_product: "Top produkt"
       category:
         short_name: "Název"
         url: "Název v odkazu"
