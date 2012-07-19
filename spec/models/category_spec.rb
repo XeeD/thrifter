@@ -20,5 +20,5 @@ describe Category do
   it { should ensure_length_of(:singular_name).is_at_most(120) }
 
   # category_type
-  it { should validate_inclusion_of(:category_type) }
+  it { should ensure_inclusion_of(:category_type).in_array(Category::CATEGORY_TYPES.values) }
 end
