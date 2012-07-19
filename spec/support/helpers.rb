@@ -15,7 +15,7 @@ module Helpers
         vat_rate: "20",
         external_id: "2123456",
         url: "lg-gb3133tijw",
-        gray_import: "",
+        grey_import: "",
         warranty: "24"
     }.stringify_keys
   end
