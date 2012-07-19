@@ -147,6 +147,12 @@ module Admin
           put_update
           response.should redirect_to(admin_products_url)
         end
+
+        it "sets notice message containing product's name" do
+          product.stub(name: "LG GB3133TIJW")
+          put_update
+          flash[:notice].should include(product.name)
+        end
       end
 
       # Invalid attributes
@@ -213,7 +219,7 @@ module Admin
           delete_product
         end
 
-        it "sets notice message containing product name" do
+        it "sets notice message containing product's name" do
           product.stub(name: "LG GB3133TIJW")
           delete_product
           flash[:notice].should include(product.name)

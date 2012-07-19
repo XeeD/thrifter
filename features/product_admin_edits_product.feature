@@ -7,21 +7,22 @@ Požadavek: Produktový admin edituje produkt
 
   Kontext:
     Pokud jsem přihlášený jako "produktový admin"
+    A existuje produkt "LG GB3133TIJW"
 
   Scénář: zobrazení konkrétního produktu v seznamu produktů
-    A existuje "produkt" "LG GB3133TIJW"
-    Když otevřu sekci "Produkty -> Správa produktů"
-    Pak bych měl vidět seznam "produktů"
+    Když otevřu sekci "administrace produktů"
+    Pak bych měl vidět podnadpis "Seznam produktů"
     A měl bych vidět "LG GB3133TIJW"
 
   Scénář: zobrazení editace konkrétního produktu
-    Pokud produkt "LG GB3133TIJW" existuje
-    Když kliknu na odkaz "Editovat"
+    Když otevřu sekci "administrace produktů"
+    A kliknu na řádku u produktu "LG GB3133TIJW" na odkaz "Editovat"
     Pak bych měl vidět nadpis "Editace produktu LG GB3133TIJW"
 
   Scénář: změna jména produktu
-    Pokud jsem v editaci produktu "LG GB3133TIJW"
-    Když změním hodnotu pole "název produktu" na "LG GB 3133 TIJW"
-    A kliknu na tlačítko "Uložit"
+    Když otevřu sekci "administrace produktů"
+    A kliknu na řádku u produktu "LG GB3133TIJW" na odkaz "Editovat"
+    A změním hodnotu pole "Celý název" na "LG GB 3133 TIJW"
+    A kliknu na tlačítko "Uložit produkt"
     Pak bych měl vidět zprávu "Produkt LG GB 3133 TIJW byl upraven"
-    A měl bych vidět produkt se jménem "LG GB 3133 TIJW"
+    A měl bych vidět "LG GB 3133 TIJW"

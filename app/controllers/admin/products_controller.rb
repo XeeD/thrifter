@@ -9,7 +9,7 @@ module Admin
     def create
       if product.save
         redirect_to admin_products_url,
-                    :notice => "Nový produkt #{product.name} byl vytvořen"
+                    notice: "Nový produkt #{product.name} byl vytvořen"
       else
         flash.now[:error] = "Chyba při vytváření nového produktu"
         render "new"
@@ -21,7 +21,8 @@ module Admin
 
     def update
       if product.update_attributes(params[:product])
-        redirect_to admin_products_url
+        redirect_to admin_products_url,
+                    notice: "Produkt #{product.name} byl upraven"
       else
         flash.now[:error] = "Chyba při ukládání produktu"
         render "edit"

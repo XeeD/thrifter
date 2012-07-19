@@ -1,9 +1,10 @@
 # language: cs
 Požadavek: Produktový manager spravuje značky
 
-  Abych mohl spravovat značky
+  Abych mohl v e-shopu zobrazit značky jednotlivých produktů
   Jako produktový manager
-  Chci mít možnost jejich snadné administrace
+  Chci mít možnost jejich snadné administrace.
+  Systém mi musí v administraci umožnit jednotlivé značky vytvářet, upravovat a mazat.
 
   Kontext:
     Pokud jsem přihlášený jako "produktový manager"
@@ -37,8 +38,8 @@ Požadavek: Produktový manager spravuje značky
   Scénář: upravení existující značky přes formulář
     Pokud jsem v editaci značky "LG"
     A vyplním formulář údaji:
-      | Název   | Název v odkazu | Popis    |
-      | Samsung | samsung        | Samsung  |
+      | Název   | Název v odkazu | Popis                |
+      | Samsung | samsung        | Samsung Electronics  |
     A kliknu na tlačítko "Uložit značku"
     Pak bych měl vidět zprávu "Značka Samsung byla upravena"
     A značka "Samsung" by měla být upravena

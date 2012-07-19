@@ -1,9 +1,10 @@
 # encoding: UTF-8
 
 # Given statements
-Pokud /^produkt "(.*?)" existuje$/ do |name|
-  #Product.create!(name: "#{name}", url: ) ...
+Pokud /^existuje produkt "(.*?)"$/ do |product_name|
+  fail "product #{product_name} doesn't exists" if Product.find_by_name(product_name).nil?
 end
+
 
 # When statements
 

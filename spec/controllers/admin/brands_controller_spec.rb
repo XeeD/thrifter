@@ -145,14 +145,15 @@ module Admin
           put_with_valid_attributes
         end
 
-        it "should redirect to brands" do
+        it "redirects to brands" do
           put_with_valid_attributes
           response.should redirect_to(admin_brands_url)
         end
 
-        it "should have a flash notice" do
+        it "sets notice message containing brands's name" do
+          brand.stub(name: "LG")
           put_with_valid_attributes
-          flash[:notice].should_not be_blank
+          flash[:notice].should include(brand.name)
         end
       end
 

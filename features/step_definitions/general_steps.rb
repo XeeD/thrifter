@@ -18,12 +18,25 @@ Když /^kliknu na odkaz "(.*?)"$/ do |link|
   click_link link.to_s
 end
 
+Když /^kliknu na řádku u .+ "(.*?)" na odkaz "(.*?)"$/ do |line_text, link_title|
+  raise "line not found" unless all("table").each do |table|
+    begin
+      row = table.find("tr", :text => line_text)
+      link = row.find("a", :text => link_title)
+      link.click
+      break true
+    rescue Capybara::ElementNotFound
+      next
+    end
+  end
+end
+
 Když /^kliknu na tlačítko "(.*?)"$/ do |button|
   click_button button.to_s
 end
 
-Když /^vyplním údaj "(.*?)" hodnotou "(.*?)"$/ do |field, value|
-  fill_in field.to_s, :with => value.to_s
+Když /^změním hodnotu pole "(.*?)" na "(.*?)"$/ do |field, value|
+  fill_in field, :with => value
 end
 
 Když /^vyberu hodnotu "(.*?)" ze seznamu "(.*?)"$/ do |value, field|
@@ -49,10 +62,14 @@ Pak /^bych měl vidět zprávu "(.*?)"$/ do |message|
   find("#flash_messages .notice").should have_content(message)
 end
 
-Pak /^bych měl vidět nadpis "(.*?)"$/ do |heading|
-  find("h2").should have_content(heading)
+Pak /^bych měl vidět (pod)?nadpis "(.*?)"$/ do |level, heading|
+  heading_tag = case level
+    when "pod" then "h3"
+    else "h2"
+  end
+  find(heading_tag).should have_content(heading)
 end
 
-Pak /^bych měl vidět seznam "(.*?)"$/ do |form|
-  pending
+Pak /^(?:bych měl|měl bych) vidět "(.*?)"$/ do |heading|
+  page.should have_content(heading)
 end
