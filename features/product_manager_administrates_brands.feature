@@ -39,6 +39,6 @@ Požadavek: Produktový manager spravuje značky
     A vyplním formulář údaji:
       | Název   | Název v odkazu | Popis    |
       | Samsung | samsung        | Samsung  |
-    A kliknu na tlačítko "Uložit"
+    A kliknu na tlačítko "Uložit značku"
     Pak bych měl vidět zprávu "Značka Samsung byla upravena"
     A značka "Samsung" by měla být upravena
