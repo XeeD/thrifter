@@ -4,7 +4,7 @@ class CreateCategories < ActiveRecord::Migration
       t.string :short_name,    limit: 80
       t.string :url,           limit: 120
       t.string :plural_name,   limit: 120
-      t.string :singular_name, limit: 120
+      t.string :singular_name, limit: 120, null: true
       t.string :category_type, limit: 20
 
       # awesome_nested_set
