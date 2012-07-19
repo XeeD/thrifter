@@ -20,5 +20,13 @@ module Helpers
     }.stringify_keys
   end
 
+  def valid_brand_attributes
+    {
+        name: "LG",
+        url: "lg",
+        description: "LG Electronics"
+    }.stringify_keys
+  end
+
   RSpec.configure {|c| c.include self}
 end

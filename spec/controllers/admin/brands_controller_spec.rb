@@ -1,212 +1,246 @@
 # encoding: UTF-8
 require 'spec_helper'
 
-describe Admin::BrandsController do
-  let(:brand) { mock_model(Brand).as_null_object }
+module Admin
+  describe BrandsController do
+    let(:brand) { mock_model(Brand).as_null_object }
 
-  describe "GET index" do
-    it "renders index action" do
-      get :index
-      response.should render_template("index")
-    end
-  end
-
-  describe "GET new" do
-    it "renders new action" do
-      get :new
-      response.should render_template("new")
-    end
-  end
-
-  describe "GET edit" do
-    it "renders edit action" do
-      get :edit, id: brand.id
-      response.should render_template("edit")
-    end
-  end
-
-  describe "POST create" do
-    before do
-      Brand.stub!(:new).and_return(brand)
-    end
-
-    # VALID
-    context "with valid parameters" do
-      def valid_brand_attributes
-        {
-            "name" => "LG",
-            "url" => "lg",
-            "description" => "LG Electronics"
-        }
+    describe "GET index" do
+      it "renders 'index' template" do
+        get :index
+        response.should render_template("index")
       end
 
-      it "creates brand with exactly the given parameters" do
-        Brand.should_receive(:new).with(valid_brand_attributes).once
-        post :create, brand: valid_brand_attributes
-      end
+      context "when rendering views" do
+        render_views
 
-      it "should save brand" do
-        brand.should_receive(:save).and_return(true)
-        post :create
-      end
-
-      it "should redirect to index" do
-        post :create
-        response.should redirect_to(action: "index")
-      end
-
-      it "should have a flash notice" do
-        post :create
-        flash[:notice].should_not be_blank
+        it "calls Brand#all" do
+          Brand.should_receive(:all).with(no_args).once.and_return([brand])
+          get :index
+        end
       end
     end
 
-    # INVALID
-    context "with invalid parameters" do
-      before do
-        brand.stub(:save).and_return(false)
-      end
-
-      def post_with_invalid_params
-        post :create, brand: {}
-      end
-
-      it "renders form for new brand again" do
-        post_with_invalid_params
+    describe "GET new" do
+      it "renders 'new' template" do
+        get :new
         response.should render_template("new")
       end
 
-      it "set an error notice" do
-        post_with_invalid_params
-        flash.now[:error].should_not be_blank
+      context "when rendering views" do
+        render_views
+
+        it "calls Brand#new" do
+          Brand.should_receive(:new).with(nil).once.and_return(brand)
+          get :new
+        end
+
+        it "shows form" do
+          get :new
+          response.body.should have_selector("form")
+        end
       end
     end
-  end
 
-  describe "DELETE destroy" do
-    before do
-      Brand.stub!(:find).and_return(brand)
-    end
-
-    def delete_brand
-      delete :destroy, id: brand.id
-    end
-
-    it "should find brand" do
-      Brand.should_receive(:find).with(brand.id.to_s).and_return(brand)
-      delete_brand
-    end
-
-    it "should redirect to brands" do
-      delete_brand
-      response.should redirect_to(admin_brands_url)
-    end
-
-    it "should delete brand from database" do
-      brand.should_receive(:destroy)
-      delete_brand
-    end
-
-    it "displays message with delete brand's name" do
-      brand.stub(name: "LG")
-      delete_brand
-      flash[:notice].should include(brand.name)
-    end
-
-    it "displays error message when brand doesn't exist" do
-      Brand.stub(:find).and_raise(ActiveRecord::RecordNotFound)
-      delete :destroy, id: brand.id + 1
-      flash[:error].should_not be_blank
-    end
-  end
-
-  # EDIT
-  describe "POST update" do
-
-    # VALID
-    context "with valid parameters" do
-      def valid_brand_attributes
-        {
-            "name" => "Samsung",
-            "url" => "samsung",
-            "description" => "Samsung"
-        }
-      end
-
+    describe "POST create" do
       before do
-        Brand.stub!(:find).and_return(brand)
+        Brand.stub!(:new).and_return(brand)
       end
 
-      def put_with_valid_attributes
-        put :update, id: brand.id, brand: valid_brand_attributes
+      # Valid attributes
+      context "with valid attributes" do
+        def post_valid_attributes
+          post :create, brand: valid_brand_attributes
+          brand.stub(:save).and_return(true)
+        end
+
+        it "creates new instance of Brand with those attributes" do
+          Brand.should_receive(:new).with(valid_brand_attributes).once
+          post_valid_attributes
+        end
+
+        it "redirects to index" do
+          post :create
+          response.should redirect_to(admin_brands_url)
+        end
+
+        it "saves the record" do
+          brand.should_receive(:save).once
+          post :create
+        end
+
+        it "sets notice message containing brand's name" do
+          brand.stub(:name).and_return("LG")
+          post :create
+          flash[:notice].should include(brand.name)
+        end
       end
 
-      it "receives find with brand's id" do
-        Brand.should_receive(:find).with(brand.id.to_s).and_return(brand)
-        put_with_valid_attributes
-      end
+      # Invalid attributes
+      context "with invalid parameters" do
+        before do
+          brand.stub(:save).and_return(false)
+        end
 
-      it "updates brand's attributes" do
-        brand.should_receive(:update_attributes).with(valid_brand_attributes).once.and_return(true)
-        put_with_valid_attributes
-      end
+        it "renders the template 'new' again" do
+          post :create
+          response.should render_template("new")
+        end
 
-      it "should redirect to brands" do
-        put_with_valid_attributes
-        response.should redirect_to(admin_brands_url)
-      end
-
-      it "should have a flash notice" do
-        put_with_valid_attributes
-        flash[:notice].should_not be_blank
+        it "sets error message for current request" do
+          post :create
+          flash.now[:error].should_not be_blank
+        end
       end
     end
 
-    # INVALID
-    context "with invalid parameters" do
-      before do
-        brand.stub!(:update_attributes).and_return(false)
-        Brand.stub!(:find).and_return(brand)
+    describe "GET edit" do
+      def get_edit
+        get :edit, :id => brand.id
       end
 
-      def put_with_invalid_params
-        put :update, id: brand.id, brand: {}
-      end
-
-      it "receives find with brand's id" do
-        Brand.should_receive(:find).with(brand.id.to_s).and_return(brand)
-        put_with_invalid_params
-      end
-
-      it "doesn't update brand's attributes" do
-        brand.should_receive(:update_attributes).and_return(false)
-        put_with_invalid_params
-      end
-
-      it "renders form for editing again" do
-        put_with_invalid_params
+      it "renders template 'edit'" do
+        get_edit
         response.should render_template("edit")
       end
 
-      it "set an error notice" do
-        put_with_invalid_params
-        flash[:error].should_not be_blank
+      context "when rendering views" do
+        render_views
+
+        before do
+          Brand.stub(:find).and_return(brand)
+        end
+
+        it "finds the brand" do
+          Brand.should_receive(:find).with(brand.id.to_s).once
+          get_edit
+        end
+
+        it "renders edit form" do
+          get :edit, :id => brand.id
+          response.body.should have_selector("form")
+        end
       end
     end
 
-    context "with non-existing bramd id" do
-      def post_with_invalid_id
-        post :update, :id => brand.id + 1
+
+    describe "POST update" do
+      # Valid attributes
+      context "with valid parameters" do
+        def put_with_valid_attributes
+          put :update, id: brand.id, brand: valid_brand_attributes
+        end
+
+        before do
+          Brand.stub!(:find).and_return(brand)
+        end
+
+        it "receives find with brand's id" do
+          Brand.should_receive(:find).with(brand.id.to_s).and_return(brand)
+          put_with_valid_attributes
+        end
+
+        it "updates brand's attributes" do
+          brand.should_receive(:update_attributes).with(valid_brand_attributes).once.and_return(true)
+          put_with_valid_attributes
+        end
+
+        it "should redirect to brands" do
+          put_with_valid_attributes
+          response.should redirect_to(admin_brands_url)
+        end
+
+        it "should have a flash notice" do
+          put_with_valid_attributes
+          flash[:notice].should_not be_blank
+        end
       end
 
-      it "redirects to index" do
-        post_with_invalid_id
-        response.should redirect_to(admin_brands_url)
+      # Invalid attributes
+      context "with invalid parameters" do
+        def put_with_invalid_params
+          put :update, id: brand.id, brand: {}
+        end
+
+        before do
+          brand.stub!(:update_attributes).and_return(false)
+          Brand.stub!(:find).and_return(brand)
+        end
+
+        it "renders form for editing again" do
+          put_with_invalid_params
+          response.should render_template("edit")
+        end
+
+        it "sets error message for current request" do
+          put_with_invalid_params
+          flash.now[:error].should_not be_blank
+        end
       end
 
-      it "sets error message" do
-        post_with_invalid_id
-        flash.now[:error].should_not be_blank
+      context "with non-existing brand id" do
+        def put_with_invalid_id
+          put :update, :id => brand.id + 1
+        end
+
+        it "redirects to index" do
+          put_with_invalid_id
+          response.should redirect_to(admin_brands_url)
+        end
+
+        it "sets error message" do
+          put_with_invalid_id
+          flash.now[:error].should_not be_blank
+        end
+      end
+    end
+
+    describe "DELETE destroy" do
+      def delete_brand
+        delete :destroy, id: brand.id
+      end
+
+      context "with valid brand id" do
+        before do
+          Brand.stub!(:find).and_return(brand)
+        end
+
+        it "finds the brand" do
+          Brand.should_receive(:find).with(brand.id.to_s).once
+          delete_brand
+        end
+
+        it "redirects to index" do
+          delete_brand
+          response.should redirect_to(admin_brands_url)
+        end
+
+        it "destroys the brand" do
+          brand.should_receive(:destroy).once
+          delete_brand
+        end
+
+        it "displays message with delete brand's name" do
+          brand.stub(name: "LG")
+          delete_brand
+          flash[:notice].should include(brand.name)
+        end
+      end
+
+      context "with non-existing brand id" do
+        def delete_invalid_brand
+          delete :destroy, :id => brand.id + 1
+        end
+
+        it "redirects back to index" do
+          delete_invalid_brand
+          response.should redirect_to(admin_brands_url)
+        end
+
+        it "sets error message" do
+          delete_invalid_brand
+          flash[:error].should_not be_blank
+        end
       end
     end
   end
