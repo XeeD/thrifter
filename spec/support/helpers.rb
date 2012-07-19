@@ -20,5 +20,15 @@ module Helpers
     }.stringify_keys
   end
 
+  def valid_category_attributes
+    {
+        short_name: "Pračky",
+        url: "pracky",
+        plural_name: "Pračky",
+        singulare_name: "Pračka",
+        category_type: "navigational"
+    }.stringify_keys
+  end
+
   RSpec.configure {|c| c.include self}
 end
