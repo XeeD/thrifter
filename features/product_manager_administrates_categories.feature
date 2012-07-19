@@ -19,6 +19,7 @@ Požadavek: Produktový manager spravuje kategorie
     A vyplním formulář údaji:
       | Název   | Název v odkazu | Celý název (mn. č.) | Celý název (j. č.) |
       | Pračky  | pracky         | Pračky              | Pračka             |
+    A vyberu hodnotu "Navigační" ze seznamu "Typ kategorie"
     A kliknu na tlačítko "Vytvořit novou kategorii"
     Pak bych měl vidět zprávu "Kategorie Pračky byla vytvořena"
     A kategorie "Pračky" by měla být vytvořena
@@ -39,6 +40,7 @@ Požadavek: Produktový manager spravuje kategorie
     A vyplním formulář údaji:
       | Název    | Název v odkazu | Celý název (mn. č.) | Celý název (j. č.) |
       | Televize | televize       | Televize            | Televize           |
+    A vyberu hodnotu "Produktová" ze seznamu "Typ kategorie"
     A kliknu na tlačítko "Uložit kategorii"
     Pak bych měl vidět zprávu "Kategorie Televize byla upravena"
     A kategorie "Televize" by měla být upravena
