@@ -11,11 +11,7 @@ describe Brand do
   it { should validate_presence_of(:url) }
   it { should ensure_length_of(:url).is_at_most(100) }
   it {
-    Brand.create!({
-        name: "LG",
-        url:  "lg",
-        description: "LG Electronics"
-    })
+    Brand.create!(valid_brand_attributes)
     should validate_uniqueness_of(:url)
   }
 
@@ -24,11 +20,7 @@ describe Brand do
 
   context "with valid attributes" do
     it "should be valid" do
-      Brand.new(
-          name: "LG",
-          url:  "lg",
-          description: "LG Electronics"
-      ).should be_valid
+      Brand.new(valid_brand_attributes).should be_valid
     end
   end
 end
