@@ -8,7 +8,7 @@ describe Category do
   # Associations
   it { should have_many(:categorizations) }
   it { should have_many(:products).through(:categorizations) }
-  it { should belong_to(:parent_category) }
+  it { should belong_to(:parent_category)m.class_name("Category") }
   it { should_not allow_value(category.id).for(:parent_id).with_message('nemůže být nadřazena sama sobě') }
 
   # Validations
