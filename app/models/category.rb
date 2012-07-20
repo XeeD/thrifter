@@ -3,7 +3,8 @@
 class Category < ActiveRecord::Base
   acts_as_nested_set
 
-  has_and_belongs_to_many :products, join_table: :product_has_categories
+  has_many :categorizations
+  has_many :products, through: :categorizations
 
   attr_protected :lft, :rgt
 
