@@ -13,6 +13,7 @@ cs:
         name: "Celý název"
         model_name: "Model"
         url: "Název v odkazu"
+        brand: "Značka"
         external_id: "Číslo v Cézaru"
         ean_code: "Čárový kód (EAN)"
         short_description: "Stručný popis"

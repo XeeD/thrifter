@@ -1,8 +1,8 @@
 # encoding: UTF-8
 
 # Given statements
-Pokud /^značka "(.*?)" existuje$/ do |name|
-  Brand.create!(name: "#{name}", url: "lg", description: "LG Electronics")
+Pokud /^značka "(.*?)" existuje$/ do |brand_name|
+  fail "brand #{brand_name} doesn't exists" if Brand.find_by_name(brand_name).nil?
 end
 
 Pokud /^jsem v editaci značky "(.*?)"$/ do |name|

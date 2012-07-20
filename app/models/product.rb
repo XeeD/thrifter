@@ -18,6 +18,8 @@ class Product < ActiveRecord::Base
             length: {maximum: 171},
             uniqueness: true
 
+  validates :brand,
+            presence: true
   validates :short_description,
             presence: true
 

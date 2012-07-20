@@ -18,11 +18,11 @@ Požadavek: Produktový manager spravuje značky
     Pokud jsem v sekci "administrace značek"
     Když kliknu na odkaz "Přidat novou značku"
     A vyplním formulář údaji:
-      | Název | Název v odkazu | Popis          |
-      | LG    | lg             | LG Electronics |
+      | Název      | Název v odkazu      | Popis               |
+      | Samsung    | samsung             | Samsung Electronics |
     A kliknu na tlačítko "Vytvořit novou značku"
-    Pak bych měl vidět zprávu "Značka LG byla vytvořena"
-    A značka "LG" by měla být vytvořena
+    Pak bych měl vidět zprávu "Značka Samsung byla vytvořena"
+    A značka "Samsung" by měla být vytvořena
 
   Scénář: smazání existující značky
     Pokud značka "LG" existuje
@@ -38,8 +38,8 @@ Požadavek: Produktový manager spravuje značky
   Scénář: upravení existující značky přes formulář
     Pokud jsem v editaci značky "LG"
     A vyplním formulář údaji:
-      | Název   | Název v odkazu | Popis                |
-      | Samsung | samsung        | Samsung Electronics  |
+      | Název   | Název v odkazu | Popis              |
+      | Sharp   | sharp          | Sharp Electronics  |
     A kliknu na tlačítko "Uložit značku"
-    Pak bych měl vidět zprávu "Značka Samsung byla upravena"
-    A značka "Samsung" by měla být upravena
+    Pak bych měl vidět zprávu "Značka Sharp byla upravena"
+    A značka "Sharp" by měla být upravena
