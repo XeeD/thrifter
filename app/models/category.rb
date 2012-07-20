@@ -6,7 +6,7 @@ class Category < ActiveRecord::Base
   has_many :categorizations
   has_many :products, through: :categorizations
 
-  belongs_to :category, foreign_key: :parent_id
+  belongs_to :parent_category, foreign_key: :parent_id
 
   attr_accessible :short_name, :url, :plural_name, :singular_name, :category_type
 
