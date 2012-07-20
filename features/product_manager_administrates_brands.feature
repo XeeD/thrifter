@@ -25,18 +25,18 @@ Požadavek: Produktový manager spravuje značky
     A značka "Samsung" by měla být vytvořena
 
   Scénář: smazání existující značky
-    Pokud značka "LG" existuje
+    Pokud značka "Indesit" existuje
     A jsem v sekci "administrace značek"
     Když kliknu na odkaz "Smazat"
-    Pak bych měl vidět zprávu "Značka LG byla smazána"
-    A značka "LG" by měla být smazána
+    Pak bych měl vidět zprávu "Značka Indesit byla smazána"
+    A značka "Indesit" by měla být smazána
 
   Scénář: upravení existující značky
-    Pokud jsem v editaci značky "LG"
-    Pak bych měl vidět nadpis "Úprava značky LG"
+    Pokud jsem v editaci značky "Indesit"
+    Pak bych měl vidět nadpis "Úprava značky Indesit"
 
   Scénář: upravení existující značky přes formulář
-    Pokud jsem v editaci značky "LG"
+    Pokud jsem v editaci značky "Indesit"
     A vyplním formulář údaji:
       | Název   | Název v odkazu | Popis              |
       | Sharp   | sharp          | Sharp Electronics  |
