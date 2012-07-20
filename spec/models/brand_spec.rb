@@ -15,7 +15,6 @@ describe Brand do
   it { should validate_presence_of(:url) }
   it { should ensure_length_of(:url).is_at_most(30) }
   it {
-    Brand.create!(valid_brand_attributes)
     should validate_uniqueness_of(:url)
   }
 
