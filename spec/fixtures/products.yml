@@ -15,3 +15,4 @@ lg_fridge:
   admin_comment:
   gray_import: false
   top_product: false
+  brand_id: 1
