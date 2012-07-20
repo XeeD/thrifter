@@ -3,6 +3,8 @@
 class Category < ActiveRecord::Base
   acts_as_nested_set
 
+  has_and_belongs_to_many :products, join_table: :product_has_categories
+
   attr_protected :lft, :rgt
 
   CATEGORY_TYPES = {"Navigační" => "navigational", "Produktová" => "product_list", "Přídavná" => "additional"}
