@@ -6,12 +6,14 @@ class Category < ActiveRecord::Base
   has_many :categorizations
   has_many :products, through: :categorizations
 
+  belongs_to :category, foreign_key: :parent_id
+
   attr_accessible :short_name, :url, :plural_name, :singular_name, :category_type
 
   CATEGORY_TYPES = {
-      "Navigační" => "navigational",
+      "Navigační"  => "navigational",
       "Produktová" => "product_list",
-      "Přídavná" => "additional"
+      "Přídavná"   => "additional"
   }
 
   # Validations
