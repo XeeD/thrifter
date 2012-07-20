@@ -1,6 +1,7 @@
 class Product < ActiveRecord::Base
 
-  has_and_belongs_to_many :categories, join_table: :product_has_categories
+  has_many :categorizations
+  has_many :categories, through: :categorizations
   belongs_to :brand
 
   # Validations

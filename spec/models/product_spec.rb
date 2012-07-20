@@ -4,11 +4,9 @@ require 'spec_helper'
 describe Product do
 
   # Associations
-  # brand
   it { should belong_to(:brand) }
-
-  # categories
-  it { should have_and_belong_to_many(:categories) }
+  it { should have_many(:categorizations) }
+  it { should have_many(:categories).through(:categorizations) }
 
   # Validations
   # name
