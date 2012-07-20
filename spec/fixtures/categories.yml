@@ -1,7 +1,9 @@
-lg:
+fridges:
   id: 1
-  short_name: "LCD Televize"
-  url:  "lcd-televize"
-  plural_name: "LCD Televize"
-  singular_name: "LCD Televize"
+  short_name: "Chladničky"
+  url:  "chladnicky"
+  plural_name: "Chladničky"
+  singular_name:
   category_type: "navigational"
+  lft: 1
+  rgt: 2

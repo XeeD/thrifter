@@ -24,6 +24,7 @@ Když /^kliknu na řádku u .+ "(.*?)" na odkaz "(.*?)"$/ do |line_text, link_ti
       row = table.find("tr", :text => line_text)
       link = row.find("a", :text => link_title)
       link.click
+      save_page
       break true
     rescue Capybara::ElementNotFound
       next
@@ -57,7 +58,11 @@ Když /^pokračuji ve vyplňování formuláře:$/ do |form_values|
   step "vyplním formulář údaji:", form_values
 end
 
-
+Když /^zaškrtnu přepínač "(.*?)" pro vlastnost "(.*?)"$/ do |value, button_group|
+  within_fieldset(button_group) do
+    choose(value)
+  end
+end
 
 # Then statements
 Pak /^bych měl vidět zprávu "(.*?)"$/ do |message|
