@@ -33,6 +33,7 @@ cs:
         plural_name: "Celý název (mn. č.)"
         singular_name: "Celý název (j. č.)"
         category_type: "Typ kategorie"
+        parent_category: "Nadřazená kategorie"
   helpers:
     submit:
       brand:

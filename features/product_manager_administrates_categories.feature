@@ -29,14 +29,14 @@ Požadavek: Produktový manager spravuje kategorie
 
   Scénář: smazání existující kategorie
     Pokud jsem v sekci "administrace kategorií"
-    Když kliknu na řádku u kategorie "Chladničky" na odkaz "Editovat"
+    Když kliknu na řádku u kategorie "Chladničky" na odkaz "Smazat"
     Pak bych měl vidět zprávu "Kategorie Chladničky byla smazána"
     A kategorie "Chladničky" by měla být smazána
 
   Scénář: upravení existující kategorie
     Pokud jsem v sekci "administrace kategorií"
-    A kliknu na řádku u kategorie "Chladničky" na odkaz "Editovat"
-    A změním hodnotu pole "Název" na "Lednice"
+    A kliknu na řádku u kategorie "Chladničky" na odkaz "Upravit"
+    A změním hodnotu pole "Celý název (mn. č.)" na "Lednice"
     A kliknu na tlačítko "Uložit kategorii"
     Pak bych měl vidět zprávu "Kategorie Lednice byla upravena"
     A kategorie "Lednice" by měla být upravena

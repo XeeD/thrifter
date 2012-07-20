@@ -69,10 +69,10 @@ module Admin
           response.should redirect_to(admin_categories_url)
         end
 
-        it "sets the notice message with category name" do
-          category.stub(:short_name).and_return("Pračky")
+        it "sets the notice message with category's plural name" do
+          category.stub(plural_name: "Pračky")
           post_valid_attributes
-          flash[:notice].should include(category.short_name)
+          flash[:notice].should include(category.plural_name)
         end
       end
 
@@ -147,6 +147,12 @@ module Admin
         it "redirects to index action" do
           put_update
           response.should redirect_to(admin_categories_url)
+        end
+
+        it "sets the notice message with category's plural name" do
+          category.stub(plural_name: "Pračky")
+          put_update
+          flash[:notice].should include(category.plural_name)
         end
       end
 

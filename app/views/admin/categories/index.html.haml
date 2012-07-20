@@ -10,7 +10,7 @@
     %tbody
       - for category in categories
         %tr
-          %th= category.short_name
+          %th= category.plural_name
           %td
             %ul.actions
               %li= link_to "Smazat", admin_category_path(category), method: :delete, confirm: "Opravdu smazat značku #{category.short_name}?"

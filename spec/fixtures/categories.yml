@@ -5,3 +5,5 @@ fridges:
   plural_name: "Chladničky"
   singular_name:
   category_type: "navigational"
+  lft: 1
+  rgt: 2
