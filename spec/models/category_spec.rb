@@ -21,4 +21,10 @@ describe Category do
 
   # category_type
   it { should ensure_inclusion_of(:category_type).in_array(Category::CATEGORY_TYPES.values) }
+
+  context "with valid attributes" do
+    it "should be valid" do
+      Category.new(valid_category_attributes).should be_valid
+    end
+  end
 end
