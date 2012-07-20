@@ -2,6 +2,10 @@ require 'spec_helper'
 
 describe Brand do
 
+  # Associations
+  # product
+  it { should have_many(:products) }
+
   # Validations
   # name
   it { should validate_presence_of(:name) }
