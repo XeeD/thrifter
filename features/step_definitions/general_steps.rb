@@ -57,6 +57,8 @@ Když /^pokračuji ve vyplňování formuláře:$/ do |form_values|
   step "vyplním formulář údaji:", form_values
 end
 
+
+
 # Then statements
 Pak /^bych měl vidět zprávu "(.*?)"$/ do |message|
   find("#flash_messages .notice").should have_content(message)
