@@ -6,15 +6,15 @@ describe Product do
   # Validations
   # name
   it { should validate_presence_of(:name) }
-  it { should ensure_length_of(:name).is_at_most(301) }
+  it { should ensure_length_of(:name).is_at_most(171) }
 
   # model_name
   it { should validate_presence_of(:model_name) }
-  it { should ensure_length_of(:model_name).is_at_most(150) }
+  it { should ensure_length_of(:model_name).is_at_most(140) }
 
   # url
   it { should validate_presence_of(:url) }
-  it { should ensure_length_of(:url).is_at_most(301) }
+  it { should ensure_length_of(:url).is_at_most(171) }
   it {
     Product.create(valid_product_attributes)
     should validate_uniqueness_of(:url)

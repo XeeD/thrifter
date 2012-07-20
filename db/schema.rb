@@ -14,8 +14,8 @@
 ActiveRecord::Schema.define(:version => 20120720080353) do
 
   create_table "brands", :force => true do |t|
-    t.string "name",        :limit => 100
-    t.string "url",         :limit => 100
+    t.string "name",        :limit => 30
+    t.string "url",         :limit => 30
     t.text   "description"
   end
 
@@ -47,18 +47,18 @@ ActiveRecord::Schema.define(:version => 20120720080353) do
   add_index "product_has_categories", ["product_id", "category_id"], :name => "index_product_has_categories_on_product_id_and_category_id", :unique => true
 
   create_table "products", :force => true do |t|
-    t.string   "name",                :limit => 301
-    t.string   "model_name",          :limit => 150
-    t.string   "url",                 :limit => 301
+    t.string   "name",                :limit => 171
+    t.string   "model_name",          :limit => 140
+    t.string   "url",                 :limit => 171
     t.integer  "external_id",         :limit => 8
-    t.string   "ean_code",            :limit => 13
+    t.integer  "ean_code"
     t.text     "short_description"
     t.text     "description"
     t.integer  "default_price",       :limit => 8
     t.integer  "recommended_price",   :limit => 8
     t.integer  "purchase_price",      :limit => 8
     t.integer  "recycling_fee"
-    t.integer  "warranty"
+    t.integer  "warranty",            :limit => 3
     t.decimal  "vat_rate",                           :precision => 3, :scale => 1
     t.string   "state",                                                            :default => "new"
     t.text     "admin_comment"

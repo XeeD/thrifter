@@ -6,15 +6,15 @@ class Product < ActiveRecord::Base
   # Validations
   validates :name,
             presence: true,
-            length: {maximum: 301}
+            length: {maximum: 171}
 
   validates :model_name,
             presence: true,
-            length: {maximum: 150}
+            length: {maximum: 140}
 
   validates :url,
             presence: true,
-            length: {maximum: 301},
+            length: {maximum: 171},
             uniqueness: true
 
   validates :short_description,
