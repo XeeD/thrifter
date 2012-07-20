@@ -3,9 +3,13 @@ require 'spec_helper'
 
 describe Category do
 
+  let(:category) { mock_model(Category).as_null_object }
+
   # Associations
   it { should have_many(:categorizations) }
   it { should have_many(:products).through(:categorizations) }
+  it { should belong_to(:parent_category) }
+  it { should_not allow_value(category.id).for(:parent_id).with_message('nemůže být nadřazena sama sobě') }
 
   # Validations
   # short_name
