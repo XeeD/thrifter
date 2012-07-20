@@ -15,6 +15,7 @@ Požadavek: Produktový admin vytváří nový produkt
 
   Scénář: přidání nového produktu přes formulář
     Pokud jsem v sekci "administrace produktů"
+    A značka "Pračky" existuje
     Když kliknu na odkaz "Přidat nový produkt"
     A vyplním formulář údaji:
       | Celý název    | Model         | Název v odkazu | Číslo v Cézaru | Stručný popis     |
@@ -22,6 +23,7 @@ Požadavek: Produktový admin vytváří nový produkt
     A pokračuji ve vyplňování formuláře:
       | Popis            | Výchozí cena | Doporučená cena | Nákupní cena | PHE | Záruka | % DPH |
       | No-Frost lednice | 12990        | 15990           | 9000         | 217 | 24     | 20    |
+    A vyberu hodnotu "Pračky" ze seznamu "Značka"
     A kliknu na tlačítko "Vytvořit nový produkt"
     Pak bych měl vidět zprávu "Nový produkt LG GB3133TIJW byl vytvořen"
     A produkt "LG GB3133TIJW" by měl být vytvořen
