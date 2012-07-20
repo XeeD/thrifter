@@ -6,6 +6,7 @@ describe Product do
   # Associations
   # brand
   it { should belong_to(:brand) }
+  it { should validate_presence_of(:brand) }
 
   # categories
   it { should have_and_belong_to_many(:categories) }
