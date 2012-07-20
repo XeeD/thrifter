@@ -16,7 +16,8 @@ module Helpers
         external_id: "2123456",
         url: "lg-gb3133tijw",
         gray_import: "",
-        warranty: "24"
+        warranty: "24",
+        brand_id: "1"
     }.stringify_keys
   end
 

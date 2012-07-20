@@ -1,0 +1,7 @@
+lg:
+  id: 1
+  short_name: "LCD Televize"
+  url:  "lcd-televize"
+  plural_name: "LCD Televize"
+  singular_name: "LCD Televize"
+  category_type: "navigational"

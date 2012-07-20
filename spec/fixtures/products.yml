@@ -1,4 +1,5 @@
 lg_fridge:
+  id: 1
   name: "LG GB3133TIJW"
   model_name: "GB3133TIJW"
   url: "lg-gb3133-tijw"
@@ -15,3 +16,4 @@ lg_fridge:
   admin_comment:
   gray_import: false
   top_product: false
+  brand_id: 1

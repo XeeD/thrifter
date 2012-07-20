@@ -5,15 +5,31 @@ class Category < ActiveRecord::Base
 
   has_and_belongs_to_many :products, join_table: :product_has_categories
 
-  attr_protected :lft, :rgt
+  attr_accessible :short_name, :url, :plural_name, :singular_name, :category_type
 
-  CATEGORY_TYPES = {"Navigační" => "navigational", "Produktová" => "product_list", "Přídavná" => "additional"}
+  CATEGORY_TYPES = {
+      "Navigační" => "navigational",
+      "Produktová" => "product_list",
+      "Přídavná" => "additional"
+  }
 
-  validates :short_name, :url, :plural_name, :category_type, presence: true
+  # Validations
+  validates :short_name,
+            presence: true,
+            length: {maximum: 80}
 
-  validates :short_name, length: {maximum: 80}
-  validates :url, length: {maximum: 120}
-  validates :plural_name, length: {maximum: 120}
-  validates :singular_name, length: {maximum: 120}
-  validates :category_type, inclusion: {in: CATEGORY_TYPES.values}
+  validates :url,
+            presence: true,
+            length: {maximum: 120}
+
+  validates :plural_name,
+            presence: true,
+            length: {maximum: 120}
+
+  validates :singular_name,
+            length: {maximum: 120}
+
+  validates :category_type,
+            presence: true,
+            inclusion: {in: CATEGORY_TYPES.values}
 end

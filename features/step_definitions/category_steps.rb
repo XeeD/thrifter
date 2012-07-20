@@ -1,8 +1,8 @@
 # encoding: UTF-8
 
 # Given statements
-Pokud /^kategorie "(.*?)" existuje$/ do |name|
-  Category.create!(short_name: "#{name}", url: "pracky", plural_name: "Pračky", singular_name: "Pračka", category_type: "navigational")
+Pokud /^kategorie "(.*?)" existuje$/ do |short_name|
+  fail "category #{short_name} doesn't exists" if Category.find_by_short_name(short_name).nil?
 end
 
 Pokud /^jsem v editaci kategorie "(.*?)"$/ do |name|
