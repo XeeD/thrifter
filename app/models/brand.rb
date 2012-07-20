@@ -1,7 +1,6 @@
 class Brand < ActiveRecord::Base
   has_many :products
 
-  validates :name, :url, length: {maximum: 100}, presence: true
-  validates :url, uniqueness: true
-  validates :description, presence: true
+  validates :name, length: {maximum: 100}, presence: true
+  validates :url, length: {maximum: 100}, presence: true, uniqueness: true
 end
