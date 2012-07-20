@@ -5,15 +5,10 @@ describe Product do
 
   # Associations
   it { should belong_to(:brand) }
-<<<<<<< HEAD
   it { should have_many(:categorizations) }
   it { should have_many(:categories).through(:categorizations) }
-=======
   it { should validate_presence_of(:brand) }
-
-  # categories
   it { should have_and_belong_to_many(:categories) }
->>>>>>> ea448722735b24b78731d88aa92f02ad39000929
 
   # Validations
   # name
