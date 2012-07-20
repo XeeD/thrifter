@@ -4,8 +4,8 @@ require 'spec_helper'
 describe Category do
 
   # Associations
-  # products
-  it { should have_and_belong_to_many(:products) }
+  it { should have_many(:categorizations) }
+  it { should have_many(:products).through(:categorizations) }
 
   # Validations
   # short_name
