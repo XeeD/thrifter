@@ -15,16 +15,16 @@ module Helpers
         vat_rate: "20",
         external_id: "2123456",
         url: "lg-gb3133tijw",
-        grey_import: "",
+        gray_import: "",
         warranty: "24"
     }.stringify_keys
   end
 
   def valid_brand_attributes
     {
-        short_name: "LG",
+        name: "LG",
         url: "lg",
-        category_type: "LG Electronics"
+        description: "LG Electronics"
     }.stringify_keys
   end
 
@@ -33,7 +33,7 @@ module Helpers
         short_name: "Pračky",
         url: "pracky",
         plural_name: "Pračky",
-        singulare_name: "Pračka",
+        singular_name: "Pračka",
         category_type: "navigational"
     }.stringify_keys
   end
