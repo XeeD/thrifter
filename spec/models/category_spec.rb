@@ -3,6 +3,10 @@ require 'spec_helper'
 
 describe Category do
 
+  # Associations
+  # products
+  it { should have_and_belong_to_many(:products) }
+
   # Validations
   # short_name
   it { should validate_presence_of(:short_name) }
