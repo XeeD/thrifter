@@ -25,18 +25,18 @@ Požadavek: Produktový manager spravuje kategorie
     A kategorie "Pračky" by měla být vytvořena
 
   Scénář: smazání existující kategorie
-    Pokud kategorie "Pračky" existuje
+    Pokud kategorie "LCD Televize" existuje
     A jsem v sekci "administrace kategorií"
     Když kliknu na odkaz "Smazat"
-    Pak bych měl vidět zprávu "Kategorie Pračky byla smazána"
-    A kategorie "Pračky" by měla být smazána
+    Pak bych měl vidět zprávu "Kategorie LCD Televize byla smazána"
+    A kategorie "LCD Televize" by měla být smazána
 
   Scénář: upravení existující kategorie
-    Pokud jsem v editaci kategorie "Pračky"
-    Pak bych měl vidět nadpis "Úprava kategorie Pračky"
+    Pokud jsem v editaci kategorie "LCD Televize"
+    Pak bych měl vidět nadpis "Úprava kategorie LCD Televize"
 
   Scénář: upravení existující značky přes formulář
-    Pokud jsem v editaci kategorie "Pračky"
+    Pokud jsem v editaci kategorie "LCD Televize"
     A vyplním formulář údaji:
       | Název    | Název v odkazu | Celý název (mn. č.) | Celý název (j. č.) |
       | Televize | televize       | Televize            | Televize           |
