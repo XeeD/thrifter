@@ -1,5 +1,4 @@
 class Product < ActiveRecord::Base
-
   has_and_belongs_to_many :categories, join_table: :product_has_categories
   belongs_to :brand
 
@@ -17,6 +16,8 @@ class Product < ActiveRecord::Base
             length: {maximum: 301},
             uniqueness: true
 
+  validates :brand,
+            presence: true
   validates :short_description,
             presence: true
 
