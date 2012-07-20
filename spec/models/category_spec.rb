@@ -6,6 +6,7 @@ describe Category do
   # Associations
   it { should have_many(:categorizations) }
   it { should have_many(:products).through(:categorizations) }
+  it { should belong_to(:parent_category) }
 
   # Validations
   # short_name
