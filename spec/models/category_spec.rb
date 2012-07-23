@@ -38,10 +38,10 @@ describe Category do
         category.parent_category = Category.new({id: 2, category_type: "navigational"})
       end
 
-      it "doesn't allow navigational category_type for subcategory" do
+      it "allows navigational category_type for subcategory" do
         category.category_type = "navigational"
         category.valid?
-        category.errors_on(:category_type).should include("nepovolená kombinace typu kategorie a typu nadřazené kategorie")
+        category.errors_on(:category_type).should_not include("nepovolená kombinace typu kategorie a typu nadřazené kategorie")
       end
 
       it "allows product_list category_type for subcategory" do

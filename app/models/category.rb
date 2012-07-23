@@ -36,7 +36,7 @@ class Category < ActiveRecord::Base
             presence: true,
             inclusion: {in: CATEGORY_TYPES.values},
             parent_field_combination: {
-                :navigational => [:product_list, :additional],
+                :navigational => [:navigational, :product_list, :additional],
                 :product_list => [:additional],
                 :additional   => [:additional]
             }
