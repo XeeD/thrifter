@@ -3,7 +3,10 @@
   = f.input :url
   = f.input :plural_name
   = f.input :singular_name
-  = f.input :category_type, :as => :select, :collection => Category::CATEGORY_TYPES
+  = f.input :category_type,
+    as: :select,
+    collection: Category::CATEGORY_TYPES,
+    hint: "Navigační kategorie mohou být podraženy pouze jiným navigačním kategoriím, produktové kategorie pouze navigačním, dodatečné pouze produktovým."
   = f.input :parent_category, :as => :radio, :member_label => :plural_name
 
   = f.actions do
