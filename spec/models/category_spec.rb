@@ -111,6 +111,7 @@ describe Category do
         category.id = 123
         category.parent_id = category.id
         category.valid?
+        category.stub(new_record?: false)
         category.errors_on(:parent_id).should include("nemůže být shodná s danou kategorií")
       end
     end
@@ -118,8 +119,7 @@ describe Category do
 
   context "with valid attributes" do
     it "should be valid" do
-      pending
-      #Category.new(valid_category_attributes).should be_valid
+      Category.new(valid_category_attributes).should be_valid
     end
   end
 end
