@@ -1,2 +1,3 @@
-fridges:
-  name: "Chladničky"
+washing_machines:
+  id: 1
+  name: "Pračky"

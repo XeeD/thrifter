@@ -24,15 +24,15 @@ Požadavek: Produktový manager spravuje kategorie
   Scénář: přidání nové šablony parametrů přes formulář
     Pokud jsem v sekci "administrace šablon parametrů"
     Když kliknu na odkaz "Přidat novou šablonu parametrů"
-    A vyplním "Chladničky" do pole "Název šablony"
+    A vyplním "Chladničky" do pole "Název"
     A kliknu na tlačítko "Vytvořit novou šablonu parametrů"
     Pak bych měl vidět zprávu "Šablona parametrů Chladničky byla vytvořena"
-    A šablona parameterů "Chladničky" by měla být vytvořena
+    A šablona parametrů "Chladničky" by měla být vytvořena
 
   Scénář: přiřazení nové šablony dané kategorii při vytváření
     Pokud jsem v sekci "administrace šablon parametrů"
     Když kliknu na odkaz "Přidat novou šablonu parametrů"
-    A vyplním "Chladničky" do pole "Název šablony"
+    A vyplním "Chladničky" do pole "Název"
     A zaškrtnu pole "Kombinované chladničky" pro vlasnost "Přiřazené kategorie"
     A kliknu na tlačítko "Vytvořit novou šablonu parametrů"
     Pak kategorie "Kombinované chladničky" by měla mít šablonu parametrů "Chladničky"
@@ -40,13 +40,13 @@ Požadavek: Produktový manager spravuje kategorie
 
   Scénář: smazání existující šablony parametrů
     Pokud jsem v sekci "administrace šablon parametrů"
-    Když kliknu na řádku u šablony parametrů "Chladničky" na odkaz "Smazat"
-    Pak bych měl vidět zprávu "Šablona parametrů Chladničky byla smazána"
-    A šablona parametrů "Chladničky" by měla být smazána
+    Když kliknu na řádku u šablony parametrů "Pračky" na odkaz "Smazat"
+    Pak bych měl vidět zprávu "Šablona parametrů Pračky byla smazána"
+    A šablona parametrů "Pračky" by měla být smazána
 
   Scénář: upravení existující šablony parametrů
     Pokud jsem v sekci "administrace šablon parametrů"
-    Když kliknu na řádku u šablony "Chladničky" na odkaz "Upravit"
+    Když kliknu na řádku u šablony "Pračky" na odkaz "Upravit"
     A změním hodnotu pole "Název" na "Lednice"
     A kliknu na tlačítko "Uložit šablonu parametrů"
     Pak bych měl vidět zprávu "Šablona parametrů Lednice byla upravena"

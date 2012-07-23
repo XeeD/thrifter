@@ -42,7 +42,7 @@ module Helpers
   def valid_param_template_attributes
     {
         name: "Chladničky"
-    }
+    }.stringify_keys
   end
 
   RSpec.configure {|c| c.include self}

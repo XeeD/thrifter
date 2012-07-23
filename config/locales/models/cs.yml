@@ -5,6 +5,8 @@ cs:
       category: Kategorie
       product: Produkt
     attributes:
+      param_template:
+        name: "Název"
       brand:
         name: "Název"
         url: "Název v odkazu"
@@ -54,3 +56,6 @@ cs:
       product:
         create: "Vytvořit nový produkt"
         update: "Uložit produkt"
+      param_template:
+        create: "Vytvořit novou šablonu parametrů"
+        update: "Uložit šablonu parametrů"

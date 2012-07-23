@@ -10,7 +10,11 @@ end
 
 # Then statements
 Pak /^produkt "(.*?)" by měl být smazán$/ do |name|
-  find("#products").should_not have_content("#{name}")
+  begin
+    find("#products").should_not have_content("#{name}")
+  rescue Capybara::ElementNotFound
+    page.should have_selector(".empty_set")
+  end
 end
 
 Pak /^produkt "(.*?)" by měl být (?:vytvořen|upraven)$/ do |name|
