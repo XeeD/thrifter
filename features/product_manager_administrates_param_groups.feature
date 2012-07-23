@@ -1,9 +1,10 @@
 # language: cs
-Požadavek: Produktový manager spravuje kategorie
+Požadavek: Produktový manager spravuje obchody
 
-  Abych
+  Abych mohl seřadit zpřehlednil zobrazení parametrů výrobku především pro zákazníky e-shopu
   Jako produktový manager
-  Chci mít možnost
+  Chci mít možnost seskupit spolu související parametry do skupin. Tyto skupiny budu vytvářet
+  pod jednotlivými šablonami parametrů.
 
   Kontext:
     Pokud jsem přihlášený jako "produktový manager"
@@ -43,4 +44,3 @@ Požadavek: Produktový manager spravuje kategorie
     Pokud skupina parametrů "Funkce" existuje
     Když kliknu na řádku u šablony parametrů "Chladničky" na odkaz "Zobrazit"
     Pak bych měl vidět "Funkce" v tabulce "Skupiny parametrů"
-
