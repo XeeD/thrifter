@@ -34,6 +34,13 @@ cs:
         singular_name: "Celý název (j. č.)"
         category_type: "Typ kategorie"
         parent_category: "Nadřazená kategorie"
+        parent_id: "Nadřazená kategorie"
+    errors:
+      models:
+        category:
+          attributes:
+            parent_id:
+              parent_loop: "nemůže být shodná s danou kategorií"
   helpers:
     submit:
       brand:

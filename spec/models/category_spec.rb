@@ -9,8 +9,7 @@ describe Category do
   # Associations
   it { should have_many(:categorizations) }
   it { should have_many(:products).through(:categorizations) }
-  it { should belong_to(:parent_category)m.class_name("Category") }
-  it { should_not allow_value(category.id).for(:parent_id).with_message('nemůže být nadřazena sama sobě') }
+  it { should belong_to(:parent_category).class_name("Category") }
 
   # Validations
   # short_name
@@ -31,7 +30,7 @@ describe Category do
   # category_type
   it { should ensure_inclusion_of(:category_type).in_array(Category::CATEGORY_TYPES.values) }
 
-  describe "integrity constraints" do
+  describe "integrity constraint" do
     context "for navigational category type" do
       before do
         subcategory.stub(category_type: "navigational")
@@ -86,6 +85,16 @@ describe Category do
 
       it "allows additional category_type for subcategory" do
         category.should allow_value("additional").for(:category_type)
+      end
+    end
+
+    context "for parent_id" do
+      it "does't allow own id (category.parent_id == category.id)" do
+        category = Category.new
+        category.id = 123
+        category.parent_id = category.id
+        category.valid?
+        category.errors_on(:parent_id).should include("nemůže být shodná s danou kategorií")
       end
     end
   end

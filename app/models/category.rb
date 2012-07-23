@@ -35,4 +35,14 @@ class Category < ActiveRecord::Base
   validates :category_type,
             presence: true,
             inclusion: {in: CATEGORY_TYPES.values}
+  validates :parent_id,
+            parent_loop: true
+
+  def validate
+    # category_parent cannot be the same category
+    fail parent_id.inspect
+    if parent_id == id
+      errors.add(:parent_id, "nemůže být shodná s danou kategorií")
+    end
+  end
 end
