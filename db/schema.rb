@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120720120559) do
+ActiveRecord::Schema.define(:version => 20120723145007) do
 
   create_table "brands", :force => true do |t|
     t.string "name",        :limit => 30
@@ -48,13 +48,11 @@ ActiveRecord::Schema.define(:version => 20120720120559) do
   add_index "categorizations", ["category_id"], :name => "index_categorizations_on_category_id"
   add_index "categorizations", ["product_id"], :name => "index_categorizations_on_product_id"
 
-  create_table "product_has_categories", :id => false, :force => true do |t|
-    t.integer "product_id",  :null => false
-    t.integer "category_id", :null => false
+  create_table "param_templates", :force => true do |t|
+    t.string "name", :limit => 100, :null => false
   end
 
-  add_index "product_has_categories", ["category_id", "product_id"], :name => "index_product_has_categories_on_category_id_and_product_id", :unique => true
-  add_index "product_has_categories", ["product_id", "category_id"], :name => "index_product_has_categories_on_product_id_and_category_id", :unique => true
+  add_index "param_templates", ["name"], :name => "index_param_templates_on_name", :unique => true
 
   create_table "products", :force => true do |t|
     t.string   "name",                :limit => 171
