@@ -50,7 +50,7 @@ Požadavek: Produktový manager spravuje kategorie
     A změním hodnotu pole "Název" na "Lednice"
     A kliknu na tlačítko "Uložit šablonu parametrů"
     Pak bych měl vidět zprávu "Šablona parametrů Lednice byla upravena"
-    A šqblona parametrů "Lednice" by měla být upravena
+    A šablona parametrů "Lednice" by měla být upravena
 
   Scénář: přiřazení existující šablony parametrů jiné kategorii
     Pokud jsem v sekci "administrace šablon parametrů"
