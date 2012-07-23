@@ -1,0 +1,20 @@
+%h2 Šablony parametrů
+%ul.action_links
+  %li= link_to "Přidat novou šablonu parametrů", new_admin_param_template_path
+
+- unless param_templates.empty?
+  %table#param_templates
+    %thead
+      %th Název šablony
+      %td Akce
+    %tbody
+      - for template in param_templates
+        %tr
+          %th= template.name
+          %td
+            %ul.actions
+              %li= link_to "Smazat", admin_param_template_path(template), method: :delete, confirm: "Opravdu smazat šablonu #{template.name}?"
+              %li= link_to "Upravit", edit_admin_param_template_path(template)
+- else
+  .empty_set
+    Zatím nejsou vytvořeny žádné šablony parametrů
