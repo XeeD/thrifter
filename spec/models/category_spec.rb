@@ -3,8 +3,6 @@ require 'spec_helper'
 
 describe Category do
 
-  subject { Category.new }
-
   # Associations
   it { should have_many(:categorizations) }
   it { should have_many(:products).through(:categorizations) }
