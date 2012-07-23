@@ -41,6 +41,8 @@ cs:
           attributes:
             parent_id:
               parent_loop: "nemůže být shodná s danou kategorií"
+            category_type:
+              forbiden_combination: "nepovolená kombinace typu kategorie a typu nadřazené kategorie"
   helpers:
     submit:
       brand:
