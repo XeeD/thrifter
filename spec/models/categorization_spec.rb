@@ -1,5 +1,6 @@
 require 'spec_helper'
 
 describe Categorization do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { should belong_to(:category) }
+  it { should belong_to(:product) }
 end
