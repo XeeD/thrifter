@@ -6,4 +6,48 @@ fridges:
   singular_name:
   category_type: "navigational"
   lft: 1
-  rgt: 2
+  rgt: 10
+
+sbs_fridges:
+  id: 2
+  short_name: "Americké"
+  url:  "americke-chladnicky"
+  plural_name: "Americké chladničky"
+  singular_name: "Americká chladnička"
+  category_type: "product_list"
+  parent_id: 1
+  lft: 2
+  rgt: 3
+
+combined_fridges:
+  id: 3
+  short_name: "Kombinované"
+  url:  "kombinovane-chladnicky"
+  plural_name: "Kombinované chladničky"
+  singular_name: "Kombinovaná chladnička"
+  category_type: "product_list"
+  parent_id: 1
+  lft: 4
+  rgt: 9
+
+combined_fridges_up:
+  id: 4
+  short_name: "Kombinované s mrazákem nahoře"
+  url:  "kombinovane-chladnicky-s-mrazakem-nahore"
+  plural_name: "Kombinované chladničky s mrazákem nahoře"
+  singular_name: "Kombinovaná chladnička s mrazákem nahoře"
+  category_type: "additional"
+  parent_id: 3
+  lft: 5
+  rgt: 6
+
+combined_fridges_down:
+  id: 5
+  short_name: "Kombinované s mrazákem dole"
+  url:  "kombinovane-chladnicky-s-mrazakem-dole"
+  plural_name: "Kombinované chladničky s mrazákem dole"
+  singular_name: "Kombinovaná chladnička s mrazákem dole"
+  category_type: "additional"
+  parent_id: 3
+  lft: 7
+  rgt: 8
