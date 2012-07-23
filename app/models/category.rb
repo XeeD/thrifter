@@ -34,7 +34,13 @@ class Category < ActiveRecord::Base
 
   validates :category_type,
             presence: true,
-            inclusion: {in: CATEGORY_TYPES.values}
+            inclusion: {in: CATEGORY_TYPES.values},
+            forbid_combination: {
+                "navigational" => ["navigational"],
+                "product_list" => ["navigational", "product_list"],
+                "additional"   => ["navigational", "product_list"]
+            }
+
   validates :parent_id,
             parent_loop: true
 
