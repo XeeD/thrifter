@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(:version => 20120723145007) do
   add_index "categorizations", ["product_id"], :name => "index_categorizations_on_product_id"
 
   create_table "param_templates", :force => true do |t|
-    t.string "name", :limit => 100, :null => false
+    t.string "name", :limit => 40, :null => false
   end
 
   add_index "param_templates", ["name"], :name => "index_param_templates_on_name", :unique => true
