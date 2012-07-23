@@ -40,6 +40,10 @@ Když /^změním hodnotu pole "(.*?)" na "(.*?)"$/ do |field, value|
   fill_in field, :with => value
 end
 
+Když /^vyplním "(.*?)" do pole "(.*?)"$/ do |value, field|
+  fill_in field, :with => value
+end
+
 Když /^vyberu hodnotu "(.*?)" ze seznamu "(.*?)"$/ do |value, field|
   select value.to_s, :from => field.to_s
 end
