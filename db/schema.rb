@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120724081520) do
+ActiveRecord::Schema.define(:version => 20120724124808) do
 
   create_table "brands", :force => true do |t|
     t.string "name",        :limit => 30
@@ -20,20 +20,22 @@ ActiveRecord::Schema.define(:version => 20120724081520) do
   end
 
   create_table "categories", :force => true do |t|
-    t.string  "short_name",    :limit => 80
-    t.string  "url",           :limit => 120
-    t.string  "plural_name",   :limit => 120
-    t.string  "singular_name", :limit => 120
-    t.string  "category_type", :limit => 20
+    t.string  "short_name",        :limit => 80
+    t.string  "url",               :limit => 120
+    t.string  "plural_name",       :limit => 120
+    t.string  "singular_name",     :limit => 120
+    t.string  "category_type",     :limit => 20
     t.integer "lft"
     t.integer "rgt"
     t.integer "parent_id"
     t.integer "depth"
     t.integer "shop_id"
+    t.integer "param_template_id"
   end
 
   add_index "categories", ["depth"], :name => "index_categories_on_depth"
   add_index "categories", ["lft"], :name => "index_categories_on_lft"
+  add_index "categories", ["param_template_id"], :name => "index_categories_on_param_template_id"
   add_index "categories", ["parent_id"], :name => "index_categories_on_parent_id"
   add_index "categories", ["rgt"], :name => "index_categories_on_rgt"
   add_index "categories", ["url"], :name => "index_categories_on_url", :unique => true
@@ -49,11 +51,9 @@ ActiveRecord::Schema.define(:version => 20120724081520) do
   add_index "categorizations", ["product_id"], :name => "index_categorizations_on_product_id"
 
   create_table "param_templates", :force => true do |t|
-    t.string  "name",        :limit => 40, :null => false
-    t.integer "category_id"
+    t.string "name", :limit => 40, :null => false
   end
 
-  add_index "param_templates", ["category_id"], :name => "index_param_templates_on_category_id", :unique => true
   add_index "param_templates", ["name"], :name => "index_param_templates_on_name", :unique => true
 
   create_table "products", :force => true do |t|
