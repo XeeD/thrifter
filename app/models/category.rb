@@ -7,6 +7,8 @@ class Category < ActiveRecord::Base
   # Associations
   has_many :categorizations
   has_many :products, through: :categorizations
+
+  belongs_to :param_template
   belongs_to :parent_category, foreign_key: :parent_id, class_name: "Category"
 
   # Attributes
