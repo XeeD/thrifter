@@ -15,6 +15,7 @@ sbs_fridges:
   plural_name: "Americké chladničky"
   singular_name: "Americká chladnička"
   category_type: "product_list"
+  param_template_id: 1
   parent_id: 1
   lft: 2
   rgt: 3
@@ -26,6 +27,7 @@ combined_fridges:
   plural_name: "Kombinované chladničky"
   singular_name: "Kombinovaná chladnička"
   category_type: "product_list"
+  param_template_id: 1
   parent_id: 1
   lft: 4
   rgt: 9
