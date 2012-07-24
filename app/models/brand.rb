@@ -1,6 +1,14 @@
 class Brand < ActiveRecord::Base
+  # Associations
   has_many :products
 
-  validates :name, length: {maximum: 30}, presence: true
-  validates :url, length: {maximum: 30}, presence: true, uniqueness: true
+  # Validations
+  validates :name,
+            presence: true,
+            length: {maximum: 30}
+
+  validates :url,
+            presence: true,
+            length: {maximum: 30},
+            uniqueness: true
 end

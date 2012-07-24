@@ -1,13 +1,15 @@
 # encoding: UTF-8
 
 class Category < ActiveRecord::Base
+  # Macros
   acts_as_nested_set
 
+  # Associations
   has_many :categorizations
   has_many :products, through: :categorizations
-
   belongs_to :parent_category, foreign_key: :parent_id, class_name: "Category"
 
+  # Attributes
   attr_accessible :short_name, :url, :plural_name, :singular_name, :category_type, :parent_id
 
   CATEGORY_TYPES = {
