@@ -28,17 +28,17 @@ Požadavek: Hlavní správce spravuje obchody
     Pokud jsem v sekci "administrace obchodů"
     A obchod "Spořílek.cz" existuje
     Když kliknu na řádku u šablony parametrů "Spořílek" na odkaz "Smazat"
-    Pak bych měl vidět napids "Opravdu chcete smazat obchod Spořílek.cz?"
+    Pak bych měl vidět nadpis "Opravdu chcete smazat obchod Spořílek.cz?"
     A měl bych vidět "Do následující pole napište SMAZAT, pokud chcete obchod opravdu smazat"
 
-  Scénář: zobrazení potvrzení smazání existujícího obchodu
+  Scénář: smazání existujícího obchodu (po potvrzení)
     Pokud jsem v sekci "administrace obchodů"
     A obchod "Spořílek.cz" existuje
     Když kliknu na řádku u šablony parametrů "Spořílek" na odkaz "Smazat"
-    A napíšu "SMAZAT" do pole "Potvrzení smazání"
+    A vyplním "SMAZAT" do pole "Potvrzení smazání"
     A kliknu na tlačítko "Smazat obchod Spořílek.cz"
-    Pak bych měl vidět napids "Obchod Spořílek.cz byl smazán"
-    A obchod Spořílek.cz by měl být smazán
+    Pak bych měl vidět zprávu "Obchod Spořílek.cz byl smazán"
+    A obchod "Spořílek.cz" by měl být smazán
 
   Scénář: upravení existujícího obchodu
     Pokud jsem v sekci "administrace obchodů"

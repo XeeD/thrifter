@@ -1,2 +1,7 @@
 = semantic_form_for([:admin, shop]) do |f|
-  = f.inputs
+  = f.input :name
+  = f.input :host
+  = f.input :short_name
+
+  = f.actions do
+    = f.submit

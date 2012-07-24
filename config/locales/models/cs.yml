@@ -4,6 +4,7 @@ cs:
       brand: Značka
       category: Kategorie
       product: Produkt
+      shop: Obchod
     attributes:
       param_template:
         name: "Název"
@@ -37,6 +38,10 @@ cs:
         category_type: "Typ kategorie"
         parent_category: "Nadřazená kategorie"
         parent_id: "Nadřazená kategorie"
+      shop:
+        name: "Název"
+        host: "Adresa"
+        short_name: "Identifikátor"
     errors:
       models:
         category:
@@ -59,3 +64,6 @@ cs:
       param_template:
         create: "Vytvořit novou šablonu parametrů"
         update: "Uložit šablonu parametrů"
+      shop:
+        create: "Vytvořit nový obchod"
+        update: "Uložit obchod"

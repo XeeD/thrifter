@@ -1,6 +1,6 @@
 # encoding: UTF-8
 
-class Admin::ShopsController < ApplicationController
+class Admin::ShopsController < Admin::AdminController
   def index
   end
 
@@ -23,7 +23,7 @@ class Admin::ShopsController < ApplicationController
   def update
     if shop.update_attributes(params[:shop])
       redirect_to admin_shops_url,
-                  notice: "Obchod #{shop.name} byl uložen"
+                  notice: "Obchod #{shop.name} byl upraven"
     else
       flash.now[:error] = "Chyba při editaci obchodu"
       render "edit"
@@ -33,9 +33,16 @@ class Admin::ShopsController < ApplicationController
     redirect_to admin_shops_url
   end
 
+  def deletion_confirmation
+  end
+
   def destroy
-    shop.destroy
-    flash[:notice] = "Obchod #{shop.name} byl smazán"
+    if params[:confirmation] == "SMAZAT"
+      shop.destroy
+      flash[:notice] = "Obchod #{shop.name} byl smazán"
+    else
+      flash[:error] = "Obchod nelze smazat bez předchozího potvrzení"
+    end
   rescue ActiveRecord::RecordNotFound
     flash[:error] = "Nelze najít daný obchod"
   ensure
@@ -52,7 +59,7 @@ class Admin::ShopsController < ApplicationController
   helper_method :shop
 
   def shops
-    Shop.all
+    @shops ||= Shop.all
   end
 
   helper_method :shops

@@ -1,0 +1,7 @@
+%h2 Opravdu chcete smazat obchod #{shop.name}?
+= form_tag(admin_shop_path(shop), method: :delete) do
+  %h3 Do následující pole napište SMAZAT, pokud chcete obchod opravdu smazat
+  = label_tag :confirmation, "Potvrzení smazání"
+  = text_field_tag :confirmation
+  %p
+    = submit_tag "Smazat obchod #{shop.name}"
