@@ -4,7 +4,7 @@ require 'spec_helper'
 describe ParamTemplate do
 
   # Associations
-  it { should belong_to(:category) }
+  it { should have_many(:categories) }
   it { should have_many(:param_groups) }
 
   # Validations
