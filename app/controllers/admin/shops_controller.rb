@@ -1,6 +1,6 @@
 # encoding: UTF-8
 
-class Admin::ShopsController < ApplicationController
+class Admin::ShopsController < Admin::AdminController
   def index
   end
 
@@ -23,7 +23,7 @@ class Admin::ShopsController < ApplicationController
   def update
     if shop.update_attributes(params[:shop])
       redirect_to admin_shops_url,
-                  notice: "Obchod #{shop.name} byl uložen"
+                  notice: "Obchod #{shop.name} byl upraven"
     else
       flash.now[:error] = "Chyba při editaci obchodu"
       render "edit"
@@ -52,7 +52,7 @@ class Admin::ShopsController < ApplicationController
   helper_method :shop
 
   def shops
-    Shop.all
+    @shops ||= Shop.all
   end
 
   helper_method :shops
