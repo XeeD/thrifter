@@ -45,5 +45,13 @@ module Helpers
     }.stringify_keys
   end
 
+  def valid_shop_attributes
+    {
+        short_name: "smart_beko_cz",
+        name: "Smart Beko",
+        host: "s-beko.cz"
+    }.stringify_keys
+  end
+
   RSpec.configure {|c| c.include self}
 end
