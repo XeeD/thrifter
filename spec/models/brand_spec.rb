@@ -14,9 +14,7 @@ describe Brand do
   # url
   it { should validate_presence_of(:url) }
   it { should ensure_length_of(:url).is_at_most(30) }
-  it {
-    should validate_uniqueness_of(:url)
-  }
+  it { should validate_uniqueness_of(:url) }
 
   context "with valid attributes" do
     it "should be valid" do
