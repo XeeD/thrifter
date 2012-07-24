@@ -70,8 +70,10 @@ Když /^zaškrtnu přepínač "(.+?)" pro vlastnost "(.+?)"$/ do |value, button_
   end
 end
 
-Když /^zaškrtnu pole "(.+?)" pro vlastnost "(.+?)"$/ do |checkbox, label|
-  pending
+Když /^zaškrtnu pole "(.+?)" pro vlastnost "(.+?)"$/ do |value, fieldset|
+  within_fieldset(fieldset.to_s) do
+    check value.to_s
+  end
 end
 
 # Then statements
@@ -89,4 +91,10 @@ end
 
 Pak /^(?:bych měl|měl bych) vidět "(.*?)"$/ do |heading|
   page.should have_content(heading)
+end
+
+Pak /^by pole "(.*?)" u vlastnosti "(.*?)" nemělo jít zaškrtnout$/ do |value, fieldset|
+  within_fieldset(fieldset.to_s) do
+    field_labeled(value.to_s)['disabled'].should == 'disabled'
+  end
 end

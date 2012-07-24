@@ -8,14 +8,14 @@ end
 
 Pokud /^šablona parametrů "(.*?)" existuje a je přiřazena kategorii "(.*?)"$/ do |param_template_name, category_name|
   step "existuje šablona parametrů \"#{param_template_name}\""
-  category = @param_template.category
+  category = Category.find_by_plural_name(category_name.to_s)
 
   if category.present?
-    unless category.plural_name == category_name
-      fail "param template #{param_template_name} is not assigned to category #{category_name}"
+    unless category.param_template === @param_template
+      fail "category #{category_name} has not assigned param template '#{param_template_name}"
     end
   else
-    fail "param template #{param_template_name} is not assigned to any category"
+    fail "category #{category_name} doesn't exist"
   end
 end
 

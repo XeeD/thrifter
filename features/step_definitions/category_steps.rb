@@ -23,8 +23,8 @@ Pokud /^(.+ )?kategorie "(.*?)" existuje$/ do |written_category_type, plural_nam
   end
 end
 
-Pokud /^jsem v editaci kategorie "(.*?)"$/ do |name|
-  step "kategorie \"#{name}\" existuje"
+Pokud /^jsem v editaci kategorie "(.*?)"$/ do |category_name|
+  step "kategorie \"#{category_name}\" existuje"
   step 'jsem v sekci "administrace kategorií"'
   step 'kliknu na odkaz "Upravit"'
 end
@@ -32,14 +32,36 @@ end
 # When statements
 
 # Then statements
-Pak /^kategorie "(.*?)" by měla být smazána$/ do |name|
+Pak /^kategorie "(.*?)" by měla být smazána$/ do |category_name|
   begin
-    find("#categories").should_not have_content("#{name}")
+    find("#categories").should_not have_content("#{category_name}")
   rescue Capybara::ElementNotFound
     page.should have_selector(".empty_set")
   end
 end
 
-Pak /^kategorie "(.*?)" by měla být (?:vytvořena|upravena)$/ do |name|
-  find("#categories").should have_content("#{name}")
+Pak /^kategorie "(.*?)" by měla být (?:vytvořena|upravena)$/ do |category_name|
+  find("#categories").should have_content("#{category_name}")
+end
+
+Pak /^kategorie "(.*?)" by neměla mít šablonu parametrů "(.*?)$/ do |category_name, param_template_name|
+  lambda {
+    step "kategorie \"#{category_name}\" by měla mít šablonu parametrů \"#{param_template_name}\""
+  }.should raise_error(RuntimeError)
+end
+
+Pak /^kategorie "(.*?)" by měla mít šablonu parametrů "(.*?)"$/ do |category_name, param_template_name|
+  category = Category.find_by_plural_name(category_name)
+
+  if category.present?
+    if category.param_template.present?
+      unless category.param_template.name == param_template_name
+        raise "category #{category_name} has not assigned param template #{param_template_name}"
+      end
+    else
+      raise "category #{category_name} has no param template assigned"
+    end
+  else
+    raise ActiveRecord::RecordNotFound
+  end
 end
