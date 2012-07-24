@@ -34,31 +34,43 @@ module Admin
         end
       end
     end
-  end
-end
-
-__END__
 
     describe "GET new" do
+      def get_new
+        get :new, param_template_id: param_template.id
+      end
+
       it "renders 'new' template" do
-        get :new
+        get_new
         response.should render_template("new")
       end
 
       context "when rendering views" do
         render_views
 
-        it "calls ParamGroup#new" do
-          ParamGroup.should_receive(:new).with(nil).once.and_return(param_group)
-          get :new
+        let(:new_param_group) { mock_model(ParamGroup).as_new_record }
+        let(:param_template) { mock_model(ParamTemplate) }
+
+        before do
+          ParamTemplate.stub(find: param_template)
+          param_template.stub_chain(:groups, :new).with(nil).and_return(new_param_group)
+        end
+
+        it "calls new through ParamTemplate.groups" do
+          param_template.groups.should_receive(:new).with(nil).once
+          get_new
         end
 
         it "shows form" do
-          get :new
+          get_new
           response.body.should have_selector("form")
         end
       end
     end
+  end
+end
+
+__END__
 
     describe "POST create" do
       # Valid attributes

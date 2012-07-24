@@ -3,6 +3,8 @@ module Admin
     def index
     end
 
+    def new
+    end
 
     private
 
@@ -10,8 +12,12 @@ module Admin
       @param_template ||= ParamTemplate.find(params[:param_template_id])
     end
 
+    helper_method :param_template
+
     def param_group
-      param_template.groups.find(params[:id])
+      @param_group ||= params[:id] ?
+          param_template.groups.find(params[:id]) :
+          param_template.groups.new(params[:param_group])
     end
 
     helper_method :param_group
