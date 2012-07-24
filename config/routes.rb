@@ -8,6 +8,6 @@ Thrifter::Application.routes.draw do
     resources :products,   path: "produkty",  path_names: {new: "novy", edit: "editace"}, except: :show
     resources :categories, path: "kategorie", path_names: {new: "nova", edit: "editace"}, except: :show
     resources :param_templates, path: "sablony-parametru", path_names: {new: "nova", edit: "editace"}
-    resources :shops, path: "sablony-parametru", path_names: {new: "nova", edit: "editace"}, except: :show
+    resources :shops, path: "obchody", path_names: {new: "novy", edit: "editace"}, except: :show
   end
 end
