@@ -1,5 +1,6 @@
 = semantic_form_for([:admin, param_template]) do |f|
   = f.input :name
-
+  = f.inputs "Přiřazené kategorie" do
+    = f.input :categories, as: :check_boxes, member_label: :plural_name
   = f.actions do
     = f.submit
