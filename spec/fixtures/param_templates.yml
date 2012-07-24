@@ -1,3 +1,4 @@
 washing_machines:
   id: 1
-  name: "Pračky"
+  name: "Chladničky"
+  category_id: 2

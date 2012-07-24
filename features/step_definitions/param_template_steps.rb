@@ -2,9 +2,24 @@
 
 # Given statements
 Pokud /^existuje šablona parametrů "(.*?)"$/ do |param_template_name|
-  fail "param template #{param_template_name} doesn't exists" if ParamTemplate.find_by_name(param_template_name).nil?
+  @param_template = ParamTemplate.find_by_name(param_template_name)
+  fail "param template #{param_template_name} doesn't exists" if @param_template.nil?
 end
 
+Pokud /^šablona parametrů "(.*?)" existuje a je přiřazena kategorii "(.*?)"$/ do |param_template_name, category_name|
+  step "existuje šablona parametrů \"#{param_template_name}\""
+  category = @param_template.category
+
+  if category.present?
+    unless category.plural_name == category_name
+      fail "param template #{param_template_name} is not assigned to category #{category_name}"
+    end
+  else
+    fail "param template #{param_template_name} is not assigned to any category"
+  end
+end
+
+# When statements
 
 # Then statements
 Pak /^šablona parametrů "(.*?)" by měla být smazána$/ do |param_template_name|

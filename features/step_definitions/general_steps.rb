@@ -1,5 +1,8 @@
 # encoding: UTF-8
 
+# Transforms
+
+
 # Given statements
 Pokud /^jsem přihlášený jako "(.*?)"$/ do |role|
   true
@@ -61,13 +64,13 @@ Když /^pokračuji ve vyplňování formuláře:$/ do |form_values|
   step "vyplním formulář údaji:", form_values
 end
 
-Když /^zaškrtnu přepínač "(.*?)" pro vlastnost "(.*?)"$/ do |value, button_group|
+Když /^zaškrtnu přepínač "(.+?)" pro vlastnost "(.+?)"$/ do |value, button_group|
   within_fieldset(button_group) do
     choose(value)
   end
 end
 
-Když /^zaškrtnu pole "(.*?)" pro vlastnost "(.*?)"$/ do |checkbox, label|
+Když /^zaškrtnu pole "(.+?)" pro vlastnost "(.+?)"$/ do |checkbox, label|
   pending
 end
 
