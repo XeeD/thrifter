@@ -24,19 +24,19 @@ Požadavek: Produktový manager spravuje kategorie
   Scénář: přidání nové šablony parametrů přes formulář
     Pokud jsem v sekci "administrace šablon parametrů"
     Když kliknu na odkaz "Přidat novou šablonu parametrů"
-    A vyplním "Pračky" do pole "Název"
+    A vyplním "Lednice" do pole "Název"
     A kliknu na tlačítko "Vytvořit novou šablonu parametrů"
-    Pak bych měl vidět zprávu "Šablona parametrů Pračky byla vytvořena"
-    A šablona parametrů "Pračky" by měla být vytvořena
+    Pak bych měl vidět zprávu "Šablona parametrů Lednice byla vytvořena"
+    A šablona parametrů "Lednice" by měla být vytvořena
 
   Scénář: přiřazení nové šablony dané kategorii při vytváření
     Pokud jsem v sekci "administrace šablon parametrů"
     Když kliknu na odkaz "Přidat novou šablonu parametrů"
-    A vyplním "Chladničky" do pole "Název"
+    A vyplním "Lednice" do pole "Název"
     A zaškrtnu pole "Kombinované chladničky" pro vlastnost "Přiřazené kategorie"
     A kliknu na tlačítko "Vytvořit novou šablonu parametrů"
-    Pak kategorie "Kombinované chladničky" by měla mít šablonu parametrů "Chladničky"
-    Ale kategorie "Americké chladničky" by neměla mít šablonu parametrů "Chladničky"
+    Pak kategorie "Kombinované chladničky" by měla mít šablonu parametrů "Lednice"
+    Ale kategorie "Americké chladničky" by neměla mít šablonu parametrů "Lednice"
 
   Scénář: smazání existující šablony parametrů
     Pokud jsem v sekci "administrace šablon parametrů"
@@ -64,5 +64,6 @@ Požadavek: Produktový manager spravuje kategorie
   Scénář: šablona parametrů nelze přiřadit kategorii s již přiřazenou šablonou
     Pokud jsem v sekci "administrace šablon parametrů"
     A šablona parametrů "Chladničky" existuje a je přiřazena kategorii "Americké chladničky"
-    Když kliknu na řádku u šablony "Chladničky" na odkaz "Upravit"
+    A existuje šablona parametrů "Pračky"
+    Když kliknu na řádku u šablony "Pračky" na odkaz "Upravit"
     Pak by pole "Americké chladničky" u vlastnosti "Přiřazené kategorie" nemělo jít zaškrtnout
