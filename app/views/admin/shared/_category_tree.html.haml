@@ -1,0 +1,3 @@
+%ul
+  - for root in categories
+    =render partial: "admin/shared/category_node", locals: {category: root}

@@ -4,4 +4,4 @@
   - unless category.leaf?
     %ul
       - for child in category.children
-        = render "node", category: child
+        = render "admin/shared/category_node", category: child
