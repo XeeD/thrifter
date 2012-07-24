@@ -22,15 +22,24 @@ Když /^kliknu na odkaz "(.*?)"$/ do |link|
 end
 
 Když /^kliknu na řádku u .+ "(.*?)" na odkaz "(.*?)"$/ do |line_text, link_title|
-  raise "line not found" unless all("table").each do |table|
+  row = all("table").find do |table|
     begin
-      row = table.find("tr", :text => line_text)
-      link = row.find("a", :text => link_title)
-      link.click
-      break true
+      break table.find("tr", :text => line_text)
     rescue Capybara::ElementNotFound
-      next
+      next false
     end
+  end
+
+  unless row
+    save_page
+    raise "row with text #{line_text} not found"
+  end
+
+  begin
+    row.find("a", :text => link_title).click
+  rescue Capybara::ElementNotFound
+    save_page
+    raise "link with title #{link_title} not found on line '#{line_text}'"
   end
 end
 
@@ -39,7 +48,12 @@ Když /^kliknu na tlačítko "(.*?)"$/ do |button|
 end
 
 Když /^změním hodnotu pole "(.*?)" na "(.*?)"$/ do |field, value|
-  fill_in field, :with => value
+  begin
+    fill_in field, :with => value
+  rescue Capybara::ElementNotFound
+    save_page
+    raise
+  end
 end
 
 Když /^vyplním "(.*?)" do pole "(.*?)"$/ do |value, field|
@@ -81,9 +95,11 @@ end
 
 Pak /^bych měl vidět (pod)?nadpis "(.*?)"$/ do |level, heading|
   heading_tag = case level
-    when "pod" then "h3"
-    else "h2"
-  end
+                  when "pod" then
+                    "h3"
+                  else
+                    "h2"
+                end
   find(heading_tag).should have_content(heading)
 end
 
