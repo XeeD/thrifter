@@ -17,7 +17,7 @@
           %th= shop.short_name
           %td
             %ul.actions
-              %li= link_to "Smazat", admin_shop_path(shop), method: :delete, confirm: "Opravdu smazat obchod #{shop.name}?"
+              %li= link_to "Smazat", deletion_confirmation_admin_shop_path(shop), confirm: "Opravdu smazat obchod #{shop.name}?"
               %li= link_to "Upravit", edit_admin_shop_path(shop)
 - else
   .empty_set

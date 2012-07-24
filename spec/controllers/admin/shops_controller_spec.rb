@@ -194,52 +194,104 @@ module Admin
       end
     end
 
-    describe "DELETE destroy" do
-      def delete_shop
-        delete :destroy, id: shop.id
+    describe "GET deletion_confirmation" do
+      def get_deletion_confirmation
+        get :deletion_confirmation, id: shop.id
       end
 
-      context "with valid shop id" do
+      it "renders the template 'confirm_deletion'" do
+        get_deletion_confirmation
+        response.should render_template("deletion_confirmation")
+      end
+
+      it "doesn't destroy the shop" do
+        shop.should_not_receive(:destroy)
+        get_deletion_confirmation
+      end
+
+      context "when rendering views" do
+        render_views
+
         before do
           Shop.stub!(:find).and_return(shop)
         end
 
         it "finds the shop" do
-          Shop.should_receive(:find).with(shop.id.to_s).once
-          delete_shop
+          Shop.should_receive(:find).once
+          get_deletion_confirmation
         end
 
-        it "redirects to index" do
-          delete_shop
-          response.should redirect_to(admin_shops_url)
-        end
-
-        it "destroys the shop" do
-          shop.should_receive(:destroy).once
-          delete_shop
-        end
-
-        it "displays message with delete shop's name" do
-          shop.stub(name: "LG")
-          delete_shop
-          flash[:notice].should include(shop.name)
+        it "renders form for confirmation" do
+          get_deletion_confirmation
+          response.body.should have_selector("form")
         end
       end
+    end
 
-      context "with non-existing shop id" do
-        def delete_invalid_shop
-          delete :destroy, :id => shop.id + 1
+    describe "DELETE destroy" do
+      context "with valid shop id" do
+        before do
+          Shop.stub!(:find).and_return(shop)
         end
 
-        it "redirects back to index" do
-          delete_invalid_shop
-          response.should redirect_to(admin_shops_url)
+        context "with confirmation" do
+          def delete_shop_with_confirmation
+            delete :destroy, id: shop.id, confirmation: "SMAZAT"
+          end
+
+          it "finds the shop" do
+            Shop.should_receive(:find).with(shop.id.to_s).once
+            delete_shop_with_confirmation
+          end
+
+          it "redirects to index" do
+            delete_shop_with_confirmation
+            response.should redirect_to(admin_shops_url)
+          end
+
+          it "destroys the shop" do
+            shop.should_receive(:destroy).once
+            delete_shop_with_confirmation
+          end
+
+          it "displays message with delete shop's name" do
+            shop.stub(name: "LG")
+            delete_shop_with_confirmation
+            flash[:notice].should include(shop.name)
+          end
         end
 
-        it "sets error message" do
-          delete_invalid_shop
-          flash[:error].should_not be_blank
+        context "without confirmation" do
+          def delete_shop_without_confirmation
+            delete :destroy, id: shop.id
+          end
+
+          it "redirects back to index" do
+            delete_shop_without_confirmation
+            response.should redirect_to(admin_shops_url)
+          end
+
+          it "sets error message" do
+            delete_shop_without_confirmation
+            flash[:error].should_not be_blank
+          end
         end
+      end
+    end
+
+    context "with non-existing shop id" do
+      def delete_invalid_shop
+        delete :destroy, :id => shop.id + 1
+      end
+
+      it "redirects back to index" do
+        delete_invalid_shop
+        response.should redirect_to(admin_shops_url)
+      end
+
+      it "sets error message" do
+        delete_invalid_shop
+        flash[:error].should_not be_blank
       end
     end
   end

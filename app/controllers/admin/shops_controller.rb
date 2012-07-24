@@ -33,9 +33,16 @@ class Admin::ShopsController < Admin::AdminController
     redirect_to admin_shops_url
   end
 
+  def deletion_confirmation
+  end
+
   def destroy
-    shop.destroy
-    flash[:notice] = "Obchod #{shop.name} byl smazán"
+    if params[:confirmation] == "SMAZAT"
+      shop.destroy
+      flash[:notice] = "Obchod #{shop.name} byl smazán"
+    else
+      flash[:error] = "Obchod nelze smazat bez předchozího potvrzení"
+    end
   rescue ActiveRecord::RecordNotFound
     flash[:error] = "Nelze najít daný obchod"
   ensure
