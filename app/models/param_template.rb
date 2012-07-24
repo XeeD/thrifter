@@ -1,11 +1,12 @@
 class ParamTemplate < ActiveRecord::Base
 
-  belongs_to :category
+  has_many :categories
   has_many :param_groups
+
+  attr_accessible :name, :category_ids
 
   # Validations
   validates :name,
             presence: true,
             length: {maximum: 100}
-
 end
