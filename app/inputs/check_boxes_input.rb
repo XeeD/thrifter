@@ -25,11 +25,10 @@ class CheckBoxesInput < Formtastic::Inputs::CheckBoxesInput
       legend_html <<
           hidden_field_for_all <<
           choices_group_wrapping do
+            # associated collection of records
             collection.map { |choice|
-              choice_wrapping(choice_wrapping_html_options(choice)) do
                 name, id = choice
                 choice_nested_html(@model.find(id))
-              end
             }.join("\n").html_safe
           end
     end
@@ -39,11 +38,13 @@ class CheckBoxesInput < Formtastic::Inputs::CheckBoxesInput
     # show checkbox if "show_if" attribute is not provided
     # else call method specified by "show_if" attribute
     # and based on result show check_box
-    if options[:show_if].nil? || (options[:show_if].present? && model.send(options[:show_if].to_s))
-      choice_html([model.send(label_method), model.id])
-    else
-      "#{model.send(label_method)}".html_safe
-    end << sub_choice_nested_html(model)
+    choice_wrapping(choice_wrapping_html_options([model.send(label_method), model.id])) do
+      if options[:show_if].nil? || (options[:show_if].present? && model.send(options[:show_if].to_s))
+        choice_html([model.send(label_method), model.id])
+      else
+        "#{model.send(label_method)}".html_safe
+      end << sub_choice_nested_html(model)
+    end
   end
 
   # recursive nesting
