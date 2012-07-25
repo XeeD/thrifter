@@ -244,5 +244,17 @@ module Admin
         end
       end
     end
+
+    describe "POST sort" do
+      it "sets position to groups according to sent params" do
+        old_order = ParamGroup.order(:position).pluck(:id)
+        new_order_post = old_order.reverse
+
+        post :sort, param_template_id: param_template.id, param_group: new_order_post
+
+        new_order = ParamGroup.order(:position).pluck(:id)
+        new_order.should == old_order.reverse
+      end
+    end
   end
 end
