@@ -6,6 +6,7 @@ gem 'jquery-rails'
 gem 'haml-rails'
 gem 'formtastic'
 gem 'awesome_nested_set'
+gem 'acts_as_list'
 
 # Gems used only for compiling assets
 group :assets do

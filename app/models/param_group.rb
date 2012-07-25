@@ -1,4 +1,7 @@
 class ParamGroup < ActiveRecord::Base
+  # Macros
+  acts_as_list scope: :param_template
+
   # Associations
   belongs_to :param_template
 
