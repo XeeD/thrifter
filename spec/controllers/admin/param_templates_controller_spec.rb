@@ -5,6 +5,10 @@ module Admin
   describe ParamTemplatesController do
     let(:param_template) { mock_model(ParamTemplate).as_null_object }
 
+    before do
+      param_template.stub(:categories).and_return(nil)
+    end
+
     describe "GET index" do
       it "renders 'index' template" do
         get :index
