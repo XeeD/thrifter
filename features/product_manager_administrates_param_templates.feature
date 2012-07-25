@@ -64,6 +64,6 @@ Požadavek: Produktový manager spravuje kategorie
   Scénář: šablona parametrů nelze přiřadit kategorii s již přiřazenou šablonou
     Pokud jsem v sekci "administrace šablon parametrů"
     A šablona parametrů "Chladničky" existuje a je přiřazena kategorii "Americké chladničky"
-    A existuje šablona parametrů "Pračky"
+    A šablona parametrů "Pračky" existuje
     Když kliknu na řádku u šablony "Pračky" na odkaz "Upravit"
     Pak by pole "Americké chladničky" u vlastnosti "Přiřazené kategorie" nemělo jít zaškrtnout

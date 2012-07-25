@@ -41,7 +41,13 @@ module Helpers
 
   def valid_param_template_attributes
     {
-        name: "Chladničky"
+        name: "Plazmové televize"
+    }.stringify_keys
+  end
+
+  def valid_param_group_attributes
+    {
+        name: "Parametry"
     }.stringify_keys
   end
 

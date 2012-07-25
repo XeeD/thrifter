@@ -1,13 +1,13 @@
 # encoding: UTF-8
 
 # Given statements
-Pokud /^existuje šablona parametrů "(.*?)"$/ do |param_template_name|
+Pokud /^šablona parametrů "(.*?)" existuje$/ do |param_template_name|
   @param_template = ParamTemplate.find_by_name(param_template_name)
   fail "param template #{param_template_name} doesn't exists" if @param_template.nil?
 end
 
 Pokud /^šablona parametrů "(.*?)" existuje a je přiřazena kategorii "(.*?)"$/ do |param_template_name, category_name|
-  step "existuje šablona parametrů \"#{param_template_name}\""
+  step "šablona parametrů \"#{param_template_name}\" existuje"
   category = Category.find_by_plural_name(category_name.to_s)
 
   if category.present?

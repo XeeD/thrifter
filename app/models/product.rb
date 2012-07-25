@@ -1,5 +1,5 @@
 class Product < ActiveRecord::Base
-
+  # Associations
   has_many :categorizations
   has_many :categories, through: :categorizations
   belongs_to :brand
@@ -20,6 +20,7 @@ class Product < ActiveRecord::Base
 
   validates :brand,
             presence: true
+
   validates :short_description,
             presence: true
 
