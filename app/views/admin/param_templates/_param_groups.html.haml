@@ -1,0 +1,21 @@
+%h3 Skupiny parametrů
+%ul.action_links
+  %li= link_to "Přidat novou skupinu parametrů", new_admin_param_template_group_path(param_template)
+
+- unless param_template.groups.empty?
+  %table#param_groups
+    %thead
+      %tr
+        %th Název skupiny
+        %td Akce
+    %tbody
+      - for param_group in param_template.groups
+        %tr
+          %th= param_group.name
+          %td
+            %ul.actions
+              %li.edit= link_to "Upravit", edit_admin_param_template_group_path(param_template, param_group)
+              %li.delete= link_to "Smazat", admin_param_template_group_path(param_template, param_group), method: :delete
+- else
+  .empty_set
+    Zatím nebyly vytvořeny žádné skupiny parametrů

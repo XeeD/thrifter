@@ -21,6 +21,34 @@ module Admin
       end
     end
 
+    describe "GET show" do
+      let(:param_template) { ParamTemplate.find_by_name("Chladničky") }
+
+      def get_show
+        get :show, id: param_template.id
+      end
+
+      it "renders 'show' template" do
+        get_show
+        response.should render_template("show")
+      end
+
+      context "when rendering views" do
+        render_views
+
+        it "finds the template" do
+          ParamTemplate.should_receive(:find).with(param_template.id.to_s).once.and_return(param_template)
+          get_show
+        end
+
+        it "finds template's groups" do
+          ParamTemplate.stub(:find).and_return(param_template)
+          param_template.should_receive(:groups).once.and_return([])
+          get_show
+        end
+      end
+    end
+
     describe "GET new" do
       it "renders 'new' template" do
         get :new
