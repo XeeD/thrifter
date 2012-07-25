@@ -59,7 +59,7 @@ Požadavek: Produktový manager spravuje kategorie
     A zaškrtnu pole "Kombinované chladničky" pro vlastnost "Přiřazené kategorie"
     A kliknu na tlačítko "Uložit šablonu parametrů"
     Pak kategorie "Kombinované chladničky" by měla mít šablonu parametrů "Chladničky"
-    Ale kategorie "Americké chladničky" by neměla mít šablonu parametrů "Chladničky"
+    A kategorie "Americké chladničky" by měla mít šablonu parametrů "Chladničky"
 
   Scénář: šablona parametrů nelze přiřadit kategorii s již přiřazenou šablonou
     Pokud jsem v sekci "administrace šablon parametrů"
