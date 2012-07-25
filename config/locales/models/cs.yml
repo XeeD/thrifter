@@ -8,6 +8,7 @@ cs:
     attributes:
       param_template:
         name: "Název"
+        categories: "Kategorie"
       brand:
         name: "Název"
         url: "Název v odkazu"
