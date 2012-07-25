@@ -55,4 +55,8 @@ class Category < ActiveRecord::Base
       errors.add(:parent_id, "nemůže být shodná s danou kategorií")
     end
   end
+
+  def is_product_list?
+    true if category_type == CATEGORY_TYPES.fetch("Produktová")
+  end
 end

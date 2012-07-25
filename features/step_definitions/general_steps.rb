@@ -31,14 +31,12 @@ Když /^kliknu na řádku u .+ "(.*?)" na odkaz "(.*?)"$/ do |line_text, link_ti
   end
 
   unless row
-    save_page
     raise "row with text #{line_text} not found"
   end
 
   begin
     row.find("a", :text => link_title).click
   rescue Capybara::ElementNotFound
-    save_page
     raise "link with title #{link_title} not found on line '#{line_text}'"
   end
 end
@@ -51,7 +49,6 @@ Když /^změním hodnotu pole "(.*?)" na "(.*?)"$/ do |field, value|
   begin
     fill_in field, :with => value
   rescue Capybara::ElementNotFound
-    save_page
     raise
   end
 end

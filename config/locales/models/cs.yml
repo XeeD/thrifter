@@ -38,6 +38,7 @@ cs:
         parent_id: "Nadřazená kategorie"
       param_template:
         name: "Název"
+        categories: "Přiřazené kategorie"
       param_group:
         name: "Název skupiny"
       shop:
