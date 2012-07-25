@@ -3,14 +3,14 @@
   %li= link_to "Přidat novou skupinu parametrů", new_admin_param_template_group_path(param_template)
 
 - unless param_template.groups.empty?
-  %table#param_groups
+  %table#param_groups{"data-update-url" => sort_admin_param_template_groups_path(param_template)}
     %thead
       %tr
         %th Název skupiny
         %td Akce
-    %tbody
+    %tbody.sortable
       - for param_group in param_template.groups
-        %tr
+        = content_tag_for :tr, param_group do
           %th= param_group.name
           %td
             %ul.actions

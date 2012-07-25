@@ -8,7 +8,9 @@ Thrifter::Application.routes.draw do
     resources :products, path: "produkty", path_names: {new: "novy", edit: "editace"}, except: :show
     resources :categories, path: "kategorie", path_names: {new: "nova", edit: "editace"}, except: :show
     resources :param_templates, path: "sablony-parametru", path_names: {new: "nova", edit: "editace"} do
-      resources :groups, path: "skupiny", path_names: {new: "nova", edit: "editace"}, controller: "param_groups", except: :index
+      resources :groups, path: "skupiny", path_names: {new: "nova", edit: "editace"}, controller: "param_groups", except: :index do
+        collection { post :sort }
+      end
     end
     resources :shops, path: "obchody", path_names: {new: "novy", edit: "editace"}, except: :show do
       member do

@@ -43,6 +43,14 @@ module Admin
       redirect_to admin_param_template_url(param_template)
     end
 
+    def sort
+      params[:param_group].each_with_index do |id, index|
+        ParamGroup.update_all({position: index+1}, {id: id, param_template_id: param_template.id})
+      end
+      render nothing: true
+    end
+
+
     private
 
     def param_template

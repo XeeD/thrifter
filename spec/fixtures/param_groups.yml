@@ -3,3 +3,7 @@ functions:
   param_template_id: 1
   name: "Funkce"
 
+dimensions:
+  id: 2
+  param_template_id: 1
+  name: "Rozměry"

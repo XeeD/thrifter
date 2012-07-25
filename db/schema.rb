@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120724151635) do
+ActiveRecord::Schema.define(:version => 20120725195416) do
 
   create_table "brands", :force => true do |t|
     t.string "name",        :limit => 30
@@ -55,7 +55,10 @@ ActiveRecord::Schema.define(:version => 20120724151635) do
     t.integer  "param_template_id"
     t.datetime "created_at",                      :null => false
     t.datetime "updated_at",                      :null => false
+    t.integer  "position"
   end
+
+  add_index "param_groups", ["param_template_id", "position"], :name => "index_param_groups_on_param_template_id_and_position"
 
   create_table "param_templates", :force => true do |t|
     t.string "name", :limit => 40, :null => false
