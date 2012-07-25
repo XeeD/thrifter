@@ -6,8 +6,6 @@ cs:
       product: Produkt
       shop: Obchod
     attributes:
-      param_template:
-        name: "Název"
       brand:
         name: "Název"
         url: "Název v odkazu"
@@ -38,6 +36,10 @@ cs:
         category_type: "Typ kategorie"
         parent_category: "Nadřazená kategorie"
         parent_id: "Nadřazená kategorie"
+      param_template:
+        name: "Název"
+      param_group:
+        name: "Název skupiny"
       shop:
         name: "Název"
         host: "Adresa"
@@ -64,6 +66,9 @@ cs:
       param_template:
         create: "Vytvořit novou šablonu parametrů"
         update: "Uložit šablonu parametrů"
+      param_group:
+        create: "Vytvořit novou skupinu parametrů"
+        update: "Uložit skupinu parametrů"
       shop:
         create: "Vytvořit nový obchod"
         update: "Uložit obchod"

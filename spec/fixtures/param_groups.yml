@@ -1,4 +1,5 @@
 functions:
   id: 1
+  param_template_id: 1
   name: "Funkce"
 

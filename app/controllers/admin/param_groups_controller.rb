@@ -1,9 +1,46 @@
+# encoding: UTF-8
+
 module Admin
   class ParamGroupsController < AdminController
     def index
     end
 
     def new
+    end
+
+    def create
+      if param_group.save
+        redirect_to admin_param_template_url(param_template),
+                    notice: "Skupina parametrů #{param_group.name} byla vytvořena"
+      else
+        flash.now[:error] = "Chyba při vytváření skupiny parametrů"
+        render "new"
+      end
+    end
+
+    def edit
+    end
+
+    def update
+      if param_group.update_attributes(params[:param_group])
+        redirect_to admin_param_template_url(param_template),
+                    notice: "Skupina parametrů #{param_group.name} byla upravena"
+      else
+        flash.now[:error] = "Skupinu parametrů nebylo možné uložit"
+        render "edit"
+      end
+    rescue ActiveRecord::RecordNotFound
+      flash[:error] = "Nelze najít danou skupinu parametrů"
+      redirect_to admin_param_template_url(param_template)
+    end
+
+    def destroy
+      param_group.destroy
+      flash[:notice] = "Skupina parametrů #{param_group.name} byla smazána"
+    rescue ActiveRecord::RecordNotFound
+      flash[:error] = "Nelze najít danou skupinu parametrů"
+    ensure
+      redirect_to admin_param_template_url(param_template)
     end
 
     private

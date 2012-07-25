@@ -1,2 +1,4 @@
 = semantic_form_for_param_template_group(param_template, param_group) do |f|
-  = f.inputs
+  = f.input :name
+  = f.actions do
+    = f.submit

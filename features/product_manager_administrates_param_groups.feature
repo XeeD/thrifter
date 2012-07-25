@@ -22,7 +22,7 @@ Požadavek: Produktový manager spravuje obchody
     A vyplním "Rozměry" do pole "Název skupiny"
     A kliknu na tlačítko "Vytvořit novou skupinu parametrů"
     Pak bych měl vidět zprávu "Skupina parametrů Rozměry byla vytvořena"
-    A skupina parameterů "Rozměry" by měla být vytvořena
+    A skupina parametrů "Rozměry" by měla být vytvořena
 
   Scénář: smazání existující skupiny parametrů
     Pokud skupina parametrů "Funkce" existuje
@@ -43,4 +43,4 @@ Požadavek: Produktový manager spravuje obchody
   Scénář: zobrazení existující skupiny parametrů v detailu šablony parametrů
     Pokud skupina parametrů "Funkce" existuje
     Když kliknu na řádku u šablony parametrů "Chladničky" na odkaz "Zobrazit"
-    Pak bych měl vidět "Funkce" v tabulce "Skupiny parametrů"
+    Pak bych měl vidět v tabulce Skupiny parametrů vidět řádek "Funkce"
