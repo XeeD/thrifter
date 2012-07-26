@@ -6,6 +6,7 @@ describe ParamTemplate do
   # Associations
   it { should have_many(:categories) }
   it { should have_many(:groups) }
+  it { should have_many(:param_items) }
 
   # Validations
   # name
