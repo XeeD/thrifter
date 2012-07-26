@@ -4,7 +4,7 @@ class CreateParamItems < ActiveRecord::Migration
       t.string :name, limit: 100
       t.string :value_type, limit: 10
       t.string :choice_type, limit: 15
-      t.string :unit, limit: 30
+      t.string :unit, limit: 30, null: true
       t.string :importance, limit: 15
 
       # Associations
