@@ -1,8 +1,9 @@
 class Product < ActiveRecord::Base
   # Associations
+  belongs_to :brand
   has_many :categorizations
   has_many :categories, through: :categorizations
-  belongs_to :brand
+  has_many :photos, class_name: "Product::Photo", dependent: :destroy
 
   # Validations
   validates :name,
