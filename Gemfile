@@ -7,6 +7,7 @@ gem 'haml-rails'
 gem 'formtastic'
 gem 'awesome_nested_set'
 gem 'acts_as_list'
+gem 'rack-mini-profiler'
 gem 'carrierwave'
 
 # Gems used only for compiling assets

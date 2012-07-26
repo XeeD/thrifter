@@ -1,21 +1,21 @@
 %h3 Parametry
 %ul.action_links
-  %li= link_to "Přidat nový parametr", new_admin_param_template_param_path(param_template)
+  %li= link_to "Přidat nový parametr", new_admin_param_template_param_item_path(param_template)
 
-- unless param_template.params.empty?
-/  %table#param_groups{"data-update-url" => sort_admin_param_template_groups_path(param_template)}
-/    %thead
-/      %tr
-/        %th Název skupiny
-/        %td Akce
-/    %tbody.sortable
-/      - for param_group in param_template.groups
-/        = content_tag_for :tr, param_group do
-/          %th= param_group.name
-/          %td
-/            %ul.actions
-/              %li.edit= link_to "Upravit", edit_admin_param_template_group_path(param_template, param_group)
-/              %li.delete= link_to "Smazat", admin_param_template_group_path(param_template, param_group), method: :delete
+- unless param_template.param_items.empty?
+  %table#param_items
+    %thead
+      %tr
+        %th Název parametru
+        %td Akce
+    %tbody.sortable
+      - for param_item in param_template.param_items
+        %tr
+          %th= param_item.name
+          %td
+            %ul.actions
+              %li.delete= link_to "Smazat", admin_param_template_param_item_path(param_template, param_item), method: :delete
+              %li.edit= link_to "Upravit", edit_admin_param_template_param_item_path(param_template, param_item)
 - else
   .empty_set
-    Zatím nebyly vytvořeny žádné skupiny parametrů
+    Zatím nebyly vytvořeny žádné parametry

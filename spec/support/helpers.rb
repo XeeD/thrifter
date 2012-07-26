@@ -51,6 +51,17 @@ module Helpers
     }.stringify_keys
   end
 
+  def valid_param_item_attributes
+    {
+        name: "Výška",
+        unit: "cm",
+        value_type: "int",
+        choice_type: "input",
+        importance: "sortable",
+        param_template_id: "1"
+    }.stringify_keys
+  end
+
   def valid_shop_attributes
     {
         short_name: "smart_beko_cz",

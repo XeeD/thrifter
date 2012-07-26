@@ -1,4 +1,9 @@
 = semantic_form_for([:admin, param_template, param_item]) do |f|
   = f.input :name
+  = f.input :unit
+  = f.input :importance,  :as => :radio, collection: ParamItem::IMPORTANCE
+  = f.input :choice_type, :as => :radio, collection: ParamItem::CHOICE_TYPES
+  = f.input :value_type,  :as => :radio, collection: ParamItem::VALUE_TYPES
+  = f.input :param_group, :as => :select, input_html: {size: 10}
   = f.actions do
     = f.submit

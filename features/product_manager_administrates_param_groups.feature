@@ -19,10 +19,10 @@ Požadavek: Produktový manager spravuje skupiny parametrů
   Scénář: přidání nové skupiny parametrů přes formulář
     Když kliknu na řádku u šablony parametrů "Chladničky" na odkaz "Zobrazit"
     A kliknu na odkaz "Přidat novou skupinu parametrů"
-    A vyplním "Rozměry" do pole "Název skupiny"
+    A vyplním "Parametry" do pole "Název skupiny"
     A kliknu na tlačítko "Vytvořit novou skupinu parametrů"
-    Pak bych měl vidět zprávu "Skupina parametrů Rozměry byla vytvořena"
-    A skupina parametrů "Rozměry" by měla být vytvořena
+    Pak bych měl vidět zprávu "Skupina parametrů Parametry byla vytvořena"
+    A skupina parametrů "Parametry" by měla být vytvořena
 
   Scénář: smazání existující skupiny parametrů
     Pokud skupina parametrů "Funkce" existuje
