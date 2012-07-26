@@ -11,6 +11,7 @@ Thrifter::Application.routes.draw do
       resources :groups, path: "skupiny", path_names: {new: "nova", edit: "editace"}, controller: "param_groups", except: :index do
         collection { post :sort }
       end
+      resources :param_items, path: "parametry", path_names: {new: "novy", edit: "editace"}
     end
     resources :shops, path: "obchody", path_names: {new: "novy", edit: "editace"}, except: :show do
       member do
