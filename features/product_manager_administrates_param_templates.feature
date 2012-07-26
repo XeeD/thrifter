@@ -1,7 +1,7 @@
 # language: cs
 Požadavek: Produktový manager spravuje kategorie
 
-  Abych přiřazovat produtkům jejich parametry, potřebuji mít možnost nejdříve možnost
+  Abych mohl přiřazovat produktům jejich parametry, potřebuji mít možnost nejdříve
   zjistit, jaké parametry daný produkt může mít. Jelikož některé kategorie produktů sdílí
   své parametry, je třeba můžeme definovat pro tyto kategorie jednu "šablonu parametrů".
   Jako produktový manager
