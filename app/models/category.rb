@@ -14,6 +14,7 @@ class Category < ActiveRecord::Base
   # Attributes
   attr_accessible :short_name, :url, :plural_name, :singular_name, :category_type, :parent_id
 
+  # Enumerations
   CATEGORY_TYPES = {
       "Navigační"  => "navigational",
       "Produktová" => "product_list",
