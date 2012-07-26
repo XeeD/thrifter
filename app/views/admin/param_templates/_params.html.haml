@@ -1,0 +1,21 @@
+%h3 Parametry
+%ul.action_links
+  %li= link_to "Přidat nový parametr", new_admin_param_template_param_path(param_template)
+
+- unless param_template.params.empty?
+/  %table#param_groups{"data-update-url" => sort_admin_param_template_groups_path(param_template)}
+/    %thead
+/      %tr
+/        %th Název skupiny
+/        %td Akce
+/    %tbody.sortable
+/      - for param_group in param_template.groups
+/        = content_tag_for :tr, param_group do
+/          %th= param_group.name
+/          %td
+/            %ul.actions
+/              %li.edit= link_to "Upravit", edit_admin_param_template_group_path(param_template, param_group)
+/              %li.delete= link_to "Smazat", admin_param_template_group_path(param_template, param_group), method: :delete
+- else
+  .empty_set
+    Zatím nebyly vytvořeny žádné skupiny parametrů
