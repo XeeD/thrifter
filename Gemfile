@@ -33,6 +33,7 @@ end
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'spork'
 end
 
 group :darwin do
