@@ -4,10 +4,9 @@ require 'spec_helper'
 describe Product do
   # Associations
   it { should belong_to(:brand) }
-  
   it { should have_many(:categorizations) }
   it { should have_many(:categories).through(:categorizations) }
-  it { should validate_presence_of(:brand) }
+  it { should have_many(:photos).dependent(:destroy) }
 
   # Validations
   # name
@@ -59,6 +58,9 @@ describe Product do
   # external_id
   it { should validate_presence_of(:external_id) }
   it { should validate_numericality_of(:external_id) }
+
+  # brand
+  it { should validate_presence_of(:brand) }
 
   context "with valid attributes" do
     it "should be valid" do
