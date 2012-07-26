@@ -36,11 +36,12 @@ Požadavek: Produktový manager spravuje parametry
     A kliknu na řádku u parametru "Šířka" na odkaz "Upravit"
     A změním hodnotu pole "Název parametru" na "Hloubka"
     A kliknu na tlačítko "Uložit parametr"
-    Pak bych měl vidět zprávu "Parametr Šířka byl upraven"
-    A parametr "Šířka" by měl být upraven
+    Pak bych měl vidět zprávu "Parametr Hloubka byl upraven"
+    A parametr "Hloubka" by měl být upraven
 
   Scénář: zobrazení existujícího parametru v detailu šablony parametrů
     Pokud parametr "Šířka" existuje
     Když kliknu na řádku u šablony parametrů "Chladničky" na odkaz "Zobrazit"
     Pak bych měl vidět v tabulce Parametrů řádek "Šířka"
 
+  Scénář: pokud smažu šablonu parametrů, parametry musí stále existovat
