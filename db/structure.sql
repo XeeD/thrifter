@@ -61,7 +61,7 @@ CREATE TABLE `param_items` (
   `param_group_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `index_param_items_on_importance` (`importance`),
-  KEY `index_param_items_on_param_group_id` (`param_group_id`),
+  KEY `index_param_items_on_group_id` (`param_group_id`),
   KEY `index_param_items_on_param_template_id` (`param_template_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -70,6 +70,17 @@ CREATE TABLE `param_templates` (
   `name` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_param_templates_on_name` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE `product_photos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `image` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  `product_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `index_product_photos_on_product_id` (`product_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `products` (
@@ -147,3 +158,7 @@ INSERT INTO schema_migrations (version) VALUES ('20120724151635');
 INSERT INTO schema_migrations (version) VALUES ('20120725195416');
 
 INSERT INTO schema_migrations (version) VALUES ('20120726091940');
+
+INSERT INTO schema_migrations (version) VALUES ('20120726150930');
+
+INSERT INTO schema_migrations (version) VALUES ('20120726171239');
