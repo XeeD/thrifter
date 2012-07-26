@@ -1,3 +1,9 @@
 param_item_01:
   id: 1
   name: "Šířka"
+  unit: "cm"
+  importance: "important"
+  choice_type: "input"
+  value_type: "string"
+  param_template_id: 1
+  param_group_id: 2
