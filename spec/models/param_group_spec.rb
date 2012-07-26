@@ -3,6 +3,7 @@ require 'spec_helper'
 describe ParamGroup do
   # Associations
   it { should belong_to(:param_template) }
+  it { should have_many(:param_items) }
 
   # Validations
   # name
