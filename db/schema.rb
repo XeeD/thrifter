@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120726091940) do
+ActiveRecord::Schema.define(:version => 20120726150930) do
 
   create_table "brands", :force => true do |t|
     t.string "name",        :limit => 30
@@ -79,6 +79,13 @@ ActiveRecord::Schema.define(:version => 20120726091940) do
   end
 
   add_index "param_templates", ["name"], :name => "index_param_templates_on_name", :unique => true
+
+  create_table "product_photos", :force => true do |t|
+    t.string   "title"
+    t.string   "image"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "products", :force => true do |t|
     t.string   "name",                :limit => 171

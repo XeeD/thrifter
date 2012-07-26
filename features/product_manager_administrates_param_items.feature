@@ -1,9 +1,13 @@
 # language: cs
 Požadavek: Produktový manager spravuje parametry
 
-  Abych
+  Abych mohl zákazníkům prezetovat technické paramety jednotlivých výrobků
   Jako produktový manager
-  Chci mít možnost
+  Chci mít možnost prostřednictvím šablon parametrů spravovat jednotlivé parametry.
+  Parametry jsou mají několik vlasností:
+    - důležitost parametru: je třeba tento parametr vyplnit vždy (řazení),
+        je parametr důležitý (je vhodné jej vyplnit, pokud známe jeho hodnotu)
+
 
   Kontext:
     Pokud jsem přihlášený jako "produktový manger"
