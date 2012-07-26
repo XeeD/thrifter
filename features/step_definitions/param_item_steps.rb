@@ -2,14 +2,14 @@
 
 # Given statements
 Pokud /^parametr "(.*?)" existuje$/ do |name|
-  fail "param #{name} doesn't exists" if Param.find_by_name(name).nil?
+  fail "param #{name} doesn't exists" if ParamItem.find_by_name(name).nil?
 end
 
 # When statements
 
 # Then statements
 Pak /^parametr "(.*?)" by měl být (?:vytvořen|upraven)$/ do |param_name|
-  find("#params").should have_content("#{param_name}")
+  find("#param_items").should have_content("#{param_name}")
 end
 
 Pak /^parametr "(.*?)" by měl být smazán$/ do |param_name|
@@ -21,5 +21,5 @@ Pak /^parametr "(.*?)" by měl být smazán$/ do |param_name|
 end
 
 Pak /^bych měl vidět v tabulce Parametrů řádek "(.*?)"$/ do |text|
-  page.should have_css("#params", text: text)
+  page.should have_css("#param_items", text: text)
 end
