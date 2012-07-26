@@ -67,11 +67,11 @@ ActiveRecord::Schema.define(:version => 20120726091940) do
     t.string  "unit",              :limit => 30
     t.string  "importance",        :limit => 15
     t.integer "param_template_id"
-    t.integer "group_id"
+    t.integer "param_group_id"
   end
 
-  add_index "param_items", ["group_id"], :name => "index_param_items_on_group_id"
   add_index "param_items", ["importance"], :name => "index_param_items_on_importance"
+  add_index "param_items", ["param_group_id"], :name => "index_param_items_on_param_group_id"
   add_index "param_items", ["param_template_id"], :name => "index_param_items_on_param_template_id"
 
   create_table "param_templates", :force => true do |t|

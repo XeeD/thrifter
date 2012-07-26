@@ -9,11 +9,11 @@ class CreateParamItems < ActiveRecord::Migration
 
       # Associations
       t.belongs_to :param_template
-      t.belongs_to :group, null: true
+      t.belongs_to :param_group, null: true
     end
 
     add_index :param_items, :param_template_id
-    add_index :param_items, :group_id
+    add_index :param_items, :param_group_id
     add_index :param_items, :importance
   end
 end
