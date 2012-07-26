@@ -2,9 +2,6 @@
 
 module Admin
   class ParamGroupsController < AdminController
-    def index
-    end
-
     def new
     end
 
