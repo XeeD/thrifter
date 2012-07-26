@@ -41,6 +41,8 @@ cs:
         categories: "Kategorie"
       param_group:
         name: "Název skupiny"
+      param_item:
+        name: "Název parametru"
       shop:
         name: "Název"
         host: "Adresa"
