@@ -4,6 +4,7 @@ class ParamGroup < ActiveRecord::Base
 
   # Associations
   belongs_to :param_template
+  has_many :param_items
 
   # Validations
   validates :name,
