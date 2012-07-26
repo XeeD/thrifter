@@ -1,5 +1,5 @@
 # language: cs
-Požadavek: Produktový manager spravuje obchody
+Požadavek: Produktový manager spravuje skupiny parametrů
 
   Abych mohl seřadit zpřehlednil zobrazení parametrů výrobku především pro zákazníky e-shopu
   Jako produktový manager
@@ -43,4 +43,4 @@ Požadavek: Produktový manager spravuje obchody
   Scénář: zobrazení existující skupiny parametrů v detailu šablony parametrů
     Pokud skupina parametrů "Funkce" existuje
     Když kliknu na řádku u šablony parametrů "Chladničky" na odkaz "Zobrazit"
-    Pak bych měl vidět v tabulce Skupiny parametrů vidět řádek "Funkce"
+    Pak bych měl vidět v tabulce Skupiny parametrů řádek "Funkce"
