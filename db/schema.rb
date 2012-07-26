@@ -60,13 +60,7 @@ ActiveRecord::Schema.define(:version => 20120726091940) do
 
   add_index "param_groups", ["param_template_id", "position"], :name => "index_param_groups_on_param_template_id_and_position"
 
-  create_table "param_templates", :force => true do |t|
-    t.string "name", :limit => 40, :null => false
-  end
-
-  add_index "param_templates", ["name"], :name => "index_param_templates_on_name", :unique => true
-
-  create_table "params", :force => true do |t|
+  create_table "param_items", :force => true do |t|
     t.string  "name",              :limit => 100
     t.string  "value_type",        :limit => 10
     t.string  "choice_type",       :limit => 15
@@ -76,9 +70,15 @@ ActiveRecord::Schema.define(:version => 20120726091940) do
     t.integer "group_id"
   end
 
-  add_index "params", ["group_id"], :name => "index_params_on_group_id"
-  add_index "params", ["importance"], :name => "index_params_on_importance"
-  add_index "params", ["param_template_id"], :name => "index_params_on_param_template_id"
+  add_index "param_items", ["group_id"], :name => "index_param_items_on_group_id"
+  add_index "param_items", ["importance"], :name => "index_param_items_on_importance"
+  add_index "param_items", ["param_template_id"], :name => "index_param_items_on_param_template_id"
+
+  create_table "param_templates", :force => true do |t|
+    t.string "name", :limit => 40, :null => false
+  end
+
+  add_index "param_templates", ["name"], :name => "index_param_templates_on_name", :unique => true
 
   create_table "products", :force => true do |t|
     t.string   "name",                :limit => 171

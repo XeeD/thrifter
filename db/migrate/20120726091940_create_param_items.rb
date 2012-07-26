@@ -1,4 +1,4 @@
-class CreateParams < ActiveRecord::Migration
+class CreateParamItems < ActiveRecord::Migration
   def change
     create_table :param_items, force: true do |t|
       t.string :name, limit: 100
