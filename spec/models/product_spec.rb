@@ -2,7 +2,6 @@
 require 'spec_helper'
 
 describe Product do
-
   # Associations
   it { should belong_to(:brand) }
   

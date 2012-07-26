@@ -48,14 +48,6 @@ class Category < ActiveRecord::Base
   validates :parent_id,
             parent_loop: true
 
-  def validate
-    # category_parent cannot be the same category
-    fail parent_id.inspect
-    if parent_id == id
-      errors.add(:parent_id, "nemůže být shodná s danou kategorií")
-    end
-  end
-
   def is_product_list?
     true if category_type == CATEGORY_TYPES.fetch("Produktová")
   end
