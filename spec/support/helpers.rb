@@ -62,6 +62,12 @@ module Helpers
     }.stringify_keys
   end
 
+  def valid_param_value_attributes
+    {
+      value: "100",
+    }.stringify_keys
+  end
+
   def valid_shop_attributes
     {
         short_name: "smart_beko_cz",
