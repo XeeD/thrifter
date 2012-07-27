@@ -1,0 +1,8 @@
+- unless product.param_items.blank?
+  - product.param_items.group_by(&:param_group).each do |group, params|
+    %li= "#{group.name}:" rescue nil
+    %ol
+      - params.each do |param|
+        %li= param.name
+- else
+  = "Nebyly přiřazeny žádné parametry"
