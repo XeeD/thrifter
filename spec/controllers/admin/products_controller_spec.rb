@@ -242,5 +242,24 @@ module Admin
         end
       end
     end
+
+    #describe "associates with categories" do
+    #
+    #  let(:category) { mock_model(Category).as_null_object }
+    #  let(:param_template) { mock_model(ParamTemplate).as_null_object }
+
+    #  before do
+    #    category.stub(category_type: "product_list")
+    #    category.stub(param_template: param_template)
+    #    product.stub_chain(:categories).with(nil).and_return(category)
+    #  end
+
+    #  context "type product_list" do
+    #    it "product has same param template as product_list category" do
+    #      raise product.param_template.to_s
+    #       product.param_template.should.eql? category.param_template
+    #    end
+    #  end
+    #end
   end
 end

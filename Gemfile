@@ -8,6 +8,8 @@ gem 'formtastic'
 gem 'awesome_nested_set'
 gem 'acts_as_list'
 gem 'rack-mini-profiler'
+gem 'carrierwave'
+gem 'rmagick'
 
 # Gems used only for compiling assets
 group :assets do
@@ -31,6 +33,7 @@ end
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'spork'
 end
 
 group :darwin do

@@ -70,5 +70,12 @@ module Helpers
     }.stringify_keys
   end
 
+  def valid_product_photo_attributes
+    {
+        title: "detail ovládání",
+        product_id: 1
+    }.stringify_keys
+  end
+
   RSpec.configure {|c| c.include self}
 end
