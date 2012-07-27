@@ -2,9 +2,22 @@
 
 # Given statements
 Pokud /^parametr "(.*?)" existuje$/ do |name|
-  fail "param #{name} doesn't exists" if ParamItem.find_by_name(name).nil?
+  @param_item = ParamItem.find_by_name(name)
+  fail "param #{name} doesn't exists" if @param_item.nil?
 end
 
+Pokud /^parametr "(.*?)" existuje a je přiřazen šabloně parametrů "(.*?)"$/ do |param_item_name, param_template_name|
+  step "parametr \"#{param_item_name}\" existuje"
+  param_template = ParamTemplate.find_by_name(param_template_name.to_s)
+
+  if param_template.present?
+    unless param_template.param_items.include?(@param_item)
+      fail "param template #{param_template_name} has not assigned param item '#{param_item_name}"
+    end
+  else
+    fail "param template #{param_template_name} doesn't exist"
+  end
+end
 # When statements
 
 # Then statements
