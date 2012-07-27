@@ -14,7 +14,7 @@ Požadavek: Produktový admin upravuje obrázky k produktu
     A začnu vyplňovat formulář "Obrázky"
     A vložím soubor "LG_GB3133TIJW.jpg" do pole "Soubor s obrázkem"
     A zaškrtnu přepínač "hlavní obrázek" pro vlastnost "Typ obrázku"
-    A klinu na tlačítko Nahrát soubor
+    Když kliknu na tlačítko "Nahrát soubor"
     Pak by měl produkt mít hlavní obrázek shodný s nahraným obrázkem
 
   Scénář: přidání dodatečného obrázku k produktu
@@ -23,7 +23,7 @@ Požadavek: Produktový admin upravuje obrázky k produktu
     A začnu vyplňovat formulář "Obrázky"
     A vložím soubor "LG_GB3133TIJW_2.jpg" do pole "Soubor s obrázkem"
     A zaškrtnu přepínač "dodatečný obrázek" pro vlastnost "Typ obrázku"
-    A klinu na tlačítko Nahrát soubor
+    Když kliknu na tlačítko "Nahrát soubor"
     Pak by měl produkt mít jeden dodatečný obrázek
     A tento dodatečný obrázek by měl být shodný s nahraným obrázkem
 
