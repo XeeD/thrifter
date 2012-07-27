@@ -43,5 +43,3 @@ Požadavek: Produktový manager spravuje parametry
     Pokud parametr "Šířka" existuje
     Když kliknu na řádku u šablony parametrů "Chladničky" na odkaz "Zobrazit"
     Pak bych měl vidět v tabulce Parametrů řádek "Šířka"
-
-  Scénář: pokud smažu šablonu parametrů, parametry musí stále existovat
