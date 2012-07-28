@@ -32,8 +32,10 @@ CREATE TABLE `categorizations` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) DEFAULT NULL,
   `category_id` int(11) DEFAULT NULL,
+  `main` int(11) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
+  `preferred` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `index_categorizations_on_category_id` (`category_id`),
   KEY `index_categorizations_on_product_id` (`product_id`)
@@ -61,7 +63,7 @@ CREATE TABLE `param_items` (
   `param_group_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `index_param_items_on_importance` (`importance`),
-  KEY `index_param_items_on_group_id` (`param_group_id`),
+  KEY `index_param_items_on_param_group_id` (`param_group_id`),
   KEY `index_param_items_on_param_template_id` (`param_template_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -72,9 +74,19 @@ CREATE TABLE `param_templates` (
   UNIQUE KEY `index_param_templates_on_name` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+CREATE TABLE `param_values` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `value` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `product_id` int(11) DEFAULT NULL,
+  `param_item_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `index_param_values_on_param_item_id` (`param_item_id`),
+  KEY `index_param_values_on_product_id` (`product_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 CREATE TABLE `product_photos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `title` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `image` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
@@ -162,3 +174,7 @@ INSERT INTO schema_migrations (version) VALUES ('20120726091940');
 INSERT INTO schema_migrations (version) VALUES ('20120726150930');
 
 INSERT INTO schema_migrations (version) VALUES ('20120726171239');
+
+INSERT INTO schema_migrations (version) VALUES ('20120727113113');
+
+INSERT INTO schema_migrations (version) VALUES ('20120727132422');

@@ -1,13 +1,9 @@
 # language: cs
 Požadavek: Produktový manager spravuje parametry
 
-  Abych mohl zákazníkům prezetovat technické paramety jednotlivých výrobků
+  Abych
   Jako produktový manager
-  Chci mít možnost prostřednictvím šablon parametrů spravovat jednotlivé parametry.
-  Parametry jsou mají několik vlasností:
-    - důležitost parametru: je třeba tento parametr vyplnit vždy (řazení),
-        je parametr důležitý (je vhodné jej vyplnit, pokud známe jeho hodnotu)
-
+  Chci mít možnost
 
   Kontext:
     Pokud jsem přihlášený jako "produktový manger"
@@ -47,5 +43,3 @@ Požadavek: Produktový manager spravuje parametry
     Pokud parametr "Šířka" existuje
     Když kliknu na řádku u šablony parametrů "Chladničky" na odkaz "Zobrazit"
     Pak bych měl vidět v tabulce Parametrů řádek "Šířka"
-
-  Scénář: pokud smažu šablonu parametrů, parametry musí stále existovat

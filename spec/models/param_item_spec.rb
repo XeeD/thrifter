@@ -4,6 +4,7 @@ describe ParamItem do
   # Associations
   it { should belong_to(:param_template) }
   it { should belong_to(:param_group) }
+  it { should have_many(:param_values) }
 
   # Validations
   # name
