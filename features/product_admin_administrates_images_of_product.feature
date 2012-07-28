@@ -10,25 +10,23 @@ Požadavek: Produktový admin upravuje obrázky k produktu
     Pokud jsem přihlášený jako "produktový admin"
 
   Scénář: přidání hlavního obrázku k produktu
-    Pokud upravuji produkt "LG GB3133TIJW"
-    A začnu vyplňovat formulář "Obrázky"
-    A vložím soubor "LG_GB3133TIJW.jpg" do pole "Soubor s obrázkem"
+    Pokud upravuji "LG GB3133TIJW" a jsem na záložce "Obrázky"
+    Když vložím soubor "LG_GB3133TIJW.jpg" do pole "Soubor s obrázkem"
     A zaškrtnu přepínač "hlavní obrázek" pro vlastnost "Typ obrázku"
-    A klinu na tlačítko Nahrát soubor
+    A klinu na tlačítko "Nahrát soubor"
     Pak by měl produkt mít hlavní obrázek shodný s nahraným obrázkem
 
   Scénář: přidání dodatečného obrázku k produktu
-    Pokud upravuji produkt "LG GB3133TIJW"
+    Pokud upravuji "LG GB3133TIJW" a jsem na záložce "Obrázky"
     A tento produkt nemá žádné dodatečné obrázky
-    A začnu vyplňovat formulář "Obrázky"
-    A vložím soubor "LG_GB3133TIJW_2.jpg" do pole "Soubor s obrázkem"
+    Když vložím soubor "LG_GB3133TIJW_2.jpg" do pole "Soubor s obrázkem"
     A zaškrtnu přepínač "dodatečný obrázek" pro vlastnost "Typ obrázku"
-    A klinu na tlačítko Nahrát soubor
+    A kliknu na tlačítko "Nahrát soubor"
     Pak by měl produkt mít jeden dodatečný obrázek
     A tento dodatečný obrázek by měl být shodný s nahraným obrázkem
 
   Scénář: nastavení jiného hlavního obrázku pro produkt
-    Pokud upravuji produkt "LG GB3133TIJW"
+    Pokud upravuji "LG GB3133TIJW" a jsem na záložce "Obrázky"
     A tento produkt má obrázek "zavřená lednice", který je hlavní
     A tento produkt má obrázek "otevřená lednice", který je dodatečný
     A kliknu na řádku "otevřená lednice" na odkaz "Vybrat jako hlavní obrázek"
