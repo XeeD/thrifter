@@ -7,6 +7,7 @@ describe Product do
   it { should have_many(:categorizations) }
   it { should have_many(:categories).through(:categorizations) }
   it { should have_many(:photos).dependent(:destroy) }
+  it { should have_one(:main_photo).conditions(main_photo: true) }
 
   # Validations
   # name
