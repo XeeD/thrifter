@@ -17,6 +17,9 @@
 # Ignore RubyMine project folder
 /.idea
 
+# Ignore uploaded files
+/public/img
+
 # Ignore database settings - instead we are providing templates
 # that each developer can use to create his own database settings.
 /config/database.yml
