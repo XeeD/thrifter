@@ -73,7 +73,7 @@ module Helpers
   def valid_product_photo_attributes
     {
         title: "detail ovládání",
-        product_id: 1
+        product_id: "1"
     }.stringify_keys
   end
 

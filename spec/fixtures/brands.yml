@@ -3,3 +3,13 @@ indesit:
   name: "Indesit"
   url:  "indesit"
   description: "Italská značka Indesit."
+
+lg:
+  id: 2
+  name: "LG"
+  description: "LG Electronics"
+
+samsung:
+  id: 3
+  name: "Samsung"
+  description: "Samsung Electronics of Korea"

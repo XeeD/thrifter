@@ -17,3 +17,23 @@ lg_fridge:
   gray_import: false
   top_product: false
   brand_id: 1
+
+samsung_tv:
+  id: 2
+  name: "Samsung UE55ES8000"
+  model_name: "UE55ES8000"
+  url: "samsung-ue55es8000"
+  external_id: "2129200"
+  ean_code: 1234567890123
+  short_description: "Neljepší TV na trhu"
+  description: "LED hyper super TV"
+  default_price: 79990
+  recommended_price: 79990
+  purchase_price: 45000
+  recycling_fee: 202
+  warranty: 24
+  vat_rate: 20.0
+  admin_comment:
+  gray_import: false
+  top_product: false
+  brand_id: 2
