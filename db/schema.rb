@@ -43,7 +43,6 @@ ActiveRecord::Schema.define(:version => 20120727132422) do
   create_table "categorizations", :force => true do |t|
     t.integer  "product_id"
     t.integer  "category_id"
-    t.integer  "main",        :null => false
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.boolean  "preferred"
@@ -73,7 +72,7 @@ ActiveRecord::Schema.define(:version => 20120727132422) do
   end
 
   add_index "param_items", ["importance"], :name => "index_param_items_on_importance"
-  add_index "param_items", ["param_group_id"], :name => "index_param_items_on_param_group_id"
+  add_index "param_items", ["param_group_id"], :name => "index_param_items_on_group_id"
   add_index "param_items", ["param_template_id"], :name => "index_param_items_on_param_template_id"
 
   create_table "param_templates", :force => true do |t|
@@ -92,10 +91,10 @@ ActiveRecord::Schema.define(:version => 20120727132422) do
   add_index "param_values", ["product_id"], :name => "index_param_values_on_product_id"
 
   create_table "product_photos", :force => true do |t|
-    t.string   "title",      :limit => 100
+    t.string   "title"
     t.string   "image"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.integer  "product_id"
   end
 

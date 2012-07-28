@@ -32,7 +32,6 @@ CREATE TABLE `categorizations` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) DEFAULT NULL,
   `category_id` int(11) DEFAULT NULL,
-  `main` int(11) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   `preferred` tinyint(1) DEFAULT NULL,
@@ -63,7 +62,7 @@ CREATE TABLE `param_items` (
   `param_group_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `index_param_items_on_importance` (`importance`),
-  KEY `index_param_items_on_param_group_id` (`param_group_id`),
+  KEY `index_param_items_on_group_id` (`param_group_id`),
   KEY `index_param_items_on_param_template_id` (`param_template_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -86,7 +85,7 @@ CREATE TABLE `param_values` (
 
 CREATE TABLE `product_photos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `image` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
