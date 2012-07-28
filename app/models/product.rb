@@ -4,6 +4,7 @@ class Product < ActiveRecord::Base
   has_many :categorizations
   has_many :categories, through: :categorizations
   has_many :photos, class_name: "Product::Photo", dependent: :destroy
+  has_one :main_photo, class_name: "Product::Photo", conditions: {main_photo: true}
 
   has_one  :preferred_categorization, class_name: "Categorization", conditions: {preferred: 1}
   has_one  :preferred_category, class_name: "Category", through: :preferred_categorization, source: :category
@@ -11,6 +12,7 @@ class Product < ActiveRecord::Base
   has_many :param_items, through: :param_template
 
   has_many :param_values
+
 
   # Validations
   validates :name,

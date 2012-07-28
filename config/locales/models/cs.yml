@@ -5,6 +5,7 @@ cs:
       category: Kategorie
       product: Produkt
       shop: Obchod
+      "product/photo": "Obrázek produktu"
     attributes:
       brand:
         name: "Název"
@@ -52,6 +53,10 @@ cs:
         name: "Název"
         host: "Adresa"
         short_name: "Identifikátor"
+      "product/photo":
+        title: "Popis obrázku"
+        image: "Soubor s obrázkem"
+        main_photo: "Typ obrázku"
     errors:
       models:
         category:
@@ -83,3 +88,6 @@ cs:
       shop:
         create: "Vytvořit nový obchod"
         update: "Uložit obchod"
+      product_photo:
+        create: "Přidat nový obrázek"
+        update: "Uložit obrázek"

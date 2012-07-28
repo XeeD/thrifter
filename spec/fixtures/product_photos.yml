@@ -1,3 +1,9 @@
-fridge_photo:
+fridge_closed_photo:
   product_id: 1
   title: "zavřená lednice"
+  main_photo: true
+
+fridge_opened_photo:
+  product_id: 2
+  title: "otevřená lednice"
+  main_photo: false
