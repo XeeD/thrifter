@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120727132422) do
+ActiveRecord::Schema.define(:version => 20120728193928) do
 
   create_table "brands", :force => true do |t|
     t.string "name",        :limit => 30
@@ -93,11 +93,13 @@ ActiveRecord::Schema.define(:version => 20120727132422) do
   create_table "product_photos", :force => true do |t|
     t.string   "title"
     t.string   "image"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
     t.integer  "product_id"
+    t.boolean  "main_photo", :default => false
   end
 
+  add_index "product_photos", ["main_photo"], :name => "index_product_photos_on_main_photo"
   add_index "product_photos", ["product_id"], :name => "index_product_photos_on_product_id"
 
   create_table "products", :force => true do |t|

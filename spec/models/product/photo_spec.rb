@@ -28,4 +28,24 @@ describe Product::Photo do
       File.exists?(product_photo.image.path).should be_true
     end
   end
+
+  context "when setting photo as main" do
+    context "and another photo is already main" do
+      it "sets current main photo as not main when creating new main photo" do
+        current_main = Product::Photo.where(main_photo: true).first
+        Product::Photo.create(product_id: current_main.product_id, main_photo: true)
+        current_main.reload
+        current_main.should_not be_main_photo
+      end
+
+      it "sets current main photo as not main when another photo is set as main" do
+        current_main = Product::Photo.where(main_photo: true).first
+        current_not_main = Product::Photo.where(main_photo: true).first
+        current_not_main.main_photo = true
+        current_not_main.save
+        current_main.reload
+        current_main.should_not be_main_photo
+      end
+    end
+  end
 end

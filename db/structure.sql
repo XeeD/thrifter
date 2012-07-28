@@ -90,7 +90,9 @@ CREATE TABLE `product_photos` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   `product_id` int(11) DEFAULT NULL,
+  `main_photo` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`),
+  KEY `index_product_photos_on_main_photo` (`main_photo`),
   KEY `index_product_photos_on_product_id` (`product_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -177,3 +179,5 @@ INSERT INTO schema_migrations (version) VALUES ('20120726171239');
 INSERT INTO schema_migrations (version) VALUES ('20120727113113');
 
 INSERT INTO schema_migrations (version) VALUES ('20120727132422');
+
+INSERT INTO schema_migrations (version) VALUES ('20120728193928');
