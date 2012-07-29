@@ -12,6 +12,10 @@ class Product::Photo < ActiveRecord::Base
   validates :title,
             length: {maximum: 100}
 
+  validates :image,
+            presence: true,
+            on: :create
+
   # Callbacks
   before_save(:allow_only_one_main_photo)
 

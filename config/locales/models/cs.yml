@@ -91,3 +91,7 @@ cs:
       product_photo:
         create: "Přidat nový obrázek"
         update: "Uložit obrázek"
+  errors:
+    messages:
+      carrierwave_processing_error: nemohl být zpracován
+      carrierwave_integrity_error: je nesprávný typ souboru
