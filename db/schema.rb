@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120729081424) do
+ActiveRecord::Schema.define(:version => 20120729085347) do
 
   create_table "brands", :force => true do |t|
     t.string "name",        :limit => 30
@@ -48,7 +48,9 @@ ActiveRecord::Schema.define(:version => 20120729081424) do
     t.boolean  "preferred"
   end
 
+  add_index "categorizations", ["category_id", "product_id"], :name => "index_categorizations_on_category_id_and_product_id", :unique => true
   add_index "categorizations", ["category_id"], :name => "index_categorizations_on_category_id"
+  add_index "categorizations", ["product_id", "category_id"], :name => "index_categorizations_on_product_id_and_category_id", :unique => true
   add_index "categorizations", ["product_id"], :name => "index_categorizations_on_product_id"
 
   create_table "param_groups", :force => true do |t|
