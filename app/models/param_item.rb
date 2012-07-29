@@ -32,6 +32,9 @@ class ParamItem < ActiveRecord::Base
   }
 
   # Validations
+  validates :param_template,
+            presence: true
+
   validates :name,
             presence: true,
             length: {maximum: 65},
