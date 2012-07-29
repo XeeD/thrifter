@@ -1,4 +1,5 @@
 # language: cs
+@wip
 Požadavek: Produktový admin upravuje parametry produktu
 
   Abych mohl zákazníkům přehledně poskytnou podrobné informace o produktu
