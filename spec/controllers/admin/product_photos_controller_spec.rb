@@ -25,9 +25,8 @@ module Admin
       context "when rendering views" do
         render_views
 
-        it "fetches all photos" do
-          product.should_receive(:photos)
-          get_index
+        before do
+          product.stub_chain(:photos, :empty?).and_return(true)
         end
 
         it "calls new through Product.photos" do

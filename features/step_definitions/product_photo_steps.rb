@@ -16,6 +16,16 @@ Pokud /^tento produkt nemá žádné dodatečné obrázky$/ do
   @product.photos.should be_empty
 end
 
+Pokud /^tento produkt má obrázek "(.*?)", který je (hlavní|dodatečný)$/ do |photo_title, photo_type|
+  photo = @product.photos.find_by_title(photo_title)
+  photo.should_not be_nil
+  if photo_type == "hlavní"
+    photo.should be_main_photo
+  else
+    photo.should_not be_main_photo
+  end
+end
+
 Když /^vložím soubor "(.*?)" do pole "(.*?)"$/ do |filename, field|
   @image_to_upload = "features/resources/" + filename
   attach_file(field, @image_to_upload)
@@ -27,9 +37,21 @@ end
 
 Pak /^by měl produkt mít jeden dodatečný obrázek$/ do
   @product.additional_photos.size.should == 1
+
+  # Keep it for optional subsequent steps
   @additional_photo = @product.additional_photos.first
 end
 
 Pak /^tento dodatečný obrázek by měl být shodný s nahraným obrázkem$/ do
-  pending # express the regexp above with the code you wish you had
+  @additional_photo.image.path.should be_the_same_file_as(@image_to_upload)
+end
+
+Pak /^obrázek produktu "(.*?)" by měl být (hlavní|dodatečný)$/ do |photo_title, photo_type|
+  photo = @product.photos.find_by_title(photo_title)
+  photo.should_not be_nil
+  if photo_type == "hlavní"
+    photo.should be_main_photo
+  else
+    photo.should_not be_main_photo
+  end
 end

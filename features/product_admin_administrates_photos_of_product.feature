@@ -16,7 +16,6 @@ Požadavek: Produktový admin upravuje obrázky k produktu
     A kliknu na tlačítko "Přidat nový obrázek"
     Pak by měl produkt mít hlavní obrázek shodný s nahraným obrázkem
 
-  @wip
   Scénář: přidání dodatečného obrázku k produktu
     Pokud upravuji produkt "Samsung UE55ES8000" a jsem na záložce "Obrázky"
     A tento produkt nemá žádné dodatečné obrázky
@@ -26,11 +25,12 @@ Požadavek: Produktový admin upravuje obrázky k produktu
     Pak by měl produkt mít jeden dodatečný obrázek
     A tento dodatečný obrázek by měl být shodný s nahraným obrázkem
 
-  @wip
   Scénář: nastavení jiného hlavního obrázku pro produkt
     Pokud upravuji produkt "LG GB3133TIJW" a jsem na záložce "Obrázky"
     A tento produkt má obrázek "zavřená lednice", který je hlavní
     A tento produkt má obrázek "otevřená lednice", který je dodatečný
-    A kliknu na řádku "otevřená lednice" na odkaz "Vybrat jako hlavní obrázek"
+    Když kliknu na řádku u fotky "otevřená lednice" na odkaz "Upravit"
+    A zaškrtnu přepínač "Hlavní obrázek produktu" pro vlastnost "Typ obrázku"
+    A kliknu na tlačítko "Uložit obrázek"
     Pak obrázek produktu "otevřená lednice" by měl být hlavní
     A obrázek produktu "zavřená lednice" by měl být dodatečný

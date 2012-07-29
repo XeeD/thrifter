@@ -49,8 +49,14 @@ module Admin
 
     helper_method :product
 
+    def product_photos
+      @photos ||= product.photos
+    end
+
+    helper_method :product_photos
+
     def product_photo
-      @photo ||= params[:id] ? product.photos.find(params[:id]) : product.photos.new(params[:product_photo])
+      @photo ||= params[:id] ? product_photos.find(params[:id]) : product_photos.new(params[:product_photo])
     end
 
     helper_method :product_photo

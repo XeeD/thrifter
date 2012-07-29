@@ -1,4 +1,4 @@
-= semantic_form_for([:admin, product_photo]) do |f|
+= semantic_form_for_product_photo(product, product_photo) do |f|
   = f.input :title
   = f.input :image
   = f.input :main_photo, as: :radio, collection: {"Hlavní obrázek produktu" => true, "Dodatečný obrázek" => false}

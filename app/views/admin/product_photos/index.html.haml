@@ -1,2 +1,28 @@
 %h2 Obrázky produktu #{product.name}
 = render "form"
+
+- unless product_photos.empty?
+  %table#product_photos
+    %thead
+      %th= Product::Photo.human_attribute_name(:title)
+      %th= Product::Photo.human_attribute_name(:main_photo)
+      %td Akce
+    %tbody
+      - for photo in product_photos.reject(&:new_record?)
+        %tr
+          %th= photo.title || content_tag(:em, "bez popisku")
+          %td
+            - if photo.main_photo
+              %strong Hlavní obrázek produktu
+            - else
+              Není hlavní obrázek produktu,
+          %td
+            %ul.actions
+              %li= link_to "Smazat",
+                admin_product_photo_path(product, photo),
+                method: :delete,
+                confirm: "Opravdu chcete smazat tuto fotku?"
+              %li= link_to "Upravit", edit_admin_product_photo_path(product, photo)
+- else
+  .empty_set
+    Produkt nemá žádný obrázek

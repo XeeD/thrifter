@@ -5,6 +5,9 @@ class Product::Photo < ActiveRecord::Base
   # Associations
   belongs_to :product
 
+  # Scopes
+  default_scope -> { order("main_photo DESC") }
+
   # Validations
   validates :product,
             presence: true
