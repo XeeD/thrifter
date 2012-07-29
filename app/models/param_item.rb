@@ -34,7 +34,7 @@ class ParamItem < ActiveRecord::Base
   # Validations
   validates :name,
             presence: true,
-            length: {maximum: 100},
+            length: {maximum: 65},
             uniqueness: {scope: :param_template_id}
 
   validates :value_type,
