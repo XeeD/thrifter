@@ -44,3 +44,12 @@ Požadavek: Produktový manager spravuje skupiny parametrů
     Pokud skupina parametrů "Funkce" existuje
     Když kliknu na řádku u šablony parametrů "Chladničky" na odkaz "Zobrazit"
     Pak bych měl vidět v tabulce Skupiny parametrů řádek "Funkce"
+
+  @javascript
+  Scénář: změna pořadí skupin parametrů
+    Pokud skupina parametrů "Funkce" existuje a je 1. v pořadí
+    A skupina parametrů "Rozměry" existuje a je 2. v pořadí
+    Když kliknu na řádku u šablony parametrů "Chladničky" na odkaz "Zobrazit"
+    A přesunu řádek "Rozměry" o 1 pozici nahoru
+    Pak skupina "Rozměry" by měla být 1. v pořadí
+    A skupina "Funkce" by měla být 2. v pořadí

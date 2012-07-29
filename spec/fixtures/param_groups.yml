@@ -2,8 +2,10 @@ functions:
   id: 1
   param_template_id: 1
   name: "Funkce"
+  position: 1
 
 dimensions:
   id: 2
   param_template_id: 1
   name: "Rozměry"
+  position: 2

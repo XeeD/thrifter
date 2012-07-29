@@ -5,7 +5,23 @@ Pokud /^skupina parametrů "(.*?)" existuje$/ do |name|
   fail "param group #{name} doesn't exists" if ParamGroup.find_by_name(name).nil?
 end
 
+Pokud /^skupina parametrů "(.*?)" existuje a je (\d+)\. v pořadí$/ do |group_name, position|
+  group = ParamGroup.find_by_name(group_name)
+  group.should_not be_nil
+  group.position.should == position.to_i
+end
+
 # When statements
+Když /^přesunu řádek "(.*?)" o (\d+) pozici (nahoru|dolů)$/ do |name_source, distance, direction|
+  group = ParamGroup.find_by_name(name_source)
+  distance = distance.to_i * -1 if direction == 'nahoru'
+  page.execute_script %{
+    $.getScript("https://raw.github.com/mattheworiordan/jquery.simulate.drag-sortable.js/master/jquery.simulate.drag-sortable.js", function() {
+      $("tr#param_group_#{group.id}").simulateDragSortable({ move: #{distance.to_i}});
+    });
+  }
+  sleep 1 # Hack to ensure ajax finishes running (tweak/remove as needed for your suite)
+end
 
 # Then statements
 Pak /^skupina parametrů "(.*?)" by měla být (?:vytvořena|upravena)$/ do |param_group_name|
@@ -22,4 +38,8 @@ end
 
 Pak /^bych měl vidět v tabulce Skupiny parametrů řádek "(.*?)"$/ do |text|
   page.should have_css("#param_groups", text: text)
+end
+
+Pak /^skupina "(.*?)" by měla být (\d+)\. v pořadí$/ do |group_name, position|
+  ParamGroup.find_by_name(group_name).position.should == position.to_i
 end
