@@ -65,6 +65,7 @@ module Helpers
   def valid_param_value_attributes
     {
       value: "100",
+      param_item_id: 1
     }.stringify_keys
   end
 

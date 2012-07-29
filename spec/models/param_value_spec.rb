@@ -4,13 +4,15 @@ require 'spec_helper'
 describe ParamValue do
 
   # Associations
-  it { should belong_to(:product) }
   it { should belong_to(:param_item) }
 
   # Validations
+  # param_item
+  it { should validate_presence_of(:param_item) }
+
   # value
   it { should validate_presence_of(:value) }
-  it { should ensure_length_of(:value).is_at_most(200) }
+  it { should ensure_length_of(:value).is_at_most(40) }
 
   context "with valid attributes" do
     it "should be valid" do
