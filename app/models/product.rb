@@ -3,8 +3,11 @@ class Product < ActiveRecord::Base
   belongs_to :brand
   has_many :categorizations
   has_many :categories, through: :categorizations
-  has_many :photos, class_name: "Product::Photo", dependent: :destroy
-  has_one :main_photo, class_name: "Product::Photo", conditions: {main_photo: true}
+  with_options(class_name: "Product::Photo") do |product|
+    product.has_many :photos, dependent: :destroy
+    product.has_one :main_photo, conditions: {main_photo: true}
+    product.has_many :additional_photos, conditions: {main_photo: false}
+  end
 
   has_one  :preferred_categorization, class_name: "Categorization", conditions: {preferred: 1}
   has_one  :preferred_category, class_name: "Category", through: :preferred_categorization, source: :category

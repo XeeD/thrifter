@@ -18,7 +18,7 @@ Požadavek: Produktový admin upravuje obrázky k produktu
 
   @wip
   Scénář: přidání dodatečného obrázku k produktu
-    Pokud upravuji produkt "LG GB3133TIJW" a jsem na záložce "Obrázky"
+    Pokud upravuji produkt "Samsung UE55ES8000" a jsem na záložce "Obrázky"
     A tento produkt nemá žádné dodatečné obrázky
     Když vložím soubor "lg_gb3133tijw_2.jpg" do pole "Soubor s obrázkem"
     A zaškrtnu přepínač "Dodatečný obrázek" pro vlastnost "Typ obrázku"
