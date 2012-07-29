@@ -54,6 +54,8 @@ GEM
       rack-test (>= 0.5.4)
       selenium-webdriver (~> 2.0)
       xpath (~> 0.1.4)
+    capybara-screenshot (0.2.1)
+      capybara (>= 1.0)
     carrierwave (0.6.2)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
@@ -218,6 +220,7 @@ DEPENDENCIES
   autotest-inotify
   autotest-rails
   awesome_nested_set
+  capybara-screenshot
   carrierwave
   coffee-rails (~> 3.2.1)
   compass-rails
@@ -232,6 +235,7 @@ DEPENDENCIES
   rmagick
   rspec-rails
   sass-rails (~> 3.2.3)
+  selenium-webdriver
   shoulda
   spork
   therubyracer

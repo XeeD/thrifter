@@ -12,7 +12,7 @@ gem 'carrierwave'
 gem 'rmagick'
 
 # Gems used only for compiling assets
-group :assets do
+group :assets, :cucumber do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
 
@@ -24,11 +24,16 @@ group :assets do
 end
 
 # Test environment
-group :test do
+group :test, :cucumber do
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
   gem 'shoulda'
   gem 'autotest-rails'
+  gem 'capybara-screenshot'
+end
+
+group :cucumber do
+  gem 'selenium-webdriver'
 end
 
 group :development, :test do
