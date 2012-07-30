@@ -16,6 +16,12 @@ Pokud /^tento produkt nemá žádné dodatečné obrázky$/ do
   @product.photos.should be_empty
 end
 
+Pokud /^tento produkt má dodatečný obrázek "(.*?)", který je na (\d+)\. pozici$/ do |photo_title, position|
+  photo = @product.photos.find_by_title(photo_title)
+  photo.position.should == position.to_i
+  photo.should_not be_main_photo
+end
+
 Pokud /^tento produkt má obrázek "(.*?)", který je (hlavní|dodatečný)$/ do |photo_title, photo_type|
   photo = @product.photos.find_by_title(photo_title)
   photo.should_not be_nil
@@ -54,4 +60,16 @@ Pak /^obrázek produktu "(.*?)" by měl být (hlavní|dodatečný)$/ do |photo_t
   else
     photo.should_not be_main_photo
   end
+end
+
+Když /^přesunu obrázek "(.*?)" na (\d+)\. pozici$/ do |photo_title, position|
+  photo = @product.photos.find_by_title(photo_title)
+  distance = position.to_i - photo.position
+  simulate_drag_sortable(photo, distance)
+end
+
+
+Pak /^obrázek "(.*?)" by měl být na (\d+)\. pozici$/ do |photo_title, position|
+  photo = @product.photos.find_by_title(photo_title)
+  photo.position.should == position.to_i
 end
