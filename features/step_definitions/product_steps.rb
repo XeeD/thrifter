@@ -15,7 +15,7 @@ end
 Pokud /^parametr "(.*?)" je přiřazen produktu$/ do |param_item_name|
   @param_item = ParamItem.find_by_name(param_item_name)
   raise "param item #{param_item_name} not found" if @param_item.blank?
-  unless @product.template_param_items.include?(@param_item)
+  unless @product.param_items.include?(@param_item)
     raise "param item \"#{param_item_name}\" is not assigned to product"
   end
 end
