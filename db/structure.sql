@@ -84,6 +84,17 @@ CREATE TABLE `param_values` (
   KEY `index_param_values_on_value` (`value`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+CREATE TABLE `parametrizations` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_id` int(11) DEFAULT NULL,
+  `param_item_id` int(11) DEFAULT NULL,
+  `param_value_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `index_parametrizations_on_param_item_id` (`param_item_id`),
+  KEY `index_parametrizations_on_param_value_id` (`param_value_id`),
+  KEY `index_parametrizations_on_product_id` (`product_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 CREATE TABLE `product_photos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -196,3 +207,5 @@ INSERT INTO schema_migrations (version) VALUES ('20120729081424');
 INSERT INTO schema_migrations (version) VALUES ('20120729085347');
 
 INSERT INTO schema_migrations (version) VALUES ('20120729161953');
+
+INSERT INTO schema_migrations (version) VALUES ('20120730090944');

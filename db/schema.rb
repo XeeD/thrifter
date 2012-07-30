@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120729161953) do
+ActiveRecord::Schema.define(:version => 20120730090944) do
 
   create_table "brands", :force => true do |t|
     t.string "name",        :limit => 30
@@ -90,6 +90,16 @@ ActiveRecord::Schema.define(:version => 20120729161953) do
 
   add_index "param_values", ["param_item_id"], :name => "index_param_values_on_param_item_id"
   add_index "param_values", ["value"], :name => "index_param_values_on_value"
+
+  create_table "parametrizations", :force => true do |t|
+    t.integer "product_id"
+    t.integer "param_item_id"
+    t.integer "param_value_id"
+  end
+
+  add_index "parametrizations", ["param_item_id"], :name => "index_parametrizations_on_param_item_id"
+  add_index "parametrizations", ["param_value_id"], :name => "index_parametrizations_on_param_value_id"
+  add_index "parametrizations", ["product_id"], :name => "index_parametrizations_on_product_id"
 
   create_table "product_photos", :force => true do |t|
     t.string   "title"
