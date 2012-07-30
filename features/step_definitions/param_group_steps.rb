@@ -12,7 +12,7 @@ Pokud /^skupina parametrů "(.*?)" existuje a je (\d+)\. v pořadí$/ do |group_
 end
 
 # When statements
-Když /^přesunu řádek "(.*?)" o (\d+) pozici (nahoru|dolů)$/ do |name_source, distance, direction|
+Když /^přesunu řádek "(.*?)" o (\d+) pozic(?:i|e)? (nahoru|dolů)$/ do |name_source, distance, direction|
   group = ParamGroup.find_by_name(name_source)
   distance = distance.to_i * -1 if direction == 'nahoru'
   page.execute_script %{
