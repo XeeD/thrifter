@@ -34,3 +34,12 @@ Požadavek: Produktový admin upravuje obrázky k produktu
     A kliknu na tlačítko "Uložit obrázek"
     Pak obrázek produktu "otevřená lednice" by měl být hlavní
     A obrázek produktu "zavřená lednice" by měl být dodatečný
+
+  @javascript @wip
+  Scénář: změna pořadí obrázků
+    Pokud upravuji produkt "LG GB3133TIJW" a jsem na záložce "Obrázky"
+    A tento produkt má dodatečný obrázek "otevřená lednice", který je na 1. pozici
+    A tento produkt má dodatečný obrázek "detail ovládání", který je na 2. pozici
+    Když přesunu obrázek "detail ovládání" na 1. pozici
+    Pak obrázek "detail ovládání" by měl být na 1. pozici
+    A obrázek "zavřená lednice" by měl být na 2. pozici

@@ -39,6 +39,13 @@ module Admin
     ensure
       redirect_to admin_product_photos_url(product)
     end
+    
+    def sort
+      params[:product_photo].each_with_index do |id, index|
+        Product::Photo.update_all({position: index+1}, {id: id, product_id: product.id})
+      end
+      render nothing: true
+    end
 
 
     private

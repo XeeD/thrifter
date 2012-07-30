@@ -9,3 +9,9 @@ fridge_opened_photo:
   product_id: 1
   title: "otevřená lednice"
   main_photo: false
+
+fridge_controls:
+  id: 3
+  product_id: 1
+  title: "detail ovládání"
+  main_photo: false

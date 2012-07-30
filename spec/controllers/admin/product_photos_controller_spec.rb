@@ -27,6 +27,7 @@ module Admin
 
         before do
           product.stub_chain(:photos, :empty?).and_return(true)
+          product.photos.stub(reject: [])
         end
 
         it "calls new through Product.photos" do
@@ -245,19 +246,16 @@ module Admin
         end
       end
     end
-  end
-end
-__END__
-
 
     describe "POST sort" do
       it "sets position to photos according to sent params" do
-        old_order = Product.find_by_name("Samsung UE55ES8000").photos.order(:position).pluck(:id)
+        product = Product.find_by_name("Samsung UE55ES8000")
+        old_order = product.photos.order(:position).pluck(:id)
         new_order_post = old_order.reverse
 
         post :sort, product_id: product.id, product_photo: new_order_post
 
-        new_order = ProductPhoto.order(:position).pluck(:id)
+        new_order = product.photos.order(:position).pluck(:id)
         new_order.should == old_order.reverse
       end
     end

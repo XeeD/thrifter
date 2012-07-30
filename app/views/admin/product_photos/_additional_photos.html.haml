@@ -1,0 +1,19 @@
+- unless additional_product_photos.empty?
+  %table#product_additional_photos{"data-update-url" => sort_admin_product_photos_path(product)}
+    %thead
+      %th= Product::Photo.human_attribute_name(:title)
+      %td Akce
+    %tbody.sortable
+      - for photo in additional_product_photos
+        = content_tag_for :tr, photo do
+          %th= photo.title || content_tag(:em, "bez popisku")
+          %td
+            %ul.actions
+              %li= link_to "Smazat",
+                admin_product_photo_path(product, photo),
+                method: :delete,
+                confirm: "Opravdu chcete smazat tuto fotku?"
+              %li= link_to "Upravit", edit_admin_product_photo_path(product, photo)
+- else
+  .empty_set
+    Produkt nemá žádný obrázek

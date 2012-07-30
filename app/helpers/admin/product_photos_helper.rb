@@ -12,5 +12,9 @@ module Admin
       path = product_photo_path_for_form(product, product_photo)
       semantic_form_for([:admin, product, product_photo], url: path, &block)
     end
+
+    def additional_product_photos
+      product_photos.reject(&:new_record?).reject(&:main_photo?)
+    end
   end
 end

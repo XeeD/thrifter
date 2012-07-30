@@ -41,6 +41,16 @@ describe ProductPhotoUploader do
     end
   end
 
+  context "big_admin_thumb version" do
+    it "should scale down a landscape image to fit within 200 by 200 pixels" do
+      uploader.big_admin_thumb.should be_no_larger_than(200, 200)
+    end
+
+    it "saves it as admin_thumb_image.png" do
+      uploader.big_admin_thumb.path.should =~ regexp_for_path_and_filename("big_admin_thumb_image.jpg")
+    end
+  end
+
   context "original version" do
     it "saves it as original_image.png" do
       uploader.original.path.should =~ regexp_for_path_and_filename("original_image.png")
