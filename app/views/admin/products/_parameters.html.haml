@@ -3,6 +3,14 @@
     %li= "#{group.name}:" rescue nil
     %ol
       - params.each do |param|
-        %li= param.name
+        %li
+          %label{for: "param_value_#{param.object_id}"}
+            =param.name
+            - if param.choice_type == "input"
+              %input{type: :text, id: "param_value_#{param.object_id}"}
+            - elsif param.choice_type == "radio_buttons"
+              %input{type: :radio}
+            - else
+              %input{type: :check_box}
 - else
   = "Nebyly přiřazeny žádné parametry"
