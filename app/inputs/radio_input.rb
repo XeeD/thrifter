@@ -34,7 +34,7 @@ class RadioInput < Formtastic::Inputs::RadioInput
   def sub_choice_nested_html(model)
     template.content_tag(:ul, model.children.collect do |child|
       choice_nested_html(child)
-    end.join("\n").html_safe, {:style => "margin-left: 30px;", :class => "sub_item_#{model.id} sub_item"}
+    end.join("\n").html_safe, {:class => "sub_item_#{model.id} sub_item"}
     ) unless model.leaf?
   end
 end
