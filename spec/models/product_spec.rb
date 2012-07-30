@@ -9,6 +9,13 @@ describe Product do
   it { should have_many(:photos).dependent(:destroy) }
   it { should have_one(:main_photo).conditions(main_photo: true) }
   it { should have_many(:additional_photos).conditions(main_photo: false) }
+  it { should have_one(:preferred_categorization) }
+  it { should have_one(:preferred_category).through(:preferred_categorization) }
+  it { should have_one(:param_template).through(:preferred_category) }
+  it { should have_many(:template_param_items).through(:param_template) }
+  it { should have_many(:parametrizations) }
+  it { should have_many(:param_items).through(:parametrizations) }
+  it { should have_many(:param_values).through(:parametrizations) }
 
   # Validations
   # name
