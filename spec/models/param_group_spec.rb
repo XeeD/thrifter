@@ -9,7 +9,10 @@ describe ParamGroup do
   # name
   it { should validate_presence_of(:name) }
   it { should ensure_length_of(:name).is_at_most(40) }
-  it { should validate_uniqueness_of(:name).scoped_to(:param_template_id) }
+  it {
+    ParamGroup.create(valid_param_group_attributes)
+    should validate_uniqueness_of(:name).scoped_to(:param_template_id)
+  }
 
   context "with valid attributes" do
     it "should be valid" do
