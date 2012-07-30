@@ -5,8 +5,6 @@ describe ParamValue do
 
   # Associations
   it { should belong_to(:param_item) }
-  it { should have_many(:parametrizations) }
-  it { should have_many(:products).through(:parametrizations) }
 
   # Validations
   # param_item
