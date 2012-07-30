@@ -7,7 +7,7 @@
     as: :select,
     collection: Category::CATEGORY_TYPES,
     hint: "Navigační kategorie mohou být podraženy pouze jiným navigačním kategoriím, produktové kategorie pouze navigačním, dodatečné pouze produktovým."
-  = f.input :parent_category, :as => :radio, :member_label => :plural_name
+  = f.input :parent_category, as: :radio, member_label: :plural_name, nested_set: true, collection: Category.roots
 
   = f.actions do
     = f.submit
