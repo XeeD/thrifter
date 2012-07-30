@@ -9,8 +9,8 @@ class ParamItem < ActiveRecord::Base
   belongs_to :param_template
 
   has_many :param_values
-
-  #accepts_nested_attributes_for :param_values, allow_destroy: true, reject_if: :reject_param_values
+  has_many :parametrizations
+  has_many :products, through: :parametrizations
 
   # Enumerations
   IMPORTANCE = {
@@ -63,8 +63,4 @@ class ParamItem < ActiveRecord::Base
     self.choice_type ||= 'input'
     self.importance  ||= 'important'
   end
-
-  #def reject_param_values(attrs)
-  #  attrs['value'].blank?
-  #end
 end

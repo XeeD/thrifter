@@ -9,13 +9,14 @@ class Product < ActiveRecord::Base
     product.has_many :additional_photos, conditions: {main_photo: false}
   end
 
-  has_one  :preferred_categorization, class_name: "Categorization", conditions: {preferred: 1}
+  has_one  :preferred_categorization, class_name: "Categorization", conditions: {preferred: true}
   has_one  :preferred_category, class_name: "Category", through: :preferred_categorization, source: :category
   has_one  :param_template, through: :preferred_category
-  has_many :param_items, through: :param_template
+  has_many :template_param_items, through: :param_template, class_name: "ParamItem"
 
-  has_many :param_values
-
+  has_many :parametrizations
+  has_many :param_items, through: :parametrizations
+  has_many :param_values, through: :parametrizations
 
   # Validations
   validates :name,
