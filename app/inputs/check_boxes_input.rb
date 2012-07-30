@@ -11,26 +11,25 @@
 class CheckBoxesInput < Formtastic::Inputs::CheckBoxesInput
 
   def to_html
-    unless options[:nested_set]
-      super
-    else
+    if options[:nested_set].present?
       nested_wrapping
+    else
+      super
     end
   end
 
   def nested_wrapping
-    @model = sanitized_method_name.singularize.classify.constantize
-
-    choices_wrapping do
-      legend_html <<
-          hidden_field_for_all <<
-          choices_group_wrapping do
-            # associated collection of records
-            collection.map { |choice|
-                name, id = choice
-                choice_nested_html(@model.find(id))
-            }.join("\n").html_safe
-          end
+    input_wrapping do
+      choices_wrapping do
+        legend_html <<
+            hidden_field_for_all <<
+              choices_group_wrapping do
+                # passed collection records
+                raw_collection.map { |choice|
+                  choice_nested_html(choice)
+                }.join("\n").html_safe
+              end
+      end
     end
   end
 
@@ -51,7 +50,7 @@ class CheckBoxesInput < Formtastic::Inputs::CheckBoxesInput
   def sub_choice_nested_html(model)
     template.content_tag(:ul, model.children.collect do |child|
       choice_nested_html(child)
-    end.join("\n").html_safe, {:style => "margin-left: 35px", :class => "sub_item-#{model.id} sub-item"}
+    end.join("\n").html_safe, {:class => "sub_item_#{model.id} sub_item"}
     ) unless model.leaf?
   end
 end
