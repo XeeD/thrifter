@@ -5,8 +5,6 @@ describe ParamItem do
   it { should belong_to(:param_template) }
   it { should belong_to(:param_group) }
   it { should have_many(:param_values) }
-  it { should have_many(:parametrizations) }
-  it { should have_many(:products).through(:parametrizations) }
 
   # Validations
   # param_template
