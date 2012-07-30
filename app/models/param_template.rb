@@ -4,7 +4,7 @@ class ParamTemplate < ActiveRecord::Base
   # Associations
   has_many :categories
   has_many :groups, class_name: "ParamGroup", order: :position
-  has_many :param_items
+  has_many :param_items, class_name: "ParamItem"
 
   # Attributes
   attr_accessible :name, :category_ids
