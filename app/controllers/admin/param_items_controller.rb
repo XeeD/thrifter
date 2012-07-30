@@ -50,8 +50,8 @@ module Admin
 
     def param_item
       @param_item ||= params[:id] ?
-          param_template.param_items.find(params[:id]) :
-          param_template.param_items.new(params[:param_item])
+          param_items.find(params[:id]) :
+          param_items.new(params[:param_item])
     end
 
     helper_method :param_item
