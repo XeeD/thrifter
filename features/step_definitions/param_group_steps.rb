@@ -13,14 +13,7 @@ end
 
 # When statements
 Když /^přesunu řádek "(.*?)" o (\d+) pozic(?:i|e)? (nahoru|dolů)$/ do |name_source, distance, direction|
-  group = ParamGroup.find_by_name(name_source)
-  distance = distance.to_i * -1 if direction == 'nahoru'
-  page.execute_script %{
-    $.getScript("https://raw.github.com/mattheworiordan/jquery.simulate.drag-sortable.js/master/jquery.simulate.drag-sortable.js", function() {
-      $("tr#param_group_#{group.id}").simulateDragSortable({ move: #{distance.to_i}});
-    });
-  }
-  sleep 1 # Hack to ensure ajax finishes running (tweak/remove as needed for your suite)
+  simulate_drag_sortable(ParamGroup.find_by_name(name_source), distance, direction)
 end
 
 # Then statements
