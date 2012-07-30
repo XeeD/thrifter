@@ -1,7 +1,7 @@
 functions:
   id: 1
   param_template_id: 1
-  name: "Funkce"
+  name: "Funkce a výbava"
   position: 1
 
 dimensions:
@@ -9,3 +9,9 @@ dimensions:
   param_template_id: 1
   name: "Rozměry"
   position: 2
+
+parameters:
+  id: 3
+  param_templatE_id: 1
+  name: "Parametry"
+  position: 3

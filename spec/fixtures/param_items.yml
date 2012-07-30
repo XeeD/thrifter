@@ -1,4 +1,4 @@
-param_item_01:
+width:
   id: 1
   name: "Šířka"
   unit: "cm"
@@ -7,3 +7,21 @@ param_item_01:
   value_type: "string"
   param_template_id: 1
   param_group_id: 2
+
+color:
+  id: 2
+  name: "Barva"
+  importance: "important"
+  choice_type: "radio_buttons"
+  value_type: "string"
+  param_template_id: 1
+  param_group_id: 3
+
+fast_freeze:
+  id: 3
+  name: "Speciální funkce"
+  importance: "important"
+  choice_type: "radio_buttons"
+  value_type: "string"
+  param_template_id: 1
+  param_group_id: 1
