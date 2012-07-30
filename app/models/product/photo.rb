@@ -1,6 +1,7 @@
 class Product::Photo < ActiveRecord::Base
   # Macros
   mount_uploader :image, ProductPhotoUploader
+  acts_as_list scope: 'product_id = #{product_id} && main_photo = #{main_photo}'
 
   # Associations
   belongs_to :product

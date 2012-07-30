@@ -3,15 +3,18 @@ fridge_closed_photo:
   product_id: 1
   title: "zavřená lednice"
   main_photo: true
+  position: 1
 
 fridge_opened_photo:
   id: 2
   product_id: 1
   title: "otevřená lednice"
   main_photo: false
+  position: 1
 
 fridge_controls:
   id: 3
   product_id: 1
   title: "detail ovládání"
   main_photo: false
+  position: 2
