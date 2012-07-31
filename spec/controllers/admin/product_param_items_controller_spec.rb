@@ -3,6 +3,6 @@ require 'spec_helper'
 
 module Admin
   describe ProductParamItemsController do
-    
+
   end
 end
