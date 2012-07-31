@@ -27,7 +27,7 @@ end
 
 Pak /^parametr "(.*?)" by měl být smazán$/ do |param_name|
   begin
-    find("#params").should_not have_content("#{param_name}")
+    find("#param_items").should_not have_content("#{param_name}")
   rescue Capybara::ElementNotFound
     page.should have_selector(".empty_set")
   end
