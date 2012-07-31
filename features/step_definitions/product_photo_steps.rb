@@ -7,7 +7,7 @@ Pokud /^upravuji produkt "(.*?)" a jsem na záložce "(.*?)"$/ do |product_name,
           when "Obrázky"
             admin_product_photos_path(@product)
           when "Parametry"
-            admin_product_parameter_items_path(@product)
+            admin_product_params_path(@product)
           else
             raise "tab #{tab} in editation of product is not known"
         end
