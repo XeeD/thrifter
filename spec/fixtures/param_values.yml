@@ -1,0 +1,32 @@
+width_100:
+  id: 1
+  value: 100
+  param_item_id: 1
+
+width_200:
+  id: 2
+  value: 200
+  param_item_id: 1
+
+color_blue:
+  id: 3
+  value: "modrá"
+  param_item_id: 2
+
+color_white:
+  id: 4
+  value: "bílá"
+  param_item_id: 2
+
+color_black:
+  id: 5
+  value: "černá"
+  param_item_id: 2
+
+fast_defrosting:
+  id: 6
+  value: "rychlé odmražování"
+
+bio_shield:
+  id: 7
+  value: "BioShield"
