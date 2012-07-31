@@ -4,7 +4,7 @@ width:
   unit: "cm"
   importance: "important"
   choice_type: "input"
-  value_type: "string"
+  value_type: "int"
   param_template_id: 1
   param_group_id: 2
 
@@ -12,7 +12,7 @@ color:
   id: 2
   name: "Barva"
   importance: "important"
-  choice_type: "radio_buttons"
+  choice_type: "choices"
   value_type: "string"
   param_template_id: 1
   param_group_id: 3
@@ -21,7 +21,36 @@ fast_freeze:
   id: 3
   name: "Speciální funkce"
   importance: "important"
-  choice_type: "radio_buttons"
+  choice_type: "choices"
   value_type: "string"
+  param_template_id: 1
+  param_group_id: 1
+
+height:
+  id: 4
+  name: "Výška"
+  unit: "cm"
+  importance: "important"
+  choice_type: "input"
+  value_type: "int"
+  param_template_id: 1
+  param_group_id: 2
+
+depth:
+  id: 5
+  name: "Hloubka"
+  unit: "cm"
+  importance: "important"
+  choice_type: "input"
+  value_type: "int"
+  param_template_id: 1
+  param_group_id: 2
+
+ice_maker:
+  id: 6
+  name: "Výrobník ledu"
+  importance: "important"
+  choice_type: "choices"
+  value_type: "bool"
   param_template_id: 1
   param_group_id: 1
