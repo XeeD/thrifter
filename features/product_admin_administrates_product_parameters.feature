@@ -1,4 +1,5 @@
 # language: cs
+@wip
 Požadavek: Produktový admin upravuje parametry produktu
 
   Abych mohl zákazníkům přehledně poskytnou podrobné informace o produktu
@@ -8,7 +9,7 @@ Požadavek: Produktový admin upravuje parametry produktu
 
   Kontext:
     Pokud jsem přihlášený jako "produktový admin"
-    A upravuji produkt "LG GB3133TIJW"
+    A upravuji produkt "LG GB3133TIJW" a jsem na záložce "Parametry"
 
   Náčrt Scénáře: vyplnění hodnoty parametru
     Pokud parametr "<param_type>" je přiřazen produktu
