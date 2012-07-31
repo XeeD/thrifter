@@ -10,9 +10,10 @@ Thrifter::Application.routes.draw do
               path: "produkty",
               path_names: {new: "novy", edit: "editace"},
               except: :show do
-      resources :photos, except: [:show], controller: "product_photos" do
+      resources :photos, except: [:show], controller: "product_photos", path: "fotky" do
         collection { post :sort }
       end
+      resources :params, controller: "product_param_items", path: "parametry"
     end
 
     resources :categories, path: "kategorie", path_names: {new: "nova", edit: "editace"}, except: :show
