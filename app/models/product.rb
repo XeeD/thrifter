@@ -15,6 +15,13 @@ class Product < ActiveRecord::Base
   has_many :param_items, through: :param_template, class_name: "ParamItem"
   has_many :param_values, through: :template_param_items, class_name: "ParamValue"
 
+  #has_many :parametrizations
+  #has_many :parametrization_param_items, through: :parametrizations
+  #has_many :parametrization_param_values, through: :parametrizations, source: :param_value
+
+  #accepts_nested_attributes_for :parametrizations
+  #accepts_nested_attributes_for :parametrization_param_values
+
   # Validations
   validates :name,
             presence: true,
