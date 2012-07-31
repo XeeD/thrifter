@@ -27,7 +27,7 @@ class ParamItem < ActiveRecord::Base
 
   CHOICE_TYPES = {
       "Normální" => "input",
-      "Výběr z možností" => "radio_buttons",
+      "Výběr z možností" => "choices",
       "Zaškrtávací" => "check_boxes"
   }
 
