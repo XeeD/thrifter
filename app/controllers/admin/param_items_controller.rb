@@ -33,7 +33,7 @@ module Admin
 
     def destroy
       param_item.destroy
-      flash[:notice] = "Parametr #{param_item.name} byl smazána"
+      flash[:notice] = "Parametr #{param_item.name} byl smazán"
     rescue ActiveRecord::RecordNotFound
       flash[:error] = "Nelze najít daný parametr"
     ensure
