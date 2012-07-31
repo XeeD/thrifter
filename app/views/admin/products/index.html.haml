@@ -17,7 +17,7 @@
           %td
             %ul.actions
               %li= link_to "Editovat", edit_admin_product_path(product)
-              %li= link_to "Smazat", admin_product_path(product), :method => :delete
+              %li= link_to "Smazat", admin_product_path(product), :method => :delete, confirm: "Opravdu smazat produkt #{product.name}?"
 
 - else
   .empty_set
