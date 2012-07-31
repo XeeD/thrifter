@@ -14,7 +14,7 @@
           %th= param_item.name
           %td
             %ul.actions
-              %li.delete= link_to "Smazat", admin_param_template_param_item_path(param_template, param_item), method: :delete
+              %li.delete= link_to "Smazat", admin_param_template_param_item_path(param_template, param_item), method: :delete, confirm: "Opravdu smazat parametr #{param_item.name}?"
               %li.edit= link_to "Upravit", edit_admin_param_template_param_item_path(param_template, param_item)
 - else
   .empty_set

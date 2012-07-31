@@ -15,7 +15,7 @@
           %td
             %ul.actions
               %li.edit= link_to "Upravit", edit_admin_param_template_group_path(param_template, param_group)
-              %li.delete= link_to "Smazat", admin_param_template_group_path(param_template, param_group), method: :delete
+              %li.delete= link_to "Smazat", admin_param_template_group_path(param_template, param_group), method: :delete, confirm: "Opravdu smazat skupinu parametrů #{param_group.name}?"
 - else
   .empty_set
     Zatím nebyly vytvořeny žádné skupiny parametrů
