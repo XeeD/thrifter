@@ -53,7 +53,7 @@ module Helpers
 
   def valid_param_item_attributes
     {
-        name: "Výška",
+        name: "Tloušťka",
         unit: "cm",
         value_type: "int",
         choice_type: "input",
