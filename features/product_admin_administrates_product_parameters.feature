@@ -1,5 +1,4 @@
 # language: cs
-@wip
 Požadavek: Produktový admin upravuje parametry produktu
 
   Abych mohl zákazníkům přehledně poskytnou podrobné informace o produktu
@@ -10,34 +9,65 @@ Požadavek: Produktový admin upravuje parametry produktu
   Kontext:
     Pokud jsem přihlášený jako "produktový admin"
     A upravuji produkt "LG GB3133TIJW"
-    A parametr "Šířka" je přiřazen produktu
-    #A parametr "Barva" je přiřazen produktu
-    #A parametr "Speciální funkce" je přiřazen produktu
-    #A začnu vyplňovat parametry produktu
 
-  Scénář: vyplnění hodnoty parametru
-    Když vyplním "100" do pole "Šířka"
+  Náčrt Scénáře: vyplnění hodnoty parametru
+    Pokud parametr "<param_type>" je přiřazen produktu
+    Když vyplním "<value>" do pole "<param_type>"
     A kliknu na tlačítko "Uložit produkt"
-    Pak by měl mít parametr "Šířka" u produktu hodnotu "100"
+    Pak hodnota parametru "<param_type>" by měla být "<value>"
 
-  #Scénář: vybrání jedné hodnoty z nabídky parametru
-  #  Když vyberu hodnotu "bílá" ze seznamu "Barva"
-  #  A kliknu na tlačítko "Uložit produkt"
-  #  Pak by měl mít parametr "Barva" u produktu hodnotu "bílá"
+    Příklady:
+    | param_type | value |
+    | Šířka      | 100   |
+    | Výška      | 150   |
+    | Hloubka    | 80    |
 
-  #Scénář: zaškrtnutí několika hodnot z nabídky parametru
-  #  Když zaškrtnu pole "Dětská pojistka" pro vlastnost "Speciální funkce"
-  #  A zaškrtnu pole ""
-  #  A kliknu na tlačítko "Uložit produkt"
-  #  Pak by měl mít parametr "Speciální funkce" u produktu hodnotu "Dětská pojistka"
+  Náčrt Scénáře: změna hodnoty parametru
+    Pokud parametr "<param_type>" je přiřazen produktu a má hodnotu "<old_value>"
+    Když změním hodnotu pole "<param_type>" na "<value>"
+    A kliknu na tlačítko "Uložit produkt"
+    Pak hodnota parametru "<param_type>" by měla být "<value>"
 
-  #Scénář: upravení hodnot parametrů
-  #  Když vyplním u skupiny "Rozměry" hodnotu "150" v poli "Šířka"
-  #  A vyberu u skupiny "Parametry" hodnotu "černá" ze seznamu "Barva"
-  #  A odškrtnu u skupiny "Funkce a výbava" hodnotu "dětská pojistka" pro vlastnost "Speciální výbava"
-  #  A zaškrtnu u skupiny "Funkce a výbava" hodnotu "držák na lahve" pro vlastnost "Speciální výbava"
-  #  A kliknu na tlačítko "Uložit produkt"
-  #  Pak parametr "Šířka" by měl mít hodnotu "150"
-  #  Pak parametr "Barva" by měl mít hodnotu "černá"
-  #  Pak parametr "Speciální výbava" by měl mít jednu z hodnot "držák na lahve"
-  #  Ale parametr "Speciální výbava" by neměl mít jednu z hodnot "dětská pojistka"
+    Příklady:
+    | param_type | old_value | value |
+    | Šířka      | 100       | 120   |
+    | Výška      | 150       | 170   |
+    | Hloubka    | 80        | 100   |
+
+  Scénář: vybrání jedné hodnoty z nabídky několika hodnot parametru
+    Pokud parametr "Barva" je přiřazen produktu
+    Když vyberu hodnotu "bílá" ze seznamu "Barva"
+    A kliknu na tlačítko "Uložit produkt"
+    Pak hodnota parametru "Barva" by měla být "bílá"
+
+  Scénář: změna jedné hodnoty z nabídky několika hodnot parametru
+    Pokud parametr "Barva" je přiřazen produktu a má hodnotu "bílá"
+    Když vyberu hodnotu "černá" ze seznamu "Barva"
+    A kliknu na tlačítko "Uložit produkt"
+    Pak hodnota parametru "Barva" by měla být "černá"
+
+  Scénář: zaškrtnutí hodnoty z nabídky několika hodnot parametru
+    Pokud parametr "Speciální funkce" je přiřazen produktu
+    Když zaškrtnu pole "Dětská pojistka" pro vlastnost "Speciální funkce"
+    A kliknu na tlačítko "Uložit produkt"
+    Pak jedna z hodnot parametru "Speciální funkce" by měla být "Dětská pojistka"
+    Ale jedna z hodnot parametru "Speciální funkce" by neměla být "BioShield"
+
+  Scénář: vybrání pravdivostní hodnoty z nabídky
+    Pokud parametr "Výrobník ledu" je přiřazen produktu
+    Když vyberu hodnotu "Ano" ze seznamu "Výrobník ledu"
+    A kliknu na tlačítko "Uložit produkt"
+    Pak hodnota parametru "Výrobník ledu" by měla být "Ano"
+
+  Scénář: změna pravdivostní hodnoty v nabídce
+    #Pokud parametr "Výrobník ledu" je přiřazen produktu a má hodnotu ""
+    #Když vyberu hodnotu "Ne" ze seznamu "Výrobník ledu"
+
+  Scénář: přidání nové hodnoty do seznamu
+    Pokud parametr "Speciální funkce" je přiřazen produktu
+    Když přidám novou hodnotu "Fuzzy Logic" do seznamu "Speciální funkce"
+    A kliknu na tlačítko "Uložit produkt"
+    Pak jedna z hodnot parametru "Speciální funkce" by měla být "Fuzzy Logic"
+
+  Scénář: přidání více nových hodnot najednou do seznamu
+
