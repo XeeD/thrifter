@@ -1,0 +1,17 @@
+parametrization_01:
+  id: 1
+  product_id: 1
+  param_item_id: 1
+  param_value_id: 1
+
+parametrization_02:
+  id: 2
+  product_id: 1
+  param_item_id: 2
+  param_value_id: 4
+
+parametrization_03:
+  id: 3
+  product_id: 1
+  param_item_id: 3
+  param_value_id: 6
