@@ -1,0 +1,16 @@
+%h2 Parametry produktu #{product.name}
+
+- unless product.param_template.blank?
+  - unless product.param_template.param_items.blank?
+    - product.param_template.param_items.each do |param|
+      %ul
+        %li #{param.name}, #{param.choice_type}
+        %ul
+          %li
+            - unless param.choice_type == "input"
+              - param.param_values.each do |pv|
+                = "#{pv.value}, "
+  - else
+    = Šablona parametrů nemá přiřazeny žádné parametry
+- else
+  = Produkt nemá žádnou šablonu parametrů
