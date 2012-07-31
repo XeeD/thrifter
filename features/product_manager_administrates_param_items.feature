@@ -18,10 +18,10 @@ Požadavek: Produktový manager spravuje parametry
   Scénář: přidání nového parametru přes formulář
     Když kliknu na řádku u šablony parametrů "Chladničky" na odkaz "Zobrazit"
     A kliknu na odkaz "Přidat nový parametr"
-    A vyplním "Výška" do pole "Název parametru"
+    A vyplním "Funkce a výbava" do pole "Název parametru"
     A kliknu na tlačítko "Vytvořit nový parametr"
-    Pak bych měl vidět zprávu "Parametr Výška byl vytvořen"
-    A parametr "Výška" by měl být vytvořen
+    Pak bych měl vidět zprávu "Parametr Funkce a výbava byl vytvořen"
+    A parametr "Funkce a výbava" by měl být vytvořen
 
   Scénář: smazání existujícího parametru
     Pokud parametr "Šířka" existuje
@@ -34,10 +34,10 @@ Požadavek: Produktový manager spravuje parametry
     Pokud parametr "Šířka" existuje
     Když kliknu na řádku u šablony parametrů "Chladničky" na odkaz "Zobrazit"
     A kliknu na řádku u parametru "Šířka" na odkaz "Upravit"
-    A změním hodnotu pole "Název parametru" na "Hloubka"
+    A změním hodnotu pole "Název parametru" na "Tloušťka"
     A kliknu na tlačítko "Uložit parametr"
-    Pak bych měl vidět zprávu "Parametr Hloubka byl upraven"
-    A parametr "Hloubka" by měl být upraven
+    Pak bych měl vidět zprávu "Parametr Tloušťka byl upraven"
+    A parametr "Tloušťka" by měl být upraven
 
   Scénář: zobrazení existujícího parametru v detailu šablony parametrů
     Pokud parametr "Šířka" existuje
