@@ -3,8 +3,10 @@ require 'spec_helper'
 
 module Admin
   describe ProductPhotosController do
+    fixtures :products
+
     let(:product_photo) { mock_model(Product::Photo).as_null_object }
-    let(:product) { Product.find_by_name("Samsung UE55ES8000") }
+    let(:product) { products(:samsung_tv) }
     let(:new_product_photo) { mock_model(Product::Photo).as_new_record }
 
     before do
