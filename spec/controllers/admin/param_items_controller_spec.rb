@@ -3,8 +3,10 @@ require 'spec_helper'
 
 module Admin
   describe ParamItemsController do
+    fixtures :param_templates
+
     let(:param_item) { mock_model(ParamItem).as_null_object }
-    let(:param_template) { ParamTemplate.find_by_name("Chladničky") }
+    let(:param_template) { param_templates(:fridges) }
 
     before do
       ParamTemplate.stub(find: param_template)

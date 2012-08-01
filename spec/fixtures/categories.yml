@@ -7,6 +7,7 @@ fridges:
   category_type: "navigational"
   lft: 1
   rgt: 10
+  shop_id: 1
 
 sbs_fridges:
   id: 2
@@ -19,6 +20,7 @@ sbs_fridges:
   parent_id: 1
   lft: 2
   rgt: 3
+  shop_id: 1
 
 combined_fridges:
   id: 3
@@ -30,6 +32,7 @@ combined_fridges:
   parent_id: 1
   lft: 4
   rgt: 9
+  shop_id: 1
 
 combined_fridges_up:
   id: 4
@@ -41,6 +44,7 @@ combined_fridges_up:
   parent_id: 3
   lft: 5
   rgt: 6
+  shop_id: 1
 
 combined_fridges_down:
   id: 5
@@ -52,3 +56,79 @@ combined_fridges_down:
   parent_id: 3
   lft: 7
   rgt: 8
+  shop_id: 1
+
+sporilek_tvs:
+  id: 6
+  short_name: "Televize"
+  url:  "televize"
+  plural_name: "Televize"
+  category_type: "navigational"
+  lft: 11
+  rgt: 16
+  shop_id: 1
+
+sporilek_tvs_led:
+  id: 7
+  short_name: "LED televize"
+  url:  "led-televize"
+  plural_name: "LED televize"
+  singular_name: "LED televize"
+  category_type: "product_list"
+  lft: 12
+  rgt: 13
+  shop_id: 1
+
+sporilek_tvs_3d:
+  id: 8
+  short_name: "3D"
+  url:  "3d-televize"
+  plural_name: "3D televize"
+  singular_name: "3D televize"
+  category_type: "product_list"
+  lft: 14
+  rgt: 15
+  shop_id: 1
+
+sporilek_3d_tech:
+  id: 9
+  short_name: "3D technologie"
+  url:  "3d-technologie"
+  plural_name: "3D technologie"
+  category_type: "navigational"
+  lft: 16
+  rgt: 23
+  shop_id: 1
+
+sporilek_3d_tech_tvs:
+  id: 10
+  short_name: "Televize"
+  url:  "3d-technologie-televize"
+  plural_name: "3D technologie: Televize"
+  singular_name: "3D televize"
+  category_type: "product_list"
+  lft: 17
+  rgt: 22
+  shop_id: 1
+
+sporilek_3d_tech_tvs_led:
+  id: 11
+  short_name: "LED LCD"
+  url:  "3d-technologie-led-lcd"
+  plural_name: "3D technologie: LED LCD"
+  singular_name: "3D LED LCD"
+  category_type: "additional"
+  lft: 18
+  rgt: 19
+  shop_id: 1
+
+sporilek_3d_tech_tvs_plasma:
+  id: 12
+  short_name: "Plazmové"
+  url:  "3d-technologie-plazmy"
+  plural_name: "3D technologie: Plazmové TV"
+  singular_name: "3D plazmová TV"
+  category_type: "additional"
+  lft: 20
+  rgt: 21
+  shop_id: 1
