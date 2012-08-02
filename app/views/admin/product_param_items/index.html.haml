@@ -6,7 +6,7 @@
     = form_tag do
       %table
         %tbody
-          - product.param_template.param_items.each do |param|
+          - product.param_template.param_items.sort{|pi1, pi2| (pi1.param_group.position rescue 0) <=> (pi2.param_group.position rescue 0)}.each do |param|
             %tr
               %td
                 = label_tag("param_items_#{param.id}", param.name)
