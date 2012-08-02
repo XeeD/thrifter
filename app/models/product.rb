@@ -11,20 +11,13 @@ class Product < ActiveRecord::Base
 
   has_one  :preferred_categorization, class_name: "Categorization", conditions: {preferred: true}
   has_one  :preferred_category, class_name: "Category", through: :preferred_categorization, source: :category
+  has_one  :param_template, through: :preferred_category
   has_many :param_items, through: :param_template, class_name: "ParamItem"
   has_many :param_values, through: :template_param_items, class_name: "ParamValue"
 
-  # Attributes
-  def param_template
-    preferred_category.assigned_param_template
-  end
-
-  #has_many :parametrizations
-  #has_many :parametrization_param_items, through: :parametrizations
-  #has_many :parametrization_param_values, through: :parametrizations, source: :param_value
-
-  #accepts_nested_attributes_for :parametrizations
-  #accepts_nested_attributes_for :parametrization_param_values
+  has_many :parametrizations
+  has_many :parametrization_param_items,  through: :parametrizations
+  has_many :parametrization_param_values, through: :parametrizations, source: :param_value
 
   # Validations
   validates :name,
@@ -76,4 +69,8 @@ class Product < ActiveRecord::Base
   validates :external_id,
             presence: true,
             numericality: {only_integer: true}
+
+  def has_param_value?(param_item_name, param_value)
+    self.parametrization_param_values.joins(:param_item).where(["param_items.name = ?", param_item_name]).pluck("param_values.value").include?(param_value)
+  end
 end
