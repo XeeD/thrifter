@@ -58,6 +58,10 @@ class ParamItem < ActiveRecord::Base
             length: {maximum: 15},
             inclusion: {in: IMPORTANCE.values}
 
+  def is_sortable?
+    self.importance == IMPORTANCE.fetch("Řazení")
+  end
+
   def set_defaults
     self.value_type  ||= 'string'
     self.choice_type ||= 'input'
