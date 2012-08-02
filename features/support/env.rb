@@ -17,6 +17,7 @@ Capybara.default_selector = :css
 
 # Use Selenium
 Capybara.javascript_driver = :selenium
+Capybara::Selenium::Remote.use '192.168.0.138'
 
 # By default, any exception happening in your Rails application will bubble up
 # to Cucumber so that your scenario will fail. This is a different from how 
