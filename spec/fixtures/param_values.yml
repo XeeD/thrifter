@@ -25,8 +25,15 @@ color_black:
 
 fast_defrosting:
   id: 6
-  value: "rychlé odmražování"
+  value: "Rychlé odmražování"
+  param_item_id: 3
 
 bio_shield:
   id: 7
   value: "BioShield"
+  param_item_id: 3
+
+big_box:
+  id: 8
+  value: "BigBox"
+  param_item_id: 3
