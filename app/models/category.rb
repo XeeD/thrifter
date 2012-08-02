@@ -45,6 +45,17 @@ class Category < ActiveRecord::Base
     end
   end
 
+  def assigned_param_template
+    case category_type
+      when :product_list
+        param_template
+      when :additional
+        ancestors.where(category_type: :product_list).first.param_template
+      else
+        nil
+    end
+  end
+
   # Enumerations
   CATEGORY_TYPES = {
       "Navigační"  => :navigational,
