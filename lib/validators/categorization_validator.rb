@@ -1,27 +1,27 @@
 # encoding: UTF-8
 
 class CategorizationValidator < ActiveModel::Validator
-  attr_reader :model
+  attr_reader :record
 
-  def validate(model)
-    @model = model
+  def validate(record)
+    @record = record
     validate_constraints
   end
 
   def error(message)
-    model.errors.add(:base, message)
+    record.errors.add(:base, message)
   end
 
   def validate_constraints
     # Product can have only one preferred category in shop
-    if model.preferred? and product_has_preferred_category_in_shop?
-      error "Produkt #{model.product.name} již má v tomto obchodě hlavní katgorii"
+    if record.preferred? and product_has_preferred_category_in_shop?
+      error "Produkt #{record.product.name} již má v tomto obchodě hlavní katgorii"
     end
 
     # Product cannot be assigned to additional category when it has no preferred category in that shop
-    unless model.preferred?
+    unless record.preferred?
       unless product_has_preferred_category_in_shop?
-        error "Produkt #{model.product.name} nemá v tomto obchodě určenou hlavní katgorii, nemůžeme jej přidat do dodatečné kategorie"
+        error "Produkt #{record.product.name} nemá v tomto obchodě určenou hlavní katgorii, nemůžeme jej přidat do dodatečné kategorie"
       end
     end
 
@@ -31,7 +31,7 @@ class CategorizationValidator < ActiveModel::Validator
     end
 
     # Product cannot be assigned to navigational category
-    if model.category.navigational?
+    if record.category.navigational?
       error "Produkt lze přidat pouze do kategorie se stejnou šablonou parametrů, jako má jeho hlavní kategorie"
     end
 
@@ -44,18 +44,18 @@ class CategorizationValidator < ActiveModel::Validator
   private
 
   def product_has_preferred_category_in_shop?
-    model.categorizations_from_same_shop.where(categorizations: {preferred: true}).exists?
+    record.categorizations_from_same_shop.where(categorizations: {preferred: true}).exists?
   end
 
   def sample_preferred_category
-    Categorization.where(product_id: model.product_id, preferred: true).first.category
+    Categorization.where(product_id: record.product_id, preferred: true).first.category
   end
 
   def category_has_the_same_param_template_as_preferred?
-    model.category.assigned_param_template_id == sample_preferred_category.assigned_param_template_id
+    record.category.assigned_param_template_id == sample_preferred_category.assigned_param_template_id
   end
 
   def assigned_to_ancestors_of_category?
-    model.category.ancestors.joins(:categorizations).where(categorizations: {product_id: model.product_id}).exists?
+    record.category.ancestors.joins(:categorizations).where(categorizations: {product_id: record.product_id}).exists?
   end
 end
