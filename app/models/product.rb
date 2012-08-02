@@ -71,6 +71,6 @@ class Product < ActiveRecord::Base
             numericality: {only_integer: true}
 
   def has_param_value?(param_item_name, param_value)
-    self.parametrization_param_values.joins(:param_item).where(["param_items.name = ?", param_item_name]).pluck("param_values.value").include?(param_value)
+    self.parametrization_param_values.joins(:param_item).where(param_items: {name: param_item_name}).pluck("param_values.value").include?(param_value)
   end
 end
