@@ -121,4 +121,48 @@ describe Category do
       Category.new(valid_category_attributes).should be_valid
     end
   end
+
+  context "#assigned_param_template_id" do
+    fixtures :categories
+
+    context "for product list" do
+      it "returns it's template id" do
+        category = categories(:sporilek_tvs_led)
+        category.assigned_param_template_id.should == category.param_template_id
+      end
+    end
+
+    context "for navigational category"
+    it "returns nil" do
+      categories(:sporilek_tvs).assigned_param_template_id.should be_nil
+    end
+
+    context "for additional category" do
+      it "returns the id of it's product_list parent" do
+        additional_category = categories(:sporilek_3d_tech_tvs_led)
+        product_list_category = additional_category.ancestors.where(category_type: "product_list").first
+        additional_category.assigned_param_template_id.should == product_list_category.param_template_id
+      end
+    end
+  end
+
+  context "#navigational?" do
+    it "returns true, if the category is navigational" do
+      categories(:sporilek_tvs).should be_navigational
+    end
+
+    it "return false, if the category is of other type" do
+      categories(:sporilek_tvs_led).should_not be_navigational
+    end
+  end
+
+  context "#product_list?" do
+    it "returns true, if the category is navigational" do
+      categories(:sporilek_tvs_led).should be_product_list
+    end
+
+    it "return false, if the category is of other type" do
+      categories(:sporilek_tvs).should_not be_product_list
+    end
+  end
 end
