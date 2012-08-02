@@ -32,18 +32,10 @@ end
 # Then statements
 Pak /^(?:hodnota|jedna z hodnot) parametru "(.*?)" by měla být "(.*?)"$/ do |param_item_name, value|
   raise "product's parameter #{param_item_name} has not value #{value}" unless
-      Product.joins("INNER JOIN parametrizations p ON p.product_id = products.id")
-             .joins("INNER JOIN param_values pv ON pv.id = p.param_value_id")
-             .joins("INNER JOIN param_items pi ON pi.id = p.param_item_id")
-             .where(["products.id = ? AND pi.name = ?", @product.id, param_item_name])
-             .pluck("pv.value").include?(value)
+      @product.has_param_value?(param_item_name, value)
 end
 
 Pak /^(?:hodnota|jedna z hodnot) parametru "(.*?)" by neměla být "(.*?)"$/ do |param_item_name, value|
   raise "product's parameter #{param_item_name} has value #{value}" if
-      Product.joins("INNER JOIN parametrizations p ON p.product_id = products.id")
-      .joins("INNER JOIN param_values pv ON pv.id = p.param_value_id")
-      .joins("INNER JOIN param_items pi ON pi.id = p.param_item_id")
-      .where(["products.id = ? AND pi.name = ?", @product.id, param_item_name])
-      .pluck("pv.value").include?(value)
+      @product.has_param_value?(param_item_name, value)
 end
