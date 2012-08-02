@@ -3,7 +3,9 @@ require 'spec_helper'
 
 module Admin
   describe ProductParamItemsController do
-    let(:product) { Product.find_by_name("LG GB3133TIJW") }
+
+    fixtures :products
+    let(:product) { products(:lg_fridge) }
 
     describe "GET index" do
       def get_index
@@ -15,7 +17,18 @@ module Admin
         response.should render_template("index")
       end
 
-      context "when rendering views"
+      before do
+        product.stub(:param_template).and_return(false)
+      end
+
+      context "when rendering views" do
+        render_views
+
+        it "renders message when" do
+          get_index
+          response.body.should have_content("Produkt nemá přiřazenou žádnou šablonu parametrů")
+        end
+      end
     end
   end
 end
