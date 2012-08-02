@@ -4,6 +4,8 @@
     - disabled = Category.where("param_template_id IS NOT NULL").pluck(:id)
     - disabled -= param_template.categories.pluck(:id) unless param_template.categories.blank?
 
-    = f.input :categories, as: :check_boxes, collection: Category.roots, nested_set: true, disabled: disabled, show_if: :product_list?, member_label: :plural_name
+    - for shop in Shop.all
+      %h3= shop.name
+      = f.input :categories, as: :check_boxes, collection: category_roots_for_shop(shop), nested_set: true, disabled: disabled, show_if: :product_list?, member_label: :plural_name
   = f.actions do
     = f.submit
