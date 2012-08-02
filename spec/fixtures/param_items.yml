@@ -2,7 +2,7 @@ width:
   id: 1
   name: "Šířka"
   unit: "cm"
-  importance: "important"
+  importance: "sortable"
   choice_type: "input"
   value_type: "int"
   param_template_id: 1
@@ -11,7 +11,7 @@ width:
 color:
   id: 2
   name: "Barva"
-  importance: "important"
+  importance: "sortable"
   choice_type: "choices"
   value_type: "string"
   param_template_id: 1
@@ -21,7 +21,7 @@ fast_freeze:
   id: 3
   name: "Speciální funkce"
   importance: "important"
-  choice_type: "choices"
+  choice_type: "check_boxes"
   value_type: "string"
   param_template_id: 1
   param_group_id: 1
@@ -30,7 +30,7 @@ height:
   id: 4
   name: "Výška"
   unit: "cm"
-  importance: "important"
+  importance: "sortable"
   choice_type: "input"
   value_type: "int"
   param_template_id: 1
@@ -40,7 +40,7 @@ depth:
   id: 5
   name: "Hloubka"
   unit: "cm"
-  importance: "important"
+  importance: "sortable"
   choice_type: "input"
   value_type: "int"
   param_template_id: 1
