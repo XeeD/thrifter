@@ -81,6 +81,11 @@ describe Categorization do
       categorization.save!
       categorization.destroy
     end
+
+    it "assignment of preferred category when the product has no preferred categories" do
+      product.categorizations.delete_all
+      assign_product_to(:s_elektro_tvs_led, true).should be_valid
+    end
   end
 
   context "doesn't allow" do
