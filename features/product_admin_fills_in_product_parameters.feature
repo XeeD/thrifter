@@ -1,11 +1,11 @@
 # language: cs
-@wip
-Požadavek: Produktový admin upravuje parametry produktu
+
+Požadavek: Produktový admin přidává parametry produktu
 
   Abych mohl zákazníkům přehledně poskytnou podrobné informace o produktu
   Jako produktový admin
-  Chci mít možnost přidávat jednotlivé parametry výrobku. Parametry mohou tvořit skupiny
-  a mít více hodnot.
+  Chci mít možnost přidávat jednotlivé parametry výrobku přidělené podle šablony parametrů.
+  Parametry mohou tvořit skupiny a mít více hodnot.
 
   Kontext:
     Pokud jsem přihlášený jako "produktový admin"
@@ -29,12 +29,6 @@ Požadavek: Produktový admin upravuje parametry produktu
     A kliknu na tlačítko "Uložit produkt"
     Pak hodnota parametru "Barva" by měla být "bílá"
 
-  Scénář: změna jedné hodnoty z nabídky několika hodnot parametru
-    Pokud parametr "Barva" je přiřazen produktu a má hodnotu "bílá"
-    Když zaškrtnu přepínač "černá" na řádku pro vlastnost "Barva"
-    A kliknu na tlačítko "Uložit produkt"
-    Pak hodnota parametru "Barva" by měla být "černá"
-
   Scénář: zaškrtnutí hodnoty z nabídky několika hodnot parametru
     Pokud parametr "Speciální funkce" je přiřazen produktu
     Když zaškrtnu pole "BigBox" na řádku pro vlastnost "Speciální funkce"
@@ -46,13 +40,15 @@ Požadavek: Produktový admin upravuje parametry produktu
     Pokud parametr "Výrobník ledu" je přiřazen produktu
     Když zaškrtnu přepínač "Ano" na řádku pro vlastnost "Výrobník ledu"
     A kliknu na tlačítko "Uložit produkt"
-    Pak hodnota parametru "Výrobník ledu" by měla být "Ano"
+    Pak hodnota parametru "Výrobník ledu" by měla být "ano"
 
+  @javascript
   Scénář: přidání nové hodnoty do seznamu
     Pokud parametr "Speciální funkce" je přiřazen produktu
-    Když přidám novou hodnotu "Fuzzy Logic" do seznamu "Speciální funkce"
+    Když přidám nový přepínač "růžová" na řádku k vlastnosti "Barva"
     A kliknu na tlačítko "Uložit produkt"
-    Pak jedna z hodnot parametru "Speciální funkce" by měla být "Fuzzy Logic"
+    Pak hodnota parametru "Barva" by měla být "růžová"
 
+  @wip @javascript
   Scénář: přidání více nových hodnot najednou do seznamu
 
