@@ -20,7 +20,7 @@ CREATE TABLE `categories` (
   `shop_id` int(11) DEFAULT NULL,
   `param_template_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `index_categories_on_url` (`url`),
+  UNIQUE KEY `index_categories_on_shop_id_and_url` (`shop_id`,`url`),
   KEY `index_categories_on_depth` (`depth`),
   KEY `index_categories_on_lft` (`lft`),
   KEY `index_categories_on_param_template_id` (`param_template_id`),
@@ -34,7 +34,7 @@ CREATE TABLE `categorizations` (
   `category_id` int(11) DEFAULT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
-  `preferred` tinyint(1) DEFAULT NULL,
+  `preferred` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_categorizations_on_category_id_and_product_id` (`category_id`,`product_id`),
   UNIQUE KEY `index_categorizations_on_product_id_and_category_id` (`product_id`,`category_id`),
@@ -209,3 +209,7 @@ INSERT INTO schema_migrations (version) VALUES ('20120729085347');
 INSERT INTO schema_migrations (version) VALUES ('20120729161953');
 
 INSERT INTO schema_migrations (version) VALUES ('20120730090944');
+
+INSERT INTO schema_migrations (version) VALUES ('20120801163159');
+
+INSERT INTO schema_migrations (version) VALUES ('20120801170910');
