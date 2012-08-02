@@ -10,7 +10,7 @@ module Admin
 
     let(:product) { products(:lg_fridge) }
     let(:param_template) { param_templates(:fridges) }
-    let(:processor) { ProductParamItemsProcessor }
+    let(:processor) { ProductParamItemsProcessor.as_null_object }
 
     before do
       Product.stub(find: product)
@@ -23,7 +23,7 @@ module Admin
       {
           1 => "100",
           3 => %w(BioShield BigBox)
-      }.stringify_keys
+      }
     end
 
     describe "GET index" do
@@ -71,14 +71,13 @@ module Admin
 
       context "params processor" do
         it "receives new with product id" do
-          pending
           processor.should_receive(:new).with(product.id.to_s)
           post_create
         end
 
         it "receives save_params with valid_param_items_attributes" do
-          pending
-          processor.should_receive(:save_params).once
+          processor.should_receive(:new).with(product.id.to_s)
+          processor.should_receive(:save_params).with(valid_param_items_attributes).and_return(true)
           post_create
         end
       end
