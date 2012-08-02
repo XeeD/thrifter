@@ -2,6 +2,22 @@
 
 # Transforms
 
+# Helpers
+def find_table_row_with_text(line_text)
+  row = all("table").find do |table|
+    begin
+      break table.find("tr", :text => line_text)
+    rescue Capybara::ElementNotFound
+      next false
+    end
+  end
+
+  unless row
+    raise "row with text #{line_text} not found"
+  end
+
+  row
+end
 
 # Given statements
 Pokud /^jsem přihlášený jako "(.*?)"$/ do |role|
@@ -22,17 +38,7 @@ Když /^kliknu na odkaz "(.*?)"$/ do |link|
 end
 
 Když /^kliknu na řádku u .+ "(.*?)" na odkaz "(.*?)"$/ do |line_text, link_title|
-  row = all("table").find do |table|
-    begin
-      break table.find("tr", :text => line_text)
-    rescue Capybara::ElementNotFound
-      next false
-    end
-  end
-
-  unless row
-    raise "row with text #{line_text} not found"
-  end
+  row = find_table_row_with_text(line_text)
 
   begin
     row.find("a", :text => link_title).click
@@ -77,7 +83,7 @@ end
 
 Když /^zaškrtnu přepínač "(.+?)" pro vlastnost "(.+?)"$/ do |value, button_group|
   within_fieldset(button_group) do
-    choose(value)
+    choose value.to_s
   end
 end
 
