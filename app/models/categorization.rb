@@ -27,17 +27,29 @@ class Categorization < ActiveRecord::Base
           "Produkt lze přidat pouze do kategorie se stejnou šablonou parametrů, jako má jeho hlavní kategorie")
     end
 
-    # Product cannot be added to navigational category
+    # Product cannot be assigned to navigational category
     if category.navigational?
       errors.add(
           :base,
           "Produkt lze přidat pouze do kategorie se stejnou šablonou parametrů, jako má jeho hlavní kategorie")
     end
+
+    # Product cannot be assigned to a category when it is already assigned to it's ancestor
+    if assigned_to_ancestors_of_category?
+      errors.add(
+          :base,
+          "Produkt je již přiřazen některé nadřazené kategorii")
+    end
   end
 
   def destroy
-    if product_has_additional_categories_in_shop?
-      raise ActiveRecord::ActiveRecordError, "Nelze smazat hlavní kategorii produktu, pokud má produkt v obchodu dodatečné kategorie"
+    if preferred?
+      if product_has_additional_categories_in_shop?
+        raise ActiveRecord::ActiveRecordError, "Nelze smazat hlavní kategorii produktu, pokud má produkt v obchodu dodatečné kategorie"
+      end
+      if Categorization.where(product_id: product_id, preferred: true).size == 1
+        raise ActiveRecord::ActiveRecordError, "Produkt musí mít alespoň jednu hlavní kategorii"
+      end
     end
   end
 
@@ -61,5 +73,9 @@ class Categorization < ActiveRecord::Base
 
   def category_has_the_same_param_template_as_preferred?
     category.assigned_param_template_id == sample_preferred_category.assigned_param_template_id
+  end
+
+  def assigned_to_ancestors_of_category?
+    category.ancestors.joins(:categorizations).where(categorizations: {product_id: product_id}).exists?
   end
 end
