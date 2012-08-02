@@ -54,46 +54,70 @@ describe Categorization do
         preferred: !!preferred)
   end
 
-  it "allows only one main category per shop" do
-    categorization = assign_product_to(:sporilek_3d_tech_tvs_led, :preferred)
-    categorization.should_not be_valid
+  context "allows" do
+    it "only one main category per shop" do
+      categorization = assign_product_to(:sporilek_3d_tech_tvs_led, :preferred)
+      categorization.should_not be_valid
+    end
+
+    it "assignment of product_list category" do
+      assign_product_to(:s_elektro_tvs_led, :preferred).should be_valid
+    end
+
+    it "assigning only categories with the same param template for product (even across shops)" do
+      categorization = assign_product_to(:sporilek_fridges, false)
+
+      categorization.should_not be_valid
+    end
+
+    it "assignment of alternative category when it has preferred category in that shop" do
+      assign_product_to(:s_elektro_tvs_led, true).save!
+      categorization = assign_product_to(:s_elektro_tvs_3d, false)
+      categorization.should be_valid
+    end
+
+    it "unassignment of preferred category when it has preferred category in another shop" do
+      categorization = assign_product_to(:s_elektro_tvs_led, true)
+      categorization.save!
+      categorization.destroy
+    end
+  end
+
+  context "doesn't allow" do
+    it "assignment of navigational category" do
+      assign_product_to(:s_elektro_tvs, false).should_not be_valid
+    end
+
+    it "assignment to alternative category when it has no preferred category in that shop" do
+      categorization = assign_product_to(:s_elektro_tvs_led, false)
+      categorization.should_not be_valid
+    end
+
+    it "unassignment of main category when it has alternative categories in shop" do
+      lambda {
+        categorizations(:categorization_samsung_tv_sporilek_tvs_3d).destroy
+      }.should raise_error(ActiveRecord::ActiveRecordError)
+    end
+
+    it "product to be assigned to category when it is already assigned to it's ancestor" do
+      assign_product_to(:sporilek_3d_tech_tvs, false).save!
+      assign_product_to(:sporilek_3d_tech_tvs_led, false).should_not be_valid
+    end
+
+    it "unassignment of main category when it is last main category of product" do
+      product.categorizations.where(preferred: false).delete_all
+      lambda {
+        product.categorizations.first.destroy
+      }.should raise_error(ActiveRecord::ActiveRecordError)
+    end
   end
 
   context "when assigned to multiple shops" do
-    it "allows unassignment of main category when it is the only assigned in that shop"
-  end
-
-  it "doesn't allow assignment to additional category when it has no preferred category in that shop" do
-    categorization = assign_product_to(:s_elektro_tvs_led, false)
-    categorization.should_not be_valid
-  end
-
-  it "doesn't allow unassignment of main category when it has alternative categories in shop" do
-    lambda {
-      categorizations(:categorization_samsung_tv_sporilek_tvs_3d).destroy
-    }.should raise_error(ActiveRecord::ActiveRecordError)
-  end
-
-  it "allows assigning only categories with the same param template for product (even across shops)" do
-    categorization = assign_product_to(:sporilek_fridges, false)
-
-    categorization.should_not be_valid
-  end
-
-  it "doesn't allow product to be assigned to category when it is already assigned to it's ancestor"
-
-  it "doesn't allow unassignment of main category when it is last main category of product"
-
-  it "doesn't allow assignment of navigational category" do
-    categorization = assign_product_to(:s_elektro_tvs, false)
-    categorization.should_not be_valid
-  end
-
-  it "doesn't allow assignment of navigational category" do
-    assign_product_to(:s_elektro_tvs, :preferred).should_not be_valid
-  end
-
-  it "allows assignment of product_list category" do
-    assign_product_to(:s_elektro_tvs_led, :preferred).should be_valid
+    it "allows unassignment of main category when it is the only assigned in that shop" do
+      categorization = assign_product_to(:s_elektro_tvs_led, true).save!
+      expect {
+        categorization.destroy
+      }.to_not raise_error(ActiveRecord::ActiveRecordError)
+    end
   end
 end
