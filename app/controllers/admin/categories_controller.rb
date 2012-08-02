@@ -35,7 +35,7 @@ module Admin
 
     def destroy
       category.destroy
-      flash[:notice] = "Kategorie #{category.short_name} byla smazána"
+      flash[:notice] = "Kategorie #{category.plural_name} byla smazána"
     rescue
       flash[:error] = "Nelze najít danou kategorii"
     ensure

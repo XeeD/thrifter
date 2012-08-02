@@ -34,7 +34,6 @@ sporilek_combined_fridges:
   lft: 4
   rgt: 9
   shop_id: 1
-  param_template_id: 1
 
 sporilek_combined_fridges_up:
   id: 4

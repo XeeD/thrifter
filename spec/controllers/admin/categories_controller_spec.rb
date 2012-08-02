@@ -250,9 +250,9 @@ module Admin
         end
 
         it "sets notice message containing category name" do
-          category.stub(:short_name).and_return("Pračky")
+          category.stub(plural_name: "Pračky")
           delete_category
-          flash[:notice].should include(category.short_name)
+          flash[:notice].should include(category.plural_name)
         end
 
         it "destroys the category" do

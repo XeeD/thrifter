@@ -1,5 +1,5 @@
 # language: cs
-Požadavek: Produktový manager spravuje kategorie
+Požadavek: Produktový manager spravuje šablony parametrů
 
   Abych mohl přiřazovat produktům jejich parametry, potřebuji mít možnost nejdříve
   zjistit, jaké parametry daný produkt může mít. Jelikož některé kategorie produktů sdílí
@@ -10,11 +10,11 @@ Požadavek: Produktový manager spravuje kategorie
 
   Kontext:
     Pokud jsem přihlášený jako "produktový manager"
-    A navigační kategorie "Chladničky" existuje
-    A produktová kategorie "Americké chladničky" existuje
-    A produktová kategorie "Kombinované chladničky" existuje
-    A dodatečná kategorie "Kombinované chladničky s mrazákem nahoře" existuje
-    A dodatečná kategorie "Kombinované chladničky s mrazákem dole" existuje
+    A navigační kategorie "Chladničky" v obchodu "Spořílek.cz" existuje
+    A produktová kategorie "Americké chladničky" v obchodu "Spořílek.cz" existuje
+    A produktová kategorie "Kombinované chladničky" v obchodu "Spořílek.cz" existuje
+    A dodatečná kategorie "Kombinované chladničky s mrazákem nahoře" v obchodu "Spořílek.cz" existuje
+    A dodatečná kategorie "Kombinované chladničky s mrazákem dole" v obchodu "Spořílek.cz" existuje
 
   Scénář: zobrazení formuláře pro vytvoření nové šablony parametrů
     Když otevřu sekci "administrace šablon parametrů"
