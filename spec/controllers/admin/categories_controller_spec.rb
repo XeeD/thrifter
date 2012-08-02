@@ -3,27 +3,51 @@ require 'spec_helper'
 
 module Admin
   describe CategoriesController do
+    fixtures :shops
+
+    let(:shop) { shops(:sporilek) }
     let(:category) { mock_model(Category).as_null_object }
 
+    before do
+      Shop.stub(find: shop)
+    end
+
+    describe "GET choose_shop" do
+      render_views
+
+      it "lists all shops" do
+        Shop.should_receive(:all).and_return([category])
+        get :choose_shop
+      end
+    end
+
     describe "GET index" do
+      def get_index
+        get :index, shop_id: shop.id
+      end
+
       it "renders index action" do
-        get :index
+        get_index
         response.should render_template("index")
       end
 
       context "when rendering views" do
         render_views
 
-        it "calls Category#all" do
-          Category.should_receive(:all).once.and_return([category])
-          get :index
+        it "calls shop.categories" do
+          shop.should_receive(:categories).and_return([category])
+          get_index
         end
       end
     end
 
     describe "GET new" do
+      def get_new
+        get :new, shop_id: shop.id
+      end
+
       it "renders new action" do
-        get :new
+        get_new
         response.should render_template("new")
       end
 
@@ -31,12 +55,13 @@ module Admin
         render_views
 
         it "calls Category#new" do
-          Category.should_receive(:new).with(nil).once.and_return(category)
-          get :new
+          shop.stub_chain(:categories, :new).and_return(category)
+          shop.categories.should_receive(:new).with(nil)
+          get_new
         end
 
         it "shows form" do
-          get :new
+          get_new
           response.body.should have_selector("form")
         end
       end
@@ -46,27 +71,26 @@ module Admin
       # Valid attributes
       context "with valid attributes" do
         def post_valid_attributes
-          post :create, :category => valid_category_attributes
+          post :create, shop_id: shop.id, category: valid_category_attributes
         end
 
         before do
-          Category.stub(:new).and_return(category.new_instance)
+          shop.stub_chain(:categories, :new).and_return(category.new_instance)
         end
 
         it "creates new instance of category with those attributes" do
-          Category.should_receive(:new).with(valid_category_attributes).once
+          shop.categories.should_receive(:new).with(valid_category_attributes).once
           post_valid_attributes
         end
 
         it "saves the record" do
-          Category.stub(:new).and_return(category)
           category.should_receive(:save).and_return(true)
           post_valid_attributes
         end
 
         it "redirects to index" do
           post_valid_attributes
-          response.should redirect_to(admin_categories_url)
+          response.should redirect_to(admin_shop_categories_url(shop))
         end
 
         it "sets the notice message with category's plural name" do
@@ -78,17 +102,21 @@ module Admin
 
       # Invalid attributes
       context "with invalid parameters" do
+        def post_invalid_attributes
+          post :create, shop_id: shop.id
+        end
+
         before do
-          Category.stub(:save).and_return(false)
+          category.stub(:save).and_return(false)
         end
 
         it "renders the template for new again" do
-          post :create
+          post_invalid_attributes
           response.should render_template("new")
         end
 
         it "sets an error message" do
-          post :create
+          post_invalid_attributes
           flash.now[:error].should_not be_blank
         end
       end
@@ -96,7 +124,7 @@ module Admin
 
     describe "GET edit" do
       def get_edit
-        get :edit, :id => category.id
+        get :edit, shop_id: shop.id, id: category.id
       end
 
       it "renders template 'edit'" do
@@ -108,16 +136,16 @@ module Admin
         render_views
 
         before do
-          Category.stub(:find).and_return(category)
+          shop.stub_chain(:categories, :find).and_return(category)
         end
 
         it "finds the category" do
-          Category.should_receive(:find)#.with(category.id.to_s).once
-          get :edit, :id => category.id
+          shop.categories.should_receive(:find).with(category.id.to_s).once
+          get_edit
         end
 
         it "renders edit form" do
-          get :edit, :id => category.id
+          get_edit
           response.body.should have_selector("form")
         end
       end
@@ -127,15 +155,18 @@ module Admin
       # Valid attributes
       context "with valid attributes" do
         def put_update
-          put :update, :id => category.id, :category => valid_category_attributes
+          put :update,
+              shop_id: shop.id,
+              id: category.id,
+              category: valid_category_attributes
         end
 
         before do
-          Category.stub(:find).and_return(category)
+          shop.stub_chain(:categories, :find).and_return(category)
         end
 
         it "finds the category" do
-          Category.should_receive(:find).with(category.id.to_s).once.and_return(category)
+          shop.categories.should_receive(:find).with(category.id.to_s).once.and_return(category)
           put_update
         end
 
@@ -146,7 +177,7 @@ module Admin
 
         it "redirects to index action" do
           put_update
-          response.should redirect_to(admin_categories_url)
+          response.should redirect_to(admin_shop_categories_url(shop))
         end
 
         it "sets the notice message with category's plural name" do
@@ -159,12 +190,15 @@ module Admin
       # Invalid attributes
       context "with invalid attributes" do
         def put_invalid_update
-          put :update, :id => category.id, :category => {}
+          put :update,
+              shop_id: shop.id,
+              id: category.id,
+              category: {}
         end
 
         before do
+          shop.stub_chain(:categories, :find).and_return(category)
           category.stub(:update_attributes).and_return(false)
-          Category.stub(:find).and_return(category)
         end
 
         it "renders edit action again" do
@@ -180,12 +214,12 @@ module Admin
 
       context "with non-existing category id" do
         def put_with_invalid_id
-          put :update, :id => category.id + 1
+          put :update, shop_id: shop.id, id: Category.maximum(:id) + 1
         end
 
         it "redirects to index" do
           put_with_invalid_id
-          response.should redirect_to(admin_categories_url)
+          response.should redirect_to(admin_shop_categories_url(shop))
         end
 
         it "sets error message" do
@@ -198,21 +232,21 @@ module Admin
     describe "DELETE destroy" do
       context "with valid category id" do
         def delete_category
-          delete :destroy, :id => category.id
+          delete :destroy, shop_id: shop.id, id: category.id
         end
 
         before do
-          Category.stub(:find).and_return(category)
+          shop.stub_chain(:categories, :find).and_return(category)
         end
 
         it "finds the category" do
-          Category.should_receive(:find).with(category.id.to_s).once
+          shop.categories.should_receive(:find).with(category.id.to_s).once
           delete_category
         end
 
         it "redirects back to index" do
           delete_category
-          response.should redirect_to(admin_categories_url)
+          response.should redirect_to(admin_shop_categories_url(shop))
         end
 
         it "sets notice message containing category name" do
@@ -229,12 +263,12 @@ module Admin
 
       context "with non-existing category id" do
         def delete_with_invalid_id
-          delete :destroy, :id => category.id + 1
+          delete :destroy, shop_id: shop.id, id: Category.maximum(:id) + 1
         end
 
         it "redirects back to index" do
           delete_with_invalid_id
-          response.should redirect_to(admin_categories_url)
+          response.should redirect_to(admin_shop_categories_url(shop))
         end
 
         it "sets error message" do
