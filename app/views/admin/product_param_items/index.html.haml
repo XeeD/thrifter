@@ -2,15 +2,47 @@
 
 - unless product.param_template.blank?
   - unless product.param_template.param_items.blank?
-    - product.param_template.param_items.each do |param|
-      %ul
-        %li #{param.name}, #{param.choice_type}
-        %ul
-          %li
-            - unless param.choice_type == "input"
-              - param.param_values.each do |pv|
-                = "#{pv.value}, "
+    = "Přiřazené hodnoty: #{assigned_param_values.inspect}"
+    = form_tag do
+      %table
+        %tbody
+          - product.param_template.param_items.each do |param|
+            %tr
+              %td
+                = label_tag("param_items_#{param.id}", param.name)
+                = "*" if param.is_sortable?
+              %td
+                = param.param_group.name rescue nil
+              %td
+                - if param.choice_type == "input"
+                  - if param.value_type == "int"
+                    = text_field_tag("param_items[#{param.id}]", "#{assigned_param_values.fetch(param.id, nil)}", {size: 5})
+                  - else
+                    = text_field_tag(dom_id(param))
+                  = param.unit
+                - elsif param.choice_type == "choices"
+                  - if param.value_type == "bool"
+                    - {"Ano" => "ano", "Ne" => "ne", "nic" => ""}.each do |label, value|
+                      %label
+                        = radio_button_tag("param_items[#{param.id}]", value, assigned_param_values.fetch(param.id, "") == value)
+                        = label
+                  - else
+                    - param.param_values.each do |pv|
+                      %label
+                        = radio_button_tag("param_items[#{param.id}]", pv.value, assigned_param_values.fetch(param.id, nil) == pv.value)
+                        = pv.value
+                      %br
+                    %label
+                      = radio_button_tag("param_items[#{param.id}]", "", false, {id: "param_items_#{param.id}_new"})
+                      = text_field_tag("[#{param.id}]", "", {onkeyup: "document.getElementById('param_items_#{param.id}_new').value = this.value", id: "new_value"})
+                - else
+                  - param.param_values.each do |pv|
+                    %label
+                      = check_box_tag("param_items[#{param.id}][]", pv.value, (assigned_param_values.fetch(param.id, nil).include?(pv.value) rescue false))
+                      = pv.value
+                    %br
+      = submit_tag "Uložit produkt"
   - else
-    = Šablona parametrů nemá přiřazeny žádné parametry
+    %p Šablona parametrů nemá přiřazeny žádné parametry
 - else
-  = Produkt nemá žádnou šablonu parametrů
+  %p Produkt nemá přiřazenou žádnou šablonu parametrů
