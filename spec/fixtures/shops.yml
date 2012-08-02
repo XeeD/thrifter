@@ -3,3 +3,9 @@ sporilek:
   name: "Spořílek.cz"
   host:  "sporilek.cz"
   short_name: "sporilek_cz"
+
+s_elektro:
+  id: 2
+  name: "Smart Elektro"
+  host:  "s-elektro.cz"
+  short_name: "smart_elektro"

@@ -1,4 +1,4 @@
-fridges:
+sporilek_fridges:
   id: 1
   short_name: "Chladničky"
   url:  "chladnicky"
@@ -9,7 +9,7 @@ fridges:
   rgt: 10
   shop_id: 1
 
-sbs_fridges:
+sporilek_sbs_fridges:
   id: 2
   short_name: "Americké"
   url:  "americke-chladnicky"
@@ -21,8 +21,9 @@ sbs_fridges:
   lft: 2
   rgt: 3
   shop_id: 1
+  param_template_id: 1
 
-combined_fridges:
+sporilek_combined_fridges:
   id: 3
   short_name: "Kombinované"
   url:  "kombinovane-chladnicky"
@@ -34,7 +35,7 @@ combined_fridges:
   rgt: 9
   shop_id: 1
 
-combined_fridges_up:
+sporilek_combined_fridges_up:
   id: 4
   short_name: "Kombinované s mrazákem nahoře"
   url:  "kombinovane-chladnicky-s-mrazakem-nahore"
@@ -46,7 +47,7 @@ combined_fridges_up:
   rgt: 6
   shop_id: 1
 
-combined_fridges_down:
+sporilek_combined_fridges_down:
   id: 5
   short_name: "Kombinované s mrazákem dole"
   url:  "kombinovane-chladnicky-s-mrazakem-dole"
@@ -75,9 +76,11 @@ sporilek_tvs_led:
   plural_name: "LED televize"
   singular_name: "LED televize"
   category_type: "product_list"
+  parent_id: 6
   lft: 12
   rgt: 13
   shop_id: 1
+  param_template_id: 3
 
 sporilek_tvs_3d:
   id: 8
@@ -86,9 +89,11 @@ sporilek_tvs_3d:
   plural_name: "3D televize"
   singular_name: "3D televize"
   category_type: "product_list"
+  parent_id: 6
   lft: 14
   rgt: 15
   shop_id: 1
+  param_template_id: 3
 
 sporilek_3d_tech:
   id: 9
@@ -107,9 +112,11 @@ sporilek_3d_tech_tvs:
   plural_name: "3D technologie: Televize"
   singular_name: "3D televize"
   category_type: "product_list"
+  parent_id: 9
   lft: 17
   rgt: 22
   shop_id: 1
+  param_template_id: 3
 
 sporilek_3d_tech_tvs_led:
   id: 11
@@ -118,6 +125,7 @@ sporilek_3d_tech_tvs_led:
   plural_name: "3D technologie: LED LCD"
   singular_name: "3D LED LCD"
   category_type: "additional"
+  parent_id: 10
   lft: 18
   rgt: 19
   shop_id: 1
@@ -129,6 +137,43 @@ sporilek_3d_tech_tvs_plasma:
   plural_name: "3D technologie: Plazmové TV"
   singular_name: "3D plazmová TV"
   category_type: "additional"
+  parent_id: 10
   lft: 20
   rgt: 21
   shop_id: 1
+
+s_elektro_tvs:
+  id: 13
+  short_name: "Televize"
+  url:  "televize"
+  plural_name: "Televize"
+  category_type: "navigational"
+  lft: 1
+  rgt: 6
+  shop_id: 2
+
+s_elektro_tvs_led:
+  id: 14
+  short_name: "LED televize"
+  url:  "led-televize"
+  plural_name: "LED televize"
+  singular_name: "LED televize"
+  category_type: "product_list"
+  parent_id: 13
+  lft: 2
+  rgt: 3
+  shop_id: 2
+  param_template_id: 3
+
+s_elektro_tvs_3d:
+  id: 15
+  short_name: "3D"
+  url:  "3d-televize"
+  plural_name: "3D televize"
+  singular_name: "3D televize"
+  category_type: "product_list"
+  parent_id: 13
+  lft: 4
+  rgt: 5
+  shop_id: 2
+  param_template_id: 3

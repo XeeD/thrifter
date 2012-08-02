@@ -8,33 +8,35 @@ Požadavek: Produktový manager spravuje kategorie
 
   Kontext:
     Pokud jsem přihlášený jako "produktový manager"
-    A kategorie "Chladničky" existuje
+    A kategorie "Chladničky" v obchodu "Spořílek.cz" existuje
+
+  Scénář: vypsání všech kategorií z jednoho obchodu
+    Když otevřu sekci "administrace kategorií"
+    A kliknu na odkaz "Spořílek.cz"
+    Pak bych měl vidět "Kategorie v obchodu Spořílek.cz"
+    A měl bych vidět "Chladničky"
 
   Scénář: vytvoření nové kategorie
-    Když otevřu sekci "administrace kategorií"
-    A kliknu na odkaz "Přidat novou kategorii"
-    Pak bych měl vidět nadpis "Nová kategorie"
-
-  Scénář: přidání nové kategorie přes formulář
-    Pokud jsem v sekci "administrace kategorií"
+    Pokud mám otevřenou administaci kategorií pro obchod "Spořílek.cz"
     Když kliknu na odkaz "Přidat novou kategorii"
     A vyplním formulář údaji:
-      | Název          | Název v odkazu        | Celý název (mn. č.)    | Celý název (j. č.)     |
-      | Kombinované  |  kombinované chladničky | Kombinované chladničky | Kombinovaná chladnička |
+      | Název          | Název v odkazu | Celý název (mn. č.) | Celý název (j. č.) |
+      | Malé ledničky  |  male-lednicky | Malé ledničky       | Malá lednička      |
     A vyberu hodnotu "Navigační" ze seznamu "Typ kategorie"
     A zaškrtnu přepínač "Chladničky" pro vlastnost "Nadřazená kategorie"
     A kliknu na tlačítko "Vytvořit novou kategorii"
-    Pak bych měl vidět zprávu "Kategorie Kombinované chladničky byla vytvořena"
-    A kategorie "Kombinované chladničky" by měla být vytvořena
+    Pak bych měl vidět zprávu "Kategorie Malé ledničky byla vytvořena"
+    A kategorie "Malé ledničky" by měla být vytvořena
 
   Scénář: smazání existující kategorie
-    Pokud jsem v sekci "administrace kategorií"
-    Když kliknu na řádku u kategorie "Chladničky" na odkaz "Smazat"
-    Pak bych měl vidět zprávu "Kategorie Chladničky byla smazána"
-    A kategorie "Chladničky" by měla být smazána
+    Pokud kategorie "Kombinované chladničky" v obchodu "Spořílek.cz" existuje
+    Pokud mám otevřenou administaci kategorií pro obchod "Spořílek.cz"
+    Když kliknu na řádku u kategorie "Kombinované chladničky" na odkaz "Smazat"
+    Pak bych měl vidět zprávu "Kategorie Kombinované chladničky byla smazána"
+    A kategorie "Kombinované chladničky" by měla být smazána
 
   Scénář: upravení existující kategorie
-    Pokud jsem v sekci "administrace kategorií"
+    Pokud mám otevřenou administaci kategorií pro obchod "Spořílek.cz"
     A kliknu na řádku u kategorie "Chladničky" na odkaz "Upravit"
     A změním hodnotu pole "Celý název (mn. č.)" na "Lednice"
     A kliknu na tlačítko "Uložit kategorii"

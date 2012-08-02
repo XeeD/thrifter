@@ -16,8 +16,6 @@ Thrifter::Application.routes.draw do
       resources :params, controller: "product_param_items", path: "parametry"
     end
 
-    resources :categories, path: "kategorie", path_names: {new: "nova", edit: "editace"}, except: :show
-
     resources :param_templates, path: "sablony-parametru", path_names: {new: "nova", edit: "editace"} do
       resources :groups, path: "skupiny", path_names: {new: "nova", edit: "editace"}, controller: "param_groups", except: :index do
         collection { post :sort }
@@ -29,6 +27,11 @@ Thrifter::Application.routes.draw do
       member do
         get :deletion_confirmation
       end
+
+      resources :categories, path: "kategorie", path_names: {new: "nova", edit: "editace"}, except: :show
     end
+
+    # Admistation of categories - choose which shop's categories to administrate
+    match "kategorie/vyber-obchodu" => "categories#choose_shop", as: "categories"
   end
 end

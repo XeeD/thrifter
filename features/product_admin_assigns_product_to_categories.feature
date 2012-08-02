@@ -1,4 +1,5 @@
 # language: cs
+@wip
 Požadavek: Produktový admin může přiřazovat produkt libovolnému množství kategorií
 
   Abych zjednodušil orientaci zákazníků ve velkém množství produktů na našich stránkách

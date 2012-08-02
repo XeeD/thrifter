@@ -1,0 +1,5 @@
+%h2 Kategorie
+%strong Vyberte obchod, ve kterém chcete spravovat kategorie
+%ul
+  - for shop in Shop.all
+    %li= link_to shop.name, admin_shop_categories_path(shop)

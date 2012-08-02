@@ -2,7 +2,7 @@
 
 class Category < ActiveRecord::Base
   # Macros
-  acts_as_nested_set
+  acts_as_nested_set scope: :shop
 
   # Associations
   has_many :categorizations
@@ -15,11 +15,41 @@ class Category < ActiveRecord::Base
   # Attributes
   attr_accessible :short_name, :url, :plural_name, :singular_name, :category_type, :parent_id
 
+  validates :parent_id,
+            parent_loop: true
+
+  def product_list?
+    category_type == :product_list
+  end
+
+  def navigational?
+    category_type == :navigational
+  end
+
+  def category_type
+    self[:category_type] && self[:category_type].to_sym
+  end
+
+  def category_type=(category_type)
+    self[:category_type] = category_type && category_type.to_s
+  end
+
+  def assigned_param_template_id
+    case category_type
+      when :product_list
+        param_template_id
+      when :additional
+        ancestors.where(category_type: :product_list).pluck(:param_template_id).first
+      else
+        nil
+    end
+  end
+
   # Enumerations
   CATEGORY_TYPES = {
-      "Navigační"  => "navigational",
-      "Produktová" => "product_list",
-      "Přídavná"   => "additional"
+      "Navigační"  => :navigational,
+      "Produktová" => :product_list,
+      "Přídavná"   => :additional
   }
 
   # Validations
@@ -46,11 +76,4 @@ class Category < ActiveRecord::Base
                 :product_list => [:additional],
                 :additional   => [:additional]
             }
-
-  validates :parent_id,
-            parent_loop: true
-
-  def is_product_list?
-    true if category_type == CATEGORY_TYPES.fetch("Produktová")
-  end
 end

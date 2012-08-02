@@ -1,7 +1,10 @@
 # encoding: UTF-8
 
 # Given statements
-Pokud /^(.+ )?kategorie "(.*?)" existuje$/ do |written_category_type, plural_name|
+Pokud /^(.+ )?kategorie "(.+)" v obchodu "(.+)" existuje$/ do |written_category_type, plural_name, shop_name|
+  shop = Shop.find_by_name(shop_name)
+  raise "shop '#{shop_name}' doesn't exist" if shop.nil?
+
   category = Category.find_by_plural_name(plural_name)
   raise "category #{plural_name} doesn't exists" if category.nil?
 
@@ -10,28 +13,26 @@ Pokud /^(.+ )?kategorie "(.*?)" existuje$/ do |written_category_type, plural_nam
 
     category_type = case written_category_type
                       when "navigační" then
-                        "navigational"
+                        :navigational
                       when "produktová" then
-                        "product_list"
+                        :product_list
                       when "dodatečná" then
-                        "additional"
+                        :additional
                       else
                         raise "undefined category_type #{written_category_type}"
                     end
 
-    raise "category #{plural_name} is #{category.category_type} but expecting #{category_type}" unless category.category_type == category_type
+    category.category_type.should == category_type
   end
 end
 
-Pokud /^jsem v editaci kategorie "(.*?)"$/ do |category_name|
-  step "kategorie \"#{category_name}\" existuje"
-  step 'jsem v sekci "administrace kategorií"'
-  step 'kliknu na odkaz "Upravit"'
+Pokud /^mám otevřenou administaci kategorií pro obchod "(.+)"$/ do |shop_name|
+  shop = Shop.find_by_name(shop_name)
+  raise "shop '#{shop_name}' doesn't exist" if shop.nil?
+
+  visit admin_shop_categories_path(shop)
 end
 
-# When statements
-
-# Then statements
 Pak /^kategorie "(.*?)" by měla být smazána$/ do |category_name|
   begin
     find("#categories").should_not have_content("#{category_name}")

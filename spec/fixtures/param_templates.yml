@@ -6,3 +6,6 @@ washing_machines:
   id: 2
   name: "Pračky"
 
+tvs:
+  id: 3
+  name: "Televize"
