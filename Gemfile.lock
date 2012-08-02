@@ -56,6 +56,8 @@ GEM
       xpath (~> 0.1.4)
     capybara-screenshot (0.2.1)
       capybara (>= 1.0)
+    capybara-selenium-remote (0.0.1)
+      capybara
     carrierwave (0.6.2)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
@@ -221,6 +223,7 @@ DEPENDENCIES
   autotest-rails
   awesome_nested_set
   capybara-screenshot
+  capybara-selenium-remote
   carrierwave
   coffee-rails (~> 3.2.1)
   compass-rails

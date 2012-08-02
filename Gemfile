@@ -34,6 +34,7 @@ end
 
 group :cucumber do
   gem 'selenium-webdriver'
+  gem 'capybara-selenium-remote'
 end
 
 group :development, :test do
