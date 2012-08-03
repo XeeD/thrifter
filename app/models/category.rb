@@ -34,6 +34,7 @@ class Category < ActiveRecord::Base
     self[:category_type] = category_type && category_type.to_s
   end
 
+  # Instance methods
   def assigned_param_template_id
     case category_type
       when :product_list
@@ -53,6 +54,26 @@ class Category < ActiveRecord::Base
         ancestors.where(category_type: :product_list).first.param_template
       else
         nil
+    end
+  end
+
+  def path_to_node
+    @path_to_node ||= PathToNode.new(self)
+  end
+
+  class PathToNode
+    def initialize(category)
+      @category = category
+      @categories = category.self_and_ancestors
+    end
+
+    def to_s
+      @categories.map(&:short_name).join(" → ")
+    end
+
+    # Delegate all other method calls to underlying collection of categories
+    def method_missing(method, args)
+      @categories.send(method, *args)
     end
   end
 

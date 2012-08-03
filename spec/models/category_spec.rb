@@ -146,7 +146,7 @@ describe Category do
     end
   end
 
-  context "#navigational?" do
+  describe "#navigational?" do
     it "returns true, if the category is navigational" do
       categories(:sporilek_tvs).should be_navigational
     end
@@ -156,13 +156,28 @@ describe Category do
     end
   end
 
-  context "#product_list?" do
+  describe "#product_list?" do
     it "returns true, if the category is navigational" do
       categories(:sporilek_tvs_led).should be_product_list
     end
 
     it "return false, if the category is of other type" do
       categories(:sporilek_tvs).should_not be_product_list
+    end
+  end
+
+  describe "#path_to_node" do
+    let(:category) { categories(:sporilek_3d_tech_tvs_plasma) }
+
+    it "returns all ancestors of the category" do
+      ancestor = categories(:sporilek_3d_tech)
+      expect(category.path_to_node).to include(ancestor)
+    end
+
+    describe "#to_s" do
+      it "converts the category short_names to one string joined by ->" do
+        expect(category.path_to_node.to_s).to  eq("3D technologie → Televize → Plazmové")
+      end
     end
   end
 end
