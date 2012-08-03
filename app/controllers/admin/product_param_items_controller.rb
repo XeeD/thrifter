@@ -17,7 +17,7 @@ module Admin
     private
 
     def select_assigned_param_values
-      param_values = Product.joins(:parametrization_param_values).select("parametrizations.param_item_id, param_values.value")
+      param_values = Product.joins(:defined_param_values).select("parametrizations.param_item_id, param_values.value")
 
       param_values.inject({}) do |hash, h|
         if hash.has_key?(h.param_item_id)

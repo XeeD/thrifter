@@ -4,10 +4,10 @@ class Product < ActiveRecord::Base
 
   has_many :categorizations
   has_many :categories, through: :categorizations
-  has_one  :preferred_categorization, class_name: "Categorization", conditions: {preferred: true}
-  has_one  :preferred_category, class_name: "Category", through: :preferred_categorization, source: :category
+  has_one :preferred_categorization, class_name: "Categorization", conditions: {preferred: true}
+  has_one :preferred_category, class_name: "Category", through: :preferred_categorization, source: :category
   has_many :alternative_categorizations, class_name: "Categorization", conditions: {preferred: false}
-  has_many  :alternative_categories, class_name: "Category", through: :alternative_categorizations, source: :category
+  has_many :alternative_categories, class_name: "Category", through: :alternative_categorizations, source: :category
 
   with_options(class_name: "Product::Photo") do |product|
     product.has_many :photos, dependent: :destroy
@@ -15,13 +15,13 @@ class Product < ActiveRecord::Base
     product.has_many :additional_photos, conditions: {main_photo: false}
   end
 
-  has_one  :param_template, through: :preferred_category
+  has_one :param_template, through: :preferred_category
   has_many :param_items, through: :param_template, class_name: "ParamItem"
   has_many :param_values, through: :template_param_items, class_name: "ParamValue"
 
   has_many :parametrizations
-  has_many :parametrization_param_items,  through: :parametrizations
-  has_many :parametrization_param_values, through: :parametrizations, source: :param_value
+  has_many :defined_param_items, through: :parametrizations, source: :param_item
+  has_many :defined_param_values, through: :parametrizations, source: :param_value
 
   # Validations
   validates :name,
@@ -74,7 +74,10 @@ class Product < ActiveRecord::Base
             presence: true,
             numericality: {only_integer: true}
 
-  def has_param_value?(param_item_name, param_value)
-    self.parametrization_param_values.joins(:param_item).where(param_items: {name: param_item_name}).pluck("param_values.value").include?(param_value)
+  def param_values_for(param_item_id)
+    defined_param_values.
+        joins(:param_item).
+        where(param_items: {id: param_item_id}).
+        pluck("param_values.value")
   end
 end

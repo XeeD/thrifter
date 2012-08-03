@@ -29,11 +29,9 @@ end
 
 # Then statements
 Pak /^(?:hodnota|jedna z hodnot) parametru "(.*?)" by měla být "(.*?)"$/ do |param_item_name, value|
-  raise "product's parameter #{param_item_name} has not value #{value}" unless
-      @product.has_param_value?(param_item_name, value)
+  param_values_for_product(param_item_name, @product).first.should == value
 end
 
 Pak /^(?:hodnota|jedna z hodnot) parametru "(.*?)" by neměla být "(.*?)"$/ do |param_item_name, value|
-  raise "product's parameter #{param_item_name} has value #{value}" if
-      @product.has_param_value?(param_item_name, value)
+  param_values_for_product(param_item_name, @product).first.should_not == value
 end
