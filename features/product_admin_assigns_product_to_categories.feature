@@ -33,7 +33,7 @@ Požadavek: Produktový admin může přiřazovat produkt libovolnému množstv�
     Pokud jsem v editace produktu "Samsung UE55ES8000" na záložce "Kategorie"
 
   Scénář: Přidání produktu do dodatečné kategorie
-    Pokud je produkt zařazen v hlavní kategorii "Televize -> LED televize" v obchodu "Spořílek.cz"
+    Pokud je produkt zařazen v hlavní kategorii "Televize -> 3D" v obchodu "Spořílek.cz"
     Když kliknu na odkaz "Přidat do další kategorie" u obchodu "Spořílek.cz"
     A vyberu kategorii "3D Technologie -> Televize"
     A kliknu na tlačítko "Přidat do kategorie"
@@ -41,7 +41,7 @@ Požadavek: Produktový admin může přiřazovat produkt libovolnému množstv�
     A měl by být zařazen v hlavní kategorii "Televize -> LED televize" v obchodu "Spořílek.cz"
 
   Scénář: Změna hlavní kategorie produktu
-    Pokud je produkt zařazen v hlavní kategorii "Televize -> LED televize" v obchodu "Spořílek.cz"
+    Pokud je produkt zařazen v hlavní kategorii "Televize -> 3D" v obchodu "Spořílek.cz"
     Když kliknu na odkaz "Změnit hlavní kategorii" u obchodu "Spořílek.cz"
     A vyberu kategorii "3D Technologie -> Televize"
     A kliknu na tlačítko "Změnit hlavní kategorii"
@@ -63,7 +63,7 @@ Požadavek: Produktový admin může přiřazovat produkt libovolnému množstv�
     A produkt by neměl být zařazen v obchodu Smart Samsung v žádné kategorii
 
   Scénář: Odebrání obchodu z alternativní kategorie
-    Pokud je produkt zařazen v alternativní kategorii "Televize -> 3D televize" v obchodu "Spořílek.cz"
+    Pokud je produkt zařazen v alternativní kategorii "Televize -> LED" v obchodu "Spořílek.cz"
     Když kliknu na odkaz "odebrat alternativní kategorii" této kategorie
     Pak bych měl vidět zprávu "Produkt byl vyřazen z alternativní kategorie"
     A produkt by neměl být zařazen v kategorii "Televize -> 3D televize" v obchodu "Spořílek.cz"

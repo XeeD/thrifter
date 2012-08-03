@@ -1,1 +1,20 @@
 %h2 #{product.name} &ndash; zařazení do kategorií
+
+#product_assigned_to_shops
+  - for shop in assigned_shops
+    %h3= shop.name
+
+    Hlavní kategorie:
+    %strong= preferred_category_in_shop(shop).plural_name
+    %span.path_to_node= preferred_category_in_shop(shop).path_to_node
+
+    %h4 Alternativní kategorie
+    %ul
+      - for category in alternative_categories_in_shop(shop)
+        %li
+          %strong= category.plural_name
+          %span.path_to_node= category.path_to_node
+
+= semantic_form_for([:admin, product, categorization]) do |f|
+  %h3 Zařadit do dalšich kategorií
+  = f.input :category
