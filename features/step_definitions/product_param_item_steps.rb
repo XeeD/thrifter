@@ -28,10 +28,22 @@ Když /^přidám nový přepínač "(.*?)" na řádku k vlastnosti "(.*?)"$/ do 
 end
 
 # Then statements
-Pak /^(?:hodnota|jedna z hodnot) parametru "(.*?)" by měla být "(.*?)"$/ do |param_item_name, value|
-  param_values_for_product(param_item_name, @product).first.should == value
+Pak /^(hodnota|jedna z hodnot) parametru "(.*?)" by měla být "(.*?)"$/ do |multiplicity, param_item_name, value|
+  param_values = param_values_for_product(param_item_name, @product)
+  if multiplicity == "hodnota"
+    param_values.length.should == 1
+    param_values.first.should == value if param_values.length == 1
+  else
+    param_values.should include(value)
+  end
 end
 
-Pak /^(?:hodnota|jedna z hodnot) parametru "(.*?)" by neměla být "(.*?)"$/ do |param_item_name, value|
-  param_values_for_product(param_item_name, @product).first.should_not == value
+Pak /^(hodnota|jedna z hodnot) parametru "(.*?)" by neměla být "(.*?)"$/ do |multiplicity, param_item_name, value|
+  param_values = param_values_for_product(param_item_name, @product)
+  if multiplicity == "hodnota"
+    param_values.length.should <= 1
+    param_values.first.should_not == value if param_values.length == 1
+  else
+    param_values.should_not include(value)
+  end
 end
