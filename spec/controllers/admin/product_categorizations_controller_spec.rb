@@ -85,12 +85,6 @@ module Admin
           }
         end
 
-        it "doesn't change the DB" do
-          expect {
-            post_create_with_invalid_assignment
-          }.to_not change{Categorization.count}
-        end
-
         it "copies errors on Categorization instace to flash.now[:error]" do
           post_create_with_invalid_assignment
           categorization = product.categorizations.new(invalid_attributes)
