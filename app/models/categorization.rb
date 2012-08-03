@@ -4,6 +4,12 @@ class Categorization < ActiveRecord::Base
   # Associations
   belongs_to :category
   belongs_to :product
+  scope :in_shop, ->(shop) {
+    joins(:category).where(categories: {shop_id: shop.id})
+  }
+  scope :preferred, -> {
+    where(preferred: true)
+  }
 
   # Callabacks
   def destroy
