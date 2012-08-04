@@ -14,7 +14,7 @@ Thrifter::Application.routes.draw do
         collection { post :sort }
       end
       resources :params, controller: "product_param_items", path: "parametry"
-      resources :categorizations, controller: "product_categorizations", only: [:index, :create, :destroy]
+      resources :categorizations, controller: "product_categorizations", only: [:index, :new, :create, :destroy]
     end
 
     resources :param_templates, path: "sablony-parametru", path_names: {new: "nova", edit: "editace"} do

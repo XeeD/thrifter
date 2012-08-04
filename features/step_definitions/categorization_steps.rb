@@ -16,3 +16,11 @@ Pokud /^je produkt zařazen v (hlavní|alternativní) kategorii "(.*?)" v obchod
     categorization.should_not be_preferred
   end
 end
+
+Když /^u alternativních kategorií obchodu "(.*?)" kliknu na "(.*?)"$/ do |shop_name, link_text|
+  @shop = Shop.find_by_name(shop_name)
+  dom_id = ActionController::RecordIdentifier.dom_id(@shop)
+  within("##{dom_id}") do
+    click_link link_text
+  end
+end

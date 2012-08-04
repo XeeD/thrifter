@@ -34,11 +34,10 @@ Požadavek: Produktový admin může přiřazovat produkt libovolnému množstv�
 
   Scénář: Přidání produktu do dodatečné kategorie
     Pokud je produkt zařazen v hlavní kategorii "Televize -> 3D" v obchodu "Spořílek.cz"
-    Když kliknu na odkaz "Přidat do další kategorie" u obchodu "Spořílek.cz"
+    Když u alternativních kategorií obchodu "Spořílek.cz" kliknu na "Přidat do další kategorie"
     A vyberu kategorii "3D Technologie -> Televize"
     A kliknu na tlačítko "Přidat do kategorie"
-    Pak by měl produkt být zařazen v alternativní kategorii "3D technologie -> Televize" v obchodu "Spořílek.cz"
-    A měl by být zařazen v hlavní kategorii "Televize -> LED televize" v obchodu "Spořílek.cz"
+    Pak by měl produkt být zařazen v alternativní kategorii "3D technologie -> Televize"
 
   Scénář: Změna hlavní kategorie produktu
     Pokud je produkt zařazen v hlavní kategorii "Televize -> 3D" v obchodu "Spořílek.cz"
