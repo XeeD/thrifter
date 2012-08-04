@@ -2,26 +2,40 @@ class Product < ActiveRecord::Base
   # Associations
   belongs_to :brand
 
+  # Categories through categorizations
+  # - categories, that are "main" in given shop are called "preferred"
+  # - remaining categoires are called "alternative"
   has_many :categorizations
   has_many :categories, through: :categorizations
-  has_one :sample_preferred_categorization, class_name: "Categorization", conditions: {preferred: true}
-  has_one :sample_preferred_category, class_name: "Category", through: :sample_preferred_categorization, source: :category
-  has_many :alternative_categorizations, class_name: "Categorization", conditions: {preferred: false}
-  has_many :alternative_categories, class_name: "Category", through: :alternative_categorizations, source: :category
 
+  # Categorizations - join table for sample preferred & alternative categories assigned to product
+  with_options(class_name: "Categorization") do |product|
+    product.has_one :sample_preferred_categorization, conditions: {preferred: true}
+    product.has_many :alternative_categorizations, conditions: {preferred: false}
+  end
+
+  # Categories - sample preferred & alternative categories
+  with_options(class_name: "Category", source: :category) do |product|
+    product.has_one :sample_preferred_category, through: :sample_preferred_categorization
+    product.has_many :alternative_categories, through: :alternative_categorizations
+  end
+
+  # Photos
   with_options(class_name: "Product::Photo") do |product|
     product.has_many :photos, dependent: :destroy
     product.has_one :main_photo, conditions: {main_photo: true}
     product.has_many :additional_photos, conditions: {main_photo: false}
   end
 
-  has_one :param_template, through: :sample_preferred_category
-  has_many :param_items, through: :param_template, class_name: "ParamItem"
-  has_many :param_values, through: :template_param_items, class_name: "ParamValue"
-
+  # Defined params of product
   has_many :parametrizations
   has_many :defined_param_items, through: :parametrizations, source: :param_item
   has_many :defined_param_values, through: :parametrizations, source: :param_value
+
+  # Attributes
+  def param_template
+    sample_preferred_category.assigned_param_template
+  end
 
   # Validations
   validates :name,
@@ -74,6 +88,7 @@ class Product < ActiveRecord::Base
             presence: true,
             numericality: {only_integer: true}
 
+  # Assigned param
   def param_values_for(param_item_id)
     defined_param_values.
         joins(:param_item).

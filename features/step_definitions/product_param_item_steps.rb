@@ -4,7 +4,7 @@
 Pokud /^parametr "(.*?)" je přiřazen produktu$/ do |param_item_name|
   @param_item = ParamItem.find_by_name(param_item_name)
   raise "param item #{param_item_name} not found" if @param_item.blank?
-  @product.param_items.should include(@param_item)
+  @product.param_template.param_items.should include(@param_item)
 end
 
 # When statements

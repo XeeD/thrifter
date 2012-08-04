@@ -14,8 +14,8 @@ module Admin
 
     before do
       Product.stub(find: product)
-      product.stub_chain(:param_template).and_return(param_template)
-      product.param_template.stub_chain(:param_items).and_return([param_items(:width)])
+      #product.stub_chain(:param_template).and_return(param_template)
+      #product.param_template.stub_chain(:param_items).and_return([param_items(:width)])
       processor.stub(:save_params).with(valid_param_items_attributes).and_return(true)
     end
 
@@ -40,15 +40,15 @@ module Admin
         render_views
 
         it "renders message when has no param template assigned" do
-          product.stub_chain(:param_template, :blank?).and_return(true)
+          product.stub_chain(:param_template, :nil?).and_return(true)
           get_index
-          response.body.should have_content("Produkt nemá přiřazenou žádnou šablonu parametrů")
+          response.body.should have_selector(".empty_set")
         end
 
         it "renders message when param template has no parameters assigned" do
-          product.param_template.stub_chain(:param_items, :blank?).and_return(true)
+          product.param_template.stub_chain(:param_items, :nil?).and_return(true)
           get_index
-          response.body.should have_content("Šablona parametrů nemá přiřazeny žádné parametry")
+          response.body.should have_selector(".empty_set")
         end
 
         it "shows form" do

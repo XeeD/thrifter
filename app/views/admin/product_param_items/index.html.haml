@@ -1,7 +1,7 @@
 %h2 Parametry produktu #{product.name}
 
-- unless product.param_template.blank?
-  - unless product.param_template.param_items.blank?
+- unless product.param_template.nil?
+  - unless product.param_template.param_items.nil?
     = "Přiřazené hodnoty: #{assigned_param_values.inspect}"
     = form_tag do
       %table
@@ -12,7 +12,7 @@
                 = label_tag("param_items_#{param.id}", param.name)
                 = "*" if param.is_sortable?
               %td
-                = param.param_group.name rescue nil
+                = param.param_group_name rescue nil
               %td
                 - if param.choice_type == "input"
                   - if param.value_type == "int"
@@ -43,6 +43,8 @@
                     %br
       = submit_tag "Uložit produkt"
   - else
-    %p Šablona parametrů nemá přiřazeny žádné parametry
+    .empty_set
+      Šablona parametrů nemá přiřazeny žádné parametry
 - else
-  %p Produkt nemá přiřazenou žádnou šablonu parametrů
+  .empty_set
+    Produkt nemá přiřazenou žádnou šablonu parametrů
