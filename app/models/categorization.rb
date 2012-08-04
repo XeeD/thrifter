@@ -12,15 +12,24 @@ class Categorization < ActiveRecord::Base
   }
 
   # Callabacks
-  def destroy
-    if preferred?
-      if product_has_additional_categories_in_shop?
-        raise ActiveRecord::ActiveRecordError, "Nelze smazat hlavní kategorii produktu, pokud má produkt v obchodu dodatečné kategorie"
-      end
-      if Categorization.where(product_id: product_id, preferred: true).size == 1
-        raise ActiveRecord::ActiveRecordError, "Produkt musí mít alespoň jednu hlavní kategorii"
-      end
+  before_destroy :keep_at_least_one_preferred, :delete_preferred_only_if_no_alternative_in_shop
+
+  def keep_at_least_one_preferred
+    if preferred? && Categorization.preferred.where(product_id: product_id).size == 1
+      errors.add(:base, "Produkt musí mít alespoň jednu hlavní kategorii")
+      # Halt destruction & callback chain
+      return false
     end
+    true
+  end
+
+  def delete_preferred_only_if_no_alternative_in_shop
+    if preferred && product_has_additional_categories_in_shop?
+      errors.add(:base, "Nelze smazat hlavní kategorii produktu, pokud má produkt v obchodu dodatečné kategorie")
+      # Halt destruction & callback chain
+      return false
+    end
+    true
   end
 
   # Instance methods

@@ -55,7 +55,7 @@ describe Categorization do
   end
 
   context "allows" do
-    it "only one main category per shop" do
+    it "only one preferred category per shop" do
       categorization = assign_product_to(:sporilek_3d_tech_tvs_led, :preferred)
       categorization.should_not be_valid
     end
@@ -98,10 +98,11 @@ describe Categorization do
       categorization.should_not be_valid
     end
 
-    it "unassignment of main category when it has alternative categories in shop" do
-      lambda {
+    it "unassignment of preferred category when it has alternative categories in shop" do
+      assign_product_to(:s_elektro_tvs_led, :preferred).save
+      expect {
         categorizations(:categorization_samsung_tv_sporilek_tvs_3d).destroy
-      }.should raise_error(ActiveRecord::ActiveRecordError)
+      }.to_not change{Categorization.all.size}
     end
 
     it "product to be assigned to category when it is already assigned to it's ancestor" do
@@ -109,20 +110,21 @@ describe Categorization do
       assign_product_to(:sporilek_3d_tech_tvs_led, false).should_not be_valid
     end
 
-    it "unassignment of main category when it is last main category of product" do
-      product.categorizations.where(preferred: false).delete_all
-      lambda {
+    it "unassignment of preferred category when it is last preferred category of product" do
+      product.categorizations.where(preferred: false).destroy_all
+      expect {
         product.categorizations.first.destroy
-      }.should raise_error(ActiveRecord::ActiveRecordError)
+      }.to_not change{Categorization.all.size}
     end
   end
 
   context "when assigned to multiple shops" do
-    it "allows unassignment of main category when it is the only assigned in that shop" do
-      categorization = assign_product_to(:s_elektro_tvs_led, true).save!
+    it "allows unassignment of preferred category when it is the only assigned in that shop" do
+      categorization = assign_product_to(:s_elektro_tvs_led, true)
+      categorization.save!
       expect {
         categorization.destroy
-      }.to_not raise_error(ActiveRecord::ActiveRecordError)
+      }.to change{Categorization.all.size}
     end
   end
 end
