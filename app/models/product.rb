@@ -4,8 +4,8 @@ class Product < ActiveRecord::Base
 
   has_many :categorizations
   has_many :categories, through: :categorizations
-  has_one :preferred_categorization, class_name: "Categorization", conditions: {preferred: true}
-  has_one :preferred_category, class_name: "Category", through: :preferred_categorization, source: :category
+  has_one :sample_preferred_categorization, class_name: "Categorization", conditions: {preferred: true}
+  has_one :sample_preferred_category, class_name: "Category", through: :sample_preferred_categorization, source: :category
   has_many :alternative_categorizations, class_name: "Categorization", conditions: {preferred: false}
   has_many :alternative_categories, class_name: "Category", through: :alternative_categorizations, source: :category
 
@@ -15,7 +15,7 @@ class Product < ActiveRecord::Base
     product.has_many :additional_photos, conditions: {main_photo: false}
   end
 
-  has_one :param_template, through: :preferred_category
+  has_one :param_template, through: :sample_preferred_category
   has_many :param_items, through: :param_template, class_name: "ParamItem"
   has_many :param_values, through: :template_param_items, class_name: "ParamValue"
 
