@@ -16,10 +16,10 @@ class ParamTemplate < ActiveRecord::Base
             uniqueness: true
 
   validate do |record|
-    record.categories.each { |cat|
-        unless cat.product_list?
-          record.errors.add(:base, "Přiřazené kategorie musí být produktového typu")
-        end
-      }
+    record.categories.each do |category|
+      unless category.product_list?
+        record.errors.add(:base, "Přiřazené kategorie musí být produktového typu")
+      end
+    end
   end
 end
