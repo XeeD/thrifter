@@ -17,8 +17,8 @@ Capybara.default_selector = :css
 
 # Use Selenium
 Capybara.javascript_driver = :selenium
-unless ENV['SELENIUM_ON_LOCALHOST'].present? && ENV['SELENIUM_ON_LOCALHOST'] == "1"
-  Capybara::Selenium::Remote.use '192.168.0.138'
+if ENV['CUCUMBER_SELENIUM_REMOTE'].present?
+  Capybara::Selenium::Remote.use ENV['CUCUMBER_SELENIUM_REMOTE']
 end
 
 # By default, any exception happening in your Rails application will bubble up
