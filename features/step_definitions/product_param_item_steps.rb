@@ -1,5 +1,11 @@
 # encoding: UTF-8
 
+def fill_in_new_value_input(value)
+  field = find(:css, "input[class='new_value_input']")
+  field.click()
+  field.set(value.to_s)
+end
+
 # Given statements
 Pokud /^parametr "(.*?)" je přiřazen produktu$/ do |param_item_name|
   @param_item = ParamItem.find_by_name(param_item_name)
@@ -21,9 +27,28 @@ end
 Když /^přidám nový přepínač "(.*?)" na řádku k vlastnosti "(.*?)"$/ do |value, line_text|
   row = find_table_row_with_text(line_text)
   within(row) do
-    field = find_field "new_value"
-    field.click()
-    fill_in "new_value", :with => value.to_s
+    fill_in_new_value_input(value.to_s)
+  end
+end
+
+Když /^přidám nové pole "(.*?)" na řádku k vlastnosti "(.*?)"$/ do |value, line_text|
+  row = find_table_row_with_text(line_text)
+  within(row) do
+    new_fields_wrapper = find(".new_value_wrapper:first-child")
+    within(new_fields_wrapper) do
+      fill_in_new_value_input(value.to_s)
+    end
+  end
+end
+
+Když /^přidám další nové pole "(.*?)" na řádku k vlastnosti "(.*?)"$/ do |value, line_text|
+  row = find_table_row_with_text(line_text)
+  within(row) do
+    find("span[class='add_new_field_link']").click()
+    new_fields_wrapper = find(".new_value_wrapper:last-child")
+    within(new_fields_wrapper) do
+      fill_in_new_value_input(value.to_s)
+    end
   end
 end
 
