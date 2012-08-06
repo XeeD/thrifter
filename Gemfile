@@ -10,6 +10,7 @@ gem 'acts_as_list'
 gem 'rack-mini-profiler'
 gem 'carrierwave'
 gem 'rmagick'
+gem 'draper'
 
 # Gems used only for compiling assets
 group :assets, :cucumber do
