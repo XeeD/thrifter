@@ -88,7 +88,8 @@ class Product < ActiveRecord::Base
             presence: true,
             numericality: {only_integer: true}
 
-  # Assigned param
+  # Get values (value column of ParamValue) for given param_item_id
+  # The method uses defined_param_values scope.
   def param_values_for(param_item_id)
     defined_param_values.
         joins(:param_item).
