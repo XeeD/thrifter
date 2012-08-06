@@ -18,7 +18,9 @@ class ParamTemplate < ActiveRecord::Base
   validate do |record|
     record.categories.each do |category|
       unless category.product_list?
-        record.errors.add(:base, "Přiřazené kategorie musí být produktového typu")
+        record.errors.add(
+            :base,
+            "#{category.plural_name} není produktová kategorie (přiřazené kategorie musí být produktové)")
       end
     end
   end

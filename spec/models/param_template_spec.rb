@@ -26,10 +26,12 @@ describe ParamTemplate do
   context "with invalid attributes" do
     it "should fail associating with category that is not product list" do
       valid = valid_param_template_attributes
-      valid[:category_ids] = Category.where("category_type != ?", "product_list").first.id
+      non_product_category = Category.where("category_type != ?", "product_list").first
+      valid[:category_ids] = non_product_category.id
 
       template = ParamTemplate.new(valid)
-      template.errors_on(:base).should include("Přiřazené kategorie musí být produktového typu")
+
+      template.errors_on(:base).should include_match(Regexp.escape(non_product_category.plural_name))
     end
   end
 end
