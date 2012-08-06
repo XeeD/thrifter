@@ -67,4 +67,12 @@ class ParamItem < ActiveRecord::Base
     self.choice_type ||= 'input'
     self.importance  ||= 'important'
   end
+
+  def param_group_position
+    param_group.position rescue 0
+  end
+
+  def param_group_name
+    param_group.name rescue nil
+  end
 end
