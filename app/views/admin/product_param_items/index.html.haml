@@ -6,13 +6,13 @@
     = form_tag do
       %table
         %tbody
-          - product.param_template.param_items.sort{|pi1, pi2| (pi1.param_group.position rescue 0) <=> (pi2.param_group.position rescue 0)}.each do |param|
+          - sort_by_param_group_position(product.param_template.param_items).each do |param|
             %tr
               %td
                 = label_tag("param_items_#{param.id}", param.name)
                 = "*" if param.is_sortable?
               %td
-                = param.param_group_name rescue nil
+                = param.param_group_name
               %td
                 - if param.choice_type == "input"
                   - if param.value_type == "int"
@@ -34,7 +34,7 @@
                       %br
                     %label
                       = radio_button_tag("param_items[#{param.id}]", "", false, {id: "param_items_#{param.id}_new"})
-                      = text_field_tag("new[#{param.id}]", "", {onkeyup: "document.getElementById('param_items_#{param.id}_new').value = this.value", id: "new_value"})
+                      = text_field_tag("new[#{param.id}]", "", {"data-copy-to" => "param_items_#{param.id}_new"})
                 - else
                   - param.param_values.each do |pv|
                     %label
