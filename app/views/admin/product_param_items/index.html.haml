@@ -28,23 +28,28 @@
                         = label
                   - else
                     - param.param_values.each do |pv|
-                      %label
-                        = radio_button_tag("param_items[#{param.id}]", pv.value, product.assigned_param_values.fetch(param.id, nil) == pv.value)
-                        = pv.value
-                      %br
-                    %label
-                      = radio_button_tag("param_items[#{param.id}]", "", false, {id: "param_items_#{param.id}_new"})
-                      = text_field_tag("new[#{param.id}]", "", {"data-copy-to" => "param_items_#{param.id}_new"})
+                      %ul
+                        %li
+                          %label
+                            = radio_button_tag("param_items[#{param.id}]", pv.value, product.assigned_param_values.fetch(param.id, nil) == pv.value)
+                            = pv.value
+                    %ul
+                      %li.new_value_wrapper
+                        = radio_button_tag("param_items[#{param.id}]", "", false, {id: "param_items_#{param.id}_new", class: "new_value"})
+                        = text_field_tag("new[#{param.id}]", "", {"data-copy" => "", class: "new_value_input"})
                 - else
                   - param.param_values.each do |pv|
-                    %label
-                      = check_box_tag("param_items[#{param.id}][]", pv.value, (assigned_param_values.fetch(param.id, nil).include?(pv.value) rescue false))
-                      = pv.value
-                    %br
-                  /%label
-                  = check_box_tag("param_items[#{param.id}][]", "", false, {id: "param_items_#{param.id}_new"})
-                  = text_field_tag("new[#{param.id}]", "")
-      = submit_tag "Uložit produkt"
+                    %ul
+                      %li
+                        %label
+                          = check_box_tag("param_items[#{param.id}][]", pv.value, (product.assigned_param_values.fetch(param.id, []).include?(pv.value)))
+                          = pv.value
+                  %ul
+                    %li.new_value_wrapper
+                      = check_box_tag("param_items[#{param.id}][]", "", false, {class: "new_value"})
+                      = text_field_tag("new[#{param.id}]", "", {"data-copy" => "", class: "new_value_input"})
+                      %span.add_new_field_link Další
+      = submit_tag "Uložit parametry"
   - else
     .empty_set
       Šablona parametrů nemá přiřazeny žádné parametry
