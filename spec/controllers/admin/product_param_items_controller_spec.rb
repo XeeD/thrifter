@@ -14,8 +14,6 @@ module Admin
 
     before do
       Product.stub(find: product)
-      #product.stub_chain(:param_template).and_return(param_template)
-      #product.param_template.stub_chain(:param_items).and_return([param_items(:width)])
       processor.stub(:save_params).with(valid_param_items_attributes).and_return(true)
     end
 
