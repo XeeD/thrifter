@@ -34,13 +34,16 @@
                       %br
                     %label
                       = radio_button_tag("param_items[#{param.id}]", "", false, {id: "param_items_#{param.id}_new"})
-                      = text_field_tag("[#{param.id}]", "", {onkeyup: "document.getElementById('param_items_#{param.id}_new').value = this.value", id: "new_value"})
+                      = text_field_tag("new[#{param.id}]", "", {onkeyup: "document.getElementById('param_items_#{param.id}_new').value = this.value", id: "new_value"})
                 - else
                   - param.param_values.each do |pv|
                     %label
                       = check_box_tag("param_items[#{param.id}][]", pv.value, (assigned_param_values.fetch(param.id, nil).include?(pv.value) rescue false))
                       = pv.value
                     %br
+                  /%label
+                  = check_box_tag("param_items[#{param.id}][]", "", false, {id: "param_items_#{param.id}_new"})
+                  = text_field_tag("new[#{param.id}]", "")
       = submit_tag "Uložit produkt"
   - else
     .empty_set
