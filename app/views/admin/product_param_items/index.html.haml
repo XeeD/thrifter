@@ -1,54 +1,15 @@
 %h2 Parametry produktu #{product.name}
-
 - unless product.param_template.nil?
   - unless product.param_template.param_items.nil?
-    = "Přiřazené hodnoty: #{product.assigned_param_values.inspect}"
     = form_tag do
       %table
         %tbody
-          - sort_by_param_group_position(product.param_template.param_items).each do |param|
+          - product.param_template.sorted_param_items_by_group_position.each do |param_item|
             %tr
               %td
-                = label_tag("param_items_#{param.id}", param.name)
-                = "*" if param.is_sortable?
+                = param_item.label_with_group
               %td
-                = param.param_group_name
-              %td
-                - if param.choice_type == "input"
-                  - if param.value_type == "int"
-                    = text_field_tag("param_items[#{param.id}]", "#{product.assigned_param_values.fetch(param.id, nil)}", {size: 5})
-                  - else
-                    = text_field_tag(dom_id(param))
-                  = param.unit
-                - elsif param.choice_type == "choices"
-                  - if param.value_type == "bool"
-                    - {"Ano" => "ano", "Ne" => "ne", "nic" => ""}.each do |label, value|
-                      %label
-                        = radio_button_tag("param_items[#{param.id}]", value, product.assigned_param_values.fetch(param.id, "") == value)
-                        = label
-                  - else
-                    - param.param_values.each do |pv|
-                      %ul
-                        %li
-                          %label
-                            = radio_button_tag("param_items[#{param.id}]", pv.value, product.assigned_param_values.fetch(param.id, nil) == pv.value)
-                            = pv.value
-                    %ul
-                      %li.new_value_wrapper
-                        = radio_button_tag("param_items[#{param.id}]", "", false, {id: "param_items_#{param.id}_new", class: "new_value"})
-                        = text_field_tag("new[#{param.id}]", "", {"data-copy" => "", class: "new_value_input"})
-                - else
-                  - param.param_values.each do |pv|
-                    %ul
-                      %li
-                        %label
-                          = check_box_tag("param_items[#{param.id}][]", pv.value, (product.assigned_param_values.fetch(param.id, []).include?(pv.value)))
-                          = pv.value
-                  %ul
-                    %li.new_value_wrapper
-                      = check_box_tag("param_items[#{param.id}][]", "", false, {class: "new_value"})
-                      = text_field_tag("new[#{param.id}]", "", {"data-copy" => "", class: "new_value_input"})
-                      %span.add_new_field_link Další
+                = param_item.param_item_input_fields(product.assigned_param_values)
       = submit_tag "Uložit parametry"
   - else
     .empty_set
