@@ -8,12 +8,12 @@ module Admin
     fixtures :param_templates
     fixtures :param_items
 
-    let(:product) { products(:lg_fridge) }
+    let(:product) { ProductDecorator.new(products(:lg_fridge)) }
     let(:param_template) { param_templates(:fridges) }
     let(:processor) { ProductParamItemsProcessor.as_null_object }
 
     before do
-      Product.stub(find: product)
+      ProductDecorator.stub(find: product)
       processor.stub(:save_params).with(valid_param_items_attributes).and_return(true)
     end
 
@@ -44,7 +44,7 @@ module Admin
         end
 
         it "renders message when param template has no parameters assigned" do
-          product.param_template.stub_chain(:param_items, :nil?).and_return(true)
+          product.stub_chain(:param_template, :param_items, :nil?).and_return(true)
           get_index
           response.body.should have_selector(".empty_set")
         end
