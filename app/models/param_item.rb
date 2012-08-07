@@ -31,6 +31,12 @@ class ParamItem < ActiveRecord::Base
       "Zaškrtávací" => "check_boxes"
   }
 
+  BOOL_CHOICES = {
+      "Ano" => "ano",
+      "Ne" => "ne",
+      "nic" => nil
+  }
+
   # Validations
   validates :param_template,
             presence: true
