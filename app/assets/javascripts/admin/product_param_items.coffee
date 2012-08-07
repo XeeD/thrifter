@@ -9,7 +9,9 @@ jQuery ->
 
     # New text field param
     $(".add_new_field_link").live("click", ->
+      # clone whole block with add_new_link, checkbox and input tag
       html = $(this).parent().clone()
+
       # reset text field input value
       html.find('.new_value_input').val("")
 
@@ -18,9 +20,9 @@ jQuery ->
       check_box.val("")
       check_box.attr("checked", false)
 
-      # hide add next link
-      $(this).hide()
-
-      #append new block
+      # append new block
       $(this).closest("ul").append(html)
+
+      # hide add next link
+      $(this).remove()
     )
