@@ -18,7 +18,7 @@ class Admin::ParamItemDecorator < Draper::Base
 
   def label_with_group
     h.content_tag :label, for: "param_items_#{param_item.id}" do
-      "#{param_item.name} - #{param_group_name} #{required}"
+      "#{param_item.name} - #{h.content_tag(:small, param_group_name)} #{required}".html_safe
     end
   end
 
@@ -108,7 +108,7 @@ class Admin::ParamItemDecorator < Draper::Base
   end
 
   private
-  
+
   def input_size
     param_item.value_type == "int" ? 5 : 20
   end
