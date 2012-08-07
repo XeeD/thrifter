@@ -11,3 +11,11 @@ span.add_new_field_link {
 table ul li {
   list-style-type: none;
 }
+
+label.required::after {
+  content: "*"
+}
+
+input[type=number] {
+  width: 70px;
+}
