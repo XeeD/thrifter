@@ -34,7 +34,7 @@ end
 Když /^přidám nové pole "(.*?)" na řádku k vlastnosti "(.*?)"$/ do |value, line_text|
   row = find_table_row_with_text(line_text)
   within(row) do
-    new_fields_wrapper = find(".new_value_wrapper:first-child")
+    new_fields_wrapper = first(".new_value_wrapper")
     within(new_fields_wrapper) do
       fill_in_new_value_input(value.to_s)
     end
