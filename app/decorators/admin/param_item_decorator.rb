@@ -13,12 +13,12 @@ class Admin::ParamItemDecorator < Draper::Base
   end
 
   def required
-    param_item.is_sortable? ? "*" : ""
+    param_item.is_sortable? ? "required" : ""
   end
 
   def label_with_group
-    h.content_tag :label, for: "param_items_#{param_item.id}" do
-      "#{param_item.name} - #{h.content_tag(:small, param_group_name)} #{required}".html_safe
+    h.content_tag :label, for: "param_items_#{param_item.id}", class: required do
+      "#{param_item.name} - #{h.content_tag(:small, param_group_name)}".html_safe
     end
   end
 
@@ -28,10 +28,10 @@ class Admin::ParamItemDecorator < Draper::Base
     # input text field
     if param_item.choice_type == "input"
       input_text_tag
-    # radio button fields
+      # radio button fields
     elsif param_item.choice_type == "choices"
-      input_choice_tags
-    # check box fields
+      input_choices_tags
+      # check box fields
     else
       input_check_boxes_tags
     end
@@ -40,7 +40,7 @@ class Admin::ParamItemDecorator < Draper::Base
   # input text field
   def input_text_tag
     h.text_field_tag(
-        "param_items[#{param_item.id}]", "#{@assigned_param_values[param_item.id]}", {size: input_size}
+        "param_items[#{param_item.id}]", "#{@assigned_param_values[param_item.id]}", {type: input_type}
     ).concat(" #{param_item.unit}")
   end
 
@@ -52,12 +52,11 @@ class Admin::ParamItemDecorator < Draper::Base
         h.content_tag :li do
           h.content_tag :label, input_check_box_tag(param_value.value) + param_value.value
         end
-      end.join.html_safe.concat(
+      end.join.html_safe <<
         # new field
         h.content_tag(:li, class: "new_value_wrapper") do
           input_new_field_check_box_tag
         end
-      )
     end
   end
 
@@ -66,35 +65,43 @@ class Admin::ParamItemDecorator < Draper::Base
   end
 
   def input_new_field_check_box_tag
-      check_box = h.check_box_tag("param_items[#{param_item.id}][]", "", false, {class: "new_value"})
-      input = h.text_field_tag("new[#{param_item.id}]", "", {"data-copy" => "", class: "new_value_input"})
-      link = h.content_tag(:span, "Další", class: "add_new_field_link")
-      check_box + input + link
+    [
+        h.check_box_tag("param_items[#{param_item.id}][]", "", false, {class: "new_value"}),
+        h.text_field_tag("new[#{param_item.id}]", "", {"data-copy" => "", class: "new_value_input"}),
+        h.content_tag(:span, "Další", class: "add_new_field_link")
+    ].join.html_safe
   end
 
   # radio buttons
-  def input_choice_tags
+  def input_choices_tags
     # bool radio button choices
     if param_item.value_type == "bool"
-      ParamItem::BOOL_CHOICES.map do |label, value|
-        h.content_tag :label, input_radio_tag(value) + label
-      end.join.html_safe
+      input_boolean_choice_tags
     # integer and String radio button choices
     else
-      h.content_tag :ul do
-        # existing fields
-        param_item.param_values.map do |param_value|
-          h.content_tag :li do
-            h.content_tag :label, input_radio_tag(param_value.value) + param_value.value
-          end
-        end.join.html_safe.concat(
-          # new field
-          h.content_tag(:li, class: "new_value_wrapper") do
-            input_new_field_radio_tag
-          end
-        )
-      end
+      input_radios_tags
     end
+  end
+
+  def input_radios_tags
+    h.content_tag :ul do
+      # existing fields
+      param_item.param_values.map do |param_value|
+        h.content_tag :li do
+          h.content_tag :label, input_radio_tag(param_value.value) + param_value.value
+        end
+      end.join.html_safe <<
+        # new field
+        h.content_tag(:li, class: "new_value_wrapper") do
+          input_new_field_radio_tag
+        end
+    end
+  end
+
+  def input_boolean_choice_tags
+    ParamItem::BOOL_CHOICES.map do |label, value|
+      h.content_tag :label, input_radio_tag(value) + label
+    end.join.html_safe
   end
 
   def input_radio_tag(value)
@@ -102,14 +109,14 @@ class Admin::ParamItemDecorator < Draper::Base
   end
 
   def input_new_field_radio_tag
-      radio = h.radio_button_tag("param_items[#{param_item.id}]", "", false, {id: "param_items_#{param_item.id}_new", class: "new_value"})
-      input = h.text_field_tag("new[#{param_item.id}]", "", {"data-copy" => "", class: "new_value_input", size: input_size})
-      h.content_tag :label, radio + input
+    radio = h.radio_button_tag("param_items[#{param_item.id}]", "", false, {id: "param_items_#{param_item.id}_new", class: "new_value"})
+    input = h.text_field_tag("new[#{param_item.id}]", "", {"data-copy" => "", class: "new_value_input", type: input_type})
+    h.content_tag :label, radio + input
   end
 
   private
 
-  def input_size
-    param_item.value_type == "int" ? 5 : 20
+  def input_type
+    param_item.value_type == "int" ? "number" : "text"
   end
 end
