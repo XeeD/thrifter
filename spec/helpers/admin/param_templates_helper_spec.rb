@@ -1,6 +1,6 @@
 module Admin
   describe ParamTemplatesHelper do
-    context "category_roots_for_shop" do
+    describe "#category_roots_for_shop" do
       fixtures :shops
 
       it "returns all tree roots for Category with given shop_id" do
