@@ -2,20 +2,22 @@
 
 #product_assigned_to_shops
   - for shop in assigned_shops
-    %h3= shop.name
+    = content_tag_for(:div, shop) do
+      %h3= shop.name
 
-    Hlavní kategorie:
-    %strong= preferred_category_in_shop(shop).plural_name
-    %span.path_to_node= preferred_category_in_shop(shop).path_to_node
+      Hlavní kategorie:
+      %strong= preferred_category_in_shop(shop).plural_name
+      %span.path_to_node= preferred_category_in_shop(shop).path_to_node
 
-    %h4 Alternativní kategorie
-    %ul
-      - for category in alternative_categories_in_shop(shop)
-        %li
-          %strong= category.plural_name
-          %span.path_to_node= category.path_to_node
-    = link_to "Přidat do další kategorie", new_admin_product_categorization_path
+      %h4 Alternativní kategorie
+      %ul
+        - for category in alternative_categories_in_shop(shop)
+          %li
+            %strong= category.plural_name
+            %span.path_to_node= category.path_to_node
+      = link_to "Přidat do další kategorie", new_admin_product_categorization_path
 
-= semantic_form_for([:admin, product, categorization]) do |f|
-  %h3 Zařadit do dalšich kategorií
-  = f.input :category
+  = form_tag(add_shop_to_admin_product_categorizations_path(product)) do
+    %h3 Zařadit do dalšího obchodu
+    = select_tag :shop_id, options_from_collection_for_select(shops, :id, :name)
+    = submit_tag "Přidat do obchodu"

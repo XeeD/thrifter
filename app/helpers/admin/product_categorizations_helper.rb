@@ -11,4 +11,8 @@ module Admin::ProductCategorizationsHelper
   def alternative_categories_in_shop(shop)
     product.alternative_categories.where(shop_id: shop.id)
   end
+
+  def shops
+    Shop.all
+  end
 end

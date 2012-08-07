@@ -33,4 +33,11 @@ describe Admin::ProductCategorizationsHelper do
       helper.alternative_categories_in_shop(shop) == alternative_categories
     end
   end
+
+  describe "#shops" do
+    it "calls Shop#all" do
+      Shop.should_receive(:all)
+      helper.shops
+    end
+  end
 end
