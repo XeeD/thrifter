@@ -9,5 +9,16 @@ module Admin
         helper.category_roots_for_shop(shop) == categories
       end
     end
+
+    describe "#already_assigned_categories" do
+      fixtures :param_templates
+
+      it "returns all categories that are already assigned to different templates" do
+        param_template = param_templates(:fridges)
+        helper.stub(param_template: param_template)
+        assigned = Category.where("param_template_id IS NOT NULL").pluck(:id) - param_template.categories.pluck(:id)
+        helper.already_assigned_categories.should == assigned
+      end
+    end
   end
 end

@@ -3,10 +3,14 @@ require 'spec_helper'
 
 module Admin
   describe ParamTemplatesController do
+    fixtures :param_templates
+
     let(:param_template) { mock_model(ParamTemplate).as_null_object }
 
     before do
-      param_template.stub(:categories).and_return(nil)
+      categories = []
+      categories.stub(pluck: [])
+      param_template.stub(:categories).and_return(categories)
     end
 
     describe "GET index" do

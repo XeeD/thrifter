@@ -1,11 +1,8 @@
 = semantic_form_for([:admin, param_template]) do |f|
   = f.input :name
   = f.inputs "Přiřazené kategorie" do
-    - disabled = Category.where("param_template_id IS NOT NULL").pluck(:id)
-    - disabled -= param_template.categories.pluck(:id) unless param_template.categories.blank?
-
     - for shop in Shop.all
       %h3= shop.name
-      = f.input :categories, as: :check_boxes, collection: category_roots_for_shop(shop), nested_set: true, disabled: disabled, show_if: :product_list?, member_label: :plural_name
+      = category_select_for_shop(shop, f, disabled: already_assigned_categories, show_if: :product_list?)
   = f.actions do
     = f.submit
