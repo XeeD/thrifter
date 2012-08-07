@@ -6,7 +6,7 @@
         %tbody
           - product.param_template.sorted_param_items_by_group_position.each do |param_item|
             %tr
-              %td
+              %th{class: param_item.importance}
                 = param_item.label_with_group
               %td
                 = param_item.param_item_input_fields(product.assigned_param_values)
