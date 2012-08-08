@@ -80,5 +80,50 @@ module Admin
         response.should redirect_to(admin_product_categorizations_url(product))
       end
     end
+
+    describe "GET edit_preferred" do
+      fixtures :categorizations
+
+      context "with valid preferred categorization" do
+        let(:categorization) { categorization = categorizations(:categorization_samsung_tv_sporilek_tvs_3d) }
+
+        def get_edit_preferred_valid
+          get :edit_preferred, product_id: product.id, id: categorization.id
+        end
+
+        it "finds Categorization by id" do
+          product.stub_chain(:categorizations, :find).and_return(categorization)
+          product.categorizations.should_receive(:find).with(categorization.id.to_s)
+          get_edit_preferred_valid
+        end
+
+        context "when rendering views" do
+          render_views
+
+          it "displays form" do
+            get_edit_preferred_valid
+            response.body.should have_selector("form")
+          end
+        end
+      end
+
+      context "with non-preferred categoriaztion" do
+        let(:categorization) { categorization = categorizations(:categorization_samsung_tv_sporilek_tvs_led) }
+
+        def get_edit_preferred_invalid
+          get :edit_preferred, product_id: product.id, id: categorization.id
+        end
+
+        it "redirects back to index" do
+          get_edit_preferred_invalid
+          response.should redirect_to(admin_product_categorizations_url(product))
+        end
+
+        it "sets error message" do
+          get_edit_preferred_invalid
+          flash[:error].should_not be_blank
+        end
+      end
+    end
   end
 end

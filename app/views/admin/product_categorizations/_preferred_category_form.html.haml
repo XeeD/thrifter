@@ -1,0 +1,7 @@
+= semantic_form_for([:admin, product]) do |f|
+  = category_select_for_shop(Shop.first, f,
+                             show_if: [:product_list?, :additional?],
+                             disabled: disabled_categories_preferred_categorization(categorization),
+                             as_radio_buttons: true)
+  = f.actions do
+    = f.submit "Změnit hlavní kategorii"
