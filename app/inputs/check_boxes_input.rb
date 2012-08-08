@@ -38,12 +38,19 @@ class CheckBoxesInput < Formtastic::Inputs::CheckBoxesInput
     # else call method specified by "show_if" attribute
     # and based on result show check_box
     choice_wrapping(choice_wrapping_html_options([model.send(label_method), model.id])) do
-      if options[:show_if].nil? || (options[:show_if].present? && model.send(options[:show_if].to_s))
+      if show_box?(model)
         choice_html([model.send(label_method), model.id])
       else
         "#{model.send(label_method)}".html_safe
       end << sub_choice_nested_html(model)
     end
+  end
+
+  def show_box?(model)
+    # Default behavior: show all checkboxes
+    return true if options[:show_if].nil?
+
+    [*options[:show_if]].detect { |show_method| model.send(show_method.to_sym) }
   end
 
   # recursive nesting
