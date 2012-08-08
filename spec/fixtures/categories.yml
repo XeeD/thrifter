@@ -71,7 +71,7 @@ sporilek_tvs:
 
 sporilek_tvs_led:
   id: 7
-  short_name: "LED televize"
+  short_name: "LED"
   url:  "led-televize"
   plural_name: "LED televize"
   singular_name: "LED televize"
