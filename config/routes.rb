@@ -17,8 +17,8 @@ Thrifter::Application.routes.draw do
       resources :categorizations, controller: "product_categorizations", only: [:index, :destroy] do
         collection do
           post :add_shop_to
-          get :edit_shop
-          put :update_shop
+          get :edit_alternative
+          put :update_alternative
         end
         member do
           get :edit_preferred

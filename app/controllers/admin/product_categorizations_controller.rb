@@ -2,15 +2,15 @@
 
 module Admin
   class ProductCategorizationsController < AdminController
-    before_filter :only_in_shop_context, only: [:edit_shop, :update_shop]
+    before_filter :only_in_shop_context, only: [:edit_alternative, :update_alternative]
 
     def index
     end
 
-    def edit_shop
+    def edit_alternative
     end
 
-    def update_shop
+    def update_alternative
       product_categorizations = ProductShopCategorizations.new(product, shop)
       product_categorizations.set_alternative_categories!(params[:product][:category_ids])
       redirect_to admin_product_categorizations_url(product)
