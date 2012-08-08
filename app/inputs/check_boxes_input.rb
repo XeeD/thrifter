@@ -18,6 +18,21 @@ class CheckBoxesInput < Formtastic::Inputs::CheckBoxesInput
     end
   end
 
+
+  def check_box_without_hidden_input(choice)
+    value = choice_value(choice)
+    input_tag(
+        input_name,
+        value,
+        checked?(value),
+        input_html_options.merge(:id => choice_input_dom_id(choice), :disabled => disabled?(value), :required => false)
+    )
+  end
+
+  def input_tag(*args)
+    options[:as_radio_buttons] ? template.radio_button_tag(*args) : template.check_box_tag(*args)
+  end
+
   def nested_wrapping
     input_wrapping do
       choices_wrapping do
@@ -37,11 +52,12 @@ class CheckBoxesInput < Formtastic::Inputs::CheckBoxesInput
     # show checkbox if "show_if" attribute is not provided
     # else call method specified by "show_if" attribute
     # and based on result show check_box
-    choice_wrapping(choice_wrapping_html_options([model.send(label_method), model.id])) do
+    label = model.send(label_method)
+    choice_wrapping(choice_wrapping_html_options([label, model.id])) do
       if show_box?(model)
-        choice_html([model.send(label_method), model.id])
+        choice_html([label, model.id])
       else
-        "#{model.send(label_method)}".html_safe
+        label.to_s.html_safe
       end << sub_choice_nested_html(model)
     end
   end
@@ -50,6 +66,7 @@ class CheckBoxesInput < Formtastic::Inputs::CheckBoxesInput
     # Default behavior: show all checkboxes
     return true if options[:show_if].nil?
 
+    # We show the element if at least one of :show_if methods returns true
     [*options[:show_if]].detect { |show_method| model.send(show_method.to_sym) }
   end
 
