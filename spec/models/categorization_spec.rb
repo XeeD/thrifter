@@ -54,6 +54,11 @@ describe Categorization do
         preferred: !!preferred)
   end
 
+  it "validates presence of category_id" do
+    categorization = product.categorizations.new
+    categorization.should have(1).error_on(:category)
+  end
+
   context "allows" do
     it "only one preferred category per shop" do
       categorization = assign_product_to(:sporilek_3d_tech_tvs_led, :preferred)

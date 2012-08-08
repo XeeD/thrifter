@@ -5,15 +5,26 @@ class CategorizationValidator < ActiveModel::Validator
 
   def validate(record)
     @record = record
-    validate_constraints
+    validate_category and validate_constraints
   end
 
   def error(message)
     record.errors.add(:base, message)
   end
 
+  def validate_category
+    if record.category_id.nil?
+      record.errors.add(:category, :blank)
+      false
+    elsif !Category.exists?(record.category_id)
+      record.errors.add(:category, :invalid)
+      false
+    else
+      true
+    end
+  end
+
   def validate_constraints
-    # Product can have only one preferred category in shop
     if record.preferred? and product_has_preferred_category_in_shop?
       error "Produkt #{record.product.name} již má v tomto obchodě hlavní katgorii"
     end
@@ -40,6 +51,7 @@ class CategorizationValidator < ActiveModel::Validator
       error "Produkt je již přiřazen některé nadřazené kategorii"
     end
   end
+
 
   private
 
