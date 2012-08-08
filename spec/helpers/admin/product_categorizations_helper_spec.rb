@@ -41,25 +41,60 @@ describe Admin::ProductCategorizationsHelper do
     end
   end
 
-  describe "#already_assigned_categories_for_product" do
+  context do
     fixtures :shops
 
-    it "returns array of all categories assigned to products and their subcategories" do
-      product = products(:samsung_tv)
-      shop = shops(:sporilek)
+    let(:shop) { shops(:sporilek) }
+
+    def descendants
+      product.categories.map { |category| category.descendants.pluck(:id) }
+    end
+
+    def preferred
+      product.categorizations.preferred.in_shop(shop).pluck(:category_id)
+    end
+
+    def with_other_param_template
+      Category.in_shop(shop).
+          where(category_type: :product_list).
+          where("param_template_id != ? || param_template_id IS NULL", product.param_template.id).map do |category|
+        category.self_and_descendants.pluck(:id)
+      end
+    end
+
+    before do
       helper.stub(product: product)
+    end
 
-      descendants = product.categories.map { |category| category.descendants.pluck(:id) }
-      preferred = product.categorizations.preferred.in_shop(shop).pluck(:category_id)
-      with_other_param_template =
-          Category.in_shop(shop).
-              where(category_type: :product_list).
-              where("param_template_id != ? || param_template_id IS NULL", product.param_template.id).map do |category|
-            category.self_and_descendants.pluck(:id)
-          end
+    describe "#descendants_of_assigned_categories" do
+      it "returns all descendats" do
+        helper.descendants_of_assigned_categories.should == descendants
+      end
+    end
 
-      expected = (descendants + preferred + with_other_param_template).flatten.uniq
-      helper.disabled_categories_for_product_in_shop(shop).should == expected
+    describe "#preferred_category" do
+      it "returns preferred category in current shop" do
+        helper.preferred_category(shop).should == preferred
+      end
+    end
+
+    describe "#categories_with_other_param_template(shop)" do
+      it "returns all categories from current shop that have different param template" do
+        helper.categories_with_other_param_template(shop).should == with_other_param_template
+      end
+    end
+
+    describe "#already_assigned_categories_for_product" do
+      fixtures :shops
+
+      it "returns array of all categories assigned to products and their subcategories" do
+        expected = (descendants + preferred + with_other_param_template).flatten.uniq
+        helper.disabled_categories_for_product_in_shop(shop).should == expected
+      end
+    end
+
+    describe "#disabled_categories_preferred_categorization" do
+
     end
   end
 end
