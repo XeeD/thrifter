@@ -52,10 +52,10 @@ Požadavek: Produktový admin může přiřazovat produkt libovolnému množstv�
     A kliknu na tlačítko "Uložit alternativní kategorie"
     Pak by neměl produkt být zařazen v kategorii "Televize LED LCD"
 
-  @wip
+  @wip @now
   Scénář: Změna hlavní kategorie produktu
     Pokud je produkt zařazen v hlavní kategorii "Televize -> 3D" v obchodu "Spořílek.cz"
-    Když kliknu na odkaz "Změnit hlavní kategorii" u obchodu "Spořílek.cz"
+    Když u obchodu "Spořílek.cz" kliknu na odkaz "Změnit hlavní kategorii"
     A vyberu kategorii "3D Technologie -> Televize"
     A kliknu na tlačítko "Změnit hlavní kategorii"
     Pak by měl produkt být zařazen v hlavní kategorii "3D technologie -> Televize" v obchodu "Spořílek.cz"

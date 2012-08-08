@@ -20,6 +20,9 @@ Thrifter::Application.routes.draw do
           get :edit_shop
           put :update_shop
         end
+        member do
+          get :edit_preferred
+        end
       end
     end
 

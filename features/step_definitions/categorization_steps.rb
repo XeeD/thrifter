@@ -44,18 +44,24 @@ Když /^u obchodu "(.*?)" kliknu na odkaz "(.*?)"$/ do |shop_name, link_text|
 end
 
 def category_check_box(category_path)
-  category = category_from_path_in_shop(category_path, @shop)
-  find_field("product_category_ids_#{category.id}")
+  find_field category_field_id(category_path)
+end
+
+def category_field_id(category_path, shop=@shop)
+  category = category_from_path_in_shop(category_path, shop)
+  "product_category_ids_#{category.id}"
 end
 
 Když /^zaškrtnu pole u kategorie "(.*?)"$/ do |category_path|
-  category = category_from_path_in_shop(category_path, @shop)
-  check "product_category_ids_#{category.id}"
+  check category_field_id(category_path)
 end
 
 Když /^zruším zaškrtnutí pole u kategorie "(.*?)"$/ do |category_path|
-  category = category_from_path_in_shop(category_path, @shop)
-  uncheck "product_category_ids_#{category.id}"
+  uncheck category_field_id(category_path)
+end
+
+Když /^vyberu kategorii "(.*?)"$/ do |category_path|
+  choose category_field_id(category_path)
 end
 
 Pak /^by mělo být zatržené pole u kategorie "(.*?)"(, ale nemělo by jít změnit)?$/ do |category_path, disable|
@@ -69,8 +75,8 @@ Pak /^nemělo by ani jít zaškrtnout pole "(.*?)" \(mimo jiné\)$/ do |category
   category_check_box(category_path)["disabled"].should be_true
 end
 
-Pak /^by měl produkt být zařazen v alternativní kategorii "(.*?)" v obchodu "(.*?)"$/ do |category_path, shop_name|
-  assert_product_in_category(@product, category_path, shop_name, false)
+Pak /^by měl produkt být zařazen v (hlavní|alternativní) kategorii "(.*?)" v obchodu "(.*?)"$/ do |preferrence, category_path, shop_name|
+  assert_product_in_category(@product, category_path, shop_name, preferrence == "hlavní")
 end
 
 Pak /^by neměl produkt být zařazen v kategorii "(.*?)"$/ do |category_path|

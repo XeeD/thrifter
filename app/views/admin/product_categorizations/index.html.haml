@@ -8,6 +8,8 @@
       Hlavní kategorie:
       %strong= preferred_category_in_shop(shop).plural_name
       %span.path_to_node= preferred_category_in_shop(shop).path_to_node
+      = link_to "Změnit hlavní kategorii",
+        edit_preferred_admin_product_categorization_path(product, preferred_category_in_shop(shop))
 
       %h4 Alternativní kategorie
       %ul
