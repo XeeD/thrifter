@@ -15,7 +15,7 @@
           %li
             %strong= category.plural_name
             %span.path_to_node= category.path_to_node
-      = link_to "Přidat do další kategorie", new_admin_product_categorization_path
+      = link_to "Upravit alternativní kategorie", edit_shop_admin_product_categorizations_path(product, shop_id: shop.id)
 
   = form_tag(add_shop_to_admin_product_categorizations_path(product)) do
     %h3 Zařadit do dalšího obchodu

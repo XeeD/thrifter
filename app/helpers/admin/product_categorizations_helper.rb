@@ -15,4 +15,21 @@ module Admin::ProductCategorizationsHelper
   def shops
     Shop.all
   end
+
+  def disabled_categories_for_product_in_shop(shop)
+    descendants_of_assigned_categories =
+        product.categories.map { |category| category.descendants.pluck(:id) }
+
+    preferred_category =
+        product.categorizations.preferred.in_shop(shop).pluck(:category_id)
+
+    categories_with_other_param_template =
+        Category.in_shop(shop).
+            where(category_type: :product_list).
+            where("param_template_id != ? || param_template_id IS NULL", product.param_template.id).map do |category|
+          category.self_and_descendants.pluck(:id)
+        end
+
+    (descendants_of_assigned_categories + preferred_category + categories_with_other_param_template).flatten.uniq
+  end
 end

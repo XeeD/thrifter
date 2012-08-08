@@ -1,23 +1,19 @@
+# encoding: UTF-8
+
 module Admin
   class ProductCategorizationsController < AdminController
+    before_filter :only_in_shop_context, only: [:edit_shop, :update_shop]
+
     def index
     end
 
-    def create
-      if categorization.save
-        redirect_to admin_product_categorizations_url(product)
-      else
-        flash.now[:error] = categorization.errors_on(:base)
-        render :index
-      end
+    def edit_shop
     end
 
-    def destroy
-      categorization.destroy
-    rescue ActiveRecord::ActiveRecordError => exception
-      flash[:error] = exception.message
-    ensure
-      redirect_to admin_product_categorizations_url
+    def update_shop
+      product_categorizations = ProductShopCategorizations.new(product, shop)
+      product_categorizations.set_alternative_categories!(params[:product][:category_ids])
+      redirect_to admin_product_categorizations_url(product)
     end
 
 
@@ -35,12 +31,19 @@ module Admin
 
     helper_method :categorizations
 
-    def categorization
-      @categorization ||= params[:id] ?
-          categorizations.find(params[:id]) :
-          categorizations.new(params[:categorization])
+    def shop
+      @shop ||= params[:shop_id] && Shop.find(params[:shop_id])
     end
 
-    helper_method :categorization
+    helper_method :shop
+
+    def only_in_shop_context
+      unless shop.present?
+        flash[:error] = "Musíte specifikovat obchod"
+        redirect_to(admin_product_categorizations_url(product))
+        false
+      end
+      true
+    end
   end
 end

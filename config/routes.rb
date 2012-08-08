@@ -14,8 +14,12 @@ Thrifter::Application.routes.draw do
         collection { post :sort }
       end
       resources :params, controller: "product_param_items", path: "parametry"
-      resources :categorizations, controller: "product_categorizations", only: [:index, :new, :create, :destroy] do
-        collection { post :add_shop_to }
+      resources :categorizations, controller: "product_categorizations", only: [:index, :destroy] do
+        collection do
+          post :add_shop_to
+          get :edit_shop
+          put :update_shop
+        end
       end
     end
 
