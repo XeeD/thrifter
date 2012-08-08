@@ -37,6 +37,15 @@ class Product < ActiveRecord::Base
     sample_preferred_category.assigned_param_template
   end
 
+  # Get values (value column of ParamValue) for given param_item_id
+  # The method uses defined_param_values scope.
+  def param_values_for(param_item_id)
+    defined_param_values.
+        joins(:param_item).
+        where(param_items: {id: param_item_id}).
+        pluck("param_values.value")
+  end
+
   # Validations
   validates :name,
             presence: true,
@@ -87,13 +96,4 @@ class Product < ActiveRecord::Base
   validates :external_id,
             presence: true,
             numericality: {only_integer: true}
-
-  # Get values (value column of ParamValue) for given param_item_id
-  # The method uses defined_param_values scope.
-  def param_values_for(param_item_id)
-    defined_param_values.
-        joins(:param_item).
-        where(param_items: {id: param_item_id}).
-        pluck("param_values.value")
-  end
 end
