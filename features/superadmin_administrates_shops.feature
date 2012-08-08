@@ -10,9 +10,9 @@ Požadavek: Hlavní správce spravuje obchody
     Pokud jsem přihlášený jako "superadmin"
 
   Scénář: zobrazení formuláře pro vytvoření nové šablony parametrů
-    Když otevřu sekci "administrace šablon parametrů"
-    A kliknu na odkaz "Přidat novou šablonu parametrů"
-    Pak bych měl vidět nadpis "Nová šablona parametrů"
+    Když otevřu sekci "administrace obchodů"
+    A kliknu na odkaz "Přidat nový obchod"
+    Pak bych měl vidět nadpis "Nový obchod"
 
   Scénář: přidání nového obchodu
     Pokud jsem v sekci "administrace obchodů"
@@ -27,14 +27,14 @@ Požadavek: Hlavní správce spravuje obchody
   Scénář: zobrazení potvrzení smazání existujícího obchodu
     Pokud jsem v sekci "administrace obchodů"
     A obchod "Spořílek.cz" existuje
-    Když kliknu na řádku u šablony parametrů "Spořílek" na odkaz "Smazat"
+    Když kliknu na řádku u obchodu "Spořílek" na odkaz "Smazat"
     Pak bych měl vidět nadpis "Opravdu chcete smazat obchod Spořílek.cz?"
     A měl bych vidět "Do následující pole napište SMAZAT, pokud chcete obchod opravdu smazat"
 
   Scénář: smazání existujícího obchodu (po potvrzení)
     Pokud jsem v sekci "administrace obchodů"
     A obchod "Spořílek.cz" existuje
-    Když kliknu na řádku u šablony parametrů "Spořílek" na odkaz "Smazat"
+    Když kliknu na řádku u obchodu "Spořílek" na odkaz "Smazat"
     A vyplním "SMAZAT" do pole "Potvrzení smazání"
     A kliknu na tlačítko "Smazat obchod Spořílek.cz"
     Pak bych měl vidět zprávu "Obchod Spořílek.cz byl smazán"
