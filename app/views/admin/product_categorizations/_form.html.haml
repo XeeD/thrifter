@@ -1,4 +1,4 @@
 = semantic_form_for([:admin, product], url: update_shop_admin_product_categorizations_path(shop_id: shop.id)) do |f|
   = category_select_for_shop(shop, f, disabled: disabled_categories_for_product_in_shop(shop), show_if: [:product_list?, :additional?])
   = f.actions do
-    = f.submit
+    = f.submit "Uložit alternativní kategorie"

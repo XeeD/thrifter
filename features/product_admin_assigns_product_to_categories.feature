@@ -1,5 +1,4 @@
 # language: cs
-@wip
 Požadavek: Produktový admin může přiřazovat produkt libovolnému množství kategorií
 
   Abych zjednodušil orientaci zákazníků ve velkém množství produktů na našich stránkách
@@ -31,14 +30,29 @@ Požadavek: Produktový admin může přiřazovat produkt libovolnému množstv�
 
   Kontext:
     Pokud jsem v editace produktu "Samsung UE55ES8000" na záložce "Kategorie"
-
-  Scénář: Přidání produktu do dodatečné kategorie
     Pokud je produkt zařazen v hlavní kategorii "Televize -> 3D" v obchodu "Spořílek.cz"
-    Když u alternativních kategorií obchodu "Spořílek.cz" kliknu na "Přidat do další kategorie"
-    A vyberu kategorii "3D Technologie -> Televize"
-    A kliknu na tlačítko "Přidat do kategorie"
-    Pak by měl produkt být zařazen v alternativní kategorii "3D technologie -> Televize"
+    A je zařazen v alternativní kategorii "Televize -> LED" v obchodu "Spořílek.cz"
 
+  Scénář: Zobrazení editace alternativních kategorií produktu
+    Když u obchodu "Spořílek.cz" kliknu na odkaz "Upravit alternativní kategorie"
+    Pak by mělo být zatržené pole u kategorie "Televize -> LED"
+    A by mělo být zatržené pole u kategorie "Televize -> 3D", ale nemělo by jít změnit
+    A nemělo by ani jít zaškrtnout pole "Chladničky -> Americké" (mimo jiné)
+
+  Scénář: Změna alternativních kategorií produktu
+    Pokud není produkt zařazen v kategorii "3D technologie -> Televize -> LED LCD" v obchodu "Spořílek.cz"
+    Když u obchodu "Spořílek.cz" kliknu na odkaz "Upravit alternativní kategorie"
+    A zaškrtnu pole u kategorie "3D technologie -> Televize -> LED LCD"
+    A kliknu na tlačítko "Uložit alternativní kategorie"
+    Pak by měl produkt být zařazen v alternativní kategorii "3D technologie -> Televize -> LED LCD" v obchodu "Spořílek.cz"
+
+  Scénář: Odebrání obchodu z alternativní kategorie
+    Když u obchodu "Spořílek.cz" kliknu na odkaz "Upravit alternativní kategorie"
+    A zruším zaškrtnutí pole u kategorie "Televize -> LED"
+    A kliknu na tlačítko "Uložit alternativní kategorie"
+    Pak by neměl produkt být zařazen v kategorii "Televize LED LCD"
+
+  @wip
   Scénář: Změna hlavní kategorie produktu
     Pokud je produkt zařazen v hlavní kategorii "Televize -> 3D" v obchodu "Spořílek.cz"
     Když kliknu na odkaz "Změnit hlavní kategorii" u obchodu "Spořílek.cz"
@@ -46,6 +60,7 @@ Požadavek: Produktový admin může přiřazovat produkt libovolnému množstv�
     A kliknu na tlačítko "Změnit hlavní kategorii"
     Pak by měl produkt být zařazen v hlavní kategorii "3D technologie -> Televize" v obchodu "Spořílek.cz"
 
+  @wip
   Scénář: Přidání produktu do dalšího obchodu
     Pokud produkt není zařazen v obchodě "Smart Samsung"
     Když vyberu hodnotu "Smart Samsung" ze seznamu "Obchody"
@@ -54,15 +69,10 @@ Požadavek: Produktový admin může přiřazovat produkt libovolnému množstv�
     A kliknu na tlačítko "Přidat do obchodu"
     Pak by měl produkt být zařazen v hlavní kategorii "Televizory -> LED LCD" v obchodu "Smart Samsung"
 
+  @wip
   Scénář: Vyřazení výrobku z obchodu
     Pokud je produkt zařazen v hlavní kategorii "Televizory -> LED LCD" v obchodu "Smart Samsung"
     A není zařazen v žádných dalších kategoriích
     Když kliknu na odkaz "Odebrat z tohoto obchodu" u obchodu "Smart Samsung"
     Pak bych měl vidět zprávu "Produkt Samsung UE55ES8000 byl odebrán z obchodu Smart Samsung"
     A produkt by neměl být zařazen v obchodu Smart Samsung v žádné kategorii
-
-  Scénář: Odebrání obchodu z alternativní kategorie
-    Pokud je produkt zařazen v alternativní kategorii "Televize -> LED" v obchodu "Spořílek.cz"
-    Když kliknu na odkaz "odebrat alternativní kategorii" této kategorie
-    Pak bych měl vidět zprávu "Produkt byl vyřazen z alternativní kategorie"
-    A produkt by neměl být zařazen v kategorii "Televize -> 3D televize" v obchodu "Spořílek.cz"
