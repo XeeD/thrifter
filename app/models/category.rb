@@ -12,19 +12,11 @@ class Category < ActiveRecord::Base
   belongs_to :param_template
   belongs_to :parent_category, foreign_key: :parent_id, class_name: "Category"
 
+  # Scopes
+  scope :in_shop, ->(shop_id) { where(shop_id: shop_id) }
+
   # Attributes
   attr_accessible :short_name, :url, :plural_name, :singular_name, :category_type, :parent_id
-
-  validates :parent_id,
-            parent_loop: true
-
-  def product_list?
-    category_type == :product_list
-  end
-
-  def navigational?
-    category_type == :navigational
-  end
 
   def category_type
     self[:category_type] && self[:category_type].to_sym
@@ -79,10 +71,19 @@ class Category < ActiveRecord::Base
 
   # Enumerations
   CATEGORY_TYPES = {
-      "Navigační"  => :navigational,
+      "Navigační" => :navigational,
       "Produktová" => :product_list,
-      "Přídavná"   => :additional
+      "Přídavná" => :additional
   }
+
+  # Define methods like Category#navigational? and Category#product_list?
+  CATEGORY_TYPES.values.each do |category_type|
+    predicate_method = (category_type.to_s + "?").to_sym
+
+    define_method predicate_method do
+      self.category_type == category_type
+    end
+  end
 
   # Validations
   validates :short_name,
@@ -106,6 +107,8 @@ class Category < ActiveRecord::Base
             parent_field_combination: {
                 :navigational => [:navigational, :product_list, :additional],
                 :product_list => [:additional],
-                :additional   => [:additional]
+                :additional => [:additional]
             }
+  validates :parent_id,
+            parent_loop: true
 end

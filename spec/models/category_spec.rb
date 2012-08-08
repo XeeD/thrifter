@@ -166,6 +166,16 @@ describe Category do
     end
   end
 
+  describe "#additional?" do
+    it "returns true, if the category is additional" do
+      categories(:sporilek_combined_fridges_up).should be_additional
+    end
+
+    it "return false, if the category is of other type" do
+      categories(:sporilek_tvs_led).should_not be_additional
+    end
+  end
+
   describe "#path_to_node" do
     let(:category) { categories(:sporilek_3d_tech_tvs_plasma) }
 
