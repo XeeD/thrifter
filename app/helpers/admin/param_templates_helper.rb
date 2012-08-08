@@ -13,7 +13,7 @@ module Admin::ParamTemplatesHelper
     form.input :categories, options
   end
 
-  def already_assigned_categories
+  def already_assigned_categories_for_param_templates
     Category.where("param_template_id IS NOT NULL").pluck(:id) - param_template.categories.pluck(:id)
   end
 end

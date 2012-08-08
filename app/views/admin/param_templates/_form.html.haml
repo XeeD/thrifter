@@ -1,8 +1,9 @@
 = semantic_form_for([:admin, param_template]) do |f|
+  = f.semantic_errors
   = f.input :name
   = f.inputs "Přiřazené kategorie" do
     - for shop in Shop.all
       %h3= shop.name
-      = category_select_for_shop(shop, f, disabled: already_assigned_categories, show_if: :product_list?)
+      = category_select_for_shop(shop, f, disabled: already_assigned_categories_for_param_templates, show_if: :product_list?)
   = f.actions do
     = f.submit
