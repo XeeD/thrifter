@@ -1,4 +1,4 @@
-class CreateNewsItemsTable < ActiveRecord::Migration
+class CreateNewsItems < ActiveRecord::Migration
   def change
     create_table :news_items, force: true do |t|
       t.string :title, limit: 100

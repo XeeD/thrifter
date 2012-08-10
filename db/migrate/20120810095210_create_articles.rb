@@ -8,5 +8,8 @@ class CreateArticles < ActiveRecord::Migration
       t.text :summary
       t.timestamps
     end
+
+    add_index :articles, :url
+    add_index :articles, :state
   end
 end
