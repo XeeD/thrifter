@@ -1,6 +1,7 @@
 class Shop < ActiveRecord::Base
   # Associations
   has_many :categories
+  has_many :news_items
 
   # Attributes
   attr_accessible :host, :name, :short_name
