@@ -26,8 +26,6 @@ Thrifter::Application.routes.draw do
       end
     end
 
-    match "novinky/vyber-obchodu" => "news_items#choose_shop", as: "news_items"
-
     resources :param_templates, path: "sablony-parametru", path_names: {new: "nova", edit: "editace"} do
       resources :groups, path: "skupiny", path_names: {new: "nova", edit: "editace"}, controller: "param_groups", except: :index do
         collection { post :sort }
@@ -44,7 +42,11 @@ Thrifter::Application.routes.draw do
       resources :categories, path: "kategorie", path_names: {new: "nova", edit: "editace"}, except: :show
     end
 
+    resources :documents, path: "dokumenty", path_names: {new: "novy", edit: "editace"}
+    
     # Admistation of categories - choose which shop's categories to administrate
     match "kategorie/vyber-obchodu" => "categories#choose_shop", as: "categories"
+    match "novinky/vyber-obchodu" => "news_items#choose_shop", as: "news_items"
+
   end
 end
