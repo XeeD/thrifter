@@ -1,0 +1,9 @@
+article_led_tv:
+  id: 1
+  state: "visible"
+  title: "LCD TV"
+  url: "lcd-tv"
+  summary: "Ještě lepší LCD"
+  content: "LCD jsou ještě lepší než kdy byly!"
+  created_at: "2012-01-01"
+  updated_at: "2012-02-02"
