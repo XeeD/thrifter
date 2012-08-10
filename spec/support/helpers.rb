@@ -64,8 +64,8 @@ module Helpers
 
   def valid_param_value_attributes
     {
-      value: "100",
-      param_item_id: 1
+        value: "100",
+        param_item_id: 1
     }.stringify_keys
   end
 
@@ -81,6 +81,14 @@ module Helpers
     {
         title: "detail ovládání",
         product_id: "1"
+    }.stringify_keys
+  end
+
+  def  valid_news_item_attributes
+    {
+        title: "BestShop",
+        content: "Nejlepší obchod historie",
+        link: "/best-shop/"
     }.stringify_keys
   end
 
