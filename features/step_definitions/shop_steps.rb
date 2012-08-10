@@ -1,7 +1,8 @@
 # encoding: UTF-8
 
 Pokud /^obchod "(.*?)" existuje$/ do |name|
-  raise "shop #{name} doesn't exist" if Shop.find_by_name(name).nil?
+  @shop = Shop.find_by_name(name)
+  raise "shop #{name} doesn't exist" if @shop.nil?
 end
 
 Pak /^obchod "(.*?)" by měl být smazán$/ do |name|
