@@ -7,6 +7,10 @@ cs:
       shop: Obchod
       "product/photo": "Obrázek produktu"
     attributes:
+      news_item:
+        title: "Nadpis"
+        link: "Kontextový odkaz"
+        content: "Obsah"
       brand:
         name: "Název"
         url: "Název v odkazu"
@@ -91,6 +95,9 @@ cs:
       product_photo:
         create: "Přidat nový obrázek"
         update: "Uložit obrázek"
+      news_item:
+        create: "Vytvořit novinku"
+        update: "Uložit novinku"
   errors:
     messages:
       carrierwave_processing_error: nemohl být zpracován
