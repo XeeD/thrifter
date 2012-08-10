@@ -94,7 +94,7 @@ module Admin
         end
 
         it "sets the notice message with category's plural name" do
-          category.stub(plural_name: "Pračky")
+          category.stub(plural_name: valid_category_attributes["plural_name"])
           post_valid_attributes
           flash[:notice].should include(category.plural_name)
         end
@@ -181,7 +181,7 @@ module Admin
         end
 
         it "sets the notice message with category's plural name" do
-          category.stub(plural_name: "Pračky")
+          category.stub(plural_name: valid_category_attributes["plural_name"])
           put_update
           flash[:notice].should include(category.plural_name)
         end
@@ -250,7 +250,7 @@ module Admin
         end
 
         it "sets notice message containing category name" do
-          category.stub(plural_name: "Pračky")
+          category.stub(plural_name: valid_category_attributes["plural_name"])
           delete_category
           flash[:notice].should include(category.plural_name)
         end
