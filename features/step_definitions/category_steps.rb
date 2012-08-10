@@ -26,7 +26,7 @@ Pokud /^(.+ )?kategorie "(.+)" v obchodu "(.+)" existuje$/ do |written_category_
   end
 end
 
-Pokud /^mám otevřenou administaci kategorií pro obchod "(.+)"$/ do |shop_name|
+Pokud /^mám otevřenou administraci kategorií pro obchod "(.+)"$/ do |shop_name|
   shop = Shop.find_by_name(shop_name)
   raise "shop '#{shop_name}' doesn't exist" if shop.nil?
 
