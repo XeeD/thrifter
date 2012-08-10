@@ -84,11 +84,21 @@ module Helpers
     }.stringify_keys
   end
 
-  def  valid_news_item_attributes
+  def valid_news_item_attributes
     {
         title: "BestShop",
-        content: "Nejlepší obchod historie",
+        content: "Nejlepší obchod roku",
         link: "/best-shop/"
+    }.stringify_keys
+  end
+
+  def valid_article_attributes
+    {
+        title: "Plazma TV",
+        url: "plazma-tv",
+        state: "visible",
+        content: "Plazmové televize jsou nyní ještě barevnější",
+        summary: "Více barev od plazmových televizí"
     }.stringify_keys
   end
 
