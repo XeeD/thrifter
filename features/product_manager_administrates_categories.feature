@@ -17,7 +17,7 @@ Požadavek: Produktový manager spravuje kategorie
     A měl bych vidět "Chladničky"
 
   Scénář: vytvoření nové kategorie
-    Pokud mám otevřenou administaci kategorií pro obchod "Spořílek.cz"
+    Pokud mám otevřenou administraci kategorií pro obchod "Spořílek.cz"
     Když kliknu na odkaz "Přidat novou kategorii"
     A vyplním formulář údaji:
       | Název          | Název v odkazu | Celý název (mn. č.) | Celý název (j. č.) |
@@ -30,13 +30,13 @@ Požadavek: Produktový manager spravuje kategorie
 
   Scénář: smazání existující kategorie
     Pokud kategorie "Kombinované chladničky" v obchodu "Spořílek.cz" existuje
-    Pokud mám otevřenou administaci kategorií pro obchod "Spořílek.cz"
+    Pokud mám otevřenou administraci kategorií pro obchod "Spořílek.cz"
     Když kliknu na řádku u kategorie "Kombinované chladničky" na odkaz "Smazat"
     Pak bych měl vidět zprávu "Kategorie Kombinované chladničky byla smazána"
     A kategorie "Kombinované chladničky" by měla být smazána
 
   Scénář: upravení existující kategorie
-    Pokud mám otevřenou administaci kategorií pro obchod "Spořílek.cz"
+    Pokud mám otevřenou administraci kategorií pro obchod "Spořílek.cz"
     A kliknu na řádku u kategorie "Chladničky" na odkaz "Upravit"
     A změním hodnotu pole "Celý název (mn. č.)" na "Lednice"
     A kliknu na tlačítko "Uložit kategorii"
