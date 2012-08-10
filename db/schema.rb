@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120801170910) do
+ActiveRecord::Schema.define(:version => 20120810095210) do
+
+  create_table "articles", :force => true do |t|
+    t.string   "title",      :limit => 150
+    t.string   "url",        :limit => 150
+    t.string   "state",      :limit => 10
+    t.text     "content"
+    t.text     "summary"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
 
   create_table "brands", :force => true do |t|
     t.string "name",        :limit => 30
@@ -53,6 +63,15 @@ ActiveRecord::Schema.define(:version => 20120801170910) do
   add_index "categorizations", ["product_id", "category_id"], :name => "index_categorizations_on_product_id_and_category_id", :unique => true
   add_index "categorizations", ["product_id"], :name => "index_categorizations_on_product_id"
 
+  create_table "news_items", :force => true do |t|
+    t.string  "title",   :limit => 100
+    t.text    "content"
+    t.string  "link",    :limit => 250
+    t.integer "shop_id"
+  end
+
+  add_index "news_items", ["shop_id"], :name => "index_news_items_on_shop_id"
+
   create_table "param_groups", :force => true do |t|
     t.string   "name",              :limit => 40
     t.integer  "param_template_id"
@@ -74,7 +93,7 @@ ActiveRecord::Schema.define(:version => 20120801170910) do
   end
 
   add_index "param_items", ["importance"], :name => "index_param_items_on_importance"
-  add_index "param_items", ["param_group_id"], :name => "index_param_items_on_group_id"
+  add_index "param_items", ["param_group_id"], :name => "index_param_items_on_param_group_id"
   add_index "param_items", ["param_template_id"], :name => "index_param_items_on_param_template_id"
 
   create_table "param_templates", :force => true do |t|
@@ -102,12 +121,12 @@ ActiveRecord::Schema.define(:version => 20120801170910) do
   add_index "parametrizations", ["product_id"], :name => "index_parametrizations_on_product_id"
 
   create_table "product_photos", :force => true do |t|
-    t.string   "title"
+    t.string   "title",      :limit => 100
     t.string   "image"
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
     t.integer  "product_id"
-    t.boolean  "main_photo", :default => false
+    t.boolean  "main_photo",                :default => false
     t.integer  "position"
   end
 

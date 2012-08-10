@@ -1,3 +1,15 @@
+CREATE TABLE `articles` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(150) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `url` varchar(150) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `state` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `content` text COLLATE utf8_unicode_ci,
+  `summary` text COLLATE utf8_unicode_ci,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 CREATE TABLE `brands` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -42,6 +54,16 @@ CREATE TABLE `categorizations` (
   KEY `index_categorizations_on_product_id` (`product_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+CREATE TABLE `news_items` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `content` text COLLATE utf8_unicode_ci,
+  `link` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `shop_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `index_news_items_on_shop_id` (`shop_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 CREATE TABLE `param_groups` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(40) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -64,7 +86,7 @@ CREATE TABLE `param_items` (
   `param_group_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `index_param_items_on_importance` (`importance`),
-  KEY `index_param_items_on_group_id` (`param_group_id`),
+  KEY `index_param_items_on_param_group_id` (`param_group_id`),
   KEY `index_param_items_on_param_template_id` (`param_template_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -97,7 +119,7 @@ CREATE TABLE `parametrizations` (
 
 CREATE TABLE `product_photos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `title` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `image` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
@@ -213,3 +235,7 @@ INSERT INTO schema_migrations (version) VALUES ('20120730090944');
 INSERT INTO schema_migrations (version) VALUES ('20120801163159');
 
 INSERT INTO schema_migrations (version) VALUES ('20120801170910');
+
+INSERT INTO schema_migrations (version) VALUES ('20120809142342');
+
+INSERT INTO schema_migrations (version) VALUES ('20120810095210');
