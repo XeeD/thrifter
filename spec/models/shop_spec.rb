@@ -3,6 +3,7 @@ require 'spec_helper'
 describe Shop do
   # Associations
   it { should have_many(:categories) }
+  it { should have_many(:news_items) }
 
   # Validations
   # host
