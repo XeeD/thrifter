@@ -2,4 +2,4 @@
 %strong Vyberte obchod, ve kterém chcete spravovat novinky
 %ul
   - for shop in Shop.all
-    %li= link_to shop.name, admin_shop_news_index_path(shop)
+    %li= link_to shop.name, admin_shop_news_items_path(shop)
