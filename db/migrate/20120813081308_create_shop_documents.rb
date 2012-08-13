@@ -1,6 +1,6 @@
 class CreateShopDocuments < ActiveRecord::Migration
   def change
-    create_table :shop_documents, force: true do |t|
+    create_table :shop_documents, force: true, id: false do |t|
       t.belongs_to :shop
       t.belongs_to :document
     end
