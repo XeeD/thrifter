@@ -61,6 +61,14 @@ cs:
         title: "Popis obrázku"
         image: "Soubor s obrázkem"
         main_photo: "Typ obrázku"
+      document:
+        name: "Název"
+        title: "Titulek"
+        url: "Název v odkazu"
+        content: "Text"
+        shops: "Obchody"
+        menu_item: "Je položka menu"
+        contact_link: "Je odkaz na kontakt"
     errors:
       models:
         category:
@@ -98,6 +106,9 @@ cs:
       news_item:
         create: "Vytvořit novinku"
         update: "Uložit novinku"
+      document:
+        create: "Vytvořit nový dokument"
+        update: "Uložit dokument"
   errors:
     messages:
       carrierwave_processing_error: nemohl být zpracován
