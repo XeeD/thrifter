@@ -69,6 +69,15 @@ cs:
         shops: "Obchody"
         menu_item: "Je položka menu"
         contact_link: "Je odkaz na kontakt"
+      article:
+        name: "Název"
+        url: "Název v odkazu"
+        title: "Titulek"
+        summary: "Shrnutí"
+        content: "Text"
+        categories: "Kategorie"
+        created_at: "Vytvořen"
+        updated_at: "Naposledy upraven"
     errors:
       models:
         category:
@@ -109,6 +118,9 @@ cs:
       document:
         create: "Vytvořit nový dokument"
         update: "Uložit dokument"
+      article:
+        create: "Vytvořit nový článek"
+        update: "Uložit článek"
   errors:
     messages:
       carrierwave_processing_error: nemohl být zpracován
