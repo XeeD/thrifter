@@ -1,0 +1,12 @@
+= semantic_form_for([:admin, document]) do |f|
+  = f.input :name
+  = f.input :title
+  = f.input :url
+  = f.input :menu_item
+  = f.input :contact_link
+  = f.input :content
+  = f.inputs "Přiřazen k obchodům" do
+    = f.input :shops, as: :check_boxes
+
+  = f.actions do
+    = f.submit

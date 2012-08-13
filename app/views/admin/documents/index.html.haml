@@ -1,0 +1,21 @@
+%h2 Dokumenty
+%ul.action_links
+  %li= link_to "Přidat nový dokument", new_admin_document_path
+
+- unless documents.empty?
+  %table#documents
+    %thead
+      %tr
+        %th Název dokumentu
+        %td Akce
+    %tbody
+      - for document in documents
+        %tr
+          %th= document.name
+          %td
+            %ul.actions
+              %li= link_to "Smazat", admin_document_path(document), method: :delete, confirm: "Opravdu smazat dokument #{document.name}?"
+              %li= link_to "Upravit", edit_admin_document_path(document)
+- else
+  .empty_set
+    Zatím nejsou vytvořeny žádné dokumenty
