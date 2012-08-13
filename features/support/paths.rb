@@ -9,6 +9,7 @@ def get_section_url(section)
     when "administrace obchodů" then admin_shops_path
     when "administrace novinek" then admin_news_items_path
     when "administrace dokumentů" then admin_documents_path
+    when "administrace článků" then admin_articles_path
     else raise "section url for '#{section}' was not found"
   end
 end
