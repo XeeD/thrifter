@@ -93,6 +93,12 @@ Když /^zaškrtnu pole "(.+?)" pro vlastnost "(.+?)"$/ do |value, fieldset|
   end
 end
 
+Když /^odškrtnu pole "(.*?)" pro vlastnost "(.+?)"$/ do |value, fieldset|
+  within_fieldset(fieldset.to_s) do
+    uncheck value.to_s
+  end
+end
+
 # Then statements
 Pak /^bych měl vidět zprávu "(.*?)"$/ do |message|
   find("#flash_messages .notice").should have_content(message)
