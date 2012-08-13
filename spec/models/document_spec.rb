@@ -27,4 +27,20 @@ describe Document do
 
   # content
   it { should validate_presence_of(:content) }
+
+  describe "integrity constraints" do
+    fixtures :documents
+
+    let(:payment) { documents(:payment) }
+    let(:contact) { documents(:contact) }
+
+    it "sets new contact_link and deletes the old one" do
+      contact.contact_link.should be true
+
+      payment.update_attribute(:contact_link, true)
+
+      payment.contact_link.should be true
+      contact.reload.contact_link.should be false
+    end
+  end
 end
