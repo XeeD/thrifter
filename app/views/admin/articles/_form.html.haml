@@ -1,0 +1,11 @@
+= semantic_form_for([:admin, shop, article]) do |f|
+  = f.input :name
+  = f.input :url
+  = f.input :title
+  = f.input :summary
+  = f.input :content
+  = f.inputs "Přiřazen ke kategoriím" do
+    = category_select_for_shop(shop, f, {})
+
+  = f.actions do
+    = f.submit

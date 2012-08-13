@@ -1,0 +1,5 @@
+%h2 Články
+%strong Vyberte obchod, ve kterém chcete spravovat články
+%ul
+  - for shop in Shop.all
+    %li= link_to shop.name, admin_shop_articles_path(shop)

@@ -1,0 +1,21 @@
+%h2 Články v obchodu #{shop.name}
+%ul.action_links
+  %li= link_to "Přidat nový článek", new_admin_shop_article_path(shop)
+
+- unless articles.empty?
+  %table#articles
+    %thead
+      %tr
+        %th Název
+        %td Akce
+    %tbody
+      - for article in shop.articles.group("articles.id")
+        %tr
+          %th= article.name
+          %td
+            %ul.actions
+              %li= link_to "Smazat", admin_shop_news_item_path(shop, article), method: :delete, confirm: "Opravdu smazat článek #{article.name}?"
+              %li= link_to "Upravit", edit_admin_shop_article_path(shop, article)
+- else
+  .empty_set
+    Zatím nejsou vytvořeny žádné novinky
