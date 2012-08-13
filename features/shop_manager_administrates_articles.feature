@@ -1,5 +1,4 @@
 # language: cs
-@wip
 Požadavek: Manager obchodu spravuje články kategorií
 
   Abych mohl prezentovat články pro jednotlivé obchody a jejich kategorie
@@ -10,32 +9,38 @@ Požadavek: Manager obchodu spravuje články kategorií
     Pokud jsem přihlášený jako "manager obchodu"
     A článek "LCD TV" v obchodu "Spořílek.cz" existuje
 
-#  Scénář: vypsání všech novinek z jednoho obchodu
-#    Když otevřu sekci "administrace novinek"
-#    A kliknu na odkaz "Spořílek.cz"
-#    Pak bych měl vidět "Novinky v obchodu Spořílek.cz"
-#    A měl bych vidět "ShopDesetiletí"
-#  Scénář: vytvoření nové novinky
-#    Pokud mám otevřenou administraci novinek pro obchod "Spořílek.cz"
-#    Když kliknu na odkaz "Přidat novinku"
-#    A vyplním formulář údaji:
-#      | Nadpis   | Obsah                | Kontextový odkaz         |
-#      | ShopRoku | Spořílek je ShopRoku | www.shoproku.cz/vysledky |
-#    A kliknu na tlačítko "Vytvořit novinku"
-#    Pak bych měl vidět zprávu "Novinka ShopRoku byla vytvořena"
-#    A novinka "ShopRoku" by měla být vytvořena
-#
-#  Scénář: smazání existující kategorie
-#    Pokud novinka "ShopDesetiletí" v obchodu "Spořílek.cz" existuje
-#    A mám otevřenou administraci novinek pro obchod "Spořílek.cz"
-#    Když kliknu na řádku u novinky "ShopDesetiletí" na odkaz "Smazat"
-#    Pak bych měl vidět zprávu "Novinka ShopDesetiletí byla smazána"
-#    A novinka "ShopDesetiletí" by měla být smazána
-#
-#  Scénář: upravení existující kategorie
-#    Pokud mám otevřenou administraci novinek pro obchod "Spořílek.cz"
-#    A kliknu na řádku u novinky "ShopDesetiletí" na odkaz "Upravit"
-#    A změním hodnotu pole "Nadpis" na "ShopRoku"
-#    Když kliknu na tlačítko "Uložit novinku"
-#    Pak bych měl vidět zprávu "Novinka ShopRoku byla upravena"
-#    A novinka "ShopRoku" by měla být upravena
+  Scénář: vypsání všech novinek z jednoho obchodu
+    Když otevřu sekci "administrace článků"
+    A kliknu na odkaz "Spořílek.cz"
+    Pak bych měl vidět "Články v obchodu Spořílek.cz"
+    A měl bych vidět "LCD TV"
+
+  @wip
+  Scénář: vytvoření nového články
+    Pokud mám otevřenou administraci článků pro obchod "Spořílek.cz"
+    Když kliknu na odkaz "Přidat nový článek"
+    A vyplním formulář údaji:
+    | Název          | Titulek            | Název v odkazu |
+    | Vodní vysavače | Vodní vysavače AEG | vodni-vysavace |
+    A pokračuji ve vyplňování formuláře:
+    | Shrnutí                     | Text |
+    | Vysáváme s vodním vysavačem | Vodní vysavače jsou nejlepší |
+    # A vyberu kategorii ...
+    A kliknu na tlačítko "Vytvořit článek"
+    Pak bych měl vidět zprávu "Článek Vodní vysavače byl vytvořen"
+    # A měl bych vidět "Vodní vysavače" v obchodě..
+    A článek "Vodní vysavače" by měl být vytvořen
+
+  Scénář: Smazání existujícího článku
+    Pokud mám otevřenou administraci článků pro obchod "Spořílek.cz"
+    Když kliknu na řádku u článku "LCD TV" na odkaz "Smazat"
+    Pak bych měl vidět zprávu "Článek LCD TV byl smazán"
+    A článek "LCD TV" by měl být smazán
+
+  Scénář: upravení existujícího článku
+    Pokud mám otevřenou administraci článků pro obchod "Spořílek.cz"
+    A kliknu na řádku u článku "LCD TV" na odkaz "Upravit"
+    A změním hodnotu pole "Název" na "PLAZMA TV"
+    Když kliknu na tlačítko "Uložit článek"
+    Pak bych měl vidět zprávu "Článek PLAZMA TV byl upraven"
+    A článek "PLAZMA TV" by měl být upraven
