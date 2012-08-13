@@ -3,4 +3,14 @@ payment:
   name: "Platba"
   title: "Platba"
   url: "platba"
+  menu_item: 1
   content: "Popis možností plateb"
+
+contact:
+  id: 2
+  name: "Kontakt"
+  title: "Kontakt"
+  url: "kontakt"
+  menu_item: 1
+  contact_link: 1
+  content: "Kontaktní informace"
