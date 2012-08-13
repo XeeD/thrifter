@@ -1,11 +1,11 @@
 # encoding: UTF-8
 
 # Given statements
-Pokud /^novinka "(.+)" v obchodu "(.+)" existuje$/ do |news_title, shop_name|
+Pokud /^novinka "(.+)" v obchodu "(.+)" existuje$/ do |news_item_title, shop_name|
   shop = Shop.find_by_name(shop_name)
   raise "shop '#{shop_name}' doesn't exist" if shop.nil?
 
-  news_item = NewsItem.find_by_title(news_title)
+  news_item = NewsItem.find_by_title(news_item_title)
   shop.news_items.should include(news_item)
 end
 
