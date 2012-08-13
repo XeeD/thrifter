@@ -7,7 +7,9 @@ CREATE TABLE `articles` (
   `summary` text COLLATE utf8_unicode_ci,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `index_articles_on_state` (`state`),
+  KEY `index_articles_on_url` (`url`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `brands` (
@@ -54,11 +56,28 @@ CREATE TABLE `categorizations` (
   KEY `index_categorizations_on_product_id` (`product_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+CREATE TABLE `documents` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `name` varchar(70) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `url` varchar(70) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `content` text COLLATE utf8_unicode_ci,
+  `menu_item` tinyint(1) DEFAULT '0',
+  `contact_link` tinyint(1) DEFAULT '0',
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `index_documents_on_name` (`name`),
+  UNIQUE KEY `index_documents_on_url` (`url`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 CREATE TABLE `news_items` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `content` text COLLATE utf8_unicode_ci,
   `link` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
   `shop_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `index_news_items_on_shop_id` (`shop_id`)
@@ -170,6 +189,15 @@ CREATE TABLE `schema_migrations` (
   UNIQUE KEY `unique_schema_migrations` (`version`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+CREATE TABLE `shop_documents` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `shop_id` int(11) DEFAULT NULL,
+  `document_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `index_shop_documents_on_document_id_and_shop_id` (`document_id`,`shop_id`),
+  KEY `index_shop_documents_on_shop_id_and_document_id` (`shop_id`,`document_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 CREATE TABLE `shops` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `host` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -239,3 +267,7 @@ INSERT INTO schema_migrations (version) VALUES ('20120801170910');
 INSERT INTO schema_migrations (version) VALUES ('20120809142342');
 
 INSERT INTO schema_migrations (version) VALUES ('20120810095210');
+
+INSERT INTO schema_migrations (version) VALUES ('20120810141959');
+
+INSERT INTO schema_migrations (version) VALUES ('20120813081308');

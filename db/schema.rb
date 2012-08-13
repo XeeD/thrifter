@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120810095210) do
+ActiveRecord::Schema.define(:version => 20120813081308) do
 
   create_table "articles", :force => true do |t|
     t.string   "title",      :limit => 150
@@ -22,6 +22,9 @@ ActiveRecord::Schema.define(:version => 20120810095210) do
     t.datetime "created_at",                :null => false
     t.datetime "updated_at",                :null => false
   end
+
+  add_index "articles", ["state"], :name => "index_articles_on_state"
+  add_index "articles", ["url"], :name => "index_articles_on_url"
 
   create_table "brands", :force => true do |t|
     t.string "name",        :limit => 30
@@ -63,11 +66,27 @@ ActiveRecord::Schema.define(:version => 20120810095210) do
   add_index "categorizations", ["product_id", "category_id"], :name => "index_categorizations_on_product_id_and_category_id", :unique => true
   add_index "categorizations", ["product_id"], :name => "index_categorizations_on_product_id"
 
+  create_table "documents", :force => true do |t|
+    t.string   "title",        :limit => 250
+    t.string   "name",         :limit => 70
+    t.string   "url",          :limit => 70
+    t.text     "content"
+    t.boolean  "menu_item",                   :default => false
+    t.boolean  "contact_link",                :default => false
+    t.datetime "created_at",                                     :null => false
+    t.datetime "updated_at",                                     :null => false
+  end
+
+  add_index "documents", ["name"], :name => "index_documents_on_name", :unique => true
+  add_index "documents", ["url"], :name => "index_documents_on_url", :unique => true
+
   create_table "news_items", :force => true do |t|
-    t.string  "title",   :limit => 100
-    t.text    "content"
-    t.string  "link",    :limit => 250
-    t.integer "shop_id"
+    t.string   "title",      :limit => 100
+    t.text     "content"
+    t.string   "link",       :limit => 250
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+    t.integer  "shop_id"
   end
 
   add_index "news_items", ["shop_id"], :name => "index_news_items_on_shop_id"
@@ -165,6 +184,14 @@ ActiveRecord::Schema.define(:version => 20120810095210) do
   add_index "products", ["name"], :name => "index_products_on_name"
   add_index "products", ["top_product"], :name => "index_products_on_top_product"
   add_index "products", ["url"], :name => "index_products_on_url", :unique => true
+
+  create_table "shop_documents", :force => true do |t|
+    t.integer "shop_id"
+    t.integer "document_id"
+  end
+
+  add_index "shop_documents", ["document_id", "shop_id"], :name => "index_shop_documents_on_document_id_and_shop_id"
+  add_index "shop_documents", ["shop_id", "document_id"], :name => "index_shop_documents_on_shop_id_and_document_id"
 
   create_table "shops", :force => true do |t|
     t.string   "host",       :limit => 20
