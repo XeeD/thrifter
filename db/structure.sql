@@ -1,15 +1,14 @@
 CREATE TABLE `articles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(150) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `url` varchar(150) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `state` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `content` text COLLATE utf8_unicode_ci,
+  `name` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `title` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `url` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `summary` text COLLATE utf8_unicode_ci,
+  `content` text COLLATE utf8_unicode_ci,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `index_articles_on_state` (`state`),
-  KEY `index_articles_on_url` (`url`)
+  KEY `index_articles_on_name` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `brands` (
@@ -54,6 +53,13 @@ CREATE TABLE `categorizations` (
   UNIQUE KEY `index_categorizations_on_product_id_and_category_id` (`product_id`,`category_id`),
   KEY `index_categorizations_on_category_id` (`category_id`),
   KEY `index_categorizations_on_product_id` (`product_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE `category_articles` (
+  `article_id` int(11) DEFAULT NULL,
+  `category_id` int(11) DEFAULT NULL,
+  KEY `index_category_articles_on_article_id_and_category_id` (`article_id`,`category_id`),
+  KEY `index_category_articles_on_category_id_and_article_id` (`category_id`,`article_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `documents` (
@@ -190,10 +196,8 @@ CREATE TABLE `schema_migrations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `shop_documents` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
   `shop_id` int(11) DEFAULT NULL,
   `document_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
   KEY `index_shop_documents_on_document_id_and_shop_id` (`document_id`,`shop_id`),
   KEY `index_shop_documents_on_shop_id_and_document_id` (`shop_id`,`document_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -271,3 +275,5 @@ INSERT INTO schema_migrations (version) VALUES ('20120810095210');
 INSERT INTO schema_migrations (version) VALUES ('20120810141959');
 
 INSERT INTO schema_migrations (version) VALUES ('20120813081308');
+
+INSERT INTO schema_migrations (version) VALUES ('20120813132912');

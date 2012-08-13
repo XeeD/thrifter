@@ -11,20 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120813081308) do
+ActiveRecord::Schema.define(:version => 20120813132912) do
 
   create_table "articles", :force => true do |t|
-    t.string   "title",      :limit => 150
-    t.string   "url",        :limit => 150
-    t.string   "state",      :limit => 10
-    t.text     "content"
+    t.string   "name",       :limit => 100
+    t.string   "title",      :limit => 250
+    t.string   "url",        :limit => 100
     t.text     "summary"
+    t.text     "content"
     t.datetime "created_at",                :null => false
     t.datetime "updated_at",                :null => false
   end
 
-  add_index "articles", ["state"], :name => "index_articles_on_state"
-  add_index "articles", ["url"], :name => "index_articles_on_url"
+  add_index "articles", ["name"], :name => "index_articles_on_name"
 
   create_table "brands", :force => true do |t|
     t.string "name",        :limit => 30
@@ -65,6 +64,14 @@ ActiveRecord::Schema.define(:version => 20120813081308) do
   add_index "categorizations", ["category_id"], :name => "index_categorizations_on_category_id"
   add_index "categorizations", ["product_id", "category_id"], :name => "index_categorizations_on_product_id_and_category_id", :unique => true
   add_index "categorizations", ["product_id"], :name => "index_categorizations_on_product_id"
+
+  create_table "category_articles", :id => false, :force => true do |t|
+    t.integer "article_id"
+    t.integer "category_id"
+  end
+
+  add_index "category_articles", ["article_id", "category_id"], :name => "index_category_articles_on_article_id_and_category_id"
+  add_index "category_articles", ["category_id", "article_id"], :name => "index_category_articles_on_category_id_and_article_id"
 
   create_table "documents", :force => true do |t|
     t.string   "title",        :limit => 250
@@ -185,7 +192,7 @@ ActiveRecord::Schema.define(:version => 20120813081308) do
   add_index "products", ["top_product"], :name => "index_products_on_top_product"
   add_index "products", ["url"], :name => "index_products_on_url", :unique => true
 
-  create_table "shop_documents", :force => true do |t|
+  create_table "shop_documents", :id => false, :force => true do |t|
     t.integer "shop_id"
     t.integer "document_id"
   end
