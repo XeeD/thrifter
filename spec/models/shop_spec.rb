@@ -5,6 +5,7 @@ describe Shop do
   it { should have_many(:categories) }
   it { should have_many(:news_items) }
   it { should have_and_belong_to_many(:documents) }
+  it { should have_many(:articles) }
 
   # Validations
   # host
