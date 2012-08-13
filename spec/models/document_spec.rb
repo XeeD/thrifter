@@ -1,0 +1,30 @@
+require 'spec_helper'
+
+describe Document do
+  # Associations
+  it { should have_and_belong_to_many(:shops) }
+
+  # Validations
+  # name
+  it { should validate_presence_of(:name) }
+  it { should ensure_length_of(:name).is_at_most(70) }
+  it {
+    Document.create(valid_document_attributes)
+    should validate_uniqueness_of(:name)
+  }
+
+  # url
+  it { should validate_presence_of(:url) }
+  it { should ensure_length_of(:url).is_at_most(70) }
+  it {
+    Document.create(valid_document_attributes)
+    should validate_uniqueness_of(:url)
+  }
+
+  # title
+  it { should validate_presence_of(:title) }
+  it { should ensure_length_of(:title).is_at_most(250) }
+
+  # content
+  it { should validate_presence_of(:content) }
+end
