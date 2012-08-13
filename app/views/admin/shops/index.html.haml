@@ -5,10 +5,11 @@
 - unless shops.empty?
   %table#shops
     %thead
-      %th= Shop.human_attribute_name(:name)
-      %th Adresa
-      %th Krátký název
-      %td Akce
+      %tr
+        %th= Shop.human_attribute_name(:name)
+        %th Adresa
+        %th Krátký název
+        %td Akce
     %tbody
       - for shop in shops
         %tr

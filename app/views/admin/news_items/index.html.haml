@@ -5,8 +5,9 @@
 - unless news_items.empty?
   %table#news_items
     %thead
-      %th Nadpis
-      %td Akce
+      %tr
+        %th Nadpis
+        %td Akce
     %tbody
       - for news_item in news_items
         %tr
