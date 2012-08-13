@@ -4,6 +4,7 @@ describe Shop do
   # Associations
   it { should have_many(:categories) }
   it { should have_many(:news_items) }
+  it { should have_and_belong_to_many(:documents) }
 
   # Validations
   # host
