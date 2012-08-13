@@ -40,6 +40,7 @@ Thrifter::Application.routes.draw do
 
       resources :news_items, path: "novinky", path_names: {new: "nova", edit: "editace"}, except: :show
       resources :categories, path: "kategorie", path_names: {new: "nova", edit: "editace"}, except: :show
+      resources :articles, path: "clanky", path_names: {new: "novy", edit: "editace"}, except: :show
     end
 
     resources :documents, path: "dokumenty", path_names: {new: "novy", edit: "editace"}
@@ -47,6 +48,6 @@ Thrifter::Application.routes.draw do
     # Admistation of categories - choose which shop's categories to administrate
     match "kategorie/vyber-obchodu" => "categories#choose_shop", as: "categories"
     match "novinky/vyber-obchodu" => "news_items#choose_shop", as: "news_items"
-
+    match "clanky/vyber-obchodu" => "articles#choose_shop", as: "articles"
   end
 end
