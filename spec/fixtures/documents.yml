@@ -1,0 +1,6 @@
+payment:
+  id: 1
+  name: "Platba"
+  title: "Platba"
+  url: "platba"
+  content: "Popis možností plateb"
