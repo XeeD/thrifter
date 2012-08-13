@@ -102,5 +102,15 @@ module Helpers
     }.stringify_keys
   end
 
+  def valid_document_attributes
+    {
+        name: "Obchodní podmínky",
+        url: "obchodni-podminky",
+        title: "Obchodní podmínky",
+        content: "Nejsou žádné",
+        shop_ids: ["1"]
+    }.stringify_keys
+  end
+
   RSpec.configure {|c| c.include self}
 end
