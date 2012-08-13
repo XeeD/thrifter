@@ -12,6 +12,8 @@ class Category < ActiveRecord::Base
   belongs_to :param_template
   belongs_to :parent_category, foreign_key: :parent_id, class_name: "Category"
 
+  has_and_belongs_to_many :articles, join_table: :category_articles
+
   # Scopes
   scope :in_shop, ->(shop_id) { where(shop_id: shop_id) }
 
