@@ -77,7 +77,7 @@ module Admin
       end
 
       # Invalid attributes
-      context "with invalid parameters" do
+      context "with invalid attributes" do
         before do
           brand.stub(:save).and_return(false)
         end
@@ -96,7 +96,7 @@ module Admin
 
     describe "GET edit" do
       def get_edit
-        get :edit, :id => brand.id
+        get :edit, id: brand.id
       end
 
       it "renders template 'edit'" do
@@ -108,21 +108,20 @@ module Admin
         render_views
 
         before do
-          Brand.stub(:find).and_return(brand)
+          Brand.stub(:find).with(brand.id).and_return(brand)
         end
 
         it "finds the brand" do
-          Brand.should_receive(:find).with(brand.id.to_s).once
+          Brand.should_receive(:find).with(brand.id.to_s).once.and_return(brand)
           get_edit
         end
 
         it "renders edit form" do
-          get :edit, :id => brand.id
+          get_edit
           response.body.should have_selector("form")
         end
       end
     end
-
 
     describe "POST update" do
       # Valid attributes
@@ -181,7 +180,7 @@ module Admin
 
       context "with non-existing brand id" do
         def put_with_invalid_id
-          put :update, :id => brand.id + 1
+          put :update, id: brand.id + 1
         end
 
         it "redirects to index" do
@@ -217,7 +216,7 @@ module Admin
         end
 
         it "destroys the brand" do
-          brand.should_receive(:destroy).once
+          brand.should_receive(:destroy).once.and_return(true)
           delete_brand
         end
 
@@ -229,17 +228,17 @@ module Admin
       end
 
       context "with non-existing brand id" do
-        def delete_invalid_brand
-          delete :destroy, :id => brand.id + 1
+        def delete_with_invalid_id
+          delete :destroy, id: brand.id + 1
         end
 
         it "redirects back to index" do
-          delete_invalid_brand
+          delete_with_invalid_id
           response.should redirect_to(admin_brands_url)
         end
 
         it "sets error message" do
-          delete_invalid_brand
+          delete_with_invalid_id
           flash[:error].should_not be_blank
         end
       end
