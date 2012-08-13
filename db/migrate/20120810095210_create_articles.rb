@@ -1,15 +1,14 @@
 class CreateArticles < ActiveRecord::Migration
   def change
     create_table :articles, force: true do |t|
-      t.string :title, limit: 150
-      t.string :url, limit: 150
-      t.string :state, limit: 10
-      t.text :content
+      t.string :name, limit: 100
+      t.string :title, limit: 250
+      t.string :url, limit: 100
       t.text :summary
+      t.text :content
       t.timestamps
     end
 
-    add_index :articles, :url
-    add_index :articles, :state
+    add_index :articles, :name
   end
 end
