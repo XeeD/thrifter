@@ -14,6 +14,7 @@ Požadavek: Manager obchodu spravuje novinky
     A kliknu na odkaz "Spořílek.cz"
     Pak bych měl vidět "Novinky v obchodu Spořílek.cz"
     A měl bych vidět "ShopDesetiletí"
+
   Scénář: vytvoření nové novinky
     Pokud mám otevřenou administraci novinek pro obchod "Spořílek.cz"
     Když kliknu na odkaz "Přidat novinku"
@@ -25,8 +26,7 @@ Požadavek: Manager obchodu spravuje novinky
     A novinka "ShopRoku" by měla být vytvořena
 
   Scénář: smazání existující kategorie
-    Pokud novinka "ShopDesetiletí" v obchodu "Spořílek.cz" existuje
-    A mám otevřenou administraci novinek pro obchod "Spořílek.cz"
+    Pokud mám otevřenou administraci novinek pro obchod "Spořílek.cz"
     Když kliknu na řádku u novinky "ShopDesetiletí" na odkaz "Smazat"
     Pak bych měl vidět zprávu "Novinka ShopDesetiletí byla smazána"
     A novinka "ShopDesetiletí" by měla být smazána
