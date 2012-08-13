@@ -6,7 +6,7 @@ Požadavek: Manager obchodu spravuje novinky
   Chci mít možnost jednotlivým obchodům přidávat a upravovat jejich aktuality.
 
   Kontext:
-    Pokud jsem přihlášený jako "shop_manager"
+    Pokud jsem přihlášený jako "manager obchodu"
     A novinka "ShopDesetiletí" v obchodu "Spořílek.cz" existuje
 
   Scénář: vypsání všech novinek z jednoho obchodu
