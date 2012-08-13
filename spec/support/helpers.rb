@@ -96,9 +96,9 @@ module Helpers
     {
         title: "Plazma TV",
         url: "plazma-tv",
-        state: "visible",
         content: "Plazmové televize jsou nyní ještě barevnější",
-        summary: "Více barev od plazmových televizí"
+        summary: "Více barev od plazmových televizí",
+        category_ids: ["11", "13"]
     }.stringify_keys
   end
 
