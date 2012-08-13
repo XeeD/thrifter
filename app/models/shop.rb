@@ -3,6 +3,8 @@ class Shop < ActiveRecord::Base
   has_many :categories
   has_many :news_items
 
+  has_and_belongs_to_many :documents, join_table: :shop_documents
+
   # Attributes
   attr_accessible :host, :name, :short_name
 
@@ -21,5 +23,4 @@ class Shop < ActiveRecord::Base
             presence: true,
             length: {maximum: 20},
             uniqueness: true
-
 end
