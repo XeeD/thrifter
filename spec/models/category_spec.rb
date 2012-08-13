@@ -8,6 +8,7 @@ describe Category do
   it { should have_many(:products).through(:categorizations) }
   it { should belong_to(:parent_category).class_name("Category") }
   it { should belong_to(:shop) }
+  it { should have_and_belong_to_many(:articles) }
 
   # Validations
   # short_name
