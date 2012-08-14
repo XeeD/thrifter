@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Article do
   # Associations
   it { should have_and_belong_to_many(:categories) }
-  it { should have_many(:shops) }
+  it { should have_many(:shops).through(:categories) }
 
   # Validations
   # name
