@@ -7,23 +7,23 @@ describe Article do
 
   # Validations
   # name
-  it { validates_presence_of(:name) }
-  it { ensures_length_of(:name).is_at_most(100) }
+  it { should validate_presence_of(:name) }
+  it { should ensure_length_of(:name).is_at_most(100) }
 
   # url
-  it { validates_presence_of(:url) }
-  it { ensures_length_of(url).is_at_most(100) }
+  it { should validate_presence_of(:url) }
+  it { should ensure_length_of(:url).is_at_most(100) }
 
   # title
-  it { validates_presence_of(:title) }
-  it { ensures_length_of(:title).is_at_most(250) }
+  it { should validate_presence_of(:title) }
+  it { should ensure_length_of(:title).is_at_most(250) }
 
   # summary
-  it { validates_presence_of(:summary) }
+  it { should validate_presence_of(:summary) }
 
   # content
-  it { validates_presence_of(:content) }
+  it { should validate_presence_of(:content) }
 
   # categories
-  it { validates_presence_of(:categories) }
+  it { should validate_presence_of(:categories) }
 end
