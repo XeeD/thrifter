@@ -7,11 +7,13 @@
     %thead
       %tr
         %th Název dokumentu
+        %th Přiřazen v obchodech
         %td Akce
     %tbody
       - for document in documents
         %tr
           %th= document.name
+          %td= document.assigned_to_shops
           %td
             %ul.actions
               %li= link_to "Smazat", admin_document_path(document), method: :delete, confirm: "Opravdu smazat dokument #{document.name}?"

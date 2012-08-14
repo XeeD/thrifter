@@ -45,13 +45,13 @@ module Admin
     private
 
     def document
-      @document ||= params[:id] ? Document.find(params[:id]) : Document.new(params[:document])
+      @document ||= params[:id] ? DocumentDecorator.find(params[:id]) : DocumentDecorator.new(params[:document])
     end
 
     helper_method :document
 
     def documents
-      @documents ||= Document.all
+      @documents ||= DocumentDecorator.all
     end
 
     helper_method :documents
