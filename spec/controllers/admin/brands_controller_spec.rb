@@ -44,7 +44,7 @@ module Admin
 
     describe "POST create" do
       before do
-        Brand.stub!(:new).and_return(brand)
+        Brand.stub(:new).and_return(brand)
       end
 
       # Valid attributes
@@ -108,7 +108,7 @@ module Admin
         render_views
 
         before do
-          Brand.stub(:find).with(brand.id).and_return(brand)
+          Brand.stub(:find).with(brand.id.to_s).and_return(brand)
         end
 
         it "finds the brand" do
