@@ -57,7 +57,7 @@ module Admin
     helper_method :articles
 
     def shop
-      @shop ||= Shop.find(params[:shop_id])
+      @shop ||= ShopDecorator.find(params[:shop_id])
     end
 
     helper_method :shop

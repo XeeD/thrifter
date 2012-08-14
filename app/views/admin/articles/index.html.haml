@@ -7,15 +7,17 @@
     %thead
       %tr
         %th Název
+        %th Přiřazen ke kategorii
         %td Akce
     %tbody
-      - for article in shop.articles.group("articles.id")
+      - for article in shop.articles
         %tr
           %th= article.name
+          %td= article.assigned_to_categories
           %td
             %ul.actions
-              %li= link_to "Smazat", admin_shop_news_item_path(shop, article), method: :delete, confirm: "Opravdu smazat článek #{article.name}?"
               %li= link_to "Upravit", edit_admin_shop_article_path(shop, article)
+              %li= link_to "Smazat", admin_shop_article_path(shop, article), method: :delete, confirm: "Opravdu smazat článek #{article.name}?"
 - else
   .empty_set
     Zatím nejsou vytvořeny žádné novinky
