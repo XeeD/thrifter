@@ -9,7 +9,7 @@ Požadavek: Manager obchodu spravuje články kategorií
     Pokud jsem přihlášený jako "manager obchodu"
     A článek "LCD TV" v obchodu "Spořílek.cz" existuje
 
-  Scénář: vypsání všech novinek z jednoho obchodu
+  Scénář: vypsání všech článků z jednoho obchodu
     Když otevřu sekci "administrace článků"
     A kliknu na odkaz "Spořílek.cz"
     Pak bych měl vidět "Články v obchodu Spořílek.cz"
