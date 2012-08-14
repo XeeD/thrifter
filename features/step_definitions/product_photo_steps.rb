@@ -39,6 +39,12 @@ Když /^vložím soubor "(.*?)" do pole "(.*?)"$/ do |filename, field|
   attach_file(field, @image_to_upload)
 end
 
+Když /^přesunu obrázek "(.*?)" na (\d+)\. pozici$/ do |photo_title, position|
+  photo = @product.photos.find_by_title(photo_title)
+  distance = position.to_i - photo.position
+  simulate_drag_sortable(photo, distance)
+end
+
 Pak /^by měl produkt mít hlavní obrázek shodný s nahraným obrázkem$/ do
   @product.main_photo.image.path.should be_the_same_file_as(@image_to_upload)
 end
@@ -62,12 +68,6 @@ Pak /^obrázek produktu "(.*?)" by měl být (hlavní|dodatečný)$/ do |photo_t
   else
     photo.should_not be_main_photo
   end
-end
-
-Když /^přesunu obrázek "(.*?)" na (\d+)\. pozici$/ do |photo_title, position|
-  photo = @product.photos.find_by_title(photo_title)
-  distance = position.to_i - photo.position
-  simulate_drag_sortable(photo, distance)
 end
 
 
