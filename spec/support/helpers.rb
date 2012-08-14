@@ -94,6 +94,7 @@ module Helpers
 
   def valid_article_attributes
     {
+        name: "Plazma TV",
         title: "Plazma TV",
         url: "plazma-tv",
         content: "Plazmové televize jsou nyní ještě barevnější",
