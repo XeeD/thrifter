@@ -15,8 +15,8 @@
           %td
             %ul.actions
               %li= link_to "Zobrazit", admin_param_template_path(template)
-              %li= link_to "Smazat", admin_param_template_path(template), method: :delete, confirm: "Opravdu smazat šablonu #{template.name}?"
               %li= link_to "Upravit", edit_admin_param_template_path(template)
+              %li= link_to "Smazat", admin_param_template_path(template), method: :delete, confirm: "Opravdu smazat šablonu #{template.name}?"
 - else
   .empty_set
     Zatím nejsou vytvořeny žádné šablony parametrů

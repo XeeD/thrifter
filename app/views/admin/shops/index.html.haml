@@ -18,8 +18,8 @@
           %th= shop.short_name
           %td
             %ul.actions
-              %li= link_to "Smazat", deletion_confirmation_admin_shop_path(shop), confirm: "Opravdu smazat obchod #{shop.name}?"
               %li= link_to "Upravit", edit_admin_shop_path(shop)
+              %li= link_to "Smazat", deletion_confirmation_admin_shop_path(shop), confirm: "Opravdu smazat obchod #{shop.name}?"
 - else
   .empty_set
     Zatím nejsou vytvořeny žádné obchody

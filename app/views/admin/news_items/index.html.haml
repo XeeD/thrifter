@@ -14,8 +14,8 @@
           %th= news_item.title
           %td
             %ul.actions
-              %li= link_to "Smazat", admin_shop_news_item_path(shop, news_item), method: :delete, confirm: "Opravdu smazat novinku #{news_item.title}?"
               %li= link_to "Upravit", edit_admin_shop_news_item_path(shop, news_item)
+              %li= link_to "Smazat", admin_shop_news_item_path(shop, news_item), method: :delete, confirm: "Opravdu smazat novinku #{news_item.title}?"
 - else
   .empty_set
     Zatím nejsou vytvořeny žádné novinky

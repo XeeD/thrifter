@@ -14,8 +14,8 @@
           %th= category.plural_name
           %td
             %ul.actions
-              %li= link_to "Smazat", admin_shop_category_path(shop, category), method: :delete, confirm: "Opravdu smazat značku #{category.short_name}?"
               %li= link_to "Upravit", edit_admin_shop_category_path(shop, category)
+              %li= link_to "Smazat", admin_shop_category_path(shop, category), method: :delete, confirm: "Opravdu smazat značku #{category.short_name}?"
 - else
   .empty_set
     Zatím nejsou vytvořeny žádné kategorie

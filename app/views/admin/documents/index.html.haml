@@ -16,8 +16,8 @@
           %td= document.assigned_to_shops
           %td
             %ul.actions
-              %li= link_to "Smazat", admin_document_path(document), method: :delete, confirm: "Opravdu smazat dokument #{document.name}?"
               %li= link_to "Upravit", edit_admin_document_path(document)
+              %li= link_to "Smazat", admin_document_path(document), method: :delete, confirm: "Opravdu smazat dokument #{document.name}?"
 - else
   .empty_set
     Zatím nejsou vytvořeny žádné dokumenty
