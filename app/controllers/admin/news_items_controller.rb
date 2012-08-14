@@ -6,12 +6,15 @@ module Admin
     def choose_shop
     end
 
+    def index
+    end
+
     def new
     end
 
     def create
       if news_item.save
-        redirect_to admin_shop_news_items_url, :notice => "Novinka #{news_item.title} byla vytvořena"
+        redirect_to admin_shop_news_items_url(shop), :notice => "Novinka #{news_item.title} byla vytvořena"
       else
         flash.now[:error] = "Chyba při vytváření novinky"
         render "new"
