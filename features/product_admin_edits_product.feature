@@ -16,12 +16,12 @@ Požadavek: Produktový admin edituje produkt
 
   Scénář: zobrazení editace konkrétního produktu
     Když otevřu sekci "administrace produktů"
-    A kliknu na řádku u produktu "LG GB3133TIJW" na odkaz "Editovat"
+    A kliknu na řádku u produktu "LG GB3133TIJW" na odkaz "Upravit"
     Pak bych měl vidět nadpis "Editace produktu LG GB3133TIJW"
 
   Scénář: změna jména produktu
     Když otevřu sekci "administrace produktů"
-    A kliknu na řádku u produktu "LG GB3133TIJW" na odkaz "Editovat"
+    A kliknu na řádku u produktu "LG GB3133TIJW" na odkaz "Upravit"
     A změním hodnotu pole "Celý název" na "LG GB 3133 TIJW"
     A kliknu na tlačítko "Uložit produkt"
     Pak bych měl vidět zprávu "Produkt LG GB 3133 TIJW byl upraven"
