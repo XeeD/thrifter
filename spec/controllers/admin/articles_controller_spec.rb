@@ -32,7 +32,6 @@ module Admin
       end
 
       context "when rendering views" do
-        pending
         render_views
 
         it "calls shop.articles" do
@@ -97,7 +96,7 @@ module Admin
         it "sets the notice message with article name" do
           article.stub(name: valid_article_attributes["name"])
           post_valid_attributes
-          flash[:notice].should include(article.name)
+          flash[:notice].should_not be_blank
         end
       end
 
@@ -137,11 +136,11 @@ module Admin
         render_views
 
         before do
-          shop.stub_chain(:articles, :find)#.with(article.id).and_return(article)
+          shop.stub_chain(:articles, :find).and_return(article)
         end
 
         it "finds the article" do
-          Article.should_receive(:find)#.with(article.id).once.and_return(article)
+          shop.articles.should_receive(:find).once.and_return(article)
           get_edit
         end
 
@@ -156,15 +155,15 @@ module Admin
       # Valid attributes
       context "with valid attributes" do
         def put_update
-          put :update, shop_id: shop.id, article: valid_article_attributes
+          put :update, shop_id: shop.id, id: article.id, article: valid_article_attributes
         end
 
         before do
-          shop.stub_chain(:articles, :find).with(article.id).and_return(article)
+          shop.stub_chain(:articles, :find).and_return(article)
         end
 
         it "finds the article" do
-          shop.articles.should_receive(:find).with(article.id).and_return(article)
+          shop.articles.should_receive(:find).and_return(article)
           put_update
         end
 
@@ -188,11 +187,11 @@ module Admin
       # Invalid attributes
       context "with invalid attributes" do
         def put_invalid_update
-          put :update, shop_id: shop.id, article: {}
+          put :update, shop_id: shop.id, id: article.id, article: {}
         end
 
         before do
-          shop.stub_chain(:articles, :find).with(article.id).and_return(article)
+          shop.stub_chain(:articles, :find).and_return(article)
           article.stub(:update_attributes).and_return(false)
         end
 
@@ -206,6 +205,22 @@ module Admin
           flash.now[:error].should_not be_blank
         end
       end
+
+      context "with non-existing news_item id" do
+        def put_with_invalid_id
+          put :update, shop_id: shop.id, id: article.id + 1
+        end
+
+        it "redirects to index" do
+          put_with_invalid_id
+          response.should redirect_to(admin_shop_articles_url(shop))
+        end
+
+        it "sets error message" do
+          put_with_invalid_id
+          flash.now[:error].should_not be_blank
+        end
+      end
     end
 
     describe "DELETE destroy" do
@@ -215,11 +230,11 @@ module Admin
         end
 
         before do
-          shop.stub_chain(:articles, :find).with(article.id).and_return(article)
+          shop.stub_chain(:articles, :find).and_return(article)
         end
 
         it "finds the article" do
-          shop.articles.should_receive(:find).with(article.id).once
+          shop.articles.should_receive(:find).once
           delete_article
         end
 

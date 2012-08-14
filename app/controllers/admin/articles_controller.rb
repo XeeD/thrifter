@@ -3,6 +3,9 @@
 module Admin
   class ArticlesController < AdminController
 
+    def choose_shop
+    end
+
     def index
     end
 
@@ -11,7 +14,7 @@ module Admin
 
     def create
       if article.save
-        redirect_to admin_shop_articles_url(shop), notice: "Článek #{article.name} byl vytvořen"
+        redirect_to admin_shop_articles_url(shop), :notice => "Článek #{article.name} byl vytvořen"
       else
         flash.now[:error] = "Chyba při vytváření článku"
         render "new"
@@ -23,7 +26,7 @@ module Admin
 
     def update
       if article.update_attributes(params[:article])
-        redirect_to admin_shop_articles_url(shop), notice: "Článek #{article.name} byl upraven"
+        redirect_to admin_shop_articles_url(shop), :notice => "Článek #{article.name} byl upraven"
       else
         flash.now[:error] = "Článek nebylo možné uložit"
         render "edit"
@@ -45,7 +48,7 @@ module Admin
     private
 
     def article
-      @article ||= params[:id] ? Article.find(params[:id]) : Article.new(params[:article])
+      @article ||= params[:id] ? articles.find(params[:id]) : articles.new(params[:article])
     end
 
     helper_method :article
@@ -57,7 +60,7 @@ module Admin
     helper_method :articles
 
     def shop
-      @shop ||= ShopDecorator.find(params[:shop_id])
+      @shop ||= Shop.find(params[:shop_id])
     end
 
     helper_method :shop

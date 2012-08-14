@@ -10,10 +10,10 @@
         %th Přiřazen ke kategorii
         %td Akce
     %tbody
-      - for article in shop.articles
+      - for article in articles
         %tr
           %th= article.name
-          %td= article.assigned_to_categories
+          %td= article.categories.collect(&:short_name).to_sentence
           %td
             %ul.actions
               %li= link_to "Upravit", edit_admin_shop_article_path(shop, article)
