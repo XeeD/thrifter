@@ -41,6 +41,6 @@ class ProductParamItemsProcessor
 
   def process_params_hash
     # Remove blank values
-    @param_items.delete_if(&:blank?)
+    @param_items.delete_if { |key, val| val.blank? }
   end
 end
