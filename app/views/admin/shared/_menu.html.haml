@@ -1,0 +1,8 @@
+%ul#admin_menu
+  - menu(:admin) do |menu|
+    - menu.groups do |group|
+      %li
+        = group.name
+        %ul
+          - group.items do |item|
+            %li= link_to item.title, item.url
