@@ -1,0 +1,16 @@
+%h2 Nahrazení výrobku #{product.name}
+= render "form"
+
+= link_to "Smazat všechny", ""
+
+%table
+  %thead
+    %tr
+      %th Název nahrazujícího výrobku
+      %th Akce
+  %tbody
+  - for replacement in product.replacements
+    %tr
+      %th= replacement.name
+      %td= link_to "Smazat", admin_product_replacement_path(product, replacement), method: :delete, confirm: "Opravdu smazat náhradu #{replacement.name}?"
+
