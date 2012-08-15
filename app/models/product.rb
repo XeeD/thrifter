@@ -27,6 +27,10 @@ class Product < ActiveRecord::Base
     product.has_many :additional_photos, conditions: {main_photo: false}
   end
 
+  # Replacements
+  has_many :replacables
+  has_many :replacements, through: :replacables
+
   # Defined params of product
   has_many :parametrizations
   has_many :defined_param_items, through: :parametrizations, source: :param_item
@@ -96,4 +100,22 @@ class Product < ActiveRecord::Base
   validates :external_id,
             presence: true,
             numericality: {only_integer: true}
+
+  state_machine :state, initial: :new do
+
+    event :next do
+      #transition :new => :old,
+      #           all => :trush
+    end
+
+    event :replace do
+      transition :to => :replaced
+    end
+
+    #before_transition :to => 'replaced' do |product|
+    #  ...
+    #end
+
+    #after_transition :to => 'replaced', :do => replace!
+  end
 end
