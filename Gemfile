@@ -11,6 +11,7 @@ gem 'rack-mini-profiler'
 gem 'carrierwave'
 gem 'rmagick'
 gem 'draper'
+gem 'state_machine'
 
 # Gems used only for compiling assets
 group :assets, :cucumber do

@@ -196,6 +196,7 @@ GEM
       hike (~> 1.2)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
+    state_machine (1.1.2)
     sys-uname (0.9.0)
       ffi (>= 1.0.0)
     sys-uname (0.9.0-x86-mingw32)
@@ -245,5 +246,6 @@ DEPENDENCIES
   selenium-webdriver
   shoulda
   spork
+  state_machine
   therubyracer
   uglifier (>= 1.0.3)
