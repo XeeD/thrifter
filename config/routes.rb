@@ -13,11 +13,7 @@ Thrifter::Application.routes.draw do
       resources :photos, except: [:show], controller: "product_photos", path: "fotky" do
         collection { post :sort }
       end
-      resources :replacements, only: [:index, :create, :destroy], controller: "product_replacements", path: "nahrazeni" do
-        collection do
-          get :destroy_all
-        end
-      end
+      resources :replacements, only: [:index, :create, :destroy], controller: "product_replacements", path: "nahrazeni"
       resources :params, controller: "product_param_items", path: "parametry"
       resources :categorizations, controller: "product_categorizations", only: [:index, :destroy] do
         collection do
