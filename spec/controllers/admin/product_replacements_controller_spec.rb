@@ -7,6 +7,10 @@ module Admin
     let(:product) { ProductDecorator.new(products(:samsung_tv)) }
     let(:replacement) { products(:lg_tv) }
 
+    before do
+      ProductDecorator.stub(find: product)
+    end
+
     describe "GET index" do
       def get_index
         get :index, product_id: product.id
@@ -21,12 +25,11 @@ module Admin
         render_views
 
         before do
-          Product.stub(:find).and_return(product)
-          Product.stub_chain(:replacements, :all).and_return([replacement])
+          product.stub_chain(:replacements).and_return([replacement])
         end
 
-        it "calls Product.find" do
-          Product.should_receive(:find).and_return(product)
+        it "calls ProductDecorator.find" do
+          ProductDecorator.should_receive(:find).once.and_return(product)
           get_index
         end
 
@@ -45,6 +48,11 @@ module Admin
     describe "POST create" do
       def post_valid_attributes
         post :create, product: {replacement_ids: ["1"]}
+      end
+    end
+
+    describe "DELETE destroy" do
+      def delete_replacement
       end
     end
   end
