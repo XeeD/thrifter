@@ -29,7 +29,7 @@ Požadavek: Produktový admin může přiřazovat produkt libovolnému množstv�
            jej zákazník původně nalezl
 
   Kontext:
-    Pokud jsem v editace produktu "Samsung UE55ES8000" na záložce "Kategorie"
+    Pokud upravuji produkt "Samsung UE55ES8000" a jsem na záložce "Kategorie"
     Pokud je produkt zařazen v hlavní kategorii "Televize -> 3D" v obchodu "Spořílek.cz"
     A je zařazen v alternativní kategorii "Televize -> LED" v obchodu "Spořílek.cz"
 
