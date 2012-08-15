@@ -1,4 +1,8 @@
 = semantic_form_for([:admin, product], url: admin_product_replacements_path(product.id), method: "POST") do |f|
-  = f.input :replacements, as: :select, collection: product.available_replacements
+  = f.input :replacements,
+            as: :select,
+            collection: product.available_replacements,
+            input_html: {size: product.available_replacements.size > 10 ? 10 : product.available_replacements.size},
+            hint: "Lze vybrat několik nahrazujících výrobků najednou."
   = f.actions do
     = f.submit "Nahradit"
