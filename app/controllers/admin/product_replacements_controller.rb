@@ -9,7 +9,7 @@ module Admin
       product.replacement_ids += params[:product][:replacement_ids]
 
       if product.replace! & product.save!
-        redirect_to admin_product_replacements_url(product), notice: "VVV"
+        redirect_to admin_product_replacements_url(product), notice: ""
       else
         flash.now[:error] = "Chyba při nahrazování výrobku #{product.name}"
         render :action => :index
@@ -17,12 +17,24 @@ module Admin
     end
 
     def destroy
-      product.replacement_ids -= [params[:id].to_i]
+      if params[:id] == "all"
+        product.replacement_ids = []
+      else
+        product.replacement_ids -= [params[:id].to_i]
+      end
+
       product.save!
+
       redirect_to :back
     end
 
     private
+
+    def replacements
+      @replacements ||= product.replacements
+    end
+
+    helper_method :replacements
 
     def product
       @product ||= ProductDecorator.find(params[:product_id])
