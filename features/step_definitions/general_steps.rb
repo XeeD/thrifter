@@ -67,6 +67,12 @@ Když /^vyberu hodnotu "(.*?)" ze seznamu "(.*?)"$/ do |value, field|
   select value.to_s, :from => field.to_s
 end
 
+Když /^vyberu hodnoty "(.*?)" ze seznamu "(.*?)"$/ do |values, field|
+  values.split(',').each do |value|
+    select value.to_s.strip, :from => field.to_s
+  end
+end
+
 Když /^otevřu sekci "(.*?)"$/ do |section|
   visit get_section_url(section).to_s
 end

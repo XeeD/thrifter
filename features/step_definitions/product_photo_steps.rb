@@ -8,6 +8,10 @@ Pokud /^upravuji produkt "(.*?)" a jsem na záložce "(.*?)"$/ do |product_name,
             admin_product_photos_path(@product)
           when "Parametry"
             admin_product_params_path(@product)
+          when "Nahrazení"
+            admin_product_replacements_path(@product)
+          when "Kategorie"
+            admin_product_categorizations_path(@product)
           else
             raise "tab #{tab} in editation of product is not known"
         end
@@ -69,7 +73,6 @@ Když /^přesunu obrázek "(.*?)" na (\d+)\. pozici$/ do |photo_title, position|
   distance = position.to_i - photo.position
   simulate_drag_sortable(photo, distance)
 end
-
 
 Pak /^obrázek "(.*?)" by měl být na (\d+)\. pozici$/ do |photo_title, position|
   photo = @product.photos.find_by_title(photo_title)
