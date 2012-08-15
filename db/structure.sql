@@ -157,6 +157,14 @@ CREATE TABLE `product_photos` (
   KEY `index_product_photos_on_product_id` (`product_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+CREATE TABLE `product_replacements` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_id` int(11) DEFAULT NULL,
+  `replaced_by_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `index_product_replacements_on_product_id_and_replaced_by_id` (`product_id`,`replaced_by_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 CREATE TABLE `products` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(171) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -277,3 +285,5 @@ INSERT INTO schema_migrations (version) VALUES ('20120810141959');
 INSERT INTO schema_migrations (version) VALUES ('20120813081308');
 
 INSERT INTO schema_migrations (version) VALUES ('20120813132912');
+
+INSERT INTO schema_migrations (version) VALUES ('20120814134504');

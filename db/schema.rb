@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120813132912) do
+ActiveRecord::Schema.define(:version => 20120814134504) do
 
   create_table "articles", :force => true do |t|
     t.string   "name",       :limit => 100
@@ -159,6 +159,13 @@ ActiveRecord::Schema.define(:version => 20120813132912) do
   add_index "product_photos", ["main_photo"], :name => "index_product_photos_on_main_photo"
   add_index "product_photos", ["product_id", "position"], :name => "index_product_photos_on_product_id_and_position"
   add_index "product_photos", ["product_id"], :name => "index_product_photos_on_product_id"
+
+  create_table "product_replacements", :force => true do |t|
+    t.integer "product_id"
+    t.integer "replaced_by_id"
+  end
+
+  add_index "product_replacements", ["product_id", "replaced_by_id"], :name => "index_product_replacements_on_product_id_and_replaced_by_id"
 
   create_table "products", :force => true do |t|
     t.string   "name",                :limit => 171
