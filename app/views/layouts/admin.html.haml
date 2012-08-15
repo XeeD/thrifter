@@ -13,6 +13,8 @@
             .flash{ :class => type.to_s }
               = value
 
+      = render "admin/shared/menu"
+
       %ul#menu
         %li= link_to "Značky", admin_brands_path
         %li= link_to "Produkty", admin_products_path

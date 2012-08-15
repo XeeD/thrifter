@@ -6,7 +6,7 @@
       %h3= shop.name
 
       Hlavní kategorie:
-      = render :partial => "preferred_category", object: preferred_category_in_shop(shop)
+      = render partial: "preferred_category", object: preferred_category_in_shop(shop)
       = link_to "Změnit hlavní kategorii",
         edit_preferred_admin_product_categorization_path(product, preferred_categorization_in_shop(shop))
 

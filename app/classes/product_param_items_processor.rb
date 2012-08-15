@@ -21,11 +21,11 @@ class ProductParamItemsProcessor
   def process_params
     # Recreate new param connections
     @param_items.each do |param_id, value|
-        # Single value from inputs and radio buttons
-        # Array from check boxes
-        [*value].each do |val|
-          save_param(param_id, val)
-        end
+      # Single value from inputs and radio buttons
+      # Array from check boxes
+      [*value].each do |val|
+        save_param(param_id, val)
+      end
     end
   end
 
@@ -33,16 +33,14 @@ class ProductParamItemsProcessor
     param_value = ParamValue.find_or_create_by_value_and_param_item_id(value, param_id)
 
     Parametrization.create(
-        {
-            product_id: @product_id,
-            param_item_id: param_id,
-            param_value_id: param_value.id
-        }
+        product_id: @product_id,
+        param_item_id: param_id,
+        param_value_id: param_value.id
     )
   end
 
   def process_params_hash
     # Remove blank values
-    @param_items.delete_if {|key, val| val.blank? }
+    @param_items.delete_if { |key, val| val.blank? }
   end
 end
