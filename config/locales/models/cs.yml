@@ -33,6 +33,11 @@ cs:
         admin_comment: "Poznámka"
         gray_import: "Šedý dovoz"
         top_product: "Top produkt"
+        replacements: "Nahradit výrobkem"
+        state: "Stav"
+        states:
+          new: "Nový"
+          replaced: "Nahrazený"
       category:
         short_name: "Název"
         url: "Název v odkazu"
