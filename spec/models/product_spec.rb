@@ -13,7 +13,8 @@ describe Product do
   it { should have_one(:sample_preferred_category).through(:sample_preferred_categorization) }
   it { should have_many(:alternative_categorizations) }
   it { should have_many(:alternative_categories).through(:alternative_categorizations) }
-  it { should hvae_many(:replacements) }
+  it { should have_many(:replacables) }
+  it { should have_many(:replacements).through(:replacables) }
 
   # Validations
   # name

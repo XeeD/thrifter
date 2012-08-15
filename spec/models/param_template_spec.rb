@@ -7,6 +7,7 @@ describe ParamTemplate do
   it { should have_many(:categories) }
   it { should have_many(:groups) }
   it { should have_many(:param_items) }
+  it { should have_many(:products) }
 
   # Validations
   # name
