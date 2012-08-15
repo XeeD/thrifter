@@ -36,4 +36,43 @@ samsung_tv:
   admin_comment:
   gray_import: false
   top_product: false
+  brand_id: 3
+
+lg_tv:
+  id: 3
+  name: "LG 19LS3500"
+  model_name: "LG19LS3500"
+  url: lg-19ls3500"
+  external_id: "2129201"
+  ean_code: 1122334455667
+  short_description: "LCD televize LG"
+  description: "LED s USB přehrávačem"
+  default_price: 4900
+  recommended_price: 5100
+  purchase_price: 3500
+  recycling_fee: 202
+  warranty: 24
+  vat_rate: 20.0
+  admin_comment:
+  gray_import: false
+  top_product: true
   brand_id: 2
+
+philips_tv:
+  id: 4
+  name: "Philips 32PFL4007H"
+  model_name: "32PFL4007H"
+  url: "philips-32pfl4007h"
+  external_id: "7745241"
+  ean_code: 5574879878123
+  short_description: "LCD televize Philips"
+  description: "LED s uhlopříčkou 81 cm"
+  default_price: 10901
+  recommended_price: 10901
+  purchase_price: 8800
+  recycling_fee: 202
+  warranty: 36
+  vat_rate: 20.00
+  gray_import: false
+  top_product: false
+  brand_id: 4

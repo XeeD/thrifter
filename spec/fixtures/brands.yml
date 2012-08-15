@@ -13,3 +13,8 @@ samsung:
   id: 3
   name: "Samsung"
   description: "Samsung Electronics of Korea"
+
+philips:
+  id: 4
+  name: "Philips"
+  description: "Philips Sense and Simplicity"

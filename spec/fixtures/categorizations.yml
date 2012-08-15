@@ -14,3 +14,15 @@ categorization_samsung_tv_sporilek_tvs_3d:
   product_id: 2
   category_id: 8
   preferred: true
+
+categorization_lg_tv_sporilek_tvs_led:
+  id: 4
+  product_id: 3
+  category_id: 7
+  preferred: true
+
+categorization_philips_tv_sporilek_tvs_led:
+  id: 5
+  product_id: 4
+  category_id: 7
+  preferred: true

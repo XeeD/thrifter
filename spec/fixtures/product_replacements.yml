@@ -1,0 +1,7 @@
+lg_replaces_phillips_tv:
+  product_id: 4
+  replaced_by_id: 3
+
+samsung_replaces_phillips_tv:
+  product_id: 4
+  replaced_by_id: 2
