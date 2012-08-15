@@ -23,6 +23,10 @@ module Admin
       ParamTemplateDecorator.new(model.param_template)
     end
 
+    def available_replacements
+      param_template.products - [model] - model.replacements
+    end
+
     # Accessing Helpers
     #   You can access any helper via a proxy
     #
