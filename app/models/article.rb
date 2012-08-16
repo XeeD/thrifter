@@ -1,7 +1,10 @@
 class Article < ActiveRecord::Base
+
   # Associations
   has_and_belongs_to_many :categories, join_table: :category_articles
   has_many :shops, through: :categories
+
+  transliterate_permalink :url
 
   # Validations
   validates :name,

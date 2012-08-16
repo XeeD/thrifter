@@ -2,6 +2,8 @@ class Product < ActiveRecord::Base
   # Associations
   belongs_to :brand
 
+  transliterate_permalink :url
+
   # Categories through categorizations
   # - categories, that are "main" in given shop are called "preferred"
   # - remaining categoires are called "alternative"
