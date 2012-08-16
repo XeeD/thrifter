@@ -4,17 +4,17 @@ Thrifter::Application.routes.draw do
   namespace :admin do
     root :to => "admin#homepage"
 
-    resources :brands, path: "znacky", path_names: {new: "nova", edit: "editace"}, except: :show
+    resources :brands, except: :show
 
-    resources :products,
-              path: "produkty",
-              path_names: {new: "novy", edit: "editace"},
-              except: :show do
-      resources :photos, except: [:show], controller: "product_photos", path: "fotky" do
+    resources :products, except: :show do
+      resources :photos, except: [:show], controller: "product_photos" do
         collection { post :sort }
       end
+
       resources :replacements, only: [:index, :create, :destroy], controller: "product_replacements", path: "nahrazeni"
-      resources :params, controller: "product_param_items", path: "parametry"
+
+      resources :params, controller: "product_param_items"
+
       resources :categorizations, controller: "product_categorizations", only: [:index, :destroy] do
         collection do
           post :add_shop_to
@@ -27,24 +27,24 @@ Thrifter::Application.routes.draw do
       end
     end
 
-    resources :param_templates, path: "sablony-parametru", path_names: {new: "nova", edit: "editace"} do
-      resources :groups, path: "skupiny", path_names: {new: "nova", edit: "editace"}, controller: "param_groups", except: :index do
+    resources :param_templates do
+      resources :groups, controller: "param_groups", except: :index do
         collection { post :sort }
       end
-      resources :param_items, path: "parametry", path_names: {new: "novy", edit: "editace"}
+      resources :param_items
     end
 
-    resources :shops, path: "obchody", path_names: {new: "novy", edit: "editace"}, except: :show do
+    resources :shops, except: :show do
       member do
         get :deletion_confirmation
       end
 
-      resources :news_items, path: "novinky", path_names: {new: "nova", edit: "editace"}, except: :show
-      resources :categories, path: "kategorie", path_names: {new: "nova", edit: "editace"}, except: :show
-      resources :articles, path: "clanky", path_names: {new: "novy", edit: "editace"}, except: :show
+      resources :news_items, except: :show
+      resources :categories, except: :show
+      resources :articles, except: :show
     end
 
-    resources :documents, path: "dokumenty", path_names: {new: "novy", edit: "editace"}
+    resources :documents
     
     # Admistation of categories - choose which shop's categories to administrate
     match "kategorie/vyber-obchodu" => "categories#choose_shop", as: "categories"
