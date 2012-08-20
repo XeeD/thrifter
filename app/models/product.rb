@@ -105,14 +105,33 @@ class Product < ActiveRecord::Base
 
   state_machine :state, initial: :new do
 
-    event :next do
-      #transition :new => :old,
-      #           all => :trush
+    event :replace do
+      transition [:visible] => :replaced
     end
 
-    event :replace do
-      transition :to => :replaced
+    event :revert_replace do
+      transition [:replaced] => :visible
     end
+
+    event :approve do
+      transition [:new, :rejected] => :visible
+    end
+
+    event :reject do
+      transition [:new, :rejected] => :rejected
+    end
+
+    event :remove do
+      transition [:replaced, :visible, :rejected] => :removed
+    end
+
+    event :revert_remove do
+      transition [:removed] => :visible
+    end
+
+    #state :replaced do
+    #  validates :replacements, presence: true
+    #end
 
     #before_transition :to => 'replaced' do |product|
     #  ...
