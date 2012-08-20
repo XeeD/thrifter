@@ -36,3 +36,4 @@ Požadavek: Produktový admin nahrazuje zastaralý produkt novým
     Když kliknu na odkaz "Smazat všechny"
     Pak produkt "Samsung UE55ES8000" by neměl být náhradou současného produktu
     A produkt "LG 19LS3500" by neměl být náhradou současného produktu
+    A stav produktu by měl být "viditelný"
