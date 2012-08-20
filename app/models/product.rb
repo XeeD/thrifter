@@ -103,10 +103,15 @@ class Product < ActiveRecord::Base
             presence: true,
             numericality: {only_integer: true}
 
+  # scopes
+  def self.visible
+    where(state: :visible)
+  end
+
   state_machine :state, initial: :new do
 
     event :replace do
-      transition [:visible] => :replaced
+      transition [:visible, :replaced] => :replaced
     end
 
     event :revert_replace do
