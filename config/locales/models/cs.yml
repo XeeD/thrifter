@@ -37,6 +37,9 @@ cs:
         state: "Stav"
         states:
           new: "Nový"
+          visible: "Viditelný"
+          rejected: "Neschválený"
+          removed: "Smazaný"
           replaced: "Nahrazený"
       category:
         short_name: "Název"
