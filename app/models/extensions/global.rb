@@ -15,5 +15,3 @@ module Extensions
     end
   end
 end
-
-ActiveRecord::Base.send(:include, Extensions::Global)
