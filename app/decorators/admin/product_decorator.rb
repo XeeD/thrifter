@@ -24,7 +24,7 @@ module Admin
     end
 
     def available_replacements
-      param_template.products - [model] - model.replacements
+      param_template.products.visible - [model] - model.replacements
     end
   end
 end
