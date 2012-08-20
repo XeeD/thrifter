@@ -18,3 +18,8 @@ philips:
   id: 4
   name: "Philips"
   description: "Philips Sense and Simplicity"
+
+grundig:
+  id: 5
+  name: "Grundig"
+  description: "Grundig, for a good reason"

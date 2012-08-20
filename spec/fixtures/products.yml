@@ -17,6 +17,7 @@ lg_fridge:
   gray_import: false
   top_product: false
   brand_id: 1
+  state: visible
 
 samsung_tv:
   id: 2
@@ -37,6 +38,7 @@ samsung_tv:
   gray_import: false
   top_product: false
   brand_id: 3
+  state: visible
 
 lg_tv:
   id: 3
@@ -57,6 +59,7 @@ lg_tv:
   gray_import: false
   top_product: true
   brand_id: 2
+  state: visible
 
 philips_tv:
   id: 4
@@ -76,3 +79,23 @@ philips_tv:
   gray_import: false
   top_product: false
   brand_id: 4
+  state: replaced
+
+grundig_tv:
+  id: 5
+  name: "Grundig 22 VLE 2102C"
+  model_name: "VLE2102C"
+  url: "grundig-22-vle-2102c"
+  external_id: "6655874"
+  ean_code: 1147896512345
+  short_description: "Grundig s HD ready"
+  description: "Grundig má skvělou odezvu 5ms"
+  default_price: 5299
+  recommended_price: 5599
+  purchase_price: 4649
+  recycling_fee: 202
+  warranty: 24
+  gray_import: false
+  top_product: false
+  brand_id: 5
+  state: visible

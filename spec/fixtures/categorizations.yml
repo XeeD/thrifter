@@ -26,3 +26,8 @@ categorization_philips_tv_sporilek_tvs_led:
   product_id: 4
   category_id: 7
   preferred: true
+
+categorization_grundig_tv_sporilek_tvs_led:
+  product_id: 5
+  category_id: 7
+  preferred: true
