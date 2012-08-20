@@ -31,6 +31,9 @@ Pak /^stav produktu by měl být "(.*?)"$/ do |state|
   @product.reload.state.should eq(dehumanize_state("product", state))
 end
 
+Pak /^stav produktu by neměl být "(.*?)"$/ do |state|
+  @product.reload.state.should_not eq(dehumanize_state("product", state))
+end
 #Pak /^atribut "(.*?)" produktu by měl mít hodnotu "(.*?)"$/ do |attr, value|
 #  @product.send(attr.to_s).should be value.to_s
 #end
