@@ -4,6 +4,8 @@ class Category < ActiveRecord::Base
   # Macros
   acts_as_nested_set scope: :shop
 
+  transliterate_permalink :url
+
   # Associations
   has_many :categorizations
   has_many :products, through: :categorizations

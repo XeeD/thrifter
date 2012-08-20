@@ -2,6 +2,8 @@ class Brand < ActiveRecord::Base
   # Associations
   has_many :products
 
+  transliterate_permalink :url
+
   # Validations
   validates :name,
             presence: true,

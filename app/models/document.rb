@@ -5,6 +5,8 @@ class Document < ActiveRecord::Base
 
   before_save :remove_old_contact_link
 
+  transliterate_permalink :url
+
   validates :name,
             presence: true,
             length: {maximum: 70},
