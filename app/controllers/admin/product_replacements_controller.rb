@@ -23,6 +23,10 @@ module Admin
         product.replacement_ids -= [params[:id].to_i]
       end
 
+      if product.replacement_ids.empty?
+        product.revert_replace!
+      end
+
       product.save!
 
       redirect_to :back
