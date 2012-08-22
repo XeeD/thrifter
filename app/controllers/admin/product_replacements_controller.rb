@@ -41,7 +41,7 @@ module Admin
     helper_method :replacements
 
     def product
-      @product ||= ProductDecorator.find(params[:product_id])
+      @product ||= ProductDecorator.decorate Product.with_states(:visible, :replaced).find(params[:product_id])
     end
 
     helper_method :product
