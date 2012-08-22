@@ -3,6 +3,10 @@
 module Admin
   class ProductsController < AdminController
 
+    def index
+      logger.info "index action"
+    end
+
     def new
     end
 
@@ -44,15 +48,21 @@ module Admin
     private
 
     def product
-      @product ||= params[:id] ? Product.unscoped.find(params[:id]) : Product.new(params[:product])
+      @product ||= params[:id] ? products.find(params[:id]) : Product.new(params[:product])
     end
 
     helper_method :product
 
     def products
-      @products ||= Product.unscoped.all
+      @products ||= Product.unscoped
     end
 
     helper_method :products
+
+    def selected_products
+      @selected_products ||= Product.default_admin_visible
+    end
+
+    helper_method :selected_products
   end
 end
