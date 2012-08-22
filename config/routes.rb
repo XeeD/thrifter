@@ -11,7 +11,7 @@ Thrifter::Application.routes.draw do
         collection { post :sort }
       end
 
-      resources :replacements, only: [:index, :create, :destroy], controller: "product_replacements", path: "nahrazeni"
+      resources :replacements, only: [:index, :create, :destroy], controller: "product_replacements"
 
       resources :params, controller: "product_param_items"
 
