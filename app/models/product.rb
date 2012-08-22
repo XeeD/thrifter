@@ -103,8 +103,7 @@ class Product < ActiveRecord::Base
             presence: true,
             numericality: {only_integer: true}
 
-  # scopes
-  def self.visible
+  def self.default_scope
     where(state: :visible)
   end
 

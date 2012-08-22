@@ -17,7 +17,6 @@ lg_fridge:
   gray_import: false
   top_product: false
   brand_id: 1
-  state: visible
 
 samsung_tv:
   id: 2

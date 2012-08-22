@@ -44,13 +44,13 @@ module Admin
     private
 
     def product
-      @product ||= params[:id] ? Product.find(params[:id]) : Product.new(params[:product])
+      @product ||= params[:id] ? Product.unscoped.find(params[:id]) : Product.new(params[:product])
     end
 
     helper_method :product
 
     def products
-      @products ||= Product.all
+      @products ||= Product.unscoped.all
     end
 
     helper_method :products

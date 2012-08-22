@@ -27,13 +27,22 @@ Pak /^produkt "(.*?)" by měl být (?:vytvořen|upraven)$/ do |name|
   find("#products").should have_content("#{name}")
 end
 
+Pak /^stav produktu "(.*?)" by měl být "(.*?)"$/ do |product_name, state|
+  product = Product.find_by_name(product_name)
+  fail "product #{product_name} doesn't exists" if product.nil?
+  product.state.should eq(dehumanize_state("product", state))
+end
+
 Pak /^stav produktu by měl být "(.*?)"$/ do |state|
   @product.reload.state.should eq(dehumanize_state("product", state))
+end
+
+Pak /^stav produktu "(.*?)" by neměl být "(.*?)"$/ do |product_name, state|
+  product = Product.find_by_name(product_name)
+  fail "product #{product_name} doesn't exists" if product.nil?
+  product.state.should_not eq(dehumanize_state("product", state))
 end
 
 Pak /^stav produktu by neměl být "(.*?)"$/ do |state|
   @product.reload.state.should_not eq(dehumanize_state("product", state))
 end
-#Pak /^atribut "(.*?)" produktu by měl mít hodnotu "(.*?)"$/ do |attr, value|
-#  @product.send(attr.to_s).should be value.to_s
-#end

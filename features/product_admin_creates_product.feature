@@ -18,12 +18,13 @@ Požadavek: Produktový admin vytváří nový produkt
     A značka "Indesit" existuje
     Když kliknu na odkaz "Přidat nový produkt"
     A vyplním formulář údaji:
-      | Celý název    | Model         | Název v odkazu | Číslo v Cézaru | Stručný popis     |
-      | LG GB3133TIJW | LG GB3133TIJW | lg-gb3133tijw  | 2124567        | Perfektní lednice |
+      | Celý název       | Model            | Název v odkazu   | Číslo v Cézaru | Stručný popis     |
+      | Indesit 3D AA NX | Indesit 3D AA NX | indesit-3d-aa-nx | 2125567        | Perfektní lednice |
     A pokračuji ve vyplňování formuláře:
       | Popis            | Výchozí cena | Doporučená cena | Nákupní cena | PHE | Záruka | % DPH |
       | No-Frost lednice | 12990        | 15990           | 9000         | 217 | 24     | 20    |
     A vyberu hodnotu "Indesit" ze seznamu "Značka"
     A kliknu na tlačítko "Vytvořit nový produkt"
-    Pak bych měl vidět zprávu "Nový produkt LG GB3133TIJW byl vytvořen"
-    A produkt "LG GB3133TIJW" by měl být vytvořen
+    Pak bych měl vidět zprávu "Nový produkt Indesit 3D AA NX byl vytvořen"
+    A produkt "Indesit 3D AA NX" by měl být vytvořen
+    A stav produktu "Indesit 3D AA NX" by měl být "Nový"
