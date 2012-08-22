@@ -2,13 +2,13 @@
 
 # Given statements
 Pokud /^existuje produkt "(.*?)"$/ do |product_name|
-  @product = Product.find_by_name(product_name)
+  @product = Product.unscoped.find_by_name(product_name)
   fail "product #{product_name} doesn't exists" if @product.nil?
 end
 
 Pokud /^existují produkty "(.*?)"$/ do |product_names|
   product_names.split(',').each do |product_name|
-    fail "product #{product_name} doesn't exists" if Product.find_by_name(product_name.to_s.strip).nil?
+    fail "product #{product_name} doesn't exists" if Product.unscoped.find_by_name(product_name.to_s.strip).nil?
   end
 end
 
@@ -28,19 +28,13 @@ Pak /^produkt "(.*?)" by měl být (?:vytvořen|upraven)$/ do |name|
 end
 
 Pak /^stav produktu "(.*?)" by měl být "(.*?)"$/ do |product_name, state|
-  product = Product.find_by_name(product_name)
+  product = Product.unscoped.find_by_name(product_name.to_s.strip)
   fail "product #{product_name} doesn't exists" if product.nil?
   product.state.should eq(dehumanize_state("product", state))
 end
 
 Pak /^stav produktu by měl být "(.*?)"$/ do |state|
   @product.reload.state.should eq(dehumanize_state("product", state))
-end
-
-Pak /^stav produktu "(.*?)" by neměl být "(.*?)"$/ do |product_name, state|
-  product = Product.find_by_name(product_name)
-  fail "product #{product_name} doesn't exists" if product.nil?
-  product.state.should_not eq(dehumanize_state("product", state))
 end
 
 Pak /^stav produktu by neměl být "(.*?)"$/ do |state|

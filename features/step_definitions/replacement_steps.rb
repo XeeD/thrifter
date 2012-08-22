@@ -2,7 +2,7 @@
 
 # Given statements
 Pokud /^produkt "(.*?)" je náhradou současného produktu$/ do |replacement_name|
-  replacement = Product.find_by_name(replacement_name)
+  replacement = Product.unscoped.find_by_name(replacement_name)
   @product.replacements.should include(replacement)
   @product.state.should.eql? "replaced"
 end

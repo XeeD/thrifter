@@ -1,7 +1,7 @@
 # encoding: UTF-8
 
 Pokud /^upravuji produkt "(.*?)" a jsem na záložce "(.*?)"$/ do |product_name, tab|
-  @product = Product.find_by_name(product_name)
+  @product = Product.unscoped.find_by_name(product_name)
   raise "product #{product_name} not found" if @product.nil?
   url = case tab
           when "Obrázky"
