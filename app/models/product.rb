@@ -103,9 +103,15 @@ class Product < ActiveRecord::Base
             presence: true,
             numericality: {only_integer: true}
 
-  def self.default_scope
-    where(state: :visible)
-  end
+  #default_scope -> { where(state: :visible) }
+
+  scope :default_admin_visible, -> { where(state: [:visible, :rejected, :new]) }
+  scope :replaced, -> { where(state: [:replaced]) }
+  scope :visible, -> { where(state: [:visible]) }
+
+  scope :with_states, ->(*states) {
+    where(state: states)
+  }
 
   state_machine :state, initial: :new do
 
