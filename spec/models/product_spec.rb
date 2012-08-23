@@ -70,6 +70,34 @@ describe Product do
   # brand
   it { should validate_presence_of(:brand) }
 
+  context "product replacements" do
+    fixtures :products
+
+    let(:product_replaced) { products(:philips_tv) }
+    let(:product_not_replaced) { products(:samsung_tv) }
+
+    it "when added changes state to replaced" do
+      expect {
+        product_not_replaced.replacements << product_replaced
+        product_not_replaced.reload
+      }.to change{product_not_replaced.state}.from("visible").to("replaced")
+    end
+
+    it "when present and then removed changes state to visible" do
+      expect {
+        product_replaced.replacements.destroy_all
+        product_replaced.reload
+      }.to change{product_replaced.state}.from("replaced").to("visible")
+    end
+
+    it "when multiple present and one removed then state stays replaced" do
+      expect {
+        product_replaced.replacements.destroy(product_not_replaced)
+        product_replaced.reload
+      }.to_not change{product_replaced.state}
+    end
+  end
+
   context "with valid attributes" do
     it "should be valid" do
       Product.new(valid_product_attributes).should be_valid
