@@ -45,7 +45,7 @@ Thrifter::Application.routes.draw do
     end
 
     resources :documents
-    
+
     # Admistation of categories - choose which shop's categories to administrate
     match "kategorie/vyber-obchodu" => "categories#choose_shop", as: "categories"
     match "novinky/vyber-obchodu" => "news_items#choose_shop", as: "news_items"
