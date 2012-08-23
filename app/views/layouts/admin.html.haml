@@ -15,14 +15,4 @@
 
       = render "admin/shared/menu"
 
-      %ul#menu
-        %li= link_to "Značky", admin_brands_path
-        %li= link_to "Produkty", admin_products_path
-        %li= link_to "Kategorie", admin_categories_path
-        %li= link_to "Šablony parametrů", admin_param_templates_path
-        %li= link_to "Obchody", admin_shops_path
-        %li= link_to "Novinky", admin_news_items_path
-        %li= link_to "Dokumenty", admin_documents_path
-        %li= link_to "Články", admin_articles_path
-
       = yield

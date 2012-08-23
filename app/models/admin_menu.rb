@@ -6,6 +6,7 @@ MenuBuilder::Builder.build do
       item :products, title: "Produkty" do
         tab :photos
         tab :param_items
+        tab :replacements
       end
       item :brands, title: "Značky"
     end
@@ -16,6 +17,7 @@ MenuBuilder::Builder.build do
 
     group "Texty" do
       item :news_items, title: "Novinky"
+      item :documents, title: "Dokumenty"
     end
 
     group "Nastavení" do
