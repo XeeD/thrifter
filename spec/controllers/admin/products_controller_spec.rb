@@ -2,6 +2,7 @@ require 'spec_helper'
 
 module Admin
   describe ProductsController do
+    fixtures :products
     let(:product) { mock_model(Product).as_null_object }
 
     describe "GET index" do
@@ -14,7 +15,7 @@ module Admin
         render_views
 
         it "calls Product#all" do
-          Product.should_receive(:all).with(no_args).once.and_return([product])
+          Product.should_receive(:default_admin_visible).with(no_args).once.and_return([product])
           get :index
         end
       end
@@ -93,6 +94,14 @@ module Admin
       end
     end
 
+    def stub_unscoped_find
+      Product.stub_chain(:unscoped, :find).and_return(product)
+    end
+
+    def products_finder_helper
+      Product.unscoped
+    end
+
     describe "GET edit" do
       def get_edit
         get :edit, :id => product.id
@@ -107,11 +116,11 @@ module Admin
         render_views
 
         before do
-          Product.stub(:find).and_return(product)
+          stub_unscoped_find
         end
 
         it "finds the product" do
-          Product.should_receive(:find).with(product.id.to_s).once
+          products_finder_helper.should_receive(:find).with(product.id.to_s).once
           get_edit
         end
 
@@ -130,11 +139,11 @@ module Admin
         end
 
         before do
-          Product.stub(:find).and_return(product)
+          stub_unscoped_find
         end
 
         it "finds the product" do
-          Product.should_receive(:find).with(product.id.to_s).once.and_return(product)
+          products_finder_helper.should_receive(:find).with(product.id.to_s).once.and_return(product)
           put_update
         end
 
@@ -163,7 +172,7 @@ module Admin
 
         before do
           product.stub(:update_attributes).and_return(false)
-          Product.stub(:find).and_return(product)
+          stub_unscoped_find
         end
 
         it "renders edit action again" do
@@ -201,11 +210,11 @@ module Admin
         end
 
         before do
-          Product.stub(:find).and_return(product)
+          stub_unscoped_find
         end
 
         it "finds the product" do
-          Product.should_receive(:find).with(product.id.to_s).once
+          products_finder_helper.should_receive(:find).with(product.id.to_s).once
           delete_product
         end
 

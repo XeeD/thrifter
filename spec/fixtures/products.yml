@@ -17,6 +17,7 @@ lg_fridge:
   gray_import: false
   top_product: false
   brand_id: 1
+  state: visible
 
 samsung_tv:
   id: 2
@@ -98,3 +99,22 @@ grundig_tv:
   top_product: false
   brand_id: 5
   state: visible
+
+new_product:
+  id: 6
+  name: "Grundig Vision 2 19-2930 T"
+  model_name: "Vision 2 19-2930 T"
+  url: "grundig-vision-2-19-2930-t"
+  external_id: "2405378"
+  ean_code: 1147896512345
+  short_description: "Grundig s HD ready"
+  description: "Grundig má skvělou odezvu 505,4 ms"
+  default_price: 5299
+  recommended_price: 5599
+  purchase_price: 4649
+  recycling_fee: 202
+  warranty: 24
+  gray_import: false
+  top_product: false
+  brand_id: 5
+  state: new

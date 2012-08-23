@@ -4,7 +4,6 @@ module Admin
   class ProductsController < AdminController
 
     def index
-      logger.info "index action"
     end
 
     def new
@@ -48,7 +47,7 @@ module Admin
     private
 
     def product
-      @product ||= params[:id] ? products.find(params[:id]) : Product.new(params[:product])
+      @product ||= params[:id] ? products.find(params[:id]) : products.new(params[:product])
     end
 
     helper_method :product

@@ -70,7 +70,7 @@ module Admin
         end
 
         it "sets notice message" do
-          post_create
+          delete_replacement
           flash[:notice].should_not be_blank
         end
       end
@@ -92,7 +92,7 @@ module Admin
         end
 
         it "sets notice message" do
-          post_create
+          delete_replacements
           flash[:notice].should_not be_blank
         end
       end
