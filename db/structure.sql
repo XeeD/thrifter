@@ -180,7 +180,7 @@ CREATE TABLE `products` (
   `recycling_fee` int(11) DEFAULT NULL,
   `warranty` mediumint(9) DEFAULT NULL,
   `vat_rate` decimal(3,1) DEFAULT NULL,
-  `state` varchar(255) COLLATE utf8_unicode_ci DEFAULT 'new',
+  `state` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'new',
   `admin_comment` text COLLATE utf8_unicode_ci,
   `initial_data_source` varchar(255) COLLATE utf8_unicode_ci DEFAULT 'manually_added',
   `gray_import` tinyint(1) DEFAULT '0',
@@ -287,3 +287,5 @@ INSERT INTO schema_migrations (version) VALUES ('20120813081308');
 INSERT INTO schema_migrations (version) VALUES ('20120813132912');
 
 INSERT INTO schema_migrations (version) VALUES ('20120814134504');
+
+INSERT INTO schema_migrations (version) VALUES ('20120823082028');

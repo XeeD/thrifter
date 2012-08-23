@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120814134504) do
+ActiveRecord::Schema.define(:version => 20120823082028) do
 
   create_table "articles", :force => true do |t|
     t.string   "name",       :limit => 100
@@ -181,7 +181,7 @@ ActiveRecord::Schema.define(:version => 20120814134504) do
     t.integer  "recycling_fee"
     t.integer  "warranty",            :limit => 3
     t.decimal  "vat_rate",                           :precision => 3, :scale => 1
-    t.string   "state",                                                            :default => "new"
+    t.string   "state",                                                            :default => "new",            :null => false
     t.text     "admin_comment"
     t.string   "initial_data_source",                                              :default => "manually_added"
     t.boolean  "gray_import",                                                      :default => false
