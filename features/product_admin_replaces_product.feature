@@ -23,7 +23,7 @@ Požadavek: Produktový admin nahrazuje zastaralý produkt novým
     Pak produkt "LG 19LS3500" by měl být náhradou současného produktu
     A produkt "Grundig 22 VLE 2102C" by měl být náhradou současného produktu
 
-  Scénář: odstranění jednoho nahrazujícího výrobku
+  Scénář: odstranění jedné náhrady
     Pokud upravuji produkt "Philips 32PFL4007H" a jsem na záložce "Nahrazení"
     A produkt "Samsung UE55ES8000" je náhradou současného produktu
     A produkt "LG 19LS3500" je náhradou současného produktu
@@ -31,7 +31,7 @@ Požadavek: Produktový admin nahrazuje zastaralý produkt novým
     Pak produkt "Samsung UE55ES8000" by neměl být náhradou současného produktu
     A stav produktu by měl být "Nahrazený"
 
-  Scénář: odstranění všech nahrazujících výrobků odkazem
+  Scénář: odstranění všech náhrad odkazem "Smazat všechny"
     Pokud upravuji produkt "Philips 32PFL4007H" a jsem na záložce "Nahrazení"
     A produkt "Samsung UE55ES8000" je náhradou současného produktu
     A produkt "LG 19LS3500" je náhradou současného produktu
