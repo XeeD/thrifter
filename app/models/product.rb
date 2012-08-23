@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class Product < ActiveRecord::Base
   # Associations
   belongs_to :brand
