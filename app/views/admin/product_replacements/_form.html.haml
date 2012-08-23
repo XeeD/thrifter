@@ -3,6 +3,6 @@
             as: :select,
             collection: product.available_replacements,
             input_html: {size: product.available_replacements.size > 10 ? 10 : product.available_replacements.size},
-            hint: "Lze vybrat několik nahrazujících výrobků najednou."
+            hint: "lze vybrat několik náhrad najednou"
   = f.actions do
     = f.submit "Nahradit"

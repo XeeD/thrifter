@@ -2,22 +2,29 @@
 - unless product.available_replacements.blank?
   = render "form"
 - else
-  .empty_set
+  .warning
     Nebyly nalezeny žádné vhodné výrobky pro nahrazení
 
 - unless replacements.blank?
   %table
     %thead
       %tr
-        %th Název nahrazujícího výrobku
+        %th Název náhrady
         %th Akce
     %tbody
     - for replacement in replacements
       %tr
         %th= replacement.name
-        %td= link_to "Smazat", admin_product_replacement_path(product, replacement), method: :delete, confirm: "Opravdu smazat náhradu #{replacement.name}?"
+        %td= link_to "Smazat",
+          admin_product_replacement_path(product, replacement),
+          method: :delete,
+          confirm: "Opravdu smazat náhradu #{replacement.name}?"
 
-  = link_to "Smazat všechny", admin_product_replacement_path(product, "all"), method: :delete, confirm: "Opravdu smazat všechny náhradní produkty?"
+  = link_to "Smazat všechny",
+    admin_product_replacement_path(product, "all"),
+    method: :delete,
+    confirm: "Opravdu smazat všechny náhradní produkty?"
+
 - else
   .empty_set
-    Výrobek nemá přiřazený žádné nahrazující produkty
+    Výrobek není nahrazen žádným výrobkem
