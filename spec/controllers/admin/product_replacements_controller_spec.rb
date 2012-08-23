@@ -4,13 +4,9 @@ module Admin
   describe ProductReplacementsController do
     fixtures(:products)
 
-    let(:product) { ProductDecorator.new(products(:samsung_tv)) }
+    let(:product) { ProductDecorator.new(products(:philips_tv)) }
     let(:replacement_lg) { products(:lg_tv) }
-    let(:replacement_philips) { product(:philips) }
-
-    before do
-      ProductDecorator.stub(find: product)
-    end
+    let(:replacement_samsung) { products(:samsung_tv) }
 
     describe "GET index" do
       def get_index
@@ -25,45 +21,79 @@ module Admin
       context "when rendering views" do
         render_views
 
-        before do
-          product.stub_chain(:replacements).and_return([replacement_lg])
-        end
-
-        it "calls ProductDecorator.find" do
-          ProductDecorator.should_receive(:find).once.and_return(product)
-          get_index
-        end
-
         it "shows form" do
           get_index
           response.body.should have_selector("form")
-        end
-
-        it "calls product.replacements" do
-          product.should_receive(:replacements).and_return([replacement_lg])
-          get_index
         end
       end
     end
 
     describe "POST create" do
-      def post_valid_attributes
-        post :create, product: {replacement_ids: [replacement_lg.id, replacement_philips.id]}
-      end
+      context "with several valid replacement ids" do
+        def post_create
+          post :create, product_id: product.id, product: {replacement_ids: [replacement_lg.id, replacement_samsung.id]}
+        end
 
-      it "updates product replacement ids" do
-        post_valid_attributes
+        it "updates product replacements" do
+          expect {
+            post_create
+          }.to change{product.replacements.size}.by(2)
+        end
+
+        it "redirects back to product replacements" do
+          post_create
+          response.should redirect_to(admin_product_replacements_url(product))
+        end
+
+        it "sets notice message" do
+          post_create
+          flash[:notice].should_not be_blank
+        end
       end
     end
 
     describe "DELETE destroy" do
-      before do
-        product.stub_chain(:replacements, :find).and_return([replacement_lg, replacement_philips])
+      context "with one valid replacement id" do
+        def delete_replacement
+          delete :destroy, product_id: product.id, id: replacement_lg.id
+        end
+
+        it "removes one replacement" do
+          expect {
+            delete_replacement
+          }.to change{product.replacements.size}.by(-1)
+        end
+
+        it "redirects back to product replacements" do
+          delete_replacement
+          response.should redirect_to(admin_product_replacements_url(product))
+        end
+
+        it "sets notice message" do
+          post_create
+          flash[:notice].should_not be_blank
+        end
       end
 
-      context "with replacement id destroys one record" do
-        def delete_replacement
-          delete :destroy, id: replacement_lg.id
+      context "with several valid replacement ids" do
+        def delete_replacements
+          delete :destroy, product_id: product.id, id: "all"
+        end
+
+        it "removes all replacements" do
+          expect {
+            delete_replacements
+          }.to change{product.replacements.size}.to(0)
+        end
+
+        it "redirects back to product replacements" do
+          delete_replacements
+          response.should redirect_to(admin_product_replacements_url(product))
+        end
+
+        it "sets notice message" do
+          post_create
+          flash[:notice].should_not be_blank
         end
       end
     end
