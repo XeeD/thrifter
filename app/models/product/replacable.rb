@@ -6,9 +6,9 @@ class Product::Replacable < ActiveRecord::Base
 
   def change_product_state
     unless original.replacements.size > 0
-      original.revert_replace
+      original.revert_replace!
     else
-      original.replace
+      original.replace!
     end
   end
 
