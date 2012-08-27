@@ -21,7 +21,7 @@ Požadavek: Produktový admin nahrazuje zastaralý produkt novým
     Když vyberu hodnoty "LG 19LS3500, Grundig 22 VLE 2102 C" ze seznamu "Nahradit výrobkem"
     A kliknu na tlačítko "Nahradit"
     Pak produkt "LG 19LS3500" by měl být náhradou současného produktu
-    A produkt "Grundig 22 VLE 2102C" by měl být náhradou současného produktu
+    A produkt "Grundig 22 VLE 2102 C" by měl být náhradou současného produktu
 
   Scénář: odstranění jedné náhrady
     Pokud upravuji produkt "Philips 32PFL4007H" a jsem na záložce "Nahrazení"

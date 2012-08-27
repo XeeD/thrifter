@@ -1,14 +1,16 @@
 class Product::Replacable < ActiveRecord::Base
   self.table_name = "product_replacements"
 
-  after_destroy :change_product_state
-  after_create  :change_product_state
+  after_destroy :change_product_state_after_destroy
+  after_create  :change_product_state_after_create
 
-  def change_product_state
-    unless original.replacements.size > 0
+  def change_product_state_after_create
+    original.replace!
+  end
+
+  def change_product_state_after_destroy
+    if original.replacements.size == 0
       original.revert_replace!
-    else
-      original.replace!
     end
   end
 

@@ -95,6 +95,7 @@ grundig_tv:
   purchase_price: 4649
   recycling_fee: 202
   warranty: 24
+  vat_rate: 20.00
   gray_import: false
   top_product: false
   brand_id: 5
@@ -114,6 +115,7 @@ new_product:
   purchase_price: 4649
   recycling_fee: 202
   warranty: 24
+  vat_rate: 20.00
   gray_import: false
   top_product: false
   brand_id: 5
