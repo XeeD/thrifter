@@ -28,7 +28,7 @@ class UrlSuggestion
         else
           no_diacritics[char]
 
-    result_string = result_string.replace(/[^a-z0-9_]+/g, '-').replace(/^-|-$/g, '');
+    result_string = result_string.replace(/[^a-z0-9_-]+/g, '-').replace(/^-|-$/g, '');
 
 jQuery ->
   url_suggestion = new UrlSuggestion

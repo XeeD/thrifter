@@ -1,6 +1,6 @@
 = semantic_form_for([:admin, product]) do |f|
   = f.inputs "Název a značka" do
-    = f.input :name, input_html: { :class => "suggest_url" }
+    = f.input :name, input_html: {:class => (:suggest_url if (product.name.parameterize == product.url rescue true))}
     = f.input :model_name
     = f.input :url
     = f.input :brand
