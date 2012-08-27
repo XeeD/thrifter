@@ -14,6 +14,7 @@ gem 'draper'
 gem 'state_machine'
 gem 'activerecord-import'
 gem 'ruby-progressbar'
+gem 'kaminari'
 
 # Gems used only for compiling assets
 group :assets, :cucumber do
