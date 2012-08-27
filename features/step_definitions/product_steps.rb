@@ -12,6 +12,11 @@ Pokud /^existují produkty "(.*?)"$/ do |product_names|
   end
 end
 
+Pokud /^přidávám nový produkt$/ do
+  step 'otevřu sekci "administrace produktů"'
+  step 'kliknu na odkaz "Přidat nový produkt"'
+end
+
 # When statements
 
 # Then statements

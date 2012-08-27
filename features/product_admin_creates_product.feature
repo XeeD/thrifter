@@ -28,3 +28,9 @@ Požadavek: Produktový admin vytváří nový produkt
     Pak bych měl vidět zprávu "Nový produkt Indesit 3D AA NX byl vytvořen"
     A produkt "Indesit 3D AA NX" by měl být vytvořen
     A stav produktu "Indesit 3D AA NX" by měl být "Nový"
+
+  @javascript
+  Scénář: Kontrola návrhu URL adresy z názvu výrobku
+    Pokud přidávám nový produkt
+    Když vyplním "Indesit 3D AA NX" do pole "Celý název"
+    Pak hodnota pole "Název v odkazu" by měla být "indesit-3d-aa-nx"

@@ -28,10 +28,6 @@ Pokud /^jsem v sekci "(.*?)"$/ do |section|
   visit(get_section_url(section))
 end
 
-Pokud /^existuje "(.*?)" "(.*?)"$/ do |model, identificator|
-  pending
-end
-
 # When statements
 Když /^kliknu na odkaz "(.*?)"$/ do |link|
   click_link link.to_s
@@ -128,4 +124,8 @@ Pak /^by pole "(.*?)" u vlastnosti "(.*?)" nemělo jít zaškrtnout$/ do |value,
   within_fieldset(fieldset.to_s) do
     field_labeled(value.to_s)['disabled'].should == 'disabled'
   end
+end
+
+Pak /^hodnota pole "(.*?)" by měla být "(.*?)"$/ do |field, value|
+  find_field(field).value.should eq(value)
 end
