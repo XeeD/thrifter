@@ -71,12 +71,6 @@ class Product < ActiveRecord::Base
   validates :brand,
             presence: true
 
-  validates :short_description,
-            presence: true
-
-  validates :description,
-            presence: true
-
   validates :default_price,
             presence: true,
             numericality: {only_integer: true}

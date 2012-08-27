@@ -33,12 +33,6 @@ describe Product do
     should validate_uniqueness_of(:url)
   }
 
-  # short_description
-  it { should validate_presence_of(:short_description) }
-
-  # description
-  it { should validate_presence_of(:description) }
-
   # default_price
   it { should validate_presence_of(:default_price) }
   it { should validate_numericality_of(:default_price) }
