@@ -10,16 +10,6 @@ module Admin
         get :index
         response.should render_template("index")
       end
-
-      context "when rendering views" do
-        render_views
-
-        it "calls Product#all" do
-          pending
-          Product.should_receive(:default_admin_visible).with(no_args).once.and_return([product])
-          get :index
-        end
-      end
     end
 
     describe "GET new" do
@@ -32,7 +22,7 @@ module Admin
         render_views
 
         it "calls Product#new" do
-          Product.should_receive(:new).with(nil).once.and_return(product)
+          Product.unscoped.should_receive(:new).with(nil).once.and_return(product)
           get :new
         end
 

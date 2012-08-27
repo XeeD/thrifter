@@ -15,8 +15,7 @@ module Admin
         render_views
 
         it "calls Brand#all" do
-          pending
-          Brand.should_receive(:page).with(no_args).once.and_return([brand])
+          Brand.should_receive(:page).with(nil).once.and_return(brand)
           get :index
         end
       end

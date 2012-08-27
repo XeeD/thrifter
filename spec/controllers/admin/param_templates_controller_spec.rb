@@ -27,8 +27,7 @@ module Admin
         end
 
         it "calls ParamTemplate#all" do
-          pending
-          ParamTemplate.should_receive(:page).with(nil).and_return([param_template])
+          ParamTemplate.should_receive(:page).with(nil).and_return(param_template)
           get :index
         end
       end

@@ -18,8 +18,8 @@ module Admin
       context "when rendering views" do
         render_views
 
-        it "calls Document#all" do
-          Document.should_receive(:all).with(no_args).and_return([document])
+        it "calls Document#page" do
+          Document.should_receive(:page).with(nil).and_return(document)
           get_index
         end
       end
