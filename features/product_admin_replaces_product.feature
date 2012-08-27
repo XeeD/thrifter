@@ -7,7 +7,7 @@ Požadavek: Produktový admin nahrazuje zastaralý produkt novým
 
   Kontext:
     Pokud jsem přihlášený jako "produktový admin"
-    A existují produkty "LG 19LS3500, Philips 32PFL4007H, Samsung UE55ES8000, Grundig 22 VLE 2102C"
+    A existují produkty "LG 19LS3500, Philips 32PFL4007H, Samsung UE55ES8000, Grundig 22 VLE 2102 C"
 
   Scénář: nahrazení zastaralého produktu jedním výrobkem z formuláře
     Pokud upravuji produkt "Samsung UE55ES8000" a jsem na záložce "Nahrazení"
@@ -18,7 +18,7 @@ Požadavek: Produktový admin nahrazuje zastaralý produkt novým
 
   Scénář: nahrazení zastaralého výrobku dvěma výrobky najednou z formuláře
     Pokud upravuji produkt "Samsung UE55ES8000" a jsem na záložce "Nahrazení"
-    Když vyberu hodnoty "LG 19LS3500, Grundig 22 VLE 2102C" ze seznamu "Nahradit výrobkem"
+    Když vyberu hodnoty "LG 19LS3500, Grundig 22 VLE 2102 C" ze seznamu "Nahradit výrobkem"
     A kliknu na tlačítko "Nahradit"
     Pak produkt "LG 19LS3500" by měl být náhradou současného produktu
     A produkt "Grundig 22 VLE 2102C" by měl být náhradou současného produktu

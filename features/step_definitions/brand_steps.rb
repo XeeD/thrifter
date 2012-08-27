@@ -8,7 +8,7 @@ end
 Pokud /^jsem v editaci značky "(.*?)"$/ do |brand_name|
   step "značka \"#{brand_name}\" existuje"
   step 'jsem v sekci "administrace značek"'
-  step 'kliknu na odkaz "Upravit"'
+  step "kliknu na řádku u značky \"#{brand_name}\" na odkaz \"Upravit\""
 end
 
 # When statements

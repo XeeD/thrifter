@@ -32,7 +32,7 @@ Požadavek: Manager obchodu spravuje dokumenty
   Scénář: smazání existujícího dokumentu
     Pokud dokument "Platba" existuje
     A jsem v sekci "administrace dokumentů"
-    Když kliknu na odkaz "Smazat"
+    Když kliknu na řádku u dokumentu "Platba" na odkaz "Smazat"
     Pak bych měl vidět zprávu "Dokument Platba byl smazán"
     A dokument "Platba" by měl být smazán
 

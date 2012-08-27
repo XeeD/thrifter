@@ -27,7 +27,7 @@ Požadavek: Produktový manager spravuje značky
   Scénář: smazání existující značky
     Pokud značka "Indesit" existuje
     A jsem v sekci "administrace značek"
-    Když kliknu na odkaz "Smazat"
+    Když kliknu na řádku u značky "Indesit" na odkaz "Smazat"
     Pak bych měl vidět zprávu "Značka Indesit byla smazána"
     A značka "Indesit" by měla být smazána
 

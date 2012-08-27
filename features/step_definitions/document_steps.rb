@@ -9,7 +9,7 @@ end
 Pokud /^jsem v editaci dokumentu "(.*?)"$/ do |document_name|
   step "dokument \"#{document_name}\" existuje"
   step 'jsem v sekci "administrace dokumentů"'
-  step 'kliknu na odkaz "Upravit"'
+  step "kliknu na řádku u dokumentu \"#{document_name}\" na odkaz \"Upravit\""
 end
 
 # When statements
