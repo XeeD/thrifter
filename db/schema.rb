@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120823082028) do
+ActiveRecord::Schema.define(:version => 20120824125930) do
 
   create_table "articles", :force => true do |t|
     t.string   "name",       :limit => 100
@@ -167,6 +167,16 @@ ActiveRecord::Schema.define(:version => 20120823082028) do
 
   add_index "product_replacements", ["product_id", "replaced_by_id"], :name => "index_product_replacements_on_product_id_and_replaced_by_id"
 
+  create_table "product_supplier_ids", :force => true do |t|
+    t.integer "product_id",                                   :null => false
+    t.string  "supplier",    :limit => 20,                    :null => false
+    t.string  "supplier_id", :limit => 20,                    :null => false
+    t.boolean "current",                   :default => false
+  end
+
+  add_index "product_supplier_ids", ["product_id"], :name => "index_product_supplier_ids_on_product_id"
+  add_index "product_supplier_ids", ["supplier_id", "supplier"], :name => "index_product_supplier_ids_on_supplier_id_and_supplier", :unique => true
+
   create_table "products", :force => true do |t|
     t.string   "name",                :limit => 171
     t.string   "model_name",          :limit => 140
@@ -217,5 +227,16 @@ ActiveRecord::Schema.define(:version => 20120823082028) do
 
   add_index "shops", ["host"], :name => "index_shops_on_host", :unique => true
   add_index "shops", ["name"], :name => "index_shops_on_name", :unique => true
+
+  create_table "stock_availabilities", :force => true do |t|
+    t.integer  "product_id",           :null => false
+    t.string   "supplier",             :null => false
+    t.integer  "in_stock_count",       :null => false
+    t.string   "in_stock_description", :null => false
+    t.datetime "created_at",           :null => false
+  end
+
+  add_index "stock_availabilities", ["product_id"], :name => "index_stock_availabilities_on_product_id"
+  add_index "stock_availabilities", ["supplier"], :name => "index_stock_availabilities_on_supplier"
 
 end

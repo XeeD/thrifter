@@ -165,6 +165,17 @@ CREATE TABLE `product_replacements` (
   KEY `index_product_replacements_on_product_id_and_replaced_by_id` (`product_id`,`replaced_by_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+CREATE TABLE `product_supplier_ids` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_id` int(11) NOT NULL,
+  `supplier` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `supplier_id` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `current` tinyint(1) DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `index_product_supplier_ids_on_supplier_id_and_supplier` (`supplier_id`,`supplier`),
+  KEY `index_product_supplier_ids_on_product_id` (`product_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 CREATE TABLE `products` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(171) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -220,6 +231,18 @@ CREATE TABLE `shops` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_shops_on_host` (`host`),
   UNIQUE KEY `index_shops_on_name` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE `stock_availabilities` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_id` int(11) NOT NULL,
+  `supplier` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `in_stock_count` int(11) NOT NULL,
+  `in_stock_description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `index_stock_availabilities_on_product_id` (`product_id`),
+  KEY `index_stock_availabilities_on_supplier` (`supplier`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 INSERT INTO schema_migrations (version) VALUES ('20120716112101');
@@ -289,3 +312,7 @@ INSERT INTO schema_migrations (version) VALUES ('20120813132912');
 INSERT INTO schema_migrations (version) VALUES ('20120814134504');
 
 INSERT INTO schema_migrations (version) VALUES ('20120823082028');
+
+INSERT INTO schema_migrations (version) VALUES ('20120823133801');
+
+INSERT INTO schema_migrations (version) VALUES ('20120824125930');
