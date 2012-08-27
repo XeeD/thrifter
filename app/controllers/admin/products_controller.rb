@@ -59,7 +59,7 @@ module Admin
     helper_method :products
 
     def selected_products
-      @selected_products ||= ProductDecorator.decorate(Product.default_admin_visible.includes(:categories).page params[:page]) unless Product.default_admin_visible.nil?
+      @selected_products ||= ProductDecorator.decorate(Product.default_admin_visible.includes(:categories).try(:page, params[:page]))
     end
 
     helper_method :selected_products

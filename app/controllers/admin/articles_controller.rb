@@ -60,7 +60,7 @@ module Admin
     helper_method :articles
 
     def articles_paginated
-      @articles_paginated ||= articles.page params[:page] unless articles.nil?
+      @articles_paginated ||= articles.try(:page, params[:page])
     end
 
     helper_method :articles_paginated

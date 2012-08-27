@@ -40,7 +40,7 @@ module Admin
                         else
                           "Lze nahradit pouze normální nebo nahrazený produkt"
                         end
-        redirect_to admin_product_url(product)
+        redirect_to edit_admin_product_url(product)
       end
     end
 
