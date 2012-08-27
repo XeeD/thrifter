@@ -1,8 +1,8 @@
 = semantic_form_for([:admin, product]) do |f|
   = f.inputs "Název a značka" do
-    = f.input :name, input_html: {:class => (:suggest_url if product.new_record?)}
+    = f.input :name
     = f.input :model_name
-    = f.input :url
+    = f.input :url, suggest_url: true
     = f.input :brand
   = f.inputs "Identifikační údaje" do
     = f.input :external_id

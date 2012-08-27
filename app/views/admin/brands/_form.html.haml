@@ -1,6 +1,6 @@
 = semantic_form_for([:admin, brand]) do |f|
   = f.input :name
-  = f.input :url
+  = f.input :url, suggest_url: true
   = f.input :description
 
   = f.actions do

@@ -1,6 +1,6 @@
 = semantic_form_for_shop_category(shop, category) do |f|
   = f.input :short_name
-  = f.input :url
+  = f.input :url, suggest_url: :short_name
   = f.input :plural_name
   = f.input :singular_name
   = f.input :category_type,

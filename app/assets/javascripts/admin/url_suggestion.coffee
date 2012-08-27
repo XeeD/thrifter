@@ -33,6 +33,11 @@ class UrlSuggestion
 jQuery ->
   url_suggestion = new UrlSuggestion
 
-  $("input[type=text].suggest_url").bind('keyup', ->
-    $("input[type=url]").val(url_suggestion.suggest($(this).val()))
+  $("input[type=url]").each( ->
+    suggest_from = $(this).data("suggest-from")
+    url_input    = $(this)
+    if suggest_from != 'undefined'
+      $("##{suggest_from}").bind('keyup', ->
+        url_input.val(url_suggestion.suggest($(this).val()))
+      )
   )
