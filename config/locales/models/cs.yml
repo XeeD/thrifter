@@ -129,6 +129,13 @@ cs:
       article:
         create: "Vytvořit nový článek"
         update: "Uložit článek"
+  views:
+    pagination:
+      first: "&laquo; První"
+      last: "Poslední &raquo;"
+      previous: "&laquo; Předchozí"
+      next: "Následující &raquo;"
+      truncate: "..."
   errors:
     messages:
       carrierwave_processing_error: nemohl být zpracován
