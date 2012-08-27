@@ -59,11 +59,10 @@ class ProductMigrator
           value = value.send(legacy_attribute[:conversion]) # call conversion method on attribute
         end
         attributes[new_attribute] = value
-        attributes = additional_mapping(attributes, legacy_record)
-
-        create_record(attributes)
-        progress
       end
+      attributes = additional_mapping(attributes, legacy_record)
+      create_record(attributes)
+      progress
     end
     @progressbar.finish
   end
@@ -73,7 +72,7 @@ class ProductMigrator
   end
 
   def setup_progress_bar(title, size)
-    @progressbar = ProgressBar.create(title: name, total: size, length: 100, format: "|%b>>%i| %p%% %t")
+    @progressbar = ProgressBar.create(title: name, total: size, format: "|%b>>%i| %p%% %t")
   end
 
   def progress
