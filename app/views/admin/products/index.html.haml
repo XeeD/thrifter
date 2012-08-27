@@ -9,11 +9,13 @@
     %thead
       %tr
         %th Název produktu
+        %th Zařazení
         %td Akce
     %tbody
       - for product in selected_products
         %tr
           %th= product.name
+          %td= product.category_inclusions
           %td
             %ul.actions
               %li= link_to "Upravit", edit_admin_product_path(product)
