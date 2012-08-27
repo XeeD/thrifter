@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 module Admin
   class ProductDecorator < Draper::Base
     decorates :product
@@ -25,6 +27,14 @@ module Admin
 
     def available_replacements
       param_template.products.visible - [model] - model.replacements
+    end
+
+    def category_inclusions
+      unless categories.empty?
+        categories.collect(&:short_name).to_sentence
+      else
+        "nezařazen"
+      end
     end
   end
 end
