@@ -18,6 +18,7 @@ MenuBuilder::Builder.build do
     group "Texty" do
       item :news_items, title: "Novinky"
       item :documents, title: "Dokumenty"
+      item :articles, title: "Články"
     end
 
     group "Nastavení" do
