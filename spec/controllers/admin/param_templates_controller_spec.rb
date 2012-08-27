@@ -22,8 +22,13 @@ module Admin
       context "when rendering views" do
         render_views
 
+        before do
+          ParamTemplate.stub!(:current_page).and_return(1)
+        end
+
         it "calls ParamTemplate#all" do
-          ParamTemplate.should_receive(:all).with(no_args).once.and_return([param_template])
+          pending
+          ParamTemplate.should_receive(:page).with(nil).and_return([param_template])
           get :index
         end
       end

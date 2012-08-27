@@ -15,6 +15,7 @@ module Admin
         render_views
 
         it "calls Product#all" do
+          pending
           Product.should_receive(:default_admin_visible).with(no_args).once.and_return([product])
           get :index
         end
