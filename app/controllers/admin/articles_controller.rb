@@ -59,6 +59,12 @@ module Admin
 
     helper_method :articles
 
+    def articles_paginated
+      @articles_paginated ||= articles.page params[:page] unless articles.nil?
+    end
+
+    helper_method :articles_paginated
+
     def shop
       @shop ||= Shop.find(params[:shop_id])
     end

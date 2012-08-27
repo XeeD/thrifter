@@ -50,7 +50,7 @@ module Admin
     helper_method :brand
 
     def brands
-      @brands ||= Brand.all
+      @brands ||= Brand.page params[:page]
     end
 
     helper_method :brands

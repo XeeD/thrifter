@@ -51,7 +51,7 @@ module Admin
     helper_method :document
 
     def documents
-      @documents ||= DocumentDecorator.all
+      @documents ||= Kaminari.paginate_array(DocumentDecorator.all).page params[:page]
     end
 
     helper_method :documents

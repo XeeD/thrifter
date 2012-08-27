@@ -47,19 +47,12 @@ module Admin
       render nothing: true
     end
 
-
     private
-
-    def param_template
-      @param_template ||= ParamTemplate.find(params[:param_template_id])
-    end
-
-    helper_method :param_template
 
     def param_group
       @param_group ||= params[:id] ?
-          param_template.groups.find(params[:id]) :
-          param_template.groups.new(params[:param_group])
+          param_groups.find(params[:id]) :
+          param_groups.new(params[:param_group])
     end
 
     helper_method :param_group
@@ -69,5 +62,11 @@ module Admin
     end
 
     helper_method :param_groups
+
+    def param_template
+      @param_template ||= ParamTemplate.find(params[:param_template_id])
+    end
+
+    helper_method :param_template
   end
 end

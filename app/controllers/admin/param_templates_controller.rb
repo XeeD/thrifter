@@ -50,7 +50,7 @@ module Admin
     helper_method :param_template
 
     def param_templates
-      @param_templates ||= ParamTemplate.all
+      @param_templates ||= ParamTemplate.page params[:page]
     end
 
     helper_method :param_templates

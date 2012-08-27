@@ -49,7 +49,6 @@ class Admin::ShopsController < Admin::AdminController
     redirect_to admin_shops_url
   end
 
-
   private
 
   def shop

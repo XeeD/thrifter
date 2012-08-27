@@ -59,7 +59,7 @@ module Admin
     helper_method :products
 
     def selected_products
-      @selected_products ||= Product.default_admin_visible
+      @selected_products ||= Product.default_admin_visible.page params[:page] unless Product.default_admin_visible.nil?
     end
 
     helper_method :selected_products

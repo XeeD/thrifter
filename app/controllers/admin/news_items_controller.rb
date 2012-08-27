@@ -64,5 +64,11 @@ module Admin
     end
 
     helper_method :news_items
+
+    def news_items_paginated
+      @news_items_paginated ||= news_items.page params[:page] unless news_items.nil?
+    end
+
+    helper_method :news_items_paginated
   end
 end
