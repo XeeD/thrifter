@@ -3,7 +3,7 @@ lg_fridge:
   name: "LG GB3133TIJW"
   model_name: "GB3133TIJW"
   url: "lg-gb3133-tijw"
-  external_id: "2124567"
+  external_id: "2122727"
   ean_code:
   short_description: "Perfektní lednice"
   description: "No-FROST lednice"
@@ -24,7 +24,7 @@ samsung_tv:
   name: "Samsung UE55ES8000"
   model_name: "UE55ES8000"
   url: "samsung-ue55es8000"
-  external_id: "2129200"
+  external_id: "2128081"
   ean_code: 1234567890123
   short_description: "Neljepší TV na trhu"
   description: "LED hyper super TV"
@@ -45,7 +45,7 @@ lg_tv:
   name: "LG 19LS3500"
   model_name: "LG19LS3500"
   url: lg-19ls3500"
-  external_id: "2129201"
+  external_id: "2128370"
   ean_code: 1122334455667
   short_description: "LCD televize LG"
   description: "LED s USB přehrávačem"
@@ -66,7 +66,7 @@ philips_tv:
   name: "Philips 32PFL4007H"
   model_name: "32PFL4007H"
   url: "philips-32pfl4007h"
-  external_id: "7745241"
+  external_id: "2128120"
   ean_code: 5574879878123
   short_description: "LCD televize Philips"
   description: "LED s uhlopříčkou 81 cm"
@@ -83,10 +83,10 @@ philips_tv:
 
 grundig_tv:
   id: 5
-  name: "Grundig 22 VLE 2102C"
+  name: "Grundig 22 VLE 2102 C"
   model_name: "VLE2102C"
   url: "grundig-22-vle-2102c"
-  external_id: "6655874"
+  external_id: "2126616"
   ean_code: 1147896512345
   short_description: "Grundig s HD ready"
   description: "Grundig má skvělou odezvu 5ms"
@@ -105,7 +105,7 @@ new_product:
   name: "Grundig Vision 2 19-2930 T"
   model_name: "Vision 2 19-2930 T"
   url: "grundig-vision-2-19-2930-t"
-  external_id: "2405378"
+  external_id: "2119739"
   ean_code: 1147896512345
   short_description: "Grundig s HD ready"
   description: "Grundig má skvělou odezvu 505,4 ms"

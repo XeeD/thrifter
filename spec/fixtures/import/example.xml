@@ -1,0 +1,11 @@
+<products>
+  <product>
+    <number>123</number>
+    <name>Product 1 </name>
+    <category_title>Category 1</category_title>
+    <price>12567,67</price>
+    <internet_price>9564,23</internet_price>
+    <phe>55</phe>
+    <vat>20</vat>
+  </product>
+</products>
