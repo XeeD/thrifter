@@ -11,12 +11,12 @@ module Miners
     FAST_XML_FILE = upload_path("fast.xml")
 
     def load_resource
-      @xml = Nokogiri::XML.parse(open(FAST_XML_FILE))
+      @xml = parse_xml(FAST_XML_FILE)
     end
 
     extracts_data :stock_availability, :purchase_prices, :internet_prices
 
-    class Record < XMLRecord
+    class Record < Base::XMLRecord
       extract_xpaths do
         integer "MATNR"            => :id
         string  "ZMENGE"           => :in_stock_description
@@ -43,7 +43,7 @@ module Miners
                               when "5 - 10" then
                                 5..10
                               when "> 10" then
-                                10..(1.0/0) # Infinity
+                                10..Float::INFINITY
                               else
                                 0
                             end
