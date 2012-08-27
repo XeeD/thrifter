@@ -99,6 +99,8 @@ class Product < ActiveRecord::Base
             presence: true,
             numericality: {only_integer: true}
 
+  default_scope -> { order(:name) }
+
   scope :default_admin_visible, -> { where(state: [:visible, :rejected, :new]) }
   scope :replaced, -> { where(state: [:replaced]) }
   scope :visible, -> { where(state: [:visible]) }
