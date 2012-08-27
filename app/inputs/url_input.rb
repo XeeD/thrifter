@@ -7,7 +7,8 @@ class UrlInput < Formtastic::Inputs::UrlInput
         label_html <<
             builder.url_field(
                 method,
-                input_html_options.merge({"data-suggest-from" => suggest_from}
+                input_html_options.merge(
+                    {"data-suggest-from" => suggest_from}
                 )
             )
       end
