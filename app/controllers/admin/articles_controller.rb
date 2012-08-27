@@ -60,7 +60,7 @@ module Admin
     helper_method :articles
 
     def articles_paginated
-      @articles_paginated ||= articles.try(:page, params[:page])
+      @articles_paginated ||= Kaminari.paginate_array(articles.all).page params[:page]
     end
 
     helper_method :articles_paginated
