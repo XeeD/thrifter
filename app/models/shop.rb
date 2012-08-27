@@ -9,6 +9,8 @@ class Shop < ActiveRecord::Base
   # Attributes
   attr_accessible :host, :name, :short_name
 
+  default_scope -> { order(:name) }
+  
   # Validations
   validates :host,
             presence: true,

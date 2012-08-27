@@ -7,6 +7,8 @@ class ParamTemplate < ActiveRecord::Base
   has_many :param_items, class_name: "ParamItem", include: :param_group
   has_many :products, through: :categories, group: :id
 
+  default_scope -> { order(:name) }
+
   # Attributes
   attr_accessible :name, :category_ids
 

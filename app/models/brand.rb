@@ -4,6 +4,8 @@ class Brand < ActiveRecord::Base
 
   transliterate_permalink :url
 
+  default_scope -> { order(:name) }
+
   # Validations
   validates :name,
             presence: true,

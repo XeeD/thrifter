@@ -7,6 +7,8 @@ class Document < ActiveRecord::Base
 
   transliterate_permalink :url
 
+  default_scope -> { order(:name) }
+
   validates :name,
             presence: true,
             length: {maximum: 70},
