@@ -2,20 +2,23 @@
 %ul.action_links
   %li= link_to "Přidat novinku", new_admin_shop_news_item_path(shop)
 
-- unless news_items.empty?
+- unless news_items_paginated.empty?
   %table#news_items
     %thead
       %tr
         %th Nadpis
         %td Akce
     %tbody
-      - for news_item in news_items
+      - for news_item in news_items_paginated
         %tr
           %th= news_item.title
           %td
             %ul.actions
               %li= link_to "Upravit", edit_admin_shop_news_item_path(shop, news_item)
               %li= link_to "Smazat", admin_shop_news_item_path(shop, news_item), method: :delete, confirm: "Opravdu smazat novinku #{news_item.title}?"
+
+  = paginate news_items_paginated
+
 - else
   .empty_set
     Zatím nejsou vytvořeny žádné novinky

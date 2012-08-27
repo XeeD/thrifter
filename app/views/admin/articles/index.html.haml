@@ -2,7 +2,7 @@
 %ul.action_links
   %li= link_to "Přidat nový článek", new_admin_shop_article_path(shop)
 
-- unless articles.blank?
+- unless articles_paginated.blank?
   %table#articles
     %thead
       %tr
@@ -10,7 +10,7 @@
         %th Přiřazen ke kategorii
         %td Akce
     %tbody
-      - for article in articles
+      - for article in articles_paginated
         %tr
           %th= article.name
           %td= article.categories.collect(&:short_name).to_sentence
@@ -18,6 +18,9 @@
             %ul.actions
               %li= link_to "Upravit", edit_admin_shop_article_path(shop, article)
               %li= link_to "Smazat", admin_shop_article_path(shop, article), method: :delete, confirm: "Opravdu smazat článek #{article.name}?"
+
+  = paginate articles_paginated
+
 - else
   .empty_set
-    Zatím nejsou vytvořeny žádné novinky
+    Zatím nejsou vytvořeny žádné články
