@@ -51,4 +51,9 @@ Thrifter::Application.routes.draw do
     match "novinky/vyber-obchodu" => "news_items#choose_shop", as: "news_items"
     match "clanky/vyber-obchodu" => "articles#choose_shop", as: "articles"
   end
+
+  # Application frontend
+  root :to => "root#index"
+
+  match "/:category/" => "categories#index"
 end
