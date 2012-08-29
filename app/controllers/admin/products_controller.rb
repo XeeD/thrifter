@@ -58,8 +58,18 @@ module Admin
 
     helper_method :products
 
+    def search_products
+      @search_products ||= begin
+        search = Product.default_admin_visible.search(params[:search])
+        search.meta_sort ||= "name.asc"
+        search
+      end
+    end
+
+    helper_method :search_products
+
     def selected_products
-      @selected_products ||= ProductDecorator.decorate(Product.default_admin_visible.includes(:categories).try(:page, params[:page]))
+      @selected_products ||= ProductDecorator.decorate(search_products.page(params[:page]))
     end
 
     helper_method :selected_products
