@@ -15,7 +15,8 @@ gem 'state_machine'
 gem 'activerecord-import'
 gem 'ruby-progressbar'
 gem 'kaminari'
-gem 'rack-pjax'
+gem 'meta_search'
+#gem 'rack-pjax'
 
 # Gems used only for compiling assets
 group :assets, :cucumber do
