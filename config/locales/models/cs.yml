@@ -6,6 +6,11 @@ cs:
       product: Produkt
       shop: Obchod
       "product/photo": "Obrázek produktu"
+      param_template: "Šablona parametrů"
+      param_group: "Skupina parametrů"
+      param_item: "Parametr"
+      document: "Dokument"
+      article: "Článek"
     attributes:
       news_item:
         title: "Nadpis"
@@ -129,6 +134,8 @@ cs:
       article:
         create: "Vytvořit nový článek"
         update: "Uložit článek"
+      search:
+        create: "Filtrovat"
   errors:
     messages:
       carrierwave_processing_error: nemohl být zpracován
