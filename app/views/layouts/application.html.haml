@@ -1,13 +1,23 @@
 !!!
 %html
   %head
-    %title Thrifter
+    %title= @title
     = stylesheet_link_tag    "application", :media => "all"
-    = javascript_include_tag "application"
+    = javascript_include_tag "frontend/application"
     = csrf_meta_tags
-  %body
-    - flash.each do |type, value|
-      .flash{ :class => type.to_s }
-        = value
 
-    = yield
+  %body
+    = Random.rand(100)
+
+    %nav
+      = link_to "Pračky", "/pracky/", {class: "pjax"}
+      = link_to "Ledničky", "/lednicky/", {class: "pjax"}
+      = link_to "Televize", "/televize/", {class: "pjax"}
+      = link_to "Root", "/", {class: "pjax"}
+
+    %div{"data-pjax-container" => true}
+      - flash.each do |type, value|
+        .flash{ :class => type.to_s }
+          = value
+
+      = yield

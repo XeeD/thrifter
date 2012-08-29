@@ -5,10 +5,15 @@
 
 - unless selected_products.empty?
   %h3 Seznam produktů
+
+  = form_for([:admin, search_products]) do |f|
+    = f.text_field :name_contains
+    = f.submit
+
   %table#products
     %thead
       %tr
-        %th Název produktu
+        %th= raw(sort_link search_products, :name)
         %th Zařazení
         %td Akce
     %tbody
