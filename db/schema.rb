@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120824125930) do
+ActiveRecord::Schema.define(:version => 20120829140555) do
 
   create_table "articles", :force => true do |t|
     t.string   "name",       :limit => 100
@@ -238,5 +238,14 @@ ActiveRecord::Schema.define(:version => 20120824125930) do
 
   add_index "stock_availabilities", ["product_id"], :name => "index_stock_availabilities_on_product_id"
   add_index "stock_availabilities", ["supplier"], :name => "index_stock_availabilities_on_supplier"
+
+  create_table "supplier_items", :force => true do |t|
+    t.string "supplier_id",       :limit => 20, :null => false
+    t.string "product_name",      :limit => 50, :null => false
+    t.text   "record_attributes",               :null => false
+  end
+
+  add_index "supplier_items", ["product_name"], :name => "index_supplier_items_on_product_name"
+  add_index "supplier_items", ["supplier_id"], :name => "index_supplier_items_on_supplier_id"
 
 end

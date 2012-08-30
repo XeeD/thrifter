@@ -16,10 +16,10 @@ module Miners
         end
 
         class Definition
-          attr_reader :record_class
+          attr_reader :record_class, :xml_name
 
-          def initialize(record_class)
-            @record_class = record_class
+          def initialize(record_class, xml_name)
+            @record_class, @xml_name = record_class, xml_name
           end
 
           def self.transformation(name, &transform)
@@ -29,7 +29,7 @@ module Miners
 
               record_class.define_simple_setter(attribute)
 
-              record_class.register_extractor do |record_xml|
+              record_class.register_extractor(xml_name) do |record_xml|
                 # Execute transformation in context of Record instance
                 value = instance_exec record_xml.xpath(xpath).text.strip, &transform
                 send("#{attribute}=", value)
@@ -56,19 +56,50 @@ module Miners
           end
         end
 
-        def extract_xpaths(&definition)
-          Definition.new(self).instance_exec(&definition)
+        def extract_xpaths(xml_name=:base, &definition)
+          Definition.new(self, xml_name).instance_exec(&definition)
         end
 
-        def register_extractor(&block)
-          extractors << block
+        def register_extractor(xml_name=:base, &block)
+          extractors << [xml_name, block]
+        end
+
+        def connect_xml(xml_name, &connector)
+          connected_xmls << {
+              xml_name: xml_name,
+              connector: connector
+          }
+        end
+
+        def connected_xmls
+          @connected_xmls ||= []
         end
       end
 
-      def initialize(record_xml)
-        self.class.extractors.each do |extractor|
-          self.instance_exec(record_xml, &extractor)
+      def initialize(base_xml, additional_xmls={})
+        self.xmls[:base] = base_xml
+
+        run_extractors(:only_base)
+
+        self.class.connected_xmls.each do |connection|
+          xml = additional_xmls[connection[:xml_name]]
+          xmls[connection[:xml_name]] = connection[:connector].call(xml, self)
         end
+
+        run_extractors
+      end
+
+      def run_extractors(only_base=false)
+        self.class.extractors.send(only_base ? :select : :reject) { |extractor|
+          extractor[0] == :base
+        }.each do |extractor|
+          xml_name, block = extractor
+          self.instance_exec(xmls[xml_name], &block)
+        end
+      end
+
+      def xmls
+        @xmls ||= {}
       end
 
       def data

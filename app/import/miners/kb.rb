@@ -3,23 +3,29 @@ require "nokogiri"
 module Miners
   class KB < Base
     def each
-      @xml.xpath("/zbozi/zaznam").each do |record_xml|
-        yield Record.new(record_xml)
+      records = @xml.xpath("/zbozi/zaznam")
+      pb = ProgressBar.create(total: records.length)
+      records.each do |record_xml|
+        pb.increment
+        yield Record.new(record_xml, {in_stock: @xml_in_stock, prices: @xml_prices})
       end
     end
 
-    KB_XML_FILE = upload_path("kb_small.xml")
+    KB_XML_FILE     = upload_path("kb_products.xml")
+    KB_XML_IN_STOCK = upload_path("kb_in_stock.xml")
+    KB_XML_PRICES   = upload_path("kb_prices.xml")
 
     def load_resource
       @xml = parse_xml(KB_XML_FILE)
+      @xml_in_stock = parse_xml(KB_XML_IN_STOCK)
+      @xml_prices = parse_xml(KB_XML_PRICES)
     end
 
     extracts_data :supplier_items
 
     class Record < Base::XMLRecord
       extract_xpaths do
-        string  "sIdZbozi"                  => :supplier_id
-        string  "sKodZbozi"                 => :code
+        string  "sKodZbozi"                 => :id
         string  "sJmenoVyrobku"             => :name
         string  "sSkupinaVyrobku"           => :category
         string  "sKratkyPopis"              => :short_description
@@ -30,9 +36,19 @@ module Miners
         integer "sZarukaMesicu"             => :warranty
         string  "nDph"                      => :vat
         string  "sJmenoObrazku"             => :image_url
-        bool    "bNejprodavanejsiKategorie" => :most_sold_category
-        bool    "bNejprodavanejsiEshop"     => :most_sold_eshop
-        bool    "bVypnout"                  => :shut_down
+      end
+
+      connect_xml :in_stock do |xml, record|
+        xml.at_xpath("//zaznam[sKodZbozi[normalize-space() = \"#{record[:id]}\"]]")
+      end
+
+      connect_xml :prices do |xml, record|
+        xml.at_xpath("//zaznam[sKodZbozi[normalize-space() = \"#{record[:id]}\"]]")
+      end
+
+      extract_xpaths(:in_stock) do
+        integer "sDostupnost" => :in_stock_count
+        string  "sDostupnostNazev" => :in_stock_description
       end
 
       # Data refinement

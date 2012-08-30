@@ -2,9 +2,11 @@ class StockAvailability < ActiveRecord::Base
 
   class << self
     def import_stock_availability(supplier, records)
+      puts "import"
       records_in_stock = records.reject { |record|
         record[:in_stock_count].to_i == 0
       }
+      p records_in_stock
 
       import record_attributes, supplier_records_for_insert(supplier, records_in_stock)
     end

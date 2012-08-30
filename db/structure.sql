@@ -245,6 +245,16 @@ CREATE TABLE `stock_availabilities` (
   KEY `index_stock_availabilities_on_supplier` (`supplier`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+CREATE TABLE `supplier_items` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `supplier_id` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `product_name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `record_attributes` text COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `index_supplier_items_on_product_name` (`product_name`),
+  KEY `index_supplier_items_on_supplier_id` (`supplier_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 INSERT INTO schema_migrations (version) VALUES ('20120716112101');
 
 INSERT INTO schema_migrations (version) VALUES ('20120718130444');
@@ -316,3 +326,5 @@ INSERT INTO schema_migrations (version) VALUES ('20120823082028');
 INSERT INTO schema_migrations (version) VALUES ('20120823133801');
 
 INSERT INTO schema_migrations (version) VALUES ('20120824125930');
+
+INSERT INTO schema_migrations (version) VALUES ('20120829140555');

@@ -23,9 +23,14 @@ module Miners
     end
 
     def mine_data
+      @data_mined = true
       each do |record|
         records << record.data
       end
+    end
+
+    def data_mined?
+      defined?(@data_mined) ? @data_mined : false
     end
 
     def parse_xml(xml_file)
@@ -37,6 +42,7 @@ module Miners
     end
 
     def save
+      mine_data unless data_mined?
       self.class.contains_data.each do |data_package|
         send("save_#{data_package}")
       end
