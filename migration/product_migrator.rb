@@ -40,6 +40,21 @@ class ProductMigrator
     attr_accessor :source_model
     attr_accessor :target_model
     attr_accessor :mappings
+    attr_reader :legacy_attributes_fetched
+
+    def source_model=(model)
+      @legacy_attributes_fetched = legacy_fetched = []
+      model.class_eval do
+        define_method :fetch_legacy do |method, *attr|
+          legacy_fetched << method unless legacy_fetched.include?(method)
+          self.send(method, *attrs)
+        end
+      end
+    end
+
+    def not_migrated_attributes
+      target_model.attribute_names - legacy_attributes_fetched
+    end
   end
 
   [:source_model, :target_model, :defaults, :mappings].each do |class_method|
@@ -117,7 +132,7 @@ class ProductMigrator
   self.target_model = Product
 
   def additional_mapping(attributes, product)
-    brand_name = product.brand.name
+    brand_name = product.fetch_legacy(brand).name
     model_name = product.name.gsub(/^#{Regexp.escape(brand_name)} /, "")
     brand = Brand.where(name: brand_name).first_or_create(
         description: product.brand.descr,
