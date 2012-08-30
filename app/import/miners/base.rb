@@ -51,5 +51,9 @@ module Miners
 
     def save_internet_prices
     end
+
+    def save_supplier_items
+      SupplierItem.import_supplier_items(records)
+    end
   end
 end
