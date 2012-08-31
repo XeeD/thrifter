@@ -3,6 +3,7 @@ require "nokogiri"
 module Miners
   class KB < Base
     def each
+      puts "each"
       records = @xml.xpath("/zbozi/zaznam")
       pb = ProgressBar.create(total: records.length)
       records.each do |record_xml|
@@ -16,9 +17,9 @@ module Miners
     KB_XML_PRICES   = upload_path("kb_prices.xml")
 
     def load_resource
-      @xml = parse_xml(KB_XML_FILE)
+      @xml          = parse_xml(KB_XML_FILE)
       @xml_in_stock = parse_xml(KB_XML_IN_STOCK)
-      @xml_prices = parse_xml(KB_XML_PRICES)
+      @xml_prices   = parse_xml(KB_XML_PRICES)
     end
 
     extracts_data :supplier_items
@@ -28,14 +29,18 @@ module Miners
         string  "sKodZbozi"                 => :id
         string  "sJmenoVyrobku"             => :name
         string  "sSkupinaVyrobku"           => :category
-        string  "sKratkyPopis"              => :short_description
+        #string  "sKratkyPopis"              => :short_description
         string  "sPopis"                    => :description
         string  "sEan"                      => :ean
-        integer "nIDVyrobce"                => :manufacturer_id
-        string  "sJmenoVyrobce"             => :manufacturer_name
-        integer "sZarukaMesicu"             => :warranty
-        string  "nDph"                      => :vat
-        string  "sJmenoObrazku"             => :image_url
+        #integer "nIDVyrobce"                => :manufacturer_id
+        #string  "sJmenoVyrobce"             => :manufacturer_name
+        #integer "sZarukaMesicu"             => :warranty
+        #string  "nDph"                      => :vat
+        #string  "sJmenoObrazku"             => :image_url
+      end
+
+      register_extractor do |record_xml|
+        self[:waste] = extract_waste(record_xml)
       end
 
       connect_xml :in_stock do |xml, record|
@@ -47,8 +52,13 @@ module Miners
       end
 
       extract_xpaths(:in_stock) do
-        integer "sDostupnost" => :in_stock_count
-        string  "sDostupnostNazev" => :in_stock_description
+        integer "sDostupnost"         => :in_stock_count
+        string  "sDostupnostNazev"    => :in_stock_description
+      end
+
+      extract_xpaths(:prices) do
+        integer "sDoporucenaCena"     => :recommended_price
+        integer "sCenaWithoutRecycle" => :price
       end
 
       # Data refinement
@@ -57,6 +67,12 @@ module Miners
       end
 
       # Extraction
+      def extract_waste(xml)
+        waste_base = xml.xpath("/nRecyclePrice").text.to_f
+        waste_vat  = xml.xpath("/nRecycleDph").text.to_f
+
+        (waste_base * (100 + waste_vat) / 100).round
+      end
     end
   end
 end
