@@ -140,6 +140,7 @@ GEM
     mysql2 (0.3.11-x86-mingw32)
     nokogiri (1.5.5)
     nokogiri (1.5.5-x86-mingw32)
+    parseexcel (0.5.2)
     pg (0.14.0)
     pg (0.14.0-x86-mingw32)
     polyamorous (0.5.0)
@@ -256,6 +257,7 @@ DEPENDENCIES
   kaminari
   meta_search
   mysql2
+  parseexcel
   rack-mini-profiler
   rails (= 3.2.2)
   rmagick

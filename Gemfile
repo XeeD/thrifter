@@ -16,6 +16,7 @@ gem 'activerecord-import'
 gem 'ruby-progressbar'
 gem 'kaminari'
 gem 'meta_search'
+gem 'parseexcel'
 #gem 'rack-pjax'
 
 # Gems used only for compiling assets
