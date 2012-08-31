@@ -22,7 +22,7 @@ module Miners
       @xml_prices   = parse_xml(KB_XML_PRICES)
     end
 
-    extracts_data :supplier_items
+    extracts_data :stock_availability, :purchase_prices, :internet_prices, :supplier_items
 
     class Record < Base::XMLRecord
       extract_xpaths do
