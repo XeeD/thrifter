@@ -94,6 +94,8 @@ module Miners
           extractor[0] == :base
         }.each do |extractor|
           xml_name, block = extractor
+          # What to do, when associated record is not found?
+          next unless xmls[xml_name].present?
           self.instance_exec(xmls[xml_name], &block)
         end
       end
