@@ -14,7 +14,7 @@ module Miners
       @xml = parse_xml(FAST_XML_FILE)
     end
 
-    extracts_data :stock_availability, :purchase_prices, :internet_prices
+    extracts_data :stock_availability, :purchase_prices, :internet_prices, :supplier_items
 
     class Record < Base::XMLRecord
       extract_xpaths do
