@@ -37,6 +37,10 @@ module Miners
       Nokogiri::XML.parse(open(xml_file))
     end
 
+    def parse_xls(xls_file)
+      Spreadsheet::ParseExcel.parse(xls_file)
+    end
+
     def supplier
       self.class.name.demodulize
     end
