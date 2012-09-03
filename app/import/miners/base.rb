@@ -41,6 +41,10 @@ module Miners
       Spreadsheet::ParseExcel.parse(xls_file)
     end
 
+    def parse_csv(csv_file, column_separator=";")
+      CSV.new(open(csv_file), col_sep: column_separator)
+    end
+
     def supplier
       self.class.name.demodulize
     end
