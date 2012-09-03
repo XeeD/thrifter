@@ -1,36 +1,27 @@
 module Miners
   class Base
-    class XLSRecord
-      def self.define_simple_setter(attribute)
-        setter_method = "#{attribute}="
-        unless self.public_instance_methods.include?(setter_method.to_sym)
-          define_method setter_method do |value|
-            self[attribute] = value
-          end
-        end
-      end
-
+    class XLSRecord < BasicRecord
       class << self
-        def extractors
-          @extractors ||= []
-        end
-
         class Definition
-          attr_reader :record_class
+          attr_reader :record_class, :xls_sheet
 
-          def initialize(record_class)
-            @record_class = record_class
+          def initialize(record_class, xls_sheet)
+            @record_class, @xls_sheet = record_class, xls_sheet
           end
 
           def self.transformation(name, &transform)
             define_method name do |definition|
-              column    = definition.keys.first.to_i
+              column    = definition.keys.first
               attribute = definition.values.first
+
+              if column.is_a?(String)
+                column = ("a".."z").to_a.index(column.downcase)
+              end
 
               record_class.define_simple_setter(attribute)
 
-              record_class.register_extractor do |record_xls|
-                value = instance_exec record_xls.at(column).strip, &transform
+              record_class.register_extractor(xls_sheet) do |record_xls|
+                value = instance_exec record_xls.at(column), &transform
                 send("#{attribute}=", value)
               end
             end
@@ -41,33 +32,50 @@ module Miners
           end
 
           transformation :string do |value|
-            value
+            value.to_s('UTF-8')
+          end
+
+          transformation :date do |value|
+            value.date
           end
         end
 
-        def extract_columns(&definition)
-          Definition.new(self).instance_exec(&definition)
+        def extract_columns(xls_sheet=:base, &definition)
+          Definition.new(self, xls_sheet).instance_exec(&definition)
         end
 
-        def register_extractor(&block)
-          extractors << [block]
+        def connect_xls_sheet(xls_sheet, &connector)
+          connected_xls_sheets << {
+              xls_sheet: xls_sheet,
+              connector: connector
+          }
+        end
+
+        def connected_xls_sheets
+          @connected_xls_sheets ||= []
         end
       end
 
-      #def initialize(base_xls)
-        #self.xls_sheets[:base] = base_xls
-      #end
+      def initialize(base_xls, additional_xml_sheets={})
+        self.xls_sheets[:base] = base_xls
 
-      def data
-        @data ||= {}
+        self.class.connected_xls_sheets.each do |connection|
+          xls = additional_xml_sheets[connection[:xls_sheet]]
+          xls_sheets[connection[:xls_sheet]] = connection[:connector].call(xls, self)
+        end
+
+        run_extractors
       end
 
-      def []=(attribute, value)
-        data[attribute] = value
+      def run_extractors
+        self.class.extractors.each do |extractor|
+          xls_sheet, block = extractor
+          self.instance_exec(xls_sheets[xls_sheet], &block)
+        end
       end
 
-      def [](attribute)
-        data[attribute]
+      def xls_sheets
+        @xls_sheets ||= {}
       end
     end
   end
