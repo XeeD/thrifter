@@ -1,20 +1,7 @@
 module Miners
   class Base
-    class XMLRecord
-      def self.define_simple_setter(attribute)
-        setter_method = "#{attribute}="
-        unless self.public_instance_methods.include?(setter_method.to_sym)
-          define_method setter_method do |value|
-            self[attribute] = value
-          end
-        end
-      end
-
+    class XMLRecord < BasicRecord
       class << self
-        def extractors
-          @extractors ||= []
-        end
-
         class Definition
           attr_reader :record_class, :xml_name
 
@@ -60,10 +47,6 @@ module Miners
           Definition.new(self, xml_name).instance_exec(&definition)
         end
 
-        def register_extractor(xml_name=:base, &block)
-          extractors << [xml_name, block]
-        end
-
         def connect_xml(xml_name, &connector)
           connected_xmls << {
               xml_name: xml_name,
@@ -102,18 +85,6 @@ module Miners
 
       def xmls
         @xmls ||= {}
-      end
-
-      def data
-        @data ||= {}
-      end
-
-      def []=(attribute, value)
-        data[attribute] = value
-      end
-
-      def [](attribute)
-        data[attribute]
       end
     end
   end
