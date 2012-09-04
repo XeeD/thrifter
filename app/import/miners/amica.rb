@@ -3,7 +3,7 @@ require "parseexcel"
 module Miners
   class Amica < Base
     SKIP_FIRST_ROWS = 1
-    BASE_WORK_SHEET  = 0
+    BASE_WORK_SHEET = 0
 
     def each
       @xls.each(SKIP_FIRST_ROWS) do |record_line|
@@ -24,7 +24,7 @@ module Miners
         string  "B" => :id
         string  "D" => :name
         integer "E" => :in_stock_count
-        integer "F" => :ean
+        string  "F" => :ean
       end
 
       def name=(name)
