@@ -21,9 +21,9 @@ module Miners
 
     class Record < Base::XLSRecord
       extract_columns do
-        string  "C" => :name
+        string  "C" => :id
         integer "D" => :in_stock_count
-        money   "I" => :price
+        #money   "I" => :price
       end
 
       def in_stock_count=(count)

@@ -34,6 +34,10 @@ module Miners
           transformation :string do |value|
             value
           end
+
+          transformation :money do |value|
+            value.to_i
+          end
         end
 
         def extract_columns(csv_file=:base, &definition)

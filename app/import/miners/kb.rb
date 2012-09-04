@@ -22,7 +22,7 @@ module Miners
       @xml_prices   = parse_xml(KB_XML_PRICES)
     end
 
-    extracts_data :stock_availability, :purchase_prices, :internet_prices, :supplier_items
+    extracts_data :supplier_items, :stock_availability, :purchase_prices, :internet_prices
 
     class Record < Base::XMLRecord
       extract_xpaths do
@@ -58,7 +58,7 @@ module Miners
 
       extract_xpaths(:prices) do
         integer "sDoporucenaCena"     => :recommended_price
-        integer "sCenaWithoutRecycle" => :price
+        integer "nCenaWithoutRecycle" => :price
       end
 
       # Data refinement
@@ -68,10 +68,10 @@ module Miners
 
       # Extraction
       def extract_waste(xml)
-        waste_base = xml.xpath("/nRecyclePrice").text.to_f
-        waste_vat  = xml.xpath("/nRecycleDph").text.to_f
+        waste_base = xml.xpath(".//nRecyclePrice").text.to_f
+        waste_vat  = xml.xpath(".//nRecycleDph").text.to_f
 
-        (waste_base * (100 + waste_vat) / 100).round
+        (waste_base * (100 + waste_vat) / 100).round()
       end
     end
   end

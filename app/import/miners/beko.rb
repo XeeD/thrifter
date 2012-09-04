@@ -14,17 +14,14 @@ module Miners
       @csv = parse_csv(BEKO_CSV_FILE)
     end
 
-    extracts_data :purchase_prices, :stock_availability
+    extracts_data :supplier_items
 
     class Record < Base::CSVRecord
       extract_columns do
-        string  "A" => :name
-        integer "B" => :stored
-        integer "C" => :price
-      end
-
-      def stored=(stored)
-        raise "Need to define stored/in_stock_count logic!"
+        string "A" => :id
+        string "A" => :name
+        string "B" => :in_stock
+        money  "C" => :price
       end
     end
   end

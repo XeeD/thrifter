@@ -67,10 +67,6 @@ module Miners
         "#{brand.strip} #{model_name.strip}"
       end
 
-      def extract_price(price_str)
-        price_str.gsub(/,/, '.').to_f.ceil
-      end
-
       def valid
         !(sale_flag == "X" and stock_count == "0")
       end
