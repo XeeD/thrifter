@@ -10,9 +10,9 @@
     = Random.rand(100)
 
     %nav
-      = link_to "Pračky", "/pracky/", {class: "pjax"}
-      = link_to "Ledničky", "/lednicky/", {class: "pjax"}
-      = link_to "Televize", "/televize/", {class: "pjax"}
+      = link_to "Pračky", "/pracky/", {class: "pjax", id: "pracky"}
+      = link_to "Ledničky", "/lednicky/", {class: "pjax", id: "lednicky"}
+      = link_to "Televize", "/televize/", {class: "pjax", id: "televize"}
       = link_to "Root", "/", {class: "pjax"}
 
     %div{"data-pjax-container" => true}
