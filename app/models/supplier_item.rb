@@ -1,19 +1,20 @@
 class SupplierItem < ActiveRecord::Base
 
   class << self
-    def import_supplier_items(records)
-      raise supplier_item_records_for_import(records).to_s
-      import record_attributes, supplier_item_records_for_import(records)
+    def import_supplier_items(supplier, records)
+      puts "import supplier items"
+      import record_attributes, supplier_item_records_for_import(supplier, records)
     end
 
     private
 
-    def supplier_item_records_for_import(records)
+    def supplier_item_records_for_import(supplier, records)
       records.map { |record|
         [
           record[:id],
+          supplier,
           record[:name],
-          record.reject! {|key, value| rejected_attributes.include?(key)}
+          record.reject {|key, value| rejected_attributes.include?(key)}
         ]
       }
     end
@@ -21,6 +22,7 @@ class SupplierItem < ActiveRecord::Base
     def record_attributes
       [
         :supplier_id,
+        :supplier,
         :product_name,
         :record_attributes
       ]
