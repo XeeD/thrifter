@@ -2,7 +2,7 @@ class StockAvailability < ActiveRecord::Base
 
   class << self
     def import_stock_availability(supplier, records)
-      puts "import"
+      puts "import stock availability"
       records_in_stock = records.reject { |record|
         record[:in_stock_count].to_i == 0
       }
