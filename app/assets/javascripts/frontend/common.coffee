@@ -3,11 +3,7 @@ jQuery ->
     timeout: 1000,
   })
 
-  $('nav a.pjax').bind({
-    click: ->
-      $('nav a.pjax').removeClass('active')
-      $(this).addClass('active')
-  })
+  data = null
 
   $(document)
     .on('pjax:timeout', '[data-pjax-container]', ->
@@ -15,6 +11,12 @@ jQuery ->
     )
     .on('pjax:error', '[data-pjax-container]', (e, xhr, err) ->
       alert(err)
+    )
+    .on('pjax:success', '[data-pjax-container]', ->
+      data = jQuery.parseJSON($("#pjax_data").text());
+
+      $('nav a.pjax').removeClass('active')
+      $('#' + data.active_menu).addClass('active')
     )
 
   #JS initialize
