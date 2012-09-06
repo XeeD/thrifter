@@ -11,8 +11,8 @@ Thrifter::Application.configure do
 
   # Show full error reports and disable caching
   config.consider_all_requests_local       = true
+  config.cache_store = :dalli_store
   config.action_controller.perform_caching = true
-  config.cache_store = :mem_cache_store, "localhost:11211"
 
   # Compress JavaScripts and CSS
   config.assets.compress = true
