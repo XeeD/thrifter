@@ -1,2 +1,7 @@
-%h1= @category_name
-= Random.rand(100)
+- p = Product.first
+= @category_name
+- cache p do
+  %h1= p.name
+  = link_to "#{p.name}", "/televize/#{p.url}/"
+  = Random.rand(100)
+  = render "products/detail"
