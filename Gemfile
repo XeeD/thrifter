@@ -17,7 +17,8 @@ gem 'ruby-progressbar'
 gem 'kaminari'
 gem 'meta_search'
 gem 'parseexcel'
-#gem 'rack-pjax'
+gem 'dalli'
+gem 'cache_digests'
 
 # Gems used only for compiling assets
 group :assets, :cucumber do
