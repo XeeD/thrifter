@@ -1,13 +1,11 @@
 jQuery ->
-  $('a.pjax').pjax('[data-pjax-container]', {
-    timeout: 1000,
-  })
+  $('a.pjax').pjax('[data-pjax-container]')
 
   data = null
 
   $(document)
     .on('pjax:timeout', '[data-pjax-container]', ->
-      false
+      alert("timeout")
     )
     .on('pjax:error', '[data-pjax-container]', (e, xhr, err) ->
       alert(err)
@@ -17,6 +15,9 @@ jQuery ->
 
       $('nav a.pjax').removeClass('active')
       $('#' + data.active_menu).addClass('active')
+
+      unless data.eval.empty?
+        eval(data.eval)
     )
 
   #JS initialize
