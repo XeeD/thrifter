@@ -11,6 +11,11 @@ class ApplicationController < ActionController::Base
     @pjax_data ||= {}
   end
 
+  protected
+    def pjax_request?
+      env['HTTP_X_PJAX'].present?
+    end
+
   private
 
   def set_layout_template
