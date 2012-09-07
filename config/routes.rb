@@ -55,6 +55,6 @@ Thrifter::Application.routes.draw do
   # Application frontend
   root :to => "root#index"
 
-  match "/:category_url/:product_url" => "products#show"
+  match "/:category_url/:product_url(/:section)" => "products#show"
   match "/:category_url/"             => "categories#index"
 end
