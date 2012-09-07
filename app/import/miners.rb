@@ -1,2 +1,2 @@
-#module Miners
-#end
+module Miners
+end
