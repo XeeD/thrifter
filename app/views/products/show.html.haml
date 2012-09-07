@@ -1,0 +1,12 @@
+- cache product do
+  %h1 Detail výrobku #{product.name}
+  %p= Random.rand(100)
+  %p= product.description
+
+  %ul
+    %li
+      = link_to "Hodnocení", "/#{params[:category_url]}/#{params[:product_url]}/hodnoceni", {"data-pjax-section" => true}
+    %li
+      = link_to "Parametry", "/#{params[:category_url]}/#{params[:product_url]}/parametry",  {"data-pjax-section" => true}
+
+  %div{"data-pjax-section-container" => true}
