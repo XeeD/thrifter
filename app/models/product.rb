@@ -147,4 +147,8 @@ class Product < ActiveRecord::Base
 
     #after_transition :to => 'replaced', :do => replace!
   end
+
+  def after_save
+    categories.touch
+  end
 end
