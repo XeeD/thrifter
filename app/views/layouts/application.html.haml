@@ -7,12 +7,12 @@
     = csrf_meta_tags
 
   %body
+    = "ENV: #{Rails.env}"
     = Random.rand(100)
-
     %nav
-      = link_to "Pračky", "/pracky/", {class: "pjax", id: "pracky"}
-      = link_to "Ledničky", "/lednicky/", {class: "pjax", id: "lednicky"}
-      = link_to "Televize", "/televize/", {class: "pjax", id: "televize"}
+      = link_to "Americké chladničky", "/americke-chladnicky/", {id: "americke-chladnicky"}
+      = link_to "Kombinované chladničky", "/kombinovane-chladnicky/", {id: "kombinovane-chladnicky"}
+      = link_to "LED Televize", "/led-televize/", {id: "led-televize"}
       = link_to "Root", "/", {class: "pjax"}
 
     %div{"data-pjax-container" => true}
