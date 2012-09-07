@@ -1,7 +1,14 @@
-- p = Product.first
 = @category_name
-- cache p do
-  %h1= p.name
-  = link_to "#{p.name}", "/televize/#{p.url}/"
-  = Random.rand(100)
-  = render "products/detail"
+
+- cache category do
+  %h1= category.short_name
+  %p= Random.rand(100)
+
+  - cache category.products do
+    %h2 Výrobky
+    %p= Random.rand(100)
+    - category.products.each do |product|
+      - cache product do
+        %h3= product.name
+        %p= Random.rand(100)
+        = link_to "Detail", "#{product.url}"
