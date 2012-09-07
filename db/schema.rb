@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120829140555) do
+ActiveRecord::Schema.define(:version => 20120907092545) do
 
   create_table "articles", :force => true do |t|
     t.string   "name",       :limit => 100
@@ -32,17 +32,18 @@ ActiveRecord::Schema.define(:version => 20120829140555) do
   end
 
   create_table "categories", :force => true do |t|
-    t.string  "short_name",        :limit => 80
-    t.string  "url",               :limit => 120
-    t.string  "plural_name",       :limit => 120
-    t.string  "singular_name",     :limit => 120
-    t.string  "category_type",     :limit => 20
-    t.integer "lft"
-    t.integer "rgt"
-    t.integer "parent_id"
-    t.integer "depth"
-    t.integer "shop_id"
-    t.integer "param_template_id"
+    t.string   "short_name",        :limit => 80
+    t.string   "url",               :limit => 120
+    t.string   "plural_name",       :limit => 120
+    t.string   "singular_name",     :limit => 120
+    t.string   "category_type",     :limit => 20
+    t.integer  "lft"
+    t.integer  "rgt"
+    t.integer  "parent_id"
+    t.integer  "depth"
+    t.integer  "shop_id"
+    t.integer  "param_template_id"
+    t.datetime "updated_at",                       :null => false
   end
 
   add_index "categories", ["depth"], :name => "index_categories_on_depth"
@@ -167,7 +168,7 @@ ActiveRecord::Schema.define(:version => 20120829140555) do
 
   add_index "product_replacements", ["product_id", "replaced_by_id"], :name => "index_product_replacements_on_product_id_and_replaced_by_id"
 
-  create_table "product_supplier_ids", :force => true do |t|
+  create_table "product_supplier_ids", :id => false, :force => true do |t|
     t.integer "product_id",                                   :null => false
     t.string  "supplier",    :limit => 20,                    :null => false
     t.string  "supplier_id", :limit => 20,                    :null => false
@@ -209,6 +210,13 @@ ActiveRecord::Schema.define(:version => 20120829140555) do
   add_index "products", ["top_product"], :name => "index_products_on_top_product"
   add_index "products", ["url"], :name => "index_products_on_url", :unique => true
 
+  create_table "purchase_prices", :force => true do |t|
+    t.string  "supplier_id"
+    t.string  "supplier"
+    t.integer "price"
+    t.integer "product_id"
+  end
+
   create_table "shop_documents", :id => false, :force => true do |t|
     t.integer "shop_id"
     t.integer "document_id"
@@ -243,9 +251,11 @@ ActiveRecord::Schema.define(:version => 20120829140555) do
     t.string "supplier_id",       :limit => 20, :null => false
     t.string "product_name",      :limit => 50, :null => false
     t.text   "record_attributes",               :null => false
+    t.string "supplier",          :limit => 20, :null => false
   end
 
   add_index "supplier_items", ["product_name"], :name => "index_supplier_items_on_product_name"
+  add_index "supplier_items", ["supplier_id", "supplier"], :name => "index_supplier_items_on_supplier_id_and_supplier", :unique => true
   add_index "supplier_items", ["supplier_id"], :name => "index_supplier_items_on_supplier_id"
 
 end

@@ -166,12 +166,10 @@ CREATE TABLE `product_replacements` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `product_supplier_ids` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL,
   `supplier` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `supplier_id` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `current` tinyint(1) DEFAULT '0',
-  PRIMARY KEY (`id`),
   UNIQUE KEY `index_product_supplier_ids_on_supplier_id_and_supplier` (`supplier_id`,`supplier`),
   KEY `index_product_supplier_ids_on_product_id` (`product_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -207,6 +205,15 @@ CREATE TABLE `products` (
   KEY `index_products_on_model_name` (`model_name`),
   KEY `index_products_on_name` (`name`),
   KEY `index_products_on_top_product` (`top_product`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE `purchase_prices` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `supplier_id` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `supplier` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `price` int(11) DEFAULT NULL,
+  `product_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `schema_migrations` (
@@ -250,7 +257,9 @@ CREATE TABLE `supplier_items` (
   `supplier_id` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `product_name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `record_attributes` text COLLATE utf8_unicode_ci NOT NULL,
+  `supplier` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
+  UNIQUE KEY `index_supplier_items_on_supplier_id_and_supplier` (`supplier_id`,`supplier`),
   KEY `index_supplier_items_on_product_name` (`product_name`),
   KEY `index_supplier_items_on_supplier_id` (`supplier_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -328,3 +337,9 @@ INSERT INTO schema_migrations (version) VALUES ('20120823133801');
 INSERT INTO schema_migrations (version) VALUES ('20120824125930');
 
 INSERT INTO schema_migrations (version) VALUES ('20120829140555');
+
+INSERT INTO schema_migrations (version) VALUES ('20120904114557');
+
+INSERT INTO schema_migrations (version) VALUES ('20120904114700');
+
+INSERT INTO schema_migrations (version) VALUES ('20120904142200');
