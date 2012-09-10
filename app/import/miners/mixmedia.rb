@@ -17,7 +17,7 @@ module Miners
     extracts_data :stock_availability, :purchase_prices, :internet_prices, :supplier_items
 
     class Record < Base::XMLRecord
-      extract_xpaths do
+      extract_records do
         string  "ean"         => :id
         string  "productName" => :name
         integer "magazyn"     => :in_store_count

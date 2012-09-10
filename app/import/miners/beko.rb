@@ -14,10 +14,10 @@ module Miners
       @csv = parse_csv(BEKO_CSV_FILE)
     end
 
-    extracts_data :supplier_items
+    extracts_data :supplier_items, :purchase_prices
 
     class Record < Base::CSVRecord
-      extract_columns do
+      extract_records do
         string "A" => :id
         string "A" => :name
         string "B" => :in_stock

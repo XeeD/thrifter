@@ -20,7 +20,7 @@ module Miners
     extracts_data :stock_availability, :supplier_items
 
     class Record < Base::XLSRecord
-      extract_columns do
+      extract_records do
         string  "B" => :id
         string  "D" => :name
         integer "E" => :in_stock_count

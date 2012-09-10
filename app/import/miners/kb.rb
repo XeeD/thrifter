@@ -25,7 +25,7 @@ module Miners
     extracts_data :supplier_items, :stock_availability, :purchase_prices, :internet_prices
 
     class Record < Base::XMLRecord
-      extract_xpaths do
+      extract_records do
         string  "sKodZbozi"                 => :id
         string  "sJmenoVyrobku"             => :name
         string  "sSkupinaVyrobku"           => :category
@@ -43,20 +43,20 @@ module Miners
         self[:waste] = extract_waste(record_xml)
       end
 
-      connect_xml :in_stock do |xml, record|
+      connect_resource :in_stock do |xml, record|
         xml.at_xpath("//zaznam[sKodZbozi[normalize-space() = \"#{record[:id]}\"]]")
       end
 
-      connect_xml :prices do |xml, record|
+      connect_resource :prices do |xml, record|
         xml.at_xpath("//zaznam[sKodZbozi[normalize-space() = \"#{record[:id]}\"]]")
       end
 
-      extract_xpaths(:in_stock) do
+      extract_records(:in_stock) do
         integer "sDostupnost"         => :in_stock_count
         string  "sDostupnostNazev"    => :in_stock_description
       end
 
-      extract_xpaths(:prices) do
+      extract_records(:prices) do
         integer "sDoporucenaCena"     => :recommended_price
         integer "nCenaWithoutRecycle" => :price
       end
@@ -71,7 +71,7 @@ module Miners
         waste_base = xml.xpath(".//nRecyclePrice").text.to_f
         waste_vat  = xml.xpath(".//nRecycleDph").text.to_f
 
-        (waste_base * (100 + waste_vat) / 100).round()
+        (waste_base * (100 + waste_vat) / 100).round(2)
       end
     end
   end
