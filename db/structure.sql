@@ -32,6 +32,7 @@ CREATE TABLE `categories` (
   `depth` int(11) DEFAULT NULL,
   `shop_id` int(11) DEFAULT NULL,
   `param_template_id` int(11) DEFAULT NULL,
+  `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_categories_on_shop_id_and_url` (`shop_id`,`url`),
   KEY `index_categories_on_depth` (`depth`),
@@ -210,8 +211,8 @@ CREATE TABLE `products` (
 CREATE TABLE `purchase_prices` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `supplier_id` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `supplier` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `price` int(11) DEFAULT NULL,
+  `supplier` varchar(25) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `price` bigint(20) DEFAULT NULL,
   `product_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -243,7 +244,7 @@ CREATE TABLE `shops` (
 CREATE TABLE `stock_availabilities` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL,
-  `supplier` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `supplier` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
   `in_stock_count` int(11) NOT NULL,
   `in_stock_description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` datetime NOT NULL,
@@ -343,3 +344,7 @@ INSERT INTO schema_migrations (version) VALUES ('20120904114557');
 INSERT INTO schema_migrations (version) VALUES ('20120904114700');
 
 INSERT INTO schema_migrations (version) VALUES ('20120904142200');
+
+INSERT INTO schema_migrations (version) VALUES ('20120907092545');
+
+INSERT INTO schema_migrations (version) VALUES ('20120910121232');

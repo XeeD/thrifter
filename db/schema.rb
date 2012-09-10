@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120907092545) do
+ActiveRecord::Schema.define(:version => 20120910121232) do
 
   create_table "articles", :force => true do |t|
     t.string   "name",       :limit => 100
@@ -212,8 +212,8 @@ ActiveRecord::Schema.define(:version => 20120907092545) do
 
   create_table "purchase_prices", :force => true do |t|
     t.string  "supplier_id"
-    t.string  "supplier"
-    t.integer "price"
+    t.string  "supplier",    :limit => 25
+    t.integer "price",       :limit => 8
     t.integer "product_id"
   end
 
@@ -237,11 +237,11 @@ ActiveRecord::Schema.define(:version => 20120907092545) do
   add_index "shops", ["name"], :name => "index_shops_on_name", :unique => true
 
   create_table "stock_availabilities", :force => true do |t|
-    t.integer  "product_id",           :null => false
-    t.string   "supplier",             :null => false
-    t.integer  "in_stock_count",       :null => false
-    t.string   "in_stock_description", :null => false
-    t.datetime "created_at",           :null => false
+    t.integer  "product_id",                         :null => false
+    t.string   "supplier",             :limit => 25, :null => false
+    t.integer  "in_stock_count",                     :null => false
+    t.string   "in_stock_description",               :null => false
+    t.datetime "created_at",                         :null => false
   end
 
   add_index "stock_availabilities", ["product_id"], :name => "index_stock_availabilities_on_product_id"
