@@ -8,10 +8,10 @@ class CreateCategories < ActiveRecord::Migration
       t.string :category_type, limit: 20
 
       # awesome_nested_set
-      t.integer :lft
-      t.integer :rgt
-      t.integer :parent_id
-      t.integer :depth
+      t.integer :lft,          limit: 3
+      t.integer :rgt,          limit: 3
+      t.integer :parent_id,    limit: 2
+      t.integer :depth,        limit: 1
 
       # Associations
       t.belongs_to :shop

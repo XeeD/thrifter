@@ -1,6 +1,6 @@
 class ChangeProductEanCode < ActiveRecord::Migration
   def up
-    change_column :products, :ean_code, :integer, :null => true
+    change_column :products, :ean_code, :integer, :null => true, limit: 8
   end
 
   def down

@@ -5,17 +5,17 @@ class CreateProducts < ActiveRecord::Migration
       t.string :model_name, limit: 140
       t.string :url, limit: 171
 
-      t.integer :external_id, limit: 6
+      t.integer :external_id, limit: 3
       t.string :ean_code, limit: 13, null: true
 
       t.text :short_description
       t.text :description
 
-      t.integer :default_price, limit: 6
-      t.integer :recommended_price, limit: 6
-      t.integer :purchase_price, limit: 6
-      t.integer :recycling_fee, limit: 4
-      t.integer :warranty, limit: 3
+      t.integer :default_price, limit: 3
+      t.integer :recommended_price, limit: 3
+      t.integer :purchase_price, limit: 3
+      t.integer :recycling_fee, limit: 2
+      t.integer :warranty, limit: 2
       t.decimal :vat_rate, scale: 1, precision: 3
 
       t.string :state, default: :new
