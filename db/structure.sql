@@ -26,10 +26,10 @@ CREATE TABLE `categories` (
   `plural_name` varchar(120) COLLATE utf8_unicode_ci DEFAULT NULL,
   `singular_name` varchar(120) COLLATE utf8_unicode_ci DEFAULT NULL,
   `category_type` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `lft` int(11) DEFAULT NULL,
-  `rgt` int(11) DEFAULT NULL,
-  `parent_id` int(11) DEFAULT NULL,
-  `depth` int(11) DEFAULT NULL,
+  `lft` mediumint(9) DEFAULT NULL,
+  `rgt` mediumint(9) DEFAULT NULL,
+  `parent_id` smallint(6) DEFAULT NULL,
+  `depth` tinyint(4) DEFAULT NULL,
   `shop_id` int(11) DEFAULT NULL,
   `param_template_id` int(11) DEFAULT NULL,
   `updated_at` datetime NOT NULL,
@@ -96,7 +96,7 @@ CREATE TABLE `param_groups` (
   `param_template_id` int(11) DEFAULT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
-  `position` int(11) DEFAULT NULL,
+  `position` smallint(6) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `index_param_groups_on_param_template_id_and_position` (`param_template_id`,`position`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -151,7 +151,7 @@ CREATE TABLE `product_photos` (
   `updated_at` datetime NOT NULL,
   `product_id` int(11) DEFAULT NULL,
   `main_photo` tinyint(1) DEFAULT '0',
-  `position` int(11) DEFAULT NULL,
+  `position` smallint(6) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `index_product_photos_on_main_photo` (`main_photo`),
   KEY `index_product_photos_on_product_id_and_position` (`product_id`,`position`),
@@ -180,15 +180,15 @@ CREATE TABLE `products` (
   `name` varchar(171) COLLATE utf8_unicode_ci DEFAULT NULL,
   `model_name` varchar(140) COLLATE utf8_unicode_ci DEFAULT NULL,
   `url` varchar(171) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `external_id` bigint(20) DEFAULT NULL,
-  `ean_code` int(11) DEFAULT NULL,
+  `external_id` mediumint(9) DEFAULT NULL,
+  `ean_code` bigint(20) DEFAULT NULL,
   `short_description` text COLLATE utf8_unicode_ci,
   `description` text COLLATE utf8_unicode_ci,
-  `default_price` bigint(20) DEFAULT NULL,
-  `recommended_price` bigint(20) DEFAULT NULL,
-  `purchase_price` bigint(20) DEFAULT NULL,
-  `recycling_fee` int(11) DEFAULT NULL,
-  `warranty` mediumint(9) DEFAULT NULL,
+  `default_price` mediumint(9) DEFAULT NULL,
+  `recommended_price` mediumint(9) DEFAULT NULL,
+  `purchase_price` mediumint(9) DEFAULT NULL,
+  `recycling_fee` smallint(6) DEFAULT NULL,
+  `warranty` smallint(6) DEFAULT NULL,
   `vat_rate` decimal(3,1) DEFAULT NULL,
   `state` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'new',
   `admin_comment` text COLLATE utf8_unicode_ci,
@@ -212,7 +212,7 @@ CREATE TABLE `purchase_prices` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `supplier_id` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `supplier` varchar(25) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `price` bigint(20) DEFAULT NULL,
+  `price` mediumint(9) DEFAULT NULL,
   `product_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -244,7 +244,7 @@ CREATE TABLE `shops` (
 CREATE TABLE `stock_availabilities` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL,
-  `supplier` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
+  `supplier` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `in_stock_count` int(11) NOT NULL,
   `in_stock_description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` datetime NOT NULL,
@@ -346,5 +346,3 @@ INSERT INTO schema_migrations (version) VALUES ('20120904114700');
 INSERT INTO schema_migrations (version) VALUES ('20120904142200');
 
 INSERT INTO schema_migrations (version) VALUES ('20120907092545');
-
-INSERT INTO schema_migrations (version) VALUES ('20120910121232');

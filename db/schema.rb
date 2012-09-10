@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120910121232) do
+ActiveRecord::Schema.define(:version => 20120907092545) do
 
   create_table "articles", :force => true do |t|
     t.string   "name",       :limit => 100
@@ -37,10 +37,10 @@ ActiveRecord::Schema.define(:version => 20120910121232) do
     t.string   "plural_name",       :limit => 120
     t.string   "singular_name",     :limit => 120
     t.string   "category_type",     :limit => 20
-    t.integer  "lft"
-    t.integer  "rgt"
-    t.integer  "parent_id"
-    t.integer  "depth"
+    t.integer  "lft",               :limit => 3
+    t.integer  "rgt",               :limit => 3
+    t.integer  "parent_id",         :limit => 2
+    t.integer  "depth",             :limit => 1
     t.integer  "shop_id"
     t.integer  "param_template_id"
     t.datetime "updated_at",                       :null => false
@@ -104,7 +104,7 @@ ActiveRecord::Schema.define(:version => 20120910121232) do
     t.integer  "param_template_id"
     t.datetime "created_at",                      :null => false
     t.datetime "updated_at",                      :null => false
-    t.integer  "position"
+    t.integer  "position",          :limit => 2
   end
 
   add_index "param_groups", ["param_template_id", "position"], :name => "index_param_groups_on_param_template_id_and_position"
@@ -154,7 +154,7 @@ ActiveRecord::Schema.define(:version => 20120910121232) do
     t.datetime "updated_at",                                   :null => false
     t.integer  "product_id"
     t.boolean  "main_photo",                :default => false
-    t.integer  "position"
+    t.integer  "position",   :limit => 2
   end
 
   add_index "product_photos", ["main_photo"], :name => "index_product_photos_on_main_photo"
@@ -182,15 +182,15 @@ ActiveRecord::Schema.define(:version => 20120910121232) do
     t.string   "name",                :limit => 171
     t.string   "model_name",          :limit => 140
     t.string   "url",                 :limit => 171
-    t.integer  "external_id",         :limit => 8
-    t.integer  "ean_code"
+    t.integer  "external_id",         :limit => 3
+    t.integer  "ean_code",            :limit => 8
     t.text     "short_description"
     t.text     "description"
-    t.integer  "default_price",       :limit => 8
-    t.integer  "recommended_price",   :limit => 8
-    t.integer  "purchase_price",      :limit => 8
-    t.integer  "recycling_fee"
-    t.integer  "warranty",            :limit => 3
+    t.integer  "default_price",       :limit => 3
+    t.integer  "recommended_price",   :limit => 3
+    t.integer  "purchase_price",      :limit => 3
+    t.integer  "recycling_fee",       :limit => 2
+    t.integer  "warranty",            :limit => 2
     t.decimal  "vat_rate",                           :precision => 3, :scale => 1
     t.string   "state",                                                            :default => "new",            :null => false
     t.text     "admin_comment"
@@ -213,7 +213,7 @@ ActiveRecord::Schema.define(:version => 20120910121232) do
   create_table "purchase_prices", :force => true do |t|
     t.string  "supplier_id"
     t.string  "supplier",    :limit => 25
-    t.integer "price",       :limit => 8
+    t.integer "price",       :limit => 3
     t.integer "product_id"
   end
 
@@ -237,11 +237,11 @@ ActiveRecord::Schema.define(:version => 20120910121232) do
   add_index "shops", ["name"], :name => "index_shops_on_name", :unique => true
 
   create_table "stock_availabilities", :force => true do |t|
-    t.integer  "product_id",                         :null => false
-    t.string   "supplier",             :limit => 25, :null => false
-    t.integer  "in_stock_count",                     :null => false
-    t.string   "in_stock_description",               :null => false
-    t.datetime "created_at",                         :null => false
+    t.integer  "product_id",           :null => false
+    t.string   "supplier",             :null => false
+    t.integer  "in_stock_count",       :null => false
+    t.string   "in_stock_description", :null => false
+    t.datetime "created_at",           :null => false
   end
 
   add_index "stock_availabilities", ["product_id"], :name => "index_stock_availabilities_on_product_id"
