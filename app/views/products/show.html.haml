@@ -5,8 +5,18 @@
 
   %ul
     %li
-      = link_to "Hodnocení", "/#{params[:category_url]}/#{params[:product_url]}/hodnoceni", {"data-pjax-section" => true}
+      = link_to "Hodnocení", section_path("hodnoceni"), {"data-pjax-section" => true}
     %li
-      = link_to "Parametry", "/#{params[:category_url]}/#{params[:product_url]}/parametry",  {"data-pjax-section" => true}
+      = link_to "Popis výrobku", section_path("popis"), {"data-pjax-section" => true}
+    %li
+      = link_to "Dotaz", section_path("dotaz"), {"data-pjax-section" => true}
+    %li
+      = link_to "Splátky", section_path("splatky"), {"data-pjax-section" => true}
+    %li
+      = link_to "Porovnat s jinými", section_path("porovnavani"), {"data-pjax-section" => true}
+    %li
+      = link_to "Dodání", section_path("dodani"), {"data-pjax-section" => true}
+    %li
+      = link_to "Příslušenství", section_path("prislusenstvi"), {"data-pjax-section" => true}
 
   %div{"data-pjax-section-container" => true}
