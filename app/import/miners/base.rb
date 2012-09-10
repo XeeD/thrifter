@@ -61,13 +61,14 @@ module Miners
     end
 
     def save_purchase_prices
+      PurchasePrice.import_purchase_prices(supplier, records)
     end
 
     def save_internet_prices
     end
 
     def save_supplier_items
-      SupplierItem.import_supplier_items(records)
+      SupplierItem.import_supplier_items(supplier, records)
     end
   end
 end
