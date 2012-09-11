@@ -1,2 +1,8 @@
 %h1 Váš nákupní košík
-%p Je zatím prázdný
+
+- unless order.nil?
+  = order.token
+  - order.order_items.each do |order_item|
+    %p= order_item.product.name
+- else
+  %p Košík je prázdný
