@@ -9,16 +9,30 @@ class CartController < ApplicationController
 
     product = Product.find(cart[:product_id])
 
-    #session[:order_token] = order.token
+    session[:order_token] = order.token
 
-    order.add_product(product, cart[:quantity])
+    order.add_product(product, cart[:quantity].to_i)
+
+    order.save
 
     redirect_to cart_url, notice: "Zboží bylo přidáno"
+  end
+
+  def destroy
+    order.order_items.clear
   end
 
   private
 
   def order
-    @order ||= Order.create
+    @order ||= begin
+      unless session[:order_token].blank?
+        OrderDecorator.find_by_token(session[:order_token])
+      else
+        OrderDecorator.create
+      end
+    end
   end
+
+  helper_method :order
 end
