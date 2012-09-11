@@ -10,6 +10,8 @@
     = "ENV: #{Rails.env}"
     = Random.rand(100)
     %p= link_to "Košík", cart_path
+    %div#shopping_cart
+      = shopping_cart
 
     %nav
       = link_to "Americké chladničky", "/americke-chladnicky/", {id: "americke-chladnicky"}
