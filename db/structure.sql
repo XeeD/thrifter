@@ -90,6 +90,36 @@ CREATE TABLE `news_items` (
   KEY `index_news_items_on_shop_id` (`shop_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+CREATE TABLE `order_items` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `quantity` smallint(6) DEFAULT NULL,
+  `price` mediumint(9) DEFAULT NULL,
+  `waste` smallint(6) DEFAULT NULL,
+  `tax` tinyint(4) DEFAULT NULL,
+  `order_id` int(11) DEFAULT NULL,
+  `product_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `index_order_items_on_order_id` (`order_id`),
+  KEY `index_order_items_on_product_id` (`product_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE `orders` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `number` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `token` varchar(60) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `total` mediumint(9) DEFAULT NULL,
+  `item_total` mediumint(9) DEFAULT NULL,
+  `email_confirmation` tinyint(1) DEFAULT '0',
+  `state` varchar(15) COLLATE utf8_unicode_ci DEFAULT 'in_progress',
+  `completed_at` datetime DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `index_orders_on_number` (`number`),
+  UNIQUE KEY `index_orders_on_token` (`token`),
+  KEY `index_orders_on_state` (`state`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 CREATE TABLE `param_groups` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(40) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -346,3 +376,7 @@ INSERT INTO schema_migrations (version) VALUES ('20120904114700');
 INSERT INTO schema_migrations (version) VALUES ('20120904142200');
 
 INSERT INTO schema_migrations (version) VALUES ('20120907092545');
+
+INSERT INTO schema_migrations (version) VALUES ('20120910145600');
+
+INSERT INTO schema_migrations (version) VALUES ('20120910145632');

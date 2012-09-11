@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120907092545) do
+ActiveRecord::Schema.define(:version => 20120910145632) do
 
   create_table "articles", :force => true do |t|
     t.string   "name",       :limit => 100
@@ -98,6 +98,34 @@ ActiveRecord::Schema.define(:version => 20120907092545) do
   end
 
   add_index "news_items", ["shop_id"], :name => "index_news_items_on_shop_id"
+
+  create_table "order_items", :force => true do |t|
+    t.integer "quantity",   :limit => 2
+    t.integer "price",      :limit => 3
+    t.integer "waste",      :limit => 2
+    t.integer "tax",        :limit => 1
+    t.integer "order_id"
+    t.integer "product_id"
+  end
+
+  add_index "order_items", ["order_id"], :name => "index_order_items_on_order_id"
+  add_index "order_items", ["product_id"], :name => "index_order_items_on_product_id"
+
+  create_table "orders", :force => true do |t|
+    t.string   "number",             :limit => 20
+    t.string   "token",              :limit => 60
+    t.integer  "total",              :limit => 3
+    t.integer  "item_total",         :limit => 3
+    t.boolean  "email_confirmation",               :default => false
+    t.string   "state",              :limit => 15, :default => "in_progress"
+    t.datetime "completed_at"
+    t.datetime "created_at",                                                  :null => false
+    t.datetime "updated_at",                                                  :null => false
+  end
+
+  add_index "orders", ["number"], :name => "index_orders_on_number", :unique => true
+  add_index "orders", ["state"], :name => "index_orders_on_state"
+  add_index "orders", ["token"], :name => "index_orders_on_token", :unique => true
 
   create_table "param_groups", :force => true do |t|
     t.string   "name",              :limit => 40
