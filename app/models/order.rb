@@ -1,14 +1,27 @@
 class Order < ActiveRecord::Base
 
-  before_create :generate_token, :generate_number
+  has_many :order_items, autosave: true
+
+  belongs_to :customer
+
+  before_create :set_token, :set_number
   #after_create :create_shipment, :create_payment
 
   before_save :update_line_items, :update_totals
   #after_save :update_shipment, :update_payment
 
+  validates :token, uniqueness: true
+
+  state_machine :state, initial: :in_progress do
+
+    event :complete do
+      transition :all => :completed
+    end
+  end
+
   def contains?(product)
     order_items.select {|order_item|
-      order_item.product_id == product.product_id
+      order_item.product_id == product.id
     }.first
   end
 
@@ -25,8 +38,6 @@ class Order < ActiveRecord::Base
 
       order_items << new_order_item
     end
-
-    save
   end
 
   def update_line_items
@@ -42,9 +53,18 @@ class Order < ActiveRecord::Base
     save!
   end
 
-  def generate_number
+  private
+
+  def set_number
+  end
+
+  def set_token
+    while (self.token = generate_token)
+      break unless Order.find_by_token(self.token)
+    end
   end
 
   def generate_token
+    (0...10).map{65.+(rand(25)).chr}.join
   end
 end
