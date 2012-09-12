@@ -1,8 +1,18 @@
 %h1 Váš nákupní košík
 
 - unless order.nil?
-  = order.token
+
+  %p= order.token
+  %p= "ItemTotal: #{order.item_total}"
+  %p= "Total: #{order.total}"
+
   - order.order_items.each do |order_item|
-    %p= order_item.product.name
+    %p
+      = order_item.product_name
+      = order_item.quantity.to_i
+      = order_item.total
+
+      = link_to "[X]", cart_path(id: order_item), {"data-skip-pjax" => true, method: :delete}
+
 - else
   %p Košík je prázdný

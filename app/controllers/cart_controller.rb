@@ -19,7 +19,9 @@ class CartController < ApplicationController
   end
 
   def destroy
-    order.order_items.clear
+    order.order_items.destroy OrderItem.find(params[:id])
+
+    redirect_to cart_path, notice: "Zboží bylo odstraněno"
   end
 
   private
