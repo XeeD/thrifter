@@ -24,5 +24,8 @@ jQuery ->
         unless data.eval != null
           eval(data.eval)
 
+        unless data.shopping_cart != null
+          alert(data.shopping_cart)
+
         #$("#pjax_data").empty()
     )
