@@ -55,7 +55,8 @@ Thrifter::Application.routes.draw do
   # Application frontend
   root :to => "root#index"
 
-  resource :cart, path: "kosik", controller: "cart", only: [:show, :update]
+  resource :cart, path: "kosik", controller: "cart", only: [:show, :update, :destroy]
+  resource :order, path: "objednavka", controller: "order", only: [:show, :update]
 
   match "/:category_url/:product_url(/:section)" => "products#show"
   match "/:category_url/"             => "categories#index"
