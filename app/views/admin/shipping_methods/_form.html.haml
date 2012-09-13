@@ -1,0 +1,16 @@
+= semantic_form_for([:admin, shipping_method]) do |f|
+  = f.input :name
+  = f.input :short_description
+  = f.input :description
+  = f.inputs "Přiřazen k obchodům" do
+    = f.input :shops, as: :check_boxes
+
+  #package_sizes
+    = f.inputs "Velikosti balíků" do
+      = f.semantic_fields_for :package_sizes do |builder|
+        = render 'package_size_fields', :f => builder
+      .links
+        = link_to_add_association 'Další balík', f, :package_sizes
+
+  = f.actions do
+    = f.submit

@@ -1,0 +1,25 @@
+%h2 Typy dopravy
+
+%ul.action_links
+  %li.create_new= link_to "Přidat nový typ dopravy", new_admin_shipping_method_path
+
+- unless shipping_methods.empty?
+  %h3 Seznam typů dopravy
+
+  %table#shipping_methods
+    %thead
+      %tr
+        %th Název
+        %td Akce
+    %tbody
+      - for shipping_method in shipping_methods
+        %tr
+          %th= shipping_method.name
+          %td
+            %ul.actions
+              %li= link_to "Upravit", edit_admin_shipping_method_path(shipping_method)
+              %li= link_to "Smazat", admin_shipping_method_path(shipping_method), :method => :delete, confirm: "Opravdu smazat typ dopravy #{shipping_method.name}?"
+
+- else
+  .empty_set
+    Zatím nejsou vytvořeny žádné typy dopravy

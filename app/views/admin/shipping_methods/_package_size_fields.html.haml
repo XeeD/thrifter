@@ -1,0 +1,6 @@
+.nested-fields
+  = f.inputs do
+    = f.input :weight_min, min: 0
+    = f.input :weight_max, min: 0
+    = f.input :price
+    = link_to_remove_association "X", f
