@@ -1,0 +1,13 @@
+normal_package:
+  id: 1
+  shipping_method_id: 1
+  weight_min: 0
+  weight_max: 20
+  price: 100
+
+big_package:
+  id: 2
+  shipping_method_id: 1
+  weight_min: 50
+  weight_max: 100
+  price: 300
