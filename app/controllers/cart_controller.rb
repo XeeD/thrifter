@@ -4,7 +4,16 @@ class CartController < ApplicationController
   def show
   end
 
+  def show_summary
+  end
+
   def update
+    order.update_attributes(params[:order])
+    
+    redirect_to cart_url, notice: "Košík byl upraven"
+  end
+
+  def create
     cart = params[:cart]
 
     product = Product.find(cart[:product_id])
@@ -15,7 +24,7 @@ class CartController < ApplicationController
 
     order.save
 
-    redirect_to cart_url, notice: "Zboží bylo přidáno"
+    redirect_to show_summary_cart_url, notice: "Zboží bylo přidáno"
   end
 
   def destroy
@@ -29,7 +38,11 @@ class CartController < ApplicationController
   def order
     @order ||= begin
       unless session[:order_token].blank?
-        OrderDecorator.find_by_token(session[:order_token])
+        #begin
+          OrderDecorator.find_by_token(session[:order_token])
+        #rescue ActiveRecord::RecordNotFound
+        #  OrderDecorator.create
+        #end
       else
         OrderDecorator.create
       end

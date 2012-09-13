@@ -1,18 +1,23 @@
 %h1 Váš nákupní košík
 
-- unless order.nil?
+- if !order.nil?
 
-  %p= order.token
-  %p= "ItemTotal: #{order.item_total}"
-  %p= "Total: #{order.total}"
+  %p= "Order: #{order.token}"
+  %p= "Session: #{session[:order_token]}"
 
-  - order.order_items.each do |order_item|
-    %p
-      = order_item.product_name
-      = order_item.quantity.to_i
-      = order_item.total
+  %p= "ItemTotal: #{number_to_currency(order.item_total)}"
+  %p= "Total: #{number_to_currency(order.total)}"
 
-      = link_to "[X]", cart_path(id: order_item), {"data-skip-pjax" => true, method: :delete}
+  = semantic_form_for(order, url: cart_path) do |f|
+    - order.order_items.each do |order_item|
+      = f.semantic_fields_for :order_items, order_item do |item|
+        %p
+          = link_to order_item.product_name, order_item.product_permalink
+          = item.input :quantity, min: 0
+          = number_to_currency(order_item.total)
 
+          = link_to "[X]", cart_path(id: order_item), {"data-skip-pjax" => true, method: :delete}
+    = f.actions do
+      = f.action :submit, label: "Přepočítat"
 - else
   %p Košík je prázdný
