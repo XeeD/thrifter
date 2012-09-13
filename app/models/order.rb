@@ -2,17 +2,50 @@ class Order < ActiveRecord::Base
 
   has_many :order_items, autosave: true, dependent: :destroy
 
+  has_one :shipment
+  has_one :shipping_method, through: :shipment
+
   belongs_to :customer
 
-  before_create :set_order_token, :set_order_number
+  before_create :generate_order_token#, :generate_order_number
   #after_create :create_shipment, :create_payment
 
   before_save :update_order
   #after_save :update_shipment, :update_payment
 
-  validates :token, uniqueness: true
+  validates :token,
+            uniqueness: true
+
+  validates :number,
+            uniqueness: true
+
+  validates :state,
+            inclusion: %w(in_progress completed confirmed canceled resumed returned sent)
+
+  #with_options unless: :in_progress? do |v|
+  #  v.validates :total,
+  #              presence: true,
+  #              numericality: {only_integer: true}
+  #
+  #  v.validates :item_total,
+  #              presence: true,
+  #              numericality: {only_integer: true}
+  #
+  #  v.validates :number,
+  #              presence: true
+  #end
 
   attr_protected :item_total, :total, :token, :number
+
+  accepts_nested_attributes_for :order_items
+
+  #delegate :whole_name,
+  #         :first_name,
+  #         :last_name,
+  #         :email,
+  #         :phone,
+  #
+  #         to: :customer, prefix: true
 
   state_machine :state, initial: :in_progress do
 
@@ -74,7 +107,6 @@ class Order < ActiveRecord::Base
   def update_order
     # update order items cost
     self.item_total = order_items.collect(&:cost).sum
-
     self.total = item_total
   end
 
@@ -83,20 +115,20 @@ class Order < ActiveRecord::Base
     save!
   end
 
-  private
-
-  def set_order_number
-    self.number = generate_order_number
+  def item_count
+    order_items.sum(:quantity)
   end
 
-  def set_order_token
+  private
+
+  def generate_order_number
+    #after order is completed
+  end
+
+  def generate_order_token
     while (self.token = generate_token)
       break unless Order.find_by_token(self.token)
     end
-  end
-
-  def generate_number
-
   end
 
   def generate_token
