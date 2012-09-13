@@ -1,6 +1,11 @@
 %title= @title
 
-%div#pjax_data{style: "display: block;"}
+%div#pjax_shopping_cart{style: "display: none;"}
+  - cache shopping_cart_order do
+    = Random.rand(100)
+    = shopping_cart_bar
+
+%div#pjax_data{style: "display: none;"}
   = raw @pjax_data.to_json
 
 = yield
