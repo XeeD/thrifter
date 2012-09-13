@@ -91,6 +91,14 @@ cs:
         categories: "Kategorie"
         created_at: "Vytvořen"
         updated_at: "Naposledy upraven"
+      shipping_method:
+        name: "Název"
+        short_description: "Stručný popis"
+        description: "Úplný popis"
+      package_size:
+        weight_min: "Váha od"
+        weight_max: "Váha do"
+        price: "Cena"
     errors:
       models:
         category:
@@ -136,6 +144,9 @@ cs:
         update: "Uložit článek"
       search:
         create: "Filtrovat"
+      shipping_method:
+        create: "Vytvořit nový typ dopravy"
+        update: "Uložit typ dopravy"
   errors:
     messages:
       carrierwave_processing_error: nemohl být zpracován
