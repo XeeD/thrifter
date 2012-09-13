@@ -42,9 +42,15 @@ class Product < ActiveRecord::Base
   has_many :defined_param_items, through: :parametrizations, source: :param_item
   has_many :defined_param_values, through: :parametrizations, source: :param_value
 
+  attr_accessor :permalink
+
   # Attributes
   def param_template
     sample_preferred_category.assigned_param_template
+  end
+
+  def permalink
+    "/" + sample_preferred_category.url + "/" + url
   end
 
   # Get values (value column of ParamValue) for given param_item_id
