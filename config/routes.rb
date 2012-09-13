@@ -34,6 +34,9 @@ Thrifter::Application.routes.draw do
       resources :param_items
     end
 
+    resources :payment_methods
+    resources :shipping_methods
+    
     resources :shops, except: :show do
       member do
         get :deletion_confirmation
@@ -55,7 +58,9 @@ Thrifter::Application.routes.draw do
   # Application frontend
   root :to => "root#index"
 
-  resource :cart, path: "kosik", controller: "cart", only: [:show, :update, :destroy]
+  resource :cart, path: "kosik", controller: "cart", only: [:show, :create, :update, :destroy] do
+    collection { get :show_summary, path: "vlozeni" }
+  end
   resource :order, path: "objednavka", controller: "order", only: [:show, :update]
 
   match "/:category_url/:product_url(/:section)" => "products#show"
