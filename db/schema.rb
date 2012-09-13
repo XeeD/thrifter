@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120910145632) do
+ActiveRecord::Schema.define(:version => 20120912152818) do
 
   create_table "articles", :force => true do |t|
     t.string   "name",       :limit => 100
@@ -103,7 +103,7 @@ ActiveRecord::Schema.define(:version => 20120910145632) do
     t.integer "quantity",   :limit => 2
     t.integer "price",      :limit => 3
     t.integer "waste",      :limit => 2
-    t.integer "tax",        :limit => 1
+    t.boolean "sent",                    :default => false
     t.integer "order_id"
     t.integer "product_id"
   end
@@ -113,11 +113,14 @@ ActiveRecord::Schema.define(:version => 20120910145632) do
 
   create_table "orders", :force => true do |t|
     t.string   "number",             :limit => 20
-    t.string   "token",              :limit => 60
+    t.string   "token",              :limit => 30
     t.integer  "total",              :limit => 3
     t.integer  "item_total",         :limit => 3
     t.boolean  "email_confirmation",               :default => false
     t.string   "state",              :limit => 15, :default => "in_progress"
+    t.text     "admin_note"
+    t.text     "customer_note"
+    t.integer  "customer_id"
     t.datetime "completed_at"
     t.datetime "created_at",                                                  :null => false
     t.datetime "updated_at",                                                  :null => false
@@ -126,6 +129,15 @@ ActiveRecord::Schema.define(:version => 20120910145632) do
   add_index "orders", ["number"], :name => "index_orders_on_number", :unique => true
   add_index "orders", ["state"], :name => "index_orders_on_state"
   add_index "orders", ["token"], :name => "index_orders_on_token", :unique => true
+
+  create_table "package_sizes", :force => true do |t|
+    t.integer "weight_min"
+    t.integer "weight_max"
+    t.integer "price"
+    t.integer "shipping_method_id"
+  end
+
+  add_index "package_sizes", ["shipping_method_id"], :name => "index_package_sizes_on_shipping_method_id"
 
   create_table "param_groups", :force => true do |t|
     t.string   "name",              :limit => 40
@@ -174,6 +186,19 @@ ActiveRecord::Schema.define(:version => 20120910145632) do
   add_index "parametrizations", ["param_item_id"], :name => "index_parametrizations_on_param_item_id"
   add_index "parametrizations", ["param_value_id"], :name => "index_parametrizations_on_param_value_id"
   add_index "parametrizations", ["product_id"], :name => "index_parametrizations_on_product_id"
+
+  create_table "payment_methods", :force => true do |t|
+    t.string "name",              :limit => 100
+    t.text   "short_description"
+    t.text   "description"
+  end
+
+  create_table "payments", :force => true do |t|
+    t.integer "order_id"
+    t.integer "payment_method_id"
+  end
+
+  add_index "payments", ["order_id", "payment_method_id"], :name => "index_payments_on_order_id_and_payment_method_id"
 
   create_table "product_photos", :force => true do |t|
     t.string   "title",      :limit => 100
@@ -245,6 +270,20 @@ ActiveRecord::Schema.define(:version => 20120910145632) do
     t.integer "product_id"
   end
 
+  create_table "shipments", :force => true do |t|
+    t.integer "price"
+    t.integer "order_id"
+    t.integer "shipping_method_id"
+  end
+
+  add_index "shipments", ["order_id", "shipping_method_id"], :name => "index_shipments_on_order_id_and_shipping_method_id"
+
+  create_table "shipping_methods", :force => true do |t|
+    t.string "name",              :limit => 100
+    t.text   "short_description"
+    t.text   "description"
+  end
+
   create_table "shop_documents", :id => false, :force => true do |t|
     t.integer "shop_id"
     t.integer "document_id"
@@ -252,6 +291,20 @@ ActiveRecord::Schema.define(:version => 20120910145632) do
 
   add_index "shop_documents", ["document_id", "shop_id"], :name => "index_shop_documents_on_document_id_and_shop_id"
   add_index "shop_documents", ["shop_id", "document_id"], :name => "index_shop_documents_on_shop_id_and_document_id"
+
+  create_table "shop_has_payment_methods", :force => true do |t|
+    t.integer "shop_id"
+    t.integer "payment_method_id"
+  end
+
+  add_index "shop_has_payment_methods", ["shop_id", "payment_method_id"], :name => "index_shop_on_shop_id_and_payment_method_id", :unique => true
+
+  create_table "shop_has_shipping_methods", :force => true do |t|
+    t.integer "shop_id"
+    t.integer "shipping_method_id"
+  end
+
+  add_index "shop_has_shipping_methods", ["shop_id", "shipping_method_id"], :name => "index_shop_on_shop_id_and_shipping_method_id", :unique => true
 
   create_table "shops", :force => true do |t|
     t.string   "host",       :limit => 20

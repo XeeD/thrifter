@@ -95,7 +95,7 @@ CREATE TABLE `order_items` (
   `quantity` smallint(6) DEFAULT NULL,
   `price` mediumint(9) DEFAULT NULL,
   `waste` smallint(6) DEFAULT NULL,
-  `tax` tinyint(4) DEFAULT NULL,
+  `sent` tinyint(1) DEFAULT '0',
   `order_id` int(11) DEFAULT NULL,
   `product_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -106,11 +106,14 @@ CREATE TABLE `order_items` (
 CREATE TABLE `orders` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `number` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `token` varchar(60) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `token` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
   `total` mediumint(9) DEFAULT NULL,
   `item_total` mediumint(9) DEFAULT NULL,
   `email_confirmation` tinyint(1) DEFAULT '0',
   `state` varchar(15) COLLATE utf8_unicode_ci DEFAULT 'in_progress',
+  `admin_note` text COLLATE utf8_unicode_ci,
+  `customer_note` text COLLATE utf8_unicode_ci,
+  `customer_id` int(11) DEFAULT NULL,
   `completed_at` datetime DEFAULT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
@@ -118,6 +121,16 @@ CREATE TABLE `orders` (
   UNIQUE KEY `index_orders_on_number` (`number`),
   UNIQUE KEY `index_orders_on_token` (`token`),
   KEY `index_orders_on_state` (`state`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE `package_sizes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `weight_min` int(11) DEFAULT NULL,
+  `weight_max` int(11) DEFAULT NULL,
+  `price` int(11) DEFAULT NULL,
+  `shipping_method_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `index_package_sizes_on_shipping_method_id` (`shipping_method_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `param_groups` (
@@ -171,6 +184,22 @@ CREATE TABLE `parametrizations` (
   KEY `index_parametrizations_on_param_item_id` (`param_item_id`),
   KEY `index_parametrizations_on_param_value_id` (`param_value_id`),
   KEY `index_parametrizations_on_product_id` (`product_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE `payment_methods` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `short_description` text COLLATE utf8_unicode_ci,
+  `description` text COLLATE utf8_unicode_ci,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE `payments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `order_id` int(11) DEFAULT NULL,
+  `payment_method_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `index_payments_on_order_id_and_payment_method_id` (`order_id`,`payment_method_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `product_photos` (
@@ -252,11 +281,44 @@ CREATE TABLE `schema_migrations` (
   UNIQUE KEY `unique_schema_migrations` (`version`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+CREATE TABLE `shipments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `price` int(11) DEFAULT NULL,
+  `order_id` int(11) DEFAULT NULL,
+  `shipping_method_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `index_shipments_on_order_id_and_shipping_method_id` (`order_id`,`shipping_method_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE `shipping_methods` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `short_description` text COLLATE utf8_unicode_ci,
+  `description` text COLLATE utf8_unicode_ci,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 CREATE TABLE `shop_documents` (
   `shop_id` int(11) DEFAULT NULL,
   `document_id` int(11) DEFAULT NULL,
   KEY `index_shop_documents_on_document_id_and_shop_id` (`document_id`,`shop_id`),
   KEY `index_shop_documents_on_shop_id_and_document_id` (`shop_id`,`document_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE `shop_has_payment_methods` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `shop_id` int(11) DEFAULT NULL,
+  `payment_method_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `index_shop_on_shop_id_and_payment_method_id` (`shop_id`,`payment_method_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE `shop_has_shipping_methods` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `shop_id` int(11) DEFAULT NULL,
+  `shipping_method_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `index_shop_on_shop_id_and_shipping_method_id` (`shop_id`,`shipping_method_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `shops` (
@@ -380,3 +442,17 @@ INSERT INTO schema_migrations (version) VALUES ('20120907092545');
 INSERT INTO schema_migrations (version) VALUES ('20120910145600');
 
 INSERT INTO schema_migrations (version) VALUES ('20120910145632');
+
+INSERT INTO schema_migrations (version) VALUES ('20120912130741');
+
+INSERT INTO schema_migrations (version) VALUES ('20120912150923');
+
+INSERT INTO schema_migrations (version) VALUES ('20120912151003');
+
+INSERT INTO schema_migrations (version) VALUES ('20120912151041');
+
+INSERT INTO schema_migrations (version) VALUES ('20120912151334');
+
+INSERT INTO schema_migrations (version) VALUES ('20120912152734');
+
+INSERT INTO schema_migrations (version) VALUES ('20120912152818');
