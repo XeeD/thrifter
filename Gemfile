@@ -19,6 +19,7 @@ gem 'meta_search'
 gem 'parseexcel'
 gem 'dalli'
 gem 'cache_digests'
+gem 'cocoon'
 
 # Gems used only for compiling assets
 group :assets, :cucumber do
