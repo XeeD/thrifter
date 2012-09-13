@@ -24,6 +24,8 @@ MenuBuilder::Builder.build do
     group "Nastavení" do
       item :shops, title: "Obchody"
       item :categories, title: "Kategorie"
+      item :payment_methods, title: "Typy plateb"
+      item :shipping_methods, title: "Typy dopravy"
     end
   end
 end
