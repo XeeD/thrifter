@@ -3,7 +3,7 @@ jQuery ->
 
   $('a[data-pjax-section]').pjax('[data-pjax-section-container]');
 
-  $.pjax.defaults.timeout = 1000
+  $.pjax.defaults.timeout = 2000
 
   data = null
 
@@ -24,8 +24,5 @@ jQuery ->
         unless data.eval != null
           eval(data.eval)
 
-        unless data.shopping_cart != null
-          alert(data.shopping_cart)
-
-        #$("#pjax_data").empty()
+      $('#shopping_cart').html($('#pjax_shopping_cart').html())
     )
