@@ -13,17 +13,11 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  def has_shopping_order?
-    !session[:order_token].blank?
+  def shopping_cart_order
+    @shopping_cart_order ||= Order.find_by_token(session[:order_token]) unless session[:order_token].blank?
   end
 
-  helper_method :has_shopping_order?
-
-  def shopping_order
-    @shopping_order ||= Order.find_by_token(session[:order_token]) if has_shopping_order?
-  end
-
-  helper_method :shopping_order
+  helper_method :shopping_cart_order
 
   def pjax_request?
     env['HTTP_X_PJAX'].present?
