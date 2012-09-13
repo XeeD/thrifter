@@ -1,0 +1,11 @@
+%h1 Objednávka
+
+= semantic_form_for(order) do |f|
+
+  %h2 Doprava
+
+  %h2 Platba
+
+  %h2 Zákazník
+
+  = render "customer", form: f
