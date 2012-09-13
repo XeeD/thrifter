@@ -113,5 +113,30 @@ module Helpers
     }.stringify_keys
   end
 
+  def valid_order_attributes
+    {
+        number: "11223344",
+        token: "azkkHKjd778Dw",
+        item_total: "10252",
+        state: "in_progress"
+    }.stringify_keys
+  end
+
+  def valid_shipping_method_attributes
+    {
+        name: "PPL",
+        short_description: "Dopravní služba PPL",
+        description: "PPL zaručuje doručení zboží do druhého dne"
+    }.stringify_keys
+  end
+
+  def valid_package_size_attributes
+    {
+        weight_min: 0,
+        weight_max: 20,
+        price: 100
+    }.stringify_keys
+  end
+
   RSpec.configure {|c| c.include self}
 end
