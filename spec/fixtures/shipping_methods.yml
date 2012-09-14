@@ -1,5 +1,13 @@
 ppl:
   id: 1
   name: "PPL"
+  position: 1
   short_description: "Přepravní společnost PPL"
   description: "PPL doručí zboží do druhého dne"
+
+dpd:
+  id: 2
+  name: "DPD"
+  position: 2
+  short_description: "Nadstandardní doručení DPD"
+  description: "Doporučený způsob dopravy. Přepravní služba garantuje, že Vám řidič bude volat v dostatečném předstihu a upřesní dobu doručení balíku."

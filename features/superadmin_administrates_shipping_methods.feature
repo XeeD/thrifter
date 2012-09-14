@@ -44,9 +44,18 @@ Požadavek: Manager obchodu spravuje způsoby dopravy
   Scénář: přidání nového balíku u existujícího způsobu dopravy
     Pokud jsem v editaci způsobu dopravy "PPL"
 
-
-  @wip @javascript
+  @javascript
   Scénář: smazání existujícího balíku u existujícího způsobu dopravy
     Pokud jsem v editaci způsobu dopravy "PPL"
-    A kliknu na odkaz "X"
+    A počet balíků u této dopravy je "2"
+    Když kliknu na odkaz "X"
+    Pak počet balíků u této dopravy je "1"
+
+  @javascript
+  Scénář: změna pořadí způsobů dopravy
+    Pokud způsob dopravy "PPL" existuje a je 1. v pořadí
+    A způsob dopravy "DPD" existuje a je 2. v pořadí
+    Když přesunu řádek způsobu dopravy "PPL" o 1 pozici nahoru
+    Pak způsob dopravy "DPD" by měl být 1. v pořadí
+    A způsob dopravy "PPL" by měl být 2. v pořadí
 

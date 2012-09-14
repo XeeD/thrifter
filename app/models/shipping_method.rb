@@ -1,4 +1,10 @@
+# encoding: UTF-8
+
 class ShippingMethod < ActiveRecord::Base
+  # Macros
+  acts_as_list scope: :shop
+
+  # Associations
   has_many :shipments
   has_many :orders, through: :shipments
   has_many :package_sizes
@@ -8,6 +14,10 @@ class ShippingMethod < ActiveRecord::Base
 
   accepts_nested_attributes_for :package_sizes, reject_if: :all_blank, allow_destroy: true
 
+  # Scopes
+  default_scope -> { order :position }
+
+  # Validations
   validates :shops,
             presence: true
 

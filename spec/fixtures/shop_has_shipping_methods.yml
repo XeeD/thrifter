@@ -1,3 +1,7 @@
 sporilek_has_ppl:
   shop_id: 1
   shipping_method_id: 1
+
+sporilek_has_dpd:
+  shop_id: 1
+  shipping_method_id: 2

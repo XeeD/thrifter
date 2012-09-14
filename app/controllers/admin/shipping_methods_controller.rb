@@ -43,6 +43,13 @@ module Admin
       redirect_to admin_shipping_methods_url
     end
 
+    def sort
+      params[:shipping_method].each_with_index do |id, index|
+        ShippingMethod.update_all({position: index+1}, {id: id})
+      end
+      render nothing: true
+    end
+
     private
 
     def shipping_method
