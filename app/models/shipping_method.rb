@@ -3,6 +3,7 @@ class ShippingMethod < ActiveRecord::Base
   has_many :orders, through: :shipments
   has_many :package_sizes
 
+  has_and_belongs_to_many :payment_methods, join_table: "shipping_method_has_payment_methods"
   has_and_belongs_to_many :shops, join_table: "shop_has_shipping_methods"
 
   accepts_nested_attributes_for :package_sizes, reject_if: :all_blank, allow_destroy: true
@@ -11,6 +12,9 @@ class ShippingMethod < ActiveRecord::Base
             presence: true
 
   validates :package_sizes,
+            presence: true
+
+  validates :payment_methods,
             presence: true
 
   validates :name,

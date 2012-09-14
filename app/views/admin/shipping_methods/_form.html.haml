@@ -5,6 +5,9 @@
   = f.inputs "Přiřazen k obchodům" do
     = f.input :shops, as: :check_boxes
 
+  = f.inputs "Možné typy placení" do
+    = f.input :payment_methods, as: :check_boxes
+
   #package_sizes
     = f.inputs "Velikosti balíků" do
       = f.semantic_fields_for :package_sizes do |builder|

@@ -1,0 +1,4 @@
+cash_on_delivery:
+  name: "Dobírka"
+  short_description: "Platba dobírkou při převzetí zboží"
+  description: "Pro usnadnění komunikace vám bezprostředně po expedici zašleme číslo zásilky. Toto číslo také můžete použít k přímému sledování zásilky na webových stránkách společnosti."
