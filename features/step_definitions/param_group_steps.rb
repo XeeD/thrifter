@@ -12,7 +12,7 @@ Pokud /^skupina parametrů "(.*?)" existuje a je (\d+)\. v pořadí$/ do |group_
 end
 
 # When statements
-Když /^přesunu řádek "(.*?)" o (\d+) pozic(?:i|e)? (nahoru|dolů)$/ do |name_source, distance, direction|
+Když /^přesunu řádek skupiny "(.*?)" o (\d+) pozic(?:i|e)? (nahoru|dolů)$/ do |name_source, distance, direction|
   simulate_drag_sortable(ParamGroup.find_by_name(name_source), distance, direction)
 end
 
