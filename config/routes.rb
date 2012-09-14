@@ -35,7 +35,9 @@ Thrifter::Application.routes.draw do
     end
 
     resources :payment_methods
-    resources :shipping_methods
+    resources :shipping_methods do
+      collection { post :sort }
+    end
     
     resources :shops, except: :show do
       member do
