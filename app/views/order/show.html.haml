@@ -3,9 +3,10 @@
 = semantic_form_for(order) do |f|
 
   %h2 Doprava
+  = render "shipping_methods", f: f
 
   %h2 Platba
+  = render "payment_methods", f: f
 
   %h2 Zákazník
-
-  = render "customer", form: f
+  = render "customer", f: f
