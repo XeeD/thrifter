@@ -3,7 +3,7 @@ jQuery ->
     ui.children().each ->
       $(this).width($(this).width())
     ui
-  $("#product_additional_photos tbody").sortable
+  $("#sortable tbody").sortable
     axis: 'y'
     helper: fixHelper
     update: ->
