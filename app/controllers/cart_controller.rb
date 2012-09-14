@@ -38,11 +38,7 @@ class CartController < ApplicationController
   def order
     @order ||= begin
       unless session[:order_token].blank?
-        #begin
-          OrderDecorator.find_by_token(session[:order_token])
-        #rescue ActiveRecord::RecordNotFound
-        #  OrderDecorator.create
-        #end
+        Order.find_by_token(session[:order_token]) || OrderDecorator.create
       else
         OrderDecorator.create
       end
