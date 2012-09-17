@@ -95,6 +95,10 @@ cs:
         name: "Název"
         short_description: "Stručný popis"
         description: "Úplný popis"
+        shops: "Obchody"
+        payment_methods: "Typy placení"
+        caesar_type_id: "Způsob dopravy"
+        caesar_type_names: "Přepravce"
       package_size:
         weight_min: "Váha od"
         weight_max: "Váha do"
