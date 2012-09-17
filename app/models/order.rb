@@ -1,6 +1,7 @@
 class Order < ActiveRecord::Base
 
   has_many :order_items, autosave: true, dependent: :destroy
+  has_many :products, through: :order_items
 
   has_one :shipment
   has_one :shipping_method, through: :shipment
