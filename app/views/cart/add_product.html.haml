@@ -1,0 +1,11 @@
+%h1 Zboží #{added_product.name} bylo vloženo do košíku
+
+
+= added_product.inspect
+
+= render "supplements"
+
+= link_to "Upravit obsah košíku", cart_path
+
+
+= link_to "Objednat", order_path
