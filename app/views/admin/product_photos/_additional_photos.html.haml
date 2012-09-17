@@ -1,9 +1,9 @@
 - unless additional_product_photos.empty?
-  %table#product_additional_photos#sortable{"data-update-url" => sort_admin_product_photos_path(product)}
+  %table#product_additional_photos.sortable{"data-update-url" => sort_admin_product_photos_path(product)}
     %thead
       %th= Product::Photo.human_attribute_name(:title)
       %td Akce
-    %tbody.sortable
+    %tbody
       - for photo in additional_product_photos
         = content_tag_for :tr, photo do
           %th= photo.title || content_tag(:em, "bez popisku")
