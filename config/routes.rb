@@ -61,7 +61,7 @@ Thrifter::Application.routes.draw do
   root :to => "root#index"
 
   resource :cart, path: "kosik", controller: "cart", only: [:show, :create, :update, :destroy] do
-    collection { get :show_summary, path: "vlozeni" }
+    collection { get :add_product, path: "vlozeni" }
   end
   resource :order, path: "objednavka", controller: "order", only: [:show, :update]
 
