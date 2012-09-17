@@ -1,0 +1,13 @@
+- for cart_item in order.order_items
+  %p
+    %strong= cart_item.product_name
+    %br
+    = "Množství: #{cart_item.quantity} ks"
+    %br
+    = "Cena: #{number_to_currency(cart_item.price)}"
+    %br
+    = link_to_unless(params[:id].to_i == cart_item.product_id, "Doporučené příslušenství", add_product_cart_path(id: cart_item.product_id))
+
+%hr
+%p= "Cena celkem: #{order.total}"
+= link_to "Upravit obsah košíku", cart_path

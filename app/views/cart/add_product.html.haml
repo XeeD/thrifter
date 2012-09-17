@@ -1,11 +1,11 @@
 %h1 Zboží #{added_product.name} bylo vloženo do košíku
 
+= render "accessories"
 
-= added_product.inspect
+#cart_overview{style: "float: right; width: 250px;"}
+  = render "cart_overview"
 
-= render "supplements"
 
 = link_to "Upravit obsah košíku", cart_path
-
 
 = link_to "Objednat", order_path
