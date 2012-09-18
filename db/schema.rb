@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120912152818) do
+ActiveRecord::Schema.define(:version => 20120917114618) do
 
   create_table "articles", :force => true do |t|
     t.string   "name",       :limit => 100
@@ -278,10 +278,21 @@ ActiveRecord::Schema.define(:version => 20120912152818) do
 
   add_index "shipments", ["order_id", "shipping_method_id"], :name => "index_shipments_on_order_id_and_shipping_method_id"
 
+  create_table "shipping_method_has_payment_methods", :id => false, :force => true do |t|
+    t.integer "shipping_method_id"
+    t.integer "payment_method_id"
+  end
+
+  add_index "shipping_method_has_payment_methods", ["shipping_method_id", "payment_method_id"], :name => "shipping_method_has_payment_methods_index", :unique => true
+
   create_table "shipping_methods", :force => true do |t|
-    t.string "name",              :limit => 100
-    t.text   "short_description"
-    t.text   "description"
+    t.string  "name",              :limit => 100
+    t.text    "short_description"
+    t.text    "description"
+    t.integer "position",          :limit => 1
+    t.string  "caesar_type_id",    :limit => 1
+    t.string  "caesar_type_names", :limit => 30
+    t.integer "free_from",         :limit => 2
   end
 
   create_table "shop_documents", :id => false, :force => true do |t|

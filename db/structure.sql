@@ -290,11 +290,21 @@ CREATE TABLE `shipments` (
   KEY `index_shipments_on_order_id_and_shipping_method_id` (`order_id`,`shipping_method_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+CREATE TABLE `shipping_method_has_payment_methods` (
+  `shipping_method_id` int(11) DEFAULT NULL,
+  `payment_method_id` int(11) DEFAULT NULL,
+  UNIQUE KEY `shipping_method_has_payment_methods_index` (`shipping_method_id`,`payment_method_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 CREATE TABLE `shipping_methods` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `short_description` text COLLATE utf8_unicode_ci,
   `description` text COLLATE utf8_unicode_ci,
+  `position` tinyint(4) DEFAULT NULL,
+  `caesar_type_id` varchar(1) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `caesar_type_names` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `free_from` smallint(6) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -456,3 +466,11 @@ INSERT INTO schema_migrations (version) VALUES ('20120912151334');
 INSERT INTO schema_migrations (version) VALUES ('20120912152734');
 
 INSERT INTO schema_migrations (version) VALUES ('20120912152818');
+
+INSERT INTO schema_migrations (version) VALUES ('20120913144641');
+
+INSERT INTO schema_migrations (version) VALUES ('20120914084110');
+
+INSERT INTO schema_migrations (version) VALUES ('20120917114242');
+
+INSERT INTO schema_migrations (version) VALUES ('20120917114618');
