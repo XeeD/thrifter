@@ -2,7 +2,7 @@
 
 class ShippingMethod < ActiveRecord::Base
   # Macros
-  acts_as_list scope: :shop
+  acts_as_list
 
   # Associations
   has_many :shipments
@@ -18,8 +18,8 @@ class ShippingMethod < ActiveRecord::Base
   default_scope -> { order :position }
 
   # Validations
-  validates :shops,
-            presence: true
+  #validates :shops,
+  #          presence: true
 
   validates :package_sizes,
             presence: true

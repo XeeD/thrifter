@@ -5,7 +5,7 @@ class Shop < ActiveRecord::Base
   has_many :articles, through: :categories, group: "articles.id"
 
   has_and_belongs_to_many :shipping_methods, join_table: :shop_has_shipping_methods
-  has_and_belongs_to_many :payment_methods, join_table: :shop_has_payment_methods
+  #has_and_belongs_to_many :payment_methods, join_table: :shop_has_payment_methods
   has_and_belongs_to_many :documents, join_table: :shop_documents
 
   # Attributes
