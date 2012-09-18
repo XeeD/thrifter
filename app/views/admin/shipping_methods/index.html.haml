@@ -6,12 +6,12 @@
 - unless shipping_methods.empty?
   %h3 Seznam typů dopravy
 
-  %table#shipping_methods#sortable{"data-update-url" => sort_admin_shipping_methods_path}
+  %table#shipping_methods.sortable{"data-update-url" => sort_admin_shipping_methods_path}
     %thead
       %tr
         %th Název
         %td Akce
-    %tbody.sortable
+    %tbody
       - for shipping_method in shipping_methods
         = content_tag_for :tr, shipping_method do
           %th= shipping_method.name

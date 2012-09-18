@@ -2,18 +2,22 @@
   = f.input :name
   = f.input :short_description
   = f.input :description
-  = f.inputs "Přiřazen k obchodům" do
+  = f.inputs "Přiřazení k obchodům" do
     = f.input :shops, as: :check_boxes
 
-  = f.inputs "Možné typy placení" do
+  = f.inputs "Přiřazení k typům placení" do
     = f.input :payment_methods, as: :check_boxes
 
+  = f.inputs "Cézar" do
+    = f.input :caesar_type_id
+    = f.input :caesar_type_names
+
   #package_sizes
-    = f.inputs "Velikosti balíků" do
+    = f.inputs "Možné velikosti balíků" do
       = f.semantic_fields_for :package_sizes do |builder|
         = render 'package_size_fields', :f => builder
       .links
-        = link_to_add_association 'Další balík', f, :package_sizes
+        = link_to_add_association 'Přidat balík', f, :package_sizes
 
   = f.actions do
     = f.submit
