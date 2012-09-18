@@ -83,6 +83,11 @@ class Order < ActiveRecord::Base
     end
   end
 
+  def complete
+    self.completed_at = Time.now
+    self.save
+  end
+
   def completed?
     !! completed_at
   end
@@ -97,12 +102,16 @@ class Order < ActiveRecord::Base
     order_item = contains?(product)
 
     if order_item
-      quantity > 1 ? order_item.quantity += quantity : order_item.quantity += 1
+      if quantity > 1
+        order_item.quantity += quantity
+      else
+        order_item.quantity += 1
+      end
     else
       new_order_item = OrderItem.new({
-                                         quantity: quantity,
-                                         price: product.default_price,
-                                         product_id: product.id
+                                       quantity: quantity,
+                                       price: product.default_price,
+                                       product_id: product.id
                                      })
 
       order_items << new_order_item
