@@ -1,6 +1,6 @@
 %h1 Nákupní košík
 
-- if !order.nil?
+- if !order.nil? && order.item_count > 0
 
   %p= "Order: #{order.token}"
   %p= "Session: #{session[:order_token]}"
