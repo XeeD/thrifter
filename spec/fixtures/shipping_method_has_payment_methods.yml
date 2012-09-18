@@ -1,0 +1,7 @@
+ppl_has_cash_on_delivery:
+  shipping_method_id: 1
+  payment_method_id: 1
+
+dpd_has_cash_on_delivery:
+  shipping_method_id: 2
+  payment_method_id: 1
