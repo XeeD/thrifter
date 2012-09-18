@@ -5,6 +5,8 @@ Pokud /^vložím do košíku produkt "(.*?)"$/ do |product_name|
   step "jsem v detailu produktu \"#{product_name}\""
   step 'kliknu na tlačítko "Vložit do košíku"'
   step "bych měl vidět \"Zboží #{product_name} bylo vloženo do košíku\""
+  #@order = Order.find_by_token(@controller.session[:order_token])
+  #raise "Order record was not found" if @order.nil?
 end
 
 # When statements
