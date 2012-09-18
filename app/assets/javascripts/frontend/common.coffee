@@ -3,7 +3,7 @@ jQuery ->
 
   $('a[data-pjax-section]').pjax('[data-pjax-section-container]');
 
-  $.pjax.defaults.timeout = 2000
+  $.pjax.defaults.timeout = 3000
 
   data = null
 
@@ -11,7 +11,7 @@ jQuery ->
     .on('pjax:timeout', '[data-pjax-container]', ->
     )
     .on('pjax:error', '[data-pjax-container]', (e, xhr, err) ->
-      alert(err)
+      #alert(err)
     )
     .on('pjax:success', '[data-pjax-container]', ->
       data = jQuery.parseJSON($("#pjax_data").text());
