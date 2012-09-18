@@ -12,6 +12,10 @@ Pokud /^jsem v editaci dokumentu "(.*?)"$/ do |document_name|
   step "kliknu na řádku u dokumentu \"#{document_name}\" na odkaz \"Upravit\""
 end
 
+Pokud /^přidávám nový dokument$/ do
+  step 'jsem v sekci "administrace dokumentů"'
+  step 'kliknu na odkaz "Přidat nový dokument"'
+end
 # When statements
 
 # Then statements

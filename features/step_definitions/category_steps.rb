@@ -26,6 +26,11 @@ Pokud /^(.+ )?kategorie "(.+)" v obchodu "(.+)" existuje$/ do |written_category_
   end
 end
 
+Pokud /^přidávám novou kategorii pro obchod "(.*?)"$/ do |shop_name|
+  step "mám otevřenou administraci kategorií pro obchod \"#{shop_name}\""
+  step 'kliknu na odkaz "Přidat novou kategorii"'
+end
+
 Pokud /^mám otevřenou administraci kategorií pro obchod "(.+)"$/ do |shop_name|
   shop = Shop.find_by_name(shop_name)
   raise "shop '#{shop_name}' doesn't exist" if shop.nil?

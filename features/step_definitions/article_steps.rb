@@ -16,6 +16,10 @@ Pokud /^mám otevřenou administraci článků pro obchod "(.+)"$/ do |shop_name
   visit admin_shop_articles_path(shop)
 end
 
+Pokud /^přidávám nový článek pro obchod "(.*?)"$/ do |shop_name|
+  step "mám otevřenou administraci článků pro obchod \"#{shop_name}\""
+  step 'kliknu na odkaz "Přidat nový článek"'
+end
 # When statements
 
 # Then statements

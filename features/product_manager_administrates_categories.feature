@@ -42,3 +42,9 @@ Požadavek: Produktový manager spravuje kategorie
     A kliknu na tlačítko "Uložit kategorii"
     Pak bych měl vidět zprávu "Kategorie Lednice byla upravena"
     A kategorie "Lednice" by měla být upravena
+
+  @javascript
+  Scénář: Kontrola návrhu URL adresy z názvu kategorie
+    Pokud přidávám novou kategorii pro obchod "Spořílek.cz"
+    Když vyplním "Americké chladničky" do pole "Název"
+    Pak hodnota pole "Název v odkazu" by měla být "americke-chladnicky"

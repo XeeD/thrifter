@@ -19,8 +19,9 @@ Požadavek: Manager obchodu spravuje způsoby dopravy
     A vyplním formulář údaji:
       | Název                  | Stručný popis             | Úplný popis                                 |
       | Standardní doručení | Doporučený způsob dopravy | Pokud nebudete zastiženi, balík nedostanete |
-    A zaškrtnu pole "Spořílek.cz" pro vlastnost "Přiřazen k obchodům"
-    A pokračuji ve vyplňování formuláře:
+    A zaškrtnu pole "Spořílek.cz" pro vlastnost "Přiřazení k obchodům"
+    A zaškrtnu pole "Dobírka" pro vlastnost "Přiřazení k typům placení"
+    A pokračuji ve vyplňování části formuláře "Možné velikosti balíků":
       | Váha od | Váha do | Cena |
       | 0       | 20      | 120  |
     A kliknu na tlačítko "Vytvořit nový typ dopravy"
@@ -55,7 +56,8 @@ Požadavek: Manager obchodu spravuje způsoby dopravy
   Scénář: změna pořadí způsobů dopravy
     Pokud způsob dopravy "PPL" existuje a je 1. v pořadí
     A způsob dopravy "DPD" existuje a je 2. v pořadí
-    Když přesunu řádek způsobu dopravy "PPL" o 1 pozici nahoru
+    Když otevřu sekci "administrace typů dopravy"
+    A přesunu řádek způsobu dopravy "PPL" o 1 pozici nahoru
     Pak způsob dopravy "DPD" by měl být 1. v pořadí
     A způsob dopravy "PPL" by měl být 2. v pořadí
 

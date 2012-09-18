@@ -17,6 +17,11 @@ Pokud /^přidávám nový produkt$/ do
   step 'kliknu na odkaz "Přidat nový produkt"'
 end
 
+Pokud /^jsem v detailu produktu "(.*?)"$/ do |product_name|
+  @product = Product.find_by_name(product_name)
+  visit(@product.permalink)
+end
+
 # When statements
 
 # Then statements

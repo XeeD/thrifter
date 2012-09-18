@@ -50,3 +50,9 @@ Požadavek: Manager obchodu spravuje dokumenty
     A dokument "Platba kartou" by měl být upraven
     A dokument "Platba kartou" by měl být přiřazen obchodu "Smart Elektro"
     Ale dokument "Platba kartou" by neměl být přiřazen obchodu "Spořílek.cz"
+
+  @javascript
+  Scénář: Kontrola návrhu URL adresy z názvu kategorie
+    Pokud přidávám nový dokument
+    Když vyplním "Nákup na splátky" do pole "Název"
+    Pak hodnota pole "Název v odkazu" by měla být "nakup-na-splatky"

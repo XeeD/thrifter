@@ -43,3 +43,9 @@ Požadavek: Produktový manager spravuje značky
     A kliknu na tlačítko "Uložit značku"
     Pak bych měl vidět zprávu "Značka Sharp byla upravena"
     A značka "Sharp" by měla být upravena
+
+  @javascript
+  Scénář: Kontrola návrhu URL adresy z názvu značky
+    Pokud přidávám novou značku
+    Když vyplním "ETA - český výrobce" do pole "Název"
+    Pak hodnota pole "Název v odkazu" by měla být "eta-cesky-vyrobce"

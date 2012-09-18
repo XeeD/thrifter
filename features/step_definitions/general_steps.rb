@@ -79,6 +79,12 @@ Když /^vyplním formulář údaji:$/ do |form_values|
   end
 end
 
+Když /^pokračuji ve vyplňování části formuláře "(.*?)":$/ do |section, form_values|
+  within_fieldset(section) do
+    step "vyplním formulář údaji:", form_values
+  end
+end
+
 Když /^pokračuji ve vyplňování formuláře:$/ do |form_values|
   step "vyplním formulář údaji:", form_values
 end
@@ -106,8 +112,10 @@ Pak /^bych měl vidět zprávu "(.*?)"$/ do |message|
   find("#flash_messages .notice").should have_content(message)
 end
 
-Pak /^bych měl vidět (pod)?nadpis "(.*?)"$/ do |level, heading|
+Pak /^bych měl vidět (pod|hlavní )?nadpis "(.*?)"$/ do |level, heading|
   heading_tag = case level
+                  when "hlavní " then
+                    "h1"
                   when "pod" then
                     "h3"
                   else

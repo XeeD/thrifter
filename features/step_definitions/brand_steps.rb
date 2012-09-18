@@ -11,6 +11,10 @@ Pokud /^jsem v editaci značky "(.*?)"$/ do |brand_name|
   step "kliknu na řádku u značky \"#{brand_name}\" na odkaz \"Upravit\""
 end
 
+Pokud /^přidávám novou značku$/ do
+  step 'jsem v sekci "administrace značek"'
+  step 'kliknu na odkaz "Přidat novou značku"'
+end
 # When statements
 
 # Then statements

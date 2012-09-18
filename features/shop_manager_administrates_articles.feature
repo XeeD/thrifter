@@ -44,3 +44,9 @@ Požadavek: Manager obchodu spravuje články kategorií
     Když kliknu na tlačítko "Uložit článek"
     Pak bych měl vidět zprávu "Článek PLAZMA TV byl upraven"
     A článek "PLAZMA TV" by měl být upraven
+
+  @javascript
+  Scénář: Kontrola návrhu URL adresy z názvu článku
+    Pokud přidávám nový článek pro obchod "Spořílek.cz"
+    Když vyplním "Vodní vysavače" do pole "Název"
+    Pak hodnota pole "Název v odkazu" by měla být "vodni-vysavace"
