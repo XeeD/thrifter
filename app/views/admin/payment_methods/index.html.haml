@@ -1,1 +1,25 @@
 %h2 Typy plateb
+
+%ul.action_links
+  %li.create_new= link_to "Přidat nový typ platby", new_admin_payment_method_path
+
+- unless payment_methods.empty?
+  %h3 Seznam typů plateb
+
+  %table#payment_methods#sortable{"data-update-url" => sort_admin_shipping_methods_path}
+    %thead
+      %tr
+        %th Název
+        %td Akce
+    %tbody.sortable
+      - for payment_method in payment_methods
+        = content_tag_for :tr, payment_method do
+          %th= payment_method.name
+          %td
+            %ul.actions
+              %li= link_to "Upravit", edit_admin_payment_method_path(payment_method)
+              %li= link_to "Smazat", admin_payment_method_path(payment_method), :method => :delete, confirm: "Opravdu smazat typ platby #{payment_method.name}?"
+
+- else
+  .empty_set
+    Zatím nejsou vytvořeny žádné typy plateb
