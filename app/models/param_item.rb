@@ -68,6 +68,8 @@ class ParamItem < ActiveRecord::Base
     self.importance == IMPORTANCE.fetch("Řazení")
   end
 
+  private
+
   def set_defaults
     self.value_type  ||= 'string'
     self.choice_type ||= 'input'
