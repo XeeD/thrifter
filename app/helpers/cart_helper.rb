@@ -5,20 +5,12 @@ module CartHelper
     if shopping_cart_order.present? && shopping_cart_order.item_count > 0
       cart = shopping_cart_order
 
-        "<strong>
-           #{cart.item_count}
-         </strong>
-
-         #{translate_item_count(cart.item_count)}
-
-         za
-
-         <strong>
-           <em>
-             #{number_to_currency(cart.total)}
-           </em>
-         </strong>
-         </span>"
+      link_to "<span>
+                  <strong>#{cart.item_count}</strong>
+                    #{translate_item_count(cart.item_count)}
+                    za <strong><em>#{number_to_currency(cart.total)}</em></strong>
+                </span>".html_safe,
+              cart_path
     else
       "Košík je zatím prázdný"
     end.html_safe
