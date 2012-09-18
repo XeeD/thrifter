@@ -2,7 +2,7 @@
 
 class OrderController < ApplicationController
 
-  before_filter :enforce_order, except: [:completed]
+  before_filter :order, :enforce_order, except: [:completed]
 
   def show
   end
@@ -10,14 +10,25 @@ class OrderController < ApplicationController
   def completed
   end
 
-  def update
+  def complete
     if order.update_attributes(params[:order])
+      order.complete!
+      session[:order_token] = nil
       redirect_to completed_order_path #next_step
     else
       render :show
     end
   end
 
+  def update
+    if order.update_attributes(params[:order])
+      order.complete!
+    end
+  end
+
+  def edit
+  end
+  
   private
 
   def order
@@ -33,6 +44,6 @@ class OrderController < ApplicationController
   helper_method :order
 
   def enforce_order
-    redirect_to cart_path unless order
+    redirect_to cart_path if order.nil? || order.completed?
   end
 end
