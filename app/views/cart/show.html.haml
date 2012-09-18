@@ -17,17 +17,15 @@
         %tr
           %th
             = f.submit "Přepočítat"
-      %tbody
       - for cart_item in order.order_items
-        %tr
         = f.fields_for :order_items, cart_item do |f_item|
-          %th
+          %th<
             = link_to cart_item.product_name, cart_item.product_permalink
-          %td
-            = f_item.text_field :quantity, {min: 0, type: :number, size: 5}
-          %td
+          %td<
+            = f_item.number_field :quantity, {min: 0, size: 5}
+          %td<
             = number_to_currency(cart_item.total)
-          %td
+          %td<
             = link_to "[X]", cart_path(id: cart_item), {"data-skip-pjax" => true, method: :delete}
 
     %p Celkem: #{number_to_currency(order.item_total)}
