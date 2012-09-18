@@ -8,6 +8,8 @@ class Order < ActiveRecord::Base
 
   belongs_to :customer
 
+  after_initialize :set_defaults
+
   before_create :generate_order_token#, :generate_order_number
   #after_create :create_shipment, :create_payment
 
@@ -23,6 +25,10 @@ class Order < ActiveRecord::Base
   validates :state,
             inclusion: %w(in_progress completed confirmed canceled resumed returned sent)
 
+  validates :customer_type,
+            presence: true,
+            inclusion: %w(firm person)
+
   #with_options unless: :in_progress? do |v|
   #  v.validates :total,
   #              presence: true,
@@ -37,8 +43,10 @@ class Order < ActiveRecord::Base
   #end
 
   attr_protected :item_total, :total, :token, :number
+  attr_accessor  :customer_type, :newsletter
 
   accepts_nested_attributes_for :order_items
+  accepts_nested_attributes_for :customer
 
   #delegate :whole_name,
   #         :first_name,
@@ -120,6 +128,11 @@ class Order < ActiveRecord::Base
     order_items.sum(:quantity)
   end
 
+  #alias customer_new customer
+  #def customer
+  #  customer_new || build_customer
+  #end
+
   private
 
   def generate_order_number
@@ -134,5 +147,10 @@ class Order < ActiveRecord::Base
 
   def generate_token
     (0...10).map{65.+(rand(25)).chr}.join
+  end
+
+  def set_defaults
+    self.customer_type ||= "person"
+    self.newsletter    ||= "yes"
   end
 end
