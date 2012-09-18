@@ -1,0 +1,7 @@
+= order.customer_type
+= f.radio_button :customer_type, "person"
+= f.radio_button :customer_type, "firm"
+
+= f.fields_for :customer do |customer|
+  = customer.text_field :first_name
+  = customer.text_field :last_name

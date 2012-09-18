@@ -1,3 +1,6 @@
 - @shop = Shop.find(1)
 - for shipping_method in @shop.shipping_methods
   = shipping_method.name
+
+= f.input :customer_note
+= f.input :newsletter, as: :check_boxes
