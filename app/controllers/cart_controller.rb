@@ -4,7 +4,8 @@ class CartController < ApplicationController
   def show
   end
 
-  def show_summary
+  def add_product
+    order.products.find(params[:id])
   end
 
   def update
@@ -21,10 +22,9 @@ class CartController < ApplicationController
     session[:order_token] = order.token
 
     order.add_product(product, cart[:quantity].to_i)
-
     order.save
 
-    redirect_to show_summary_cart_url, notice: "Zboží bylo přidáno"
+    redirect_to add_product_cart_url(id: cart[:product_id]), notice: "Zboží bylo přidáno"
   end
 
   def destroy
@@ -35,12 +35,18 @@ class CartController < ApplicationController
 
   private
 
+  def added_product
+    order.products.find(params[:id])
+  end
+
+  helper_method :added_product
+
   def order
     @order ||= begin
       unless session[:order_token].blank?
         Order.find_by_token(session[:order_token]) || OrderDecorator.create
       else
-        OrderDecorator.create
+        OrderDecorator.create!
       end
     end
   end
