@@ -36,4 +36,10 @@ class ShippingMethod < ActiveRecord::Base
 
   validates :description,
             presence: true
+
+  validates :caesar_type_id,
+            presence: true
+
+  validates :caesar_name,
+            presence: true
 end
