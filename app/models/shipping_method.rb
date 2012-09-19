@@ -18,8 +18,8 @@ class ShippingMethod < ActiveRecord::Base
   default_scope -> { order :position }
 
   # Validations
-  #validates :shops,
-  #          presence: true
+  validates :shops,
+            presence: true
 
   validates :package_sizes,
             presence: true
@@ -37,9 +37,15 @@ class ShippingMethod < ActiveRecord::Base
   validates :description,
             presence: true
 
+  validates :free_from,
+            numericality: {only_integer: true}
+
   validates :caesar_type_id,
+            length: {maximum: 1},
+            numericality: {only_integer: true},
             presence: true
 
-  validates :caesar_name,
+  validates :caesar_type_name,
+            length: {maximum: 30},
             presence: true
 end
