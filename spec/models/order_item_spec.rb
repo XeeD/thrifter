@@ -9,10 +9,17 @@ describe OrderItem do
   # Validations
   # Quantity
   it { should validate_numericality_of(:quantity) }
+  it { should validate_presence_of(:quantity) }
 
   # Price
   it { should validate_numericality_of(:price) }
+  it { should validate_presence_of(:price) }
 
   # Waste
   it { should validate_numericality_of(:waste) }
+
+  # Product
+  it { should vlaidate_presence_of(:product) }
+
+
 end
