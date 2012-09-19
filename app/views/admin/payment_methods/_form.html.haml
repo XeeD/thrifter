@@ -1,0 +1,8 @@
+= semantic_form_for([:admin, payment_method]) do |f|
+  = f.input :name
+  = f.input :short_description
+  = f.input :description
+  = f.inputs "Přiřazení k obchodům" do
+    = f.input :shops, as: :check_boxes
+  = f.actions do
+    = f.submit
