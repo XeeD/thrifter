@@ -98,7 +98,8 @@ cs:
         shops: "Obchody"
         payment_methods: "Typy placení"
         caesar_type_id: "Způsob dopravy"
-        caesar_type_names: "Přepravce"
+        caesar_type_name: "Přepravce"
+        free_from: "Zdarma od"
       payment_method:
         name: "Název"
         short_description: "Stručný popis"
@@ -157,8 +158,8 @@ cs:
         create: "Vytvořit nový typ dopravy"
         update: "Uložit typ dopravy"
       payment_method:
-        create: "Vytvořit nový typ placení"
-        update: "Uložit typ placení"
+        create: "Vytvořit nový typ platby"
+        update: "Uložit typ platby"
   errors:
     messages:
       carrierwave_processing_error: nemohl být zpracován
