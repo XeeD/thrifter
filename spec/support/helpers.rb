@@ -23,9 +23,9 @@ module Helpers
 
   def valid_brand_attributes
     {
-        name: "LG",
-        url: "lg",
-        description: "LG Electronics"
+        name: "Sencor",
+        url: "sencor",
+        description: "Sencor Electronics"
     }.stringify_keys
   end
 
@@ -135,6 +135,15 @@ module Helpers
         weight_min: 0,
         weight_max: 20,
         price: 100
+    }.stringify_keys
+  end
+
+  def valid_payment_method_attributes
+    {
+        name: "Dobírka",
+        short_description: "Platba při převzetí zboží",
+        description: "Nejběžnější způsob platby",
+        shop_ids: ["1"]
     }.stringify_keys
   end
 
