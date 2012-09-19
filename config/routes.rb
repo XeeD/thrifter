@@ -63,12 +63,15 @@ Thrifter::Application.routes.draw do
   resource :cart, path: "kosik", controller: "cart", only: [:show, :create, :update, :destroy] do
     collection { get :add_product, path: "vlozeni" }
   end
+
   resource :order, path: "objednavka", controller: "order", path_names: {edit: "uprava"}, only: [:show, :update] do
     collection {
       put :complete
       get :completed, path: "dokonceni"
     }
   end
+
+  match "/objednavka/:order_token" => "order#overview"
 
   match "/:category_url/:product_url(/:section)" => "products#show"
   match "/:category_url/"             => "categories#index"
