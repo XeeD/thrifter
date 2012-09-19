@@ -1,7 +1,26 @@
 = order.customer_type
-= f.radio_button :customer_type, "person"
-= f.radio_button :customer_type, "firm"
+= f.input :customer_type, as: :radio, collection: {"Nakupuji soukromě" => "individual", "Nakupuji na firmu" => "company"}
 
-= f.fields_for :customer do |customer|
-  = customer.text_field :first_name
-  = customer.text_field :last_name
+= f.semantic_fields_for :customer do |customer_f|
+  %br/
+  = customer_f.input :email
+  = customer_f.input :phone
+  %br/
+  = customer_f.input :first_name
+  = customer_f.input :last_name
+
+  #company_wrapper{style: ("display: none" unless order.customer_type == 'company')}
+    = f.semantic_fields_for :company do |company_f|
+      = company_f.input :name
+      = company_f.input :ico
+      = company_f.input :dic
+
+  = f.input :use_billing_address, input_html: {id: "use_billing_address"}, as: :check_boxes, collection: {"Přeji si doručit zboží na jinou adresu" => "1"}
+
+  #billing_address_wrapper{style: ("display: none" if order.use_billing_address == "no")}
+    = "EEE Adresa"
+
+-#= f.semantic_fields_for :company do |company_f|
+-#  = company_f.input :name
+-#  = company_f.input :ico
+-#  = company_f.input :dic

@@ -2,5 +2,5 @@
 - for shipping_method in @shop.shipping_methods
   = shipping_method.name
 
-= f.input :customer_note
-= f.input :newsletter, as: :check_boxes
+= f.text_field :customer_note
+= f.text_field :newsletter
