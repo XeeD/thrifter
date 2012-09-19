@@ -5,6 +5,7 @@ class OrderController < ApplicationController
   before_filter :order, :enforce_order, except: [:completed]
 
   def show
+    order.build_customer
   end
 
   def completed
@@ -22,7 +23,7 @@ class OrderController < ApplicationController
 
   def update
     if order.update_attributes(params[:order])
-      order.complete!
+
     end
   end
 
@@ -34,7 +35,7 @@ class OrderController < ApplicationController
   def order
     @order ||= begin
       unless session[:order_token].blank?
-        OrderDecorator.find_by_token(session[:order_token])
+        Order.find_by_token(session[:order_token])
       else
         redirect_to cart_path
       end
