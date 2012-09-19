@@ -1,8 +1,13 @@
 # encoding: UTF-8
 
 # Given statements
+Pokud /^typ platby "(.*?)" existuje$/ do |payment_method_name|
+  @payment_method = PaymentMethod.find_by_name(payment_method_name)
+  fail "payment method #{payment_method_name} doesn't exists" if @payment_method.nil?
+end
+
 Pokud /^jsem v editaci typu platby "(.*?)"$/ do |payment_method_name|
-  step "způsob platby \"#{payment_method_name}\" existuje"
+  step "typ platby \"#{payment_method_name}\" existuje"
   step 'jsem v sekci "administrace typů platby"'
   step "kliknu na řádku u typu platby \"#{payment_method_name}\" na odkaz \"Upravit\""
 end

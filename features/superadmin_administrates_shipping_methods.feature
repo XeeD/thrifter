@@ -17,10 +17,13 @@ Požadavek: Manager obchodu spravuje způsoby dopravy
     Pokud jsem v sekci "administrace typů dopravy"
     Když kliknu na odkaz "Přidat nový typ dopravy"
     A vyplním formulář údaji:
-      | Název                  | Stručný popis             | Úplný popis                                 |
-      | Standardní doručení | Doporučený způsob dopravy | Pokud nebudete zastiženi, balík nedostanete |
+      | Název               | Zdarma od | Stručný popis             | Úplný popis                              |
+      | Standardní doručení | 2000      | Doporučený způsob dopravy | Pokud nebudete zastiženi, balík nedostanete |
+    A pokračuji ve vyplňování části formuláře "Cézar":
+      | Způsob dopravy | Přepravce |
+      | 6              | DPD, DHL  |
     A zaškrtnu pole "Spořílek.cz" pro vlastnost "Přiřazení k obchodům"
-    A zaškrtnu pole "Dobírka" pro vlastnost "Přiřazení k typům placení"
+    A zaškrtnu pole "Na splátky" pro vlastnost "Přiřazení k typům placení"
     A pokračuji ve vyplňování části formuláře "Možné velikosti balíků":
       | Váha od | Váha do | Cena |
       | 0       | 20      | 120  |
@@ -35,7 +38,7 @@ Požadavek: Manager obchodu spravuje způsoby dopravy
     A typ dopravy "PPL" by měl být smazán
 
   Scénář: upravení existujícího způsobu dopravy
-    Pokud jsem v editaci způsobu dopravy "PPL"
+    Pokud jsem v editaci typu dopravy "PPL"
     A změním hodnotu pole "Název" na "Standardní doručení"
     Když kliknu na tlačítko "Uložit typ dopravy"
     Pak bych měl vidět zprávu "Typ dopravy Standardní doručení byl upraven"
@@ -43,21 +46,21 @@ Požadavek: Manager obchodu spravuje způsoby dopravy
 
   @wip @javascript
   Scénář: přidání nového balíku u existujícího způsobu dopravy
-    Pokud jsem v editaci způsobu dopravy "PPL"
+    Pokud jsem v editaci typu dopravy "PPL"
 
   @javascript
   Scénář: smazání existujícího balíku u existujícího způsobu dopravy
-    Pokud jsem v editaci způsobu dopravy "PPL"
+    Pokud jsem v editaci typu dopravy "PPL"
     A počet balíků u této dopravy je "2"
     Když kliknu na odkaz "X"
     Pak počet balíků u této dopravy je "1"
 
   @javascript
   Scénář: změna pořadí způsobů dopravy
-    Pokud způsob dopravy "PPL" existuje a je 1. v pořadí
-    A způsob dopravy "DPD" existuje a je 2. v pořadí
+    Pokud typ dopravy "PPL" existuje a je 1. v pořadí
+    A typ dopravy "DPD" existuje a je 2. v pořadí
     Když otevřu sekci "administrace typů dopravy"
-    A přesunu řádek způsobu dopravy "PPL" o 1 pozici nahoru
-    Pak způsob dopravy "DPD" by měl být 1. v pořadí
-    A způsob dopravy "PPL" by měl být 2. v pořadí
+    A přesunu řádek typu dopravy "PPL" o 1 pozici nahoru
+    Pak typ dopravy "DPD" by měl být 1. v pořadí
+    A typ dopravy "PPL" by měl být 2. v pořadí
 
