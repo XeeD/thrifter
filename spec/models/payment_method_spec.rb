@@ -1,12 +1,11 @@
 require 'spec_helper'
 
-describe ShippingMethod do
+describe PaymentMethod do
   # Associations
-  it { should have_many(:shipments) }
-  it { should have_many(:orders).through(:shipments) }
-  it { should have_many(:package_sizes) }
+  it { should have_many(:payments) }
+  it { should have_many(:orders).through(:payments) }
   it { should have_and_belong_to_many(:shops) }
-  it { should have_and_belong_to_many(:payment_methods) }
+  it { should have_and_belong_to_many(:shipping_methods) }
 
   # Validations
   # shops
@@ -22,9 +21,9 @@ describe ShippingMethod do
   # description
   it { should validate_presence_of(:description) }
 
-  #context "with valid attributes" do
-  #  it "should be valid" do
-  #    ShippingMethod.new(valid_shipping_method_attributes).should be_valid
-  #  end
-  #end
+  context "with valid attributes" do
+    it "should be valid" do
+      PaymentMethod.new(valid_payment_method_attributes).should be_valid
+    end
+  end
 end
