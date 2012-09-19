@@ -18,9 +18,11 @@ class Order < ActiveRecord::Base
   #after_save :update_shipment, :update_payment
 
   validates :token,
+            length: {maximum: 60},
             uniqueness: true
 
   validates :number,
+            length: {maximum: 20},
             uniqueness: true
 
   validates :state,
