@@ -30,15 +30,6 @@ module Admin
         get_index
         response.should render_template("index")
       end
-
-      context "when rendering views" do
-        render_views
-
-        it "calls shop.news_items" do
-          shop.should_receive(:news_items).with(no_args).once.and_return(news_item)
-          get_index
-        end
-      end
     end
 
     describe "GET new" do
