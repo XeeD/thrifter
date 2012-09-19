@@ -5,6 +5,7 @@ class Order < ActiveRecord::Base
 
   has_one :shipment
   has_one :shipping_method, through: :shipment
+  has_one :company, through: :customer
 
   belongs_to :customer
 
@@ -27,7 +28,10 @@ class Order < ActiveRecord::Base
 
   validates :customer_type,
             presence: true,
-            inclusion: %w(firm person)
+            inclusion: %w(company individual)
+
+  #validates :company,
+  #          presence: true,
 
   #with_options unless: :in_progress? do |v|
   #  v.validates :total,
@@ -42,19 +46,31 @@ class Order < ActiveRecord::Base
   #              presence: true
   #end
 
+  with_options if: :use_billing_address do |v|
+    v.validates :company,
+                presence: true
+  end
+
   attr_protected :item_total, :total, :token, :number
-  attr_accessor  :customer_type, :newsletter
+  attr_accessor  :customer_type, :newsletter, :use_billing_address
 
   accepts_nested_attributes_for :order_items
   accepts_nested_attributes_for :customer
+  accepts_nested_attributes_for :company, reject_if: :all_blank, allow_destroy: true
 
-  #delegate :whole_name,
-  #         :first_name,
-  #         :last_name,
-  #         :email,
-  #         :phone,
-  #
-  #         to: :customer, prefix: true
+  delegate :name,
+           :ico,
+           :dic,
+
+           to: :company, prefix: true
+
+  delegate :whole_name,
+           :first_name,
+           :last_name,
+           :email,
+           :phone,
+
+           to: :customer, prefix: true
 
   state_machine :state, initial: :in_progress do
 
@@ -155,11 +171,12 @@ class Order < ActiveRecord::Base
   end
 
   def generate_token
-    (0...10).map{65.+(rand(25)).chr}.join
+    (0...60).map{65.+(rand(25)).chr}.join
   end
 
   def set_defaults
-    self.customer_type ||= "person"
+    self.customer_type ||= "individual"
     self.newsletter    ||= "yes"
+    self.use_billing_address ||= false
   end
 end
