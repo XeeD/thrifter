@@ -2,7 +2,7 @@
 
 class OrderController < ApplicationController
 
-  before_filter :order, :enforce_order, except: [:completed]
+  before_filter :order, :enforce_order, except: [:completed, :overview]
 
   def show
     order.build_customer
@@ -23,11 +23,12 @@ class OrderController < ApplicationController
 
   def update
     if order.update_attributes(params[:order])
-
+    else
     end
   end
 
-  def edit
+  def overview
+    #@order = Order.find_by_token(params[:order_token])
   end
   
   private
