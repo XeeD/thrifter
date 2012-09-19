@@ -6,14 +6,14 @@
 - unless payment_methods.empty?
   %h3 Seznam typů plateb
 
-  %table#payment_methods#sortable{"data-update-url" => sort_admin_shipping_methods_path}
+  %table#payment_methods
     %thead
       %tr
         %th Název
         %td Akce
-    %tbody.sortable
+    %tbody
       - for payment_method in payment_methods
-        = content_tag_for :tr, payment_method do
+        %tr
           %th= payment_method.name
           %td
             %ul.actions
