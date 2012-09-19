@@ -24,7 +24,7 @@ module Miners
         self[:recycling_fee] = value
       end
 
-      extract_xpaths do
+      extract_records do
         integer "number" => :id
         string "name" => :name
         money "price" => :purchase_price
