@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120917114618) do
+ActiveRecord::Schema.define(:version => 20120919081505) do
 
   create_table "articles", :force => true do |t|
     t.string   "name",       :limit => 100
@@ -74,6 +74,22 @@ ActiveRecord::Schema.define(:version => 20120917114618) do
   add_index "category_articles", ["article_id", "category_id"], :name => "index_category_articles_on_article_id_and_category_id"
   add_index "category_articles", ["category_id", "article_id"], :name => "index_category_articles_on_category_id_and_article_id"
 
+  create_table "companies", :force => true do |t|
+    t.string  "name",        :limit => 80
+    t.string  "ico",         :limit => 20
+    t.string  "dic",         :limit => 20
+    t.integer "customer_id"
+  end
+
+  add_index "companies", ["customer_id"], :name => "index_companies_on_customer_id"
+
+  create_table "customers", :force => true do |t|
+    t.string "first_name", :limit => 40, :null => false
+    t.string "last_name",  :limit => 60, :null => false
+    t.string "email",      :limit => 60, :null => false
+    t.string "phone",      :limit => 20, :null => false
+  end
+
   create_table "documents", :force => true do |t|
     t.string   "title",        :limit => 250
     t.string   "name",         :limit => 70
@@ -113,7 +129,7 @@ ActiveRecord::Schema.define(:version => 20120917114618) do
 
   create_table "orders", :force => true do |t|
     t.string   "number",             :limit => 20
-    t.string   "token",              :limit => 30
+    t.string   "token",              :limit => 60
     t.integer  "total",              :limit => 3
     t.integer  "item_total",         :limit => 3
     t.boolean  "email_confirmation",               :default => false
@@ -131,9 +147,9 @@ ActiveRecord::Schema.define(:version => 20120917114618) do
   add_index "orders", ["token"], :name => "index_orders_on_token", :unique => true
 
   create_table "package_sizes", :force => true do |t|
-    t.integer "weight_min"
-    t.integer "weight_max"
-    t.integer "price"
+    t.integer "weight_min",         :limit => 2
+    t.integer "weight_max",         :limit => 2
+    t.integer "price",              :limit => 2
     t.integer "shipping_method_id"
   end
 
@@ -194,6 +210,9 @@ ActiveRecord::Schema.define(:version => 20120917114618) do
   end
 
   create_table "payments", :force => true do |t|
+    t.string  "name",              :limit => 100
+    t.text    "short_description"
+    t.text    "description"
     t.integer "order_id"
     t.integer "payment_method_id"
   end
@@ -291,7 +310,7 @@ ActiveRecord::Schema.define(:version => 20120917114618) do
     t.text    "description"
     t.integer "position",          :limit => 1
     t.string  "caesar_type_id",    :limit => 1
-    t.string  "caesar_type_names", :limit => 30
+    t.string  "caesar_type_name",  :limit => 30
     t.integer "free_from",         :limit => 2
   end
 

@@ -63,6 +63,25 @@ CREATE TABLE `category_articles` (
   KEY `index_category_articles_on_category_id_and_article_id` (`category_id`,`article_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+CREATE TABLE `companies` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(80) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ico` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `dic` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `customer_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `index_companies_on_customer_id` (`customer_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE `customers` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
+  `last_name` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
+  `phone` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 CREATE TABLE `documents` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -106,7 +125,7 @@ CREATE TABLE `order_items` (
 CREATE TABLE `orders` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `number` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `token` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `token` varchar(60) COLLATE utf8_unicode_ci DEFAULT NULL,
   `total` mediumint(9) DEFAULT NULL,
   `item_total` mediumint(9) DEFAULT NULL,
   `email_confirmation` tinyint(1) DEFAULT '0',
@@ -125,9 +144,9 @@ CREATE TABLE `orders` (
 
 CREATE TABLE `package_sizes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `weight_min` int(11) DEFAULT NULL,
-  `weight_max` int(11) DEFAULT NULL,
-  `price` int(11) DEFAULT NULL,
+  `weight_min` smallint(6) DEFAULT NULL,
+  `weight_max` smallint(6) DEFAULT NULL,
+  `price` smallint(6) DEFAULT NULL,
   `shipping_method_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `index_package_sizes_on_shipping_method_id` (`shipping_method_id`)
@@ -196,6 +215,9 @@ CREATE TABLE `payment_methods` (
 
 CREATE TABLE `payments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `short_description` text COLLATE utf8_unicode_ci,
+  `description` text COLLATE utf8_unicode_ci,
   `order_id` int(11) DEFAULT NULL,
   `payment_method_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -303,7 +325,7 @@ CREATE TABLE `shipping_methods` (
   `description` text COLLATE utf8_unicode_ci,
   `position` tinyint(4) DEFAULT NULL,
   `caesar_type_id` varchar(1) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `caesar_type_names` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `caesar_type_name` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
   `free_from` smallint(6) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -474,3 +496,7 @@ INSERT INTO schema_migrations (version) VALUES ('20120914084110');
 INSERT INTO schema_migrations (version) VALUES ('20120917114242');
 
 INSERT INTO schema_migrations (version) VALUES ('20120917114618');
+
+INSERT INTO schema_migrations (version) VALUES ('20120919072042');
+
+INSERT INTO schema_migrations (version) VALUES ('20120919081505');
