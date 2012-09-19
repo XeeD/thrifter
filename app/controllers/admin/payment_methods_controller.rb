@@ -6,7 +6,6 @@ module Admin
     end
 
     def new
-      payment_method.package_sizes.build
     end
 
     def create
