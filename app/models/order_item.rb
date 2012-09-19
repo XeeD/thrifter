@@ -8,10 +8,18 @@ class OrderItem < ActiveRecord::Base
   after_destroy :update_order
 
   validates :quantity,
+            presence: true,
             numericality: {only_integer: true}
 
   validates :price,
+            presence: true,
             numericality: {only_integer: true}
+
+  validates :waste,
+            numericality: {only_integer: true}
+
+  validates :product,
+            presence: true
 
   delegate :name,
            :model_name,
