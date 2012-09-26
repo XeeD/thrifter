@@ -1,4 +1,4 @@
-cash_on_delivery:
+on_installment:
   id: 1
   name: "Na splátky"
   short_description: "Za naše zboží nemusíte platit ihned celou částku."

@@ -18,6 +18,7 @@ lg_fridge:
   top_product: false
   brand_id: 1
   state: visible
+  weight: 34
 
 samsung_tv:
   id: 2
@@ -39,6 +40,7 @@ samsung_tv:
   top_product: false
   brand_id: 3
   state: visible
+  weight: 16
 
 lg_tv:
   id: 3
@@ -60,6 +62,7 @@ lg_tv:
   top_product: true
   brand_id: 2
   state: visible
+  weight: 12
 
 philips_tv:
   id: 4
@@ -80,6 +83,7 @@ philips_tv:
   top_product: false
   brand_id: 4
   state: replaced
+  weight: 17
 
 grundig_tv:
   id: 5
@@ -100,8 +104,9 @@ grundig_tv:
   top_product: false
   brand_id: 5
   state: visible
+  weight: 18
 
-new_product:
+grundig_vision:
   id: 6
   name: "Grundig Vision 2 19-2930 T"
   model_name: "Vision 2 19-2930 T"
@@ -120,3 +125,4 @@ new_product:
   top_product: false
   brand_id: 5
   state: new
+  weight: 11

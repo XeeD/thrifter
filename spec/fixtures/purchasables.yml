@@ -1,0 +1,29 @@
+lg_fridge:
+  id: 1
+  goods_id: 1
+  goods_type: Product
+
+samsung_tv:
+  id: 2
+  goods_id: 2
+  goods_type: Product
+
+lg_tv:
+  id: 3
+  goods_id: 3
+  goods_type: Product
+
+philips_tv:
+  id: 4
+  goods_id: 4
+  goods_type: Product
+
+grundig_tv:
+  id: 5
+  goods_id: 5
+  goods_type: Product
+
+new_product:
+  id: 6
+  goods_id: 6
+  goods_type: Product
