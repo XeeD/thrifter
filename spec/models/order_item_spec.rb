@@ -19,7 +19,5 @@ describe OrderItem do
   it { should validate_numericality_of(:waste) }
 
   # Product
-  it { should vlaidate_presence_of(:product) }
-
-
+  it { should vlaidate_presence_of(:purchasable) }
 end
