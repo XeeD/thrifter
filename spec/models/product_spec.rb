@@ -61,6 +61,9 @@ describe Product do
   it { should validate_presence_of(:external_id) }
   it { should validate_numericality_of(:external_id) }
 
+  # weight
+  it { should validate_numericality_of(:weight) }
+
   # brand
   it { should validate_presence_of(:brand) }
 
