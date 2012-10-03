@@ -48,6 +48,7 @@ class Product < ActiveRecord::Base
   has_many :defined_param_values, through: :parametrizations, source: :param_value
 
   attr_accessor :permalink
+  attr_accessible :permalink
 
   # Attributes
   def param_template
