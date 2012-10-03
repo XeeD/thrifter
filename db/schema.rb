@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120919081505) do
+ActiveRecord::Schema.define(:version => 20120921121649) do
 
   create_table "articles", :force => true do |t|
     t.string   "name",       :limit => 100
@@ -116,16 +116,16 @@ ActiveRecord::Schema.define(:version => 20120919081505) do
   add_index "news_items", ["shop_id"], :name => "index_news_items_on_shop_id"
 
   create_table "order_items", :force => true do |t|
-    t.integer "quantity",   :limit => 2
-    t.integer "price",      :limit => 3
-    t.integer "waste",      :limit => 2
-    t.boolean "sent",                    :default => false
+    t.integer "quantity",       :limit => 2
+    t.integer "price",          :limit => 3
+    t.integer "waste",          :limit => 2
+    t.boolean "sent",                        :default => false
     t.integer "order_id"
-    t.integer "product_id"
+    t.integer "purchasable_id"
   end
 
   add_index "order_items", ["order_id"], :name => "index_order_items_on_order_id"
-  add_index "order_items", ["product_id"], :name => "index_order_items_on_product_id"
+  add_index "order_items", ["purchasable_id"], :name => "index_order_items_on_purchasable_id"
 
   create_table "orders", :force => true do |t|
     t.string   "number",             :limit => 20
@@ -272,6 +272,7 @@ ActiveRecord::Schema.define(:version => 20120919081505) do
     t.datetime "created_at",                                                                                     :null => false
     t.datetime "updated_at",                                                                                     :null => false
     t.integer  "brand_id"
+    t.integer  "weight",              :limit => 1
   end
 
   add_index "products", ["brand_id"], :name => "index_products_on_brand_id"
@@ -282,11 +283,31 @@ ActiveRecord::Schema.define(:version => 20120919081505) do
   add_index "products", ["top_product"], :name => "index_products_on_top_product"
   add_index "products", ["url"], :name => "index_products_on_url", :unique => true
 
+  create_table "purchasables", :force => true do |t|
+    t.string  "goods_type"
+    t.integer "goods_id"
+  end
+
+  add_index "purchasables", ["goods_type", "goods_id"], :name => "index_purchasables_on_goods_type_and_goods_id", :unique => true
+
   create_table "purchase_prices", :force => true do |t|
     t.string  "supplier_id"
     t.string  "supplier",    :limit => 25
     t.integer "price",       :limit => 3
     t.integer "product_id"
+  end
+
+  create_table "sale_products", :force => true do |t|
+    t.integer  "evidence_number",     :limit => 3,                      :null => false
+    t.text     "reason_for_discount",                                   :null => false
+    t.string   "current_state",       :limit => 150,                    :null => false
+    t.text     "technician_review",                                     :null => false
+    t.integer  "discount",            :limit => 3,                      :null => false
+    t.integer  "minimal_price",       :limit => 3
+    t.boolean  "sold",                               :default => false
+    t.datetime "created_at",                                            :null => false
+    t.datetime "updated_at",                                            :null => false
+    t.integer  "product_id"
   end
 
   create_table "shipments", :force => true do |t|

@@ -116,10 +116,10 @@ CREATE TABLE `order_items` (
   `waste` smallint(6) DEFAULT NULL,
   `sent` tinyint(1) DEFAULT '0',
   `order_id` int(11) DEFAULT NULL,
-  `product_id` int(11) DEFAULT NULL,
+  `purchasable_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `index_order_items_on_order_id` (`order_id`),
-  KEY `index_order_items_on_product_id` (`product_id`)
+  KEY `index_order_items_on_purchasable_id` (`purchasable_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `orders` (
@@ -279,6 +279,7 @@ CREATE TABLE `products` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   `brand_id` int(11) DEFAULT NULL,
+  `weight` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_products_on_url` (`url`),
   KEY `index_products_on_brand_id` (`brand_id`),
@@ -289,11 +290,34 @@ CREATE TABLE `products` (
   KEY `index_products_on_top_product` (`top_product`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+CREATE TABLE `purchasables` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `goods_type` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `goods_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `index_purchasables_on_goods_type_and_goods_id` (`goods_type`,`goods_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 CREATE TABLE `purchase_prices` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `supplier_id` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `supplier` varchar(25) COLLATE utf8_unicode_ci DEFAULT NULL,
   `price` mediumint(9) DEFAULT NULL,
+  `product_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE `sale_products` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `evidence_number` mediumint(9) NOT NULL,
+  `reason_for_discount` text COLLATE utf8_unicode_ci NOT NULL,
+  `current_state` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
+  `technician_review` text COLLATE utf8_unicode_ci NOT NULL,
+  `discount` mediumint(9) NOT NULL,
+  `minimal_price` mediumint(9) DEFAULT NULL,
+  `sold` tinyint(1) DEFAULT '0',
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
   `product_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -500,3 +524,9 @@ INSERT INTO schema_migrations (version) VALUES ('20120917114618');
 INSERT INTO schema_migrations (version) VALUES ('20120919072042');
 
 INSERT INTO schema_migrations (version) VALUES ('20120919081505');
+
+INSERT INTO schema_migrations (version) VALUES ('20120920081206');
+
+INSERT INTO schema_migrations (version) VALUES ('20120921085541');
+
+INSERT INTO schema_migrations (version) VALUES ('20120921121649');
