@@ -20,7 +20,7 @@
       - for cart_item in order.order_items
         = f.fields_for :order_items, cart_item do |f_item|
           %th<
-            = link_to cart_item.product_name, cart_item.product_permalink
+            = link_to cart_item.name, cart_item.permalink
           %td<
             = f_item.number_field :quantity, {min: 0, size: 5}
           %td<

@@ -5,7 +5,6 @@ class CartController < ApplicationController
   end
 
   def add_product
-    order.products.find(params[:id])
   end
 
   def update
@@ -15,16 +14,20 @@ class CartController < ApplicationController
   end
 
   def create
-    cart = params[:cart]
-
-    product = Product.find(cart[:product_id])
+    goods = params[:goods]
 
     session[:order_token] = order.token
 
-    order.add_product(product, cart[:quantity].to_i)
-    order.save
+    purchasable = Purchasable.where(goods_id: goods[:id]).where(goods_type: goods[:type]).first
 
-    redirect_to add_product_cart_url(id: cart[:product_id]), notice: "Zboží bylo přidáno"
+    order.add_goods(purchasable, goods[:quantity].to_i)
+
+    order.save!
+
+    redirect_to add_product_cart_url(id: purchasable.id)
+  rescue ActiveRecord::RecordNotFound
+    flash[:error] = "Tento produkt nelze vložit do košíku"
+    redirect_to :back
   end
 
   def destroy
@@ -36,7 +39,7 @@ class CartController < ApplicationController
   private
 
   def added_product
-    order.products.find(params[:id])
+    order.purchasables.find(params[:id])
   end
 
   helper_method :added_product
