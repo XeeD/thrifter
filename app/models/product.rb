@@ -1,12 +1,17 @@
 # encoding: UTF-8
 
 class Product < ActiveRecord::Base
+
+  acts_as_purchasable
+
   # Associations
   belongs_to :brand
 
   transliterate_permalink :url
 
   paginates_per 40
+
+  #has_one :purchasable, as: :goods
 
   # Categories through categorizations
   # - categories, that are "main" in given shop are called "preferred"
@@ -105,6 +110,9 @@ class Product < ActiveRecord::Base
 
   validates :external_id,
             presence: true,
+            numericality: {only_integer: true}
+
+  validates :weight,
             numericality: {only_integer: true}
 
   #default_scope -> { order(:name) }
