@@ -7,12 +7,22 @@
     = csrf_meta_tags
 
     %body
-      - unless flash.empty?
-        #flash_messages
-          - flash.each do |type, value|
-            .flash{ :class => type.to_s }
-              = value
+      #header_wrapper
+        %span#logo
+          = link_to raw('<span id="shop">Spořílek</span> - admin'), admin_root_path, {title: "Úvodní strana administrace"}
 
-      = render "admin/shared/menu"
+      #container_wrapper
+        #sidebar_wrapper
+          = render "admin/shared/menu"
+          #stich
 
-      = yield
+        #content_wrapper
+          - unless flash.empty?
+            #flash_messages
+              - flash.each do |type, value|
+                .flash{ :class => type.to_s }
+                  = value
+
+          = yield
+
+        #footer

@@ -1,3 +1,82 @@
+@mixin rounded-corners($radius: 5px)
+  border-radius: $radius
+  -moz-border-radius: $radius
+  -webkit-border-radius: $radius
+
+$theme_color: #C5D52B
+$dark_black:  #35353A
+
+body
+  color: #323232
+  background
+    color: #f0f0f0
+  font: 13px/1.5 'PTSansRegular', Arial, Helvetica, sans-serif
+  min-width: 320px
+
+#header_wrapper
+  border:
+    bottom: 4px solid
+    color: $theme_color
+  background:
+    position: absolute
+    top: 0px
+    left: 0px
+    right: 0px
+    repeat: repeat-x
+    color: $dark_black
+    image: image_url('/assets/admin/layout/header_background.png')
+  @include box-shadow($theme_color 2px 2px 10px)
+
+  #logo
+    a
+      text-decoration: none
+      color: $theme_color
+      font:
+        size: 20px
+      span#shop
+        color: white
+
+#container_wrapper
+  height: auto
+  min-height: 100%
+  position: relative
+
+  #sidebar_wrapper
+    width: 198px
+    margin:
+      right: 2px
+    padding:
+      top: 7px
+    float: left
+    position: relative
+    background:
+      color: $dark_black
+
+  //#stich
+  //  position: absolute
+  //  top: 0px
+  //  background:
+  //    image: image_url('/assets/admin/layout/sidebar_stich.png')
+  //    repeat: repeat-y
+  //    color: $dark_black
+  //  color: $dark_black
+  //  height: 100px
+
+  #content_wrapper
+    margin: 0 auto
+    position: relative
+    background:
+      color: red
+      image: image_url('/assets/admin/layout/paper_background.png')
+
+    #content
+      background:
+        color: green
+
+tbody.ui-sortable
+  tr
+    cursor: move
+
 //nested sets
 ul.sub_item
   margin-left: 30px !important
