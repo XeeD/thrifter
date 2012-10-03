@@ -3,9 +3,10 @@
   %p= Random.rand(100)
   %p= product.description
 
-  = form_for :cart, url: cart_path, method: :post do |f|
-    = f.hidden_field :product_id, {value: product.id}
-    = f.hidden_field :quantity, {value: "1"}
+  = form_for :goods, url: cart_path, method: :post do |f|
+    = f.hidden_field "id", {value: product.purchasable.id}
+    = f.hidden_field "type", {value: product.model.class}
+    = f.hidden_field "quantity", {value: '1'}
 
     = f.submit "Vložit do košíku"
 
