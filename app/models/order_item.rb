@@ -22,7 +22,7 @@ class OrderItem < ActiveRecord::Base
   validates :purchasable,
             presence: true
 
-  Purchasable::Interface::REQUIRED_ATTRIBUTES.each do |attribute|
+  Purchasable::Interface::DELEGATED_METHODS.each do |attribute|
     delegate attribute,
              to: "purchasable.goods"
   end
