@@ -1,7 +1,7 @@
 class Order < ActiveRecord::Base
 
   has_many :order_items, autosave: true, dependent: :destroy
-  has_many :products, through: :order_items
+  has_many :purchasables, through: :order_items
 
   has_one :shipment
   has_one :shipping_method, through: :shipment
@@ -110,14 +110,14 @@ class Order < ActiveRecord::Base
     !! completed_at
   end
 
-  def contains?(product)
+  def contains_goods?(goods_id, goods_type)
     order_items.select {|order_item|
-      order_item.product_id == product.id
+      order_item.purchasable.id == goods_id && order_item.purchasable.goods_type === goods_type
     }.first
   end
 
-  def add_product(product, quantity = 1)
-    order_item = contains?(product)
+  def add_goods(purchasable, quantity = 1)
+    order_item = contains_goods?(purchasable.goods_id, purchasable.goods_type)
 
     if order_item
       if quantity > 1
@@ -128,8 +128,9 @@ class Order < ActiveRecord::Base
     else
       new_order_item = OrderItem.new({
                                        quantity: quantity,
-                                       price: product.default_price,
-                                       product_id: product.id
+                                       price: purchasable.default_price,
+                                       recycling_fee: purchasable.recycling_fee,
+                                       purchasable_id: purchasable.id
                                      })
 
       order_items << new_order_item

@@ -1,6 +1,7 @@
 class OrderItem < ActiveRecord::Base
   belongs_to :order, touch: true
-  belongs_to :product
+
+  belongs_to :purchasable
 
   before_save   :update_order_item
 
@@ -9,25 +10,33 @@ class OrderItem < ActiveRecord::Base
 
   validates :quantity,
             presence: true,
-            numericality: {only_integer: true}
+            numericality: {only_integer: true, greater_than_or_equal: 0}
 
   validates :price,
             presence: true,
-            numericality: {only_integer: true}
+            numericality: {only_integer: true, greater_than_or_equal: 0}
 
-  validates :waste,
-            numericality: {only_integer: true}
+  validates :recycling_fee,
+            numericality: {only_integer: true, greater_than_or_equal: 0}
 
-  validates :product,
+  validates :purchasable,
             presence: true
 
-  delegate :name,
-           :model_name,
-           :url,
-           :default_price,
-           :permalink,
+  Purchasable::Interface::REQUIRED_ATTRIBUTES.each do |attribute|
+    delegate attribute,
+             to: "purchasable.goods"
+  end
 
-           to: :product, prefix: true
+  delegate :permalink,
+  #         :default_price,
+  #         :name,
+  #
+  #         #:model_name,
+  #         #:url,
+  #         #:default_price,
+  #         #:permalink,
+  #
+           to: :purchasable#, prefix: true
 
   def total
     quantity * price
