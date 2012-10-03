@@ -2,7 +2,7 @@ Thrifter::Application.routes.draw do
 
   # Admin backend
   namespace :admin do
-    root :to => "admin#homepage"
+    root :to => "admin#homepage", as: :root
 
     resources :brands, except: :show
 
