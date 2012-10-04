@@ -16,22 +16,22 @@ body
 
 #header_wrapper
   line-height: 40px
-  padding: 5px 20px 4px 20px
-  z-index: 5 !important
+  z-index: 30 !important
+  width: 100%
+  position: relative
+  top: 0px
+  left: 0px
   border:
     bottom: 4px solid
     color: $theme_color
   background:
-    position: absolute
-    top: 0px
-    left: 0px
-    right: 0px
     repeat: repeat-x
     color: $dark_black
     image: image_url('/assets/admin/layout/header_background.png')
   @include box-shadow($theme_color 2px 2px 10px)
 
   #logo
+    margin-left: 20px
     a
       text-decoration: none
       color: $theme_color
@@ -41,27 +41,37 @@ body
         color: white
 
 #container_wrapper
+  width: 100%
+
   #sidebar_wrapper
     z-index: 2
     width: 198px
     float: left
 
   #content_wrapper
+    position: absolute
     width: 100%
-    display: block
+    min-height: 100% !important
+    height: auto
+    margin:
+      left: 190px
+    padding-left: 15px
     background:
-      image: image_url('/assets/admin/layout/sidebar_stitch.png')
+      image: image_url('/assets/admin/layout/stitch.png')
       repeat: repeat-y
-      color: red
+      position: top left
 
     #content
-      z-index: 2
+      position: absolute
+      width: 100%
+      min-height: 100% !important
+      height: auto
       background:
         image: image_url('/assets/admin/layout/paper_background.png')
         color: white
 
 #footer
-  clear: both
+  clear: left
   background:
     color: yellow
 
