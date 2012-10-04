@@ -8,12 +8,16 @@ $dark_black:  #35353A
 
 body
   color: #323232
-  background
-    color: #f0f0f0
+  background:
+    color: $dark_black
+    image: image_url('/assets/admin/layout/sidebar_background.png')
   font: 13px/1.5 'PTSansRegular', Arial, Helvetica, sans-serif
   min-width: 320px
 
 #header_wrapper
+  line-height: 40px
+  padding: 5px 20px 4px 20px
+  z-index: 5 !important
   border:
     bottom: 4px solid
     color: $theme_color
@@ -37,41 +41,29 @@ body
         color: white
 
 #container_wrapper
-  height: auto
-  min-height: 100%
-  position: relative
-
   #sidebar_wrapper
+    z-index: 2
     width: 198px
-    margin:
-      right: 2px
-    padding:
-      top: 7px
     float: left
-    position: relative
-    background:
-      color: $dark_black
-
-  //#stich
-  //  position: absolute
-  //  top: 0px
-  //  background:
-  //    image: image_url('/assets/admin/layout/sidebar_stich.png')
-  //    repeat: repeat-y
-  //    color: $dark_black
-  //  color: $dark_black
-  //  height: 100px
 
   #content_wrapper
-    margin: 0 auto
-    position: relative
+    width: 100%
+    display: block
     background:
+      image: image_url('/assets/admin/layout/sidebar_stitch.png')
+      repeat: repeat-y
       color: red
-      image: image_url('/assets/admin/layout/paper_background.png')
 
     #content
+      z-index: 2
       background:
-        color: green
+        image: image_url('/assets/admin/layout/paper_background.png')
+        color: white
+
+#footer
+  clear: both
+  background:
+    color: yellow
 
 tbody.ui-sortable
   tr

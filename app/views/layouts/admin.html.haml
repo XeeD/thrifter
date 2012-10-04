@@ -13,16 +13,18 @@
 
       #container_wrapper
         #sidebar_wrapper
-          = render "admin/shared/menu"
-          #stich
+          #menu
+            = render "admin/shared/menu"
 
         #content_wrapper
-          - unless flash.empty?
-            #flash_messages
-              - flash.each do |type, value|
-                .flash{ :class => type.to_s }
-                  = value
+          #content
+            - unless flash.empty?
+              #flash_messages
+                - flash.each do |type, value|
+                  .flash{ :class => type.to_s }
+                    = value
 
-          = yield
+            = yield
 
-        #footer
+        #footter
+          Patička
