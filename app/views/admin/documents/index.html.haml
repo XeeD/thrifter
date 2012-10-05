@@ -1,9 +1,11 @@
 %h2 Dokumenty
 %ul.action_links
-  %li= link_to "Přidat nový dokument", new_admin_document_path
+  %li.create_new= link_to "Přidat nový dokument", new_admin_document_path
 
 - unless documents.empty?
-  %table#documents
+  %h3.panel Seznam dokumentů
+
+  %table#documents.table_overview
     %thead
       %tr
         %th Název dokumentu
@@ -11,13 +13,13 @@
         %td Akce
     %tbody
       - for document in documents
-        %tr
+        %tr{class: cycle("odd", "even")}
           %th= document.name
           %td= document.assigned_to_shops
           %td
             %ul.actions
-              %li= link_to "Upravit", edit_admin_document_path(document)
-              %li= link_to "Smazat", admin_document_path(document), method: :delete, confirm: "Opravdu smazat dokument #{document.name}?"
+              %li.edit= link_to "Upravit", edit_admin_document_path(document)
+              %li.delete= link_to "Smazat", admin_document_path(document), method: :delete, confirm: "Opravdu smazat dokument #{document.name}?"
 
   = paginate documents
 - else

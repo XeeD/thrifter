@@ -1,6 +1,6 @@
 %h2 Značky
 %ul.action_links
-  %li= link_to "Přidat novou značku", new_admin_brand_path
+  %li.create_new= link_to "Přidat novou značku", new_admin_brand_path
 
 - unless brands.empty?
   %h3.panel Seznam značek
@@ -16,8 +16,9 @@
           %th= brand.name
           %td
             %ul.actions
-              %li= link_to "Smazat", admin_brand_path(brand), method: :delete, confirm: "Opravdu smazat značku #{brand.name}?"
-              %li= link_to "Upravit", edit_admin_brand_path(brand)
+              %li.edit= link_to "Upravit", edit_admin_brand_path(brand)
+              %li.delete= link_to "Smazat", admin_brand_path(brand), method: :delete, confirm: "Opravdu smazat značku #{brand.name}?"
+
 - else
   .empty_set
     Zatím nejsou vytvořeny žádné značky

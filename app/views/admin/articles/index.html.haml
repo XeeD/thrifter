@@ -1,9 +1,12 @@
 %h2 Články v obchodu #{shop.name}
+
 %ul.action_links
-  %li= link_to "Přidat nový článek", new_admin_shop_article_path(shop)
+  %li.create_new= link_to "Přidat nový článek", new_admin_shop_article_path(shop)
 
 - unless articles_paginated.blank?
-  %table#articles
+  %h3.panel Seznam článků
+
+  %table#articles.table_overview
     %thead
       %tr
         %th Název
@@ -11,13 +14,13 @@
         %td Akce
     %tbody
       - for article in articles_paginated
-        %tr
+        %tr{class: cycle("odd", "even")}
           %th= article.name
           %td= article.categories.collect(&:short_name).to_sentence
           %td
             %ul.actions
-              %li= link_to "Upravit", edit_admin_shop_article_path(shop, article)
-              %li= link_to "Smazat", admin_shop_article_path(shop, article), method: :delete, confirm: "Opravdu smazat článek #{article.name}?"
+              %li.edit= link_to "Upravit", edit_admin_shop_article_path(shop, article)
+              %li.delete= link_to "Smazat", admin_shop_article_path(shop, article), method: :delete, confirm: "Opravdu smazat článek #{article.name}?"
 
   = paginate articles_paginated
 

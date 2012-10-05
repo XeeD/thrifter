@@ -4,21 +4,21 @@
   %li.create_new= link_to "Přidat nový typ dopravy", new_admin_shipping_method_path
 
 - unless shipping_methods.empty?
-  %h3 Seznam typů dopravy
+  %h3.panel Seznam typů dopravy
 
-  %table#shipping_methods.sortable{"data-update-url" => sort_admin_shipping_methods_path}
+  %table#shipping_methods.table_overview.sortable{"data-update-url" => sort_admin_shipping_methods_path}
     %thead
       %tr
         %th Název
         %td Akce
     %tbody
       - for shipping_method in shipping_methods
-        = content_tag_for :tr, shipping_method do
+        = content_tag_for :tr, shipping_method, class: cycle("odd", "even") do
           %th= shipping_method.name
           %td
             %ul.actions
-              %li= link_to "Upravit", edit_admin_shipping_method_path(shipping_method)
-              %li= link_to "Smazat", admin_shipping_method_path(shipping_method), :method => :delete, confirm: "Opravdu smazat typ dopravy #{shipping_method.name}?"
+              %li.edit= link_to "Upravit", edit_admin_shipping_method_path(shipping_method)
+              %li.delete= link_to "Smazat", admin_shipping_method_path(shipping_method), :method => :delete, confirm: "Opravdu smazat typ dopravy #{shipping_method.name}?"
 
 - else
   .empty_set

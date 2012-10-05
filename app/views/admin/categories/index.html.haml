@@ -1,21 +1,23 @@
 %h2 Kategorie v obchodu #{shop.name}
 %ul.action_links
-  %li= link_to "Přidat novou kategorii", new_admin_shop_category_path(shop)
+  %li.create_new= link_to "Přidat novou kategorii", new_admin_shop_category_path(shop)
 
 - unless categories.empty?
-  %table#categories
+  %h3.panel Seznam kategorií
+
+  %table#categories.table_overview
     %thead
       %tr
         %th Název značky
         %td Akce
     %tbody
       - for category in categories
-        %tr
+        %tr{class: cycle("odd", "even")}
           %th= category.plural_name
           %td
-            %ul.actions
-              %li= link_to "Upravit", edit_admin_shop_category_path(shop, category)
-              %li= link_to "Smazat", admin_shop_category_path(shop, category), method: :delete, confirm: "Opravdu smazat značku #{category.short_name}?"
+            %ul.action_links
+              %li.edit= link_to "Upravit", edit_admin_shop_category_path(shop, category)
+              %li.delete= link_to "Smazat", admin_shop_category_path(shop, category), method: :delete, confirm: "Opravdu smazat značku #{category.short_name}?"
 - else
   .empty_set
     Zatím nejsou vytvořeny žádné kategorie

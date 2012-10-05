@@ -1,7 +1,7 @@
 %h2 Produkty
 
 %ul.action_links
-  %li= link_to "Přidat nový produkt", new_admin_product_path, {class: "create_new"}
+  %li.create_new= link_to "Přidat nový produkt", new_admin_product_path
 
 - unless selected_products.empty?
   %h3.panel Seznam produktů
@@ -23,8 +23,8 @@
           %td= product.category_inclusions
           %td
             %ul.actions
-              %li= link_to "Upravit", edit_admin_product_path(product)
-              %li= link_to "Smazat", admin_product_path(product), :method => :delete, confirm: "Opravdu smazat produkt #{product.name}?"
+              %li.edit= link_to "Upravit", edit_admin_product_path(product)
+              %li.delete= link_to "Smazat", admin_product_path(product), :method => :delete, confirm: "Opravdu smazat produkt #{product.name}?"
 
   = paginate selected_products
 

@@ -1,16 +1,17 @@
-%h3 Parametry
 %ul.action_links
-  %li= link_to "Přidat nový parametr", new_admin_param_template_param_item_path(param_template)
+  %li.create_new= link_to "Přidat nový parametr", new_admin_param_template_param_item_path(param_template)
 
 - unless param_template.param_items.empty?
-  %table#param_items
+  %h3.panel Parametry
+
+  %table#param_items.table_overview
     %thead
       %tr
         %th Název parametru
         %td Akce
     %tbody
       - for param_item in param_template.param_items
-        %tr
+        %tr{class: cycle("odd", "even")}
           %th= param_item.name
           %td
             %ul.actions

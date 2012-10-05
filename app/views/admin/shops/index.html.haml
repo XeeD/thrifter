@@ -1,9 +1,9 @@
 %h2 Obchody
 %ul.action_links
-  %li= link_to "Přidat nový obchod", new_admin_shop_path
+  %li.create_new= link_to "Přidat nový obchod", new_admin_shop_path
 
 - unless shops.empty?
-  %table#shops
+  %table#shops.table_overview
     %thead
       %tr
         %th= Shop.human_attribute_name(:name)
@@ -12,14 +12,14 @@
         %td Akce
     %tbody
       - for shop in shops
-        %tr
+        %tr{class: cycle("odd", "even")}
           %th= shop.name
           %th= shop.host
           %th= shop.short_name
           %td
             %ul.actions
-              %li= link_to "Upravit", edit_admin_shop_path(shop)
-              %li= link_to "Smazat", deletion_confirmation_admin_shop_path(shop), confirm: "Opravdu smazat obchod #{shop.name}?"
+              %li.edit= link_to "Upravit", edit_admin_shop_path(shop)
+              %li.delete= link_to "Smazat", deletion_confirmation_admin_shop_path(shop), confirm: "Opravdu smazat obchod #{shop.name}?"
 - else
   .empty_set
     Zatím nejsou vytvořeny žádné obchody

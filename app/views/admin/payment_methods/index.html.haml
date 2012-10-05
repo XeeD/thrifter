@@ -4,21 +4,21 @@
   %li.create_new= link_to "Přidat nový typ platby", new_admin_payment_method_path
 
 - unless payment_methods.empty?
-  %h3 Seznam typů plateb
+  %h3.panel Seznam typů plateb
 
-  %table#payment_methods
+  %table#payment_methods.table_overview
     %thead
       %tr
         %th Název
         %td Akce
     %tbody
       - for payment_method in payment_methods
-        %tr
+        %tr{class: cycle("odd", "even")}
           %th= payment_method.name
           %td
             %ul.actions
-              %li= link_to "Upravit", edit_admin_payment_method_path(payment_method)
-              %li= link_to "Smazat", admin_payment_method_path(payment_method), :method => :delete, confirm: "Opravdu smazat typ platby #{payment_method.name}?"
+              %li.edit= link_to "Upravit", edit_admin_payment_method_path(payment_method)
+              %li.delete= link_to "Smazat", admin_payment_method_path(payment_method), :method => :delete, confirm: "Opravdu smazat typ platby #{payment_method.name}?"
 
 - else
   .empty_set
