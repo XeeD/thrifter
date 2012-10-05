@@ -1,7 +1,7 @@
 %ul#navigation
   - menu(:admin) do |menu|
     - menu.groups do |group|
-      %li
+      %li.main
         = group.name
         %ul
           - group.items do |item|

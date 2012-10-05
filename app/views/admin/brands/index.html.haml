@@ -3,14 +3,16 @@
   %li= link_to "Přidat novou značku", new_admin_brand_path
 
 - unless brands.empty?
-  %table#brands
+  %h3.panel Seznam značek
+
+  %table#brands.table_overview
     %thead
       %tr
         %th Název značky
         %td Akce
     %tbody
       - for brand in brands
-        %tr
+        %tr{class: cycle("odd", "even")}
           %th= brand.name
           %td
             %ul.actions
