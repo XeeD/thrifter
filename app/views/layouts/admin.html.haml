@@ -12,7 +12,10 @@
           = link_to raw('<span id="shop">Spořílek</span> - admin'), admin_root_path, {title: "Úvodní strana administrace"}
 
       #container_wrapper
-        #sidebar_wrapper
+        #sidebar-stitch
+        #sidebar-background
+
+        #sidebar
           #menu
             = render "admin/shared/menu"
 
@@ -25,5 +28,6 @@
                     = value
 
             = yield
-        #footer{style: "clear: both;"}
-          footer
+
+          #footer
+            Patička administrace
