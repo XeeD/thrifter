@@ -1,5 +1,6 @@
 $theme_color: #C5D52B
-$dark_black:  #35353A
+$dark_complement_color: #35353A
+$light_complement_color: #DDEA5E
 
 html,
 body
@@ -12,11 +13,12 @@ body
   min-width: 320px
 
 #header_wrapper
-  line-height: 34px
+  line-height: 45px
+  height: 40px
   background:
     image: image_url('/assets/admin/layout/header_background.png')
     repeat: repeat-x
-    color: $dark_black
+    color: $dark_complement_color
   border:
     bottom: 4px solid
     color: $theme_color
@@ -55,6 +57,41 @@ body
     z-index: 1
     position: relative
 
+    #menu
+      ul
+        padding:
+          top: 1px
+        background:
+          image: image_url('/assets/admin/menu/menu_ruler.png')
+          repeat: repeat-x
+          position: left top
+
+        li, li.main
+          position: relative
+          padding:
+            bottom: 2px
+          background:
+            image: image_url('/assets/admin/menu/menu_ruler.png')
+            repeat: repeat-x
+            position: left bottom
+
+          a, span
+            color: #ffffff
+            outline: none
+            display: block
+            text-decoration: none
+            margin:
+              left: 10px
+              right: 16px
+            position: relative
+            padding:
+              top: 11px
+              right: 48px
+              bottom: 11px
+              left: 48px
+            line-height: 20px
+
+
   #sidebar-stitch,
   #sidebar-background
     position: absolute
@@ -90,7 +127,7 @@ body
       position: relative
 
     #footer
-      margin: 0 4%
+      margin: 0px 4%
       text-align: center
       padding: 16px 0
       bottom: 0
@@ -98,3 +135,22 @@ body
       right: 0
       border-top: 1px solid #dadada
       position: absolute
+
+.clearfix::after
+  clear: both
+  content: ''
+  display: block
+  visibility: hidden
+  width: 0
+  height: 0
+
+ul.action_links
+  li
+    a
+      display: block
+      padding: 10px 20px
+      text-decoration: none
+
+    a.create_new
+
+
