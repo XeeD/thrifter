@@ -16,7 +16,7 @@ class Purchasable
     REQUIRED_METHODS = [
     ]
 
-    DELEGATED_METHODS = REQUIRED_ATTRIBUTES + REQUIRED_METHODS
+    DELEGATED_METHODS = REQUIRED_ATTRIBUTES - [:recycling_fee] + REQUIRED_METHODS
 
     def self.included(base)
       # Shared Associations

@@ -129,7 +129,7 @@ class Order < ActiveRecord::Base
       new_order_item = OrderItem.new({
                                        quantity: quantity,
                                        price: purchasable.default_price,
-                                       recycling_fee: purchasable.recycling_fee,
+                                       recycling_fee: purchasable.goods.recycling_fee,
                                        purchasable_id: purchasable.id
                                      })
 

@@ -28,14 +28,6 @@ class OrderItem < ActiveRecord::Base
   end
 
   delegate :permalink,
-  #         :default_price,
-  #         :name,
-  #
-  #         #:model_name,
-  #         #:url,
-  #         #:default_price,
-  #         #:permalink,
-  #
            to: :purchasable#, prefix: true
 
   def total
