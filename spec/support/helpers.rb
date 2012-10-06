@@ -17,7 +17,8 @@ module Helpers
         url: "lg-gb3133tijw",
         gray_import: "",
         warranty: "24",
-        brand_id: "1"
+        brand_id: "1",
+        weight: "20"
     }.stringify_keys
   end
 
