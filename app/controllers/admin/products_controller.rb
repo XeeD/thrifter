@@ -69,7 +69,7 @@ module Admin
     helper_method :search_products
 
     def selected_products
-      @selected_products ||= ProductDecorator.decorate(search_products.page(params[:page]))
+      @selected_products ||= Admin::ProductDecorator.decorate(search_products.page(params[:page]))
     end
 
     helper_method :selected_products
