@@ -39,6 +39,7 @@ cs:
         gray_import: "Šedý dovoz"
         top_product: "Top produkt"
         replacements: "Nahradit výrobkem"
+        weight: "Váha"
         state: "Stav"
         states:
           new: "Nový"
