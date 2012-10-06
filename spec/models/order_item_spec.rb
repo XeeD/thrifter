@@ -4,7 +4,7 @@ require 'spec_helper'
 describe OrderItem do
   # Associations
   it { should belong_to(:order) }
-  it { should belong_to(:product) }
+  it { should belong_to(:purchasable) }
 
   # Validations
   # Quantity
@@ -16,8 +16,8 @@ describe OrderItem do
   it { should validate_presence_of(:price) }
 
   # Waste
-  it { should validate_numericality_of(:waste) }
+  it { should validate_numericality_of(:recycling_fee) }
 
   # Product
-  it { should vlaidate_presence_of(:purchasable) }
+  it { should validate_presence_of(:purchasable) }
 end
