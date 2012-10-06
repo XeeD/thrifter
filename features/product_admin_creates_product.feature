@@ -21,8 +21,8 @@ Požadavek: Produktový admin vytváří nový produkt
       | Celý název       | Model            | Název v odkazu   | Číslo v Cézaru | Stručný popis     |
       | Indesit 3D AA NX | Indesit 3D AA NX | indesit-3d-aa-nx | 2125567        | Perfektní lednice |
     A pokračuji ve vyplňování formuláře:
-      | Popis            | Výchozí cena | Doporučená cena | Nákupní cena | PHE | Záruka | % DPH |
-      | No-Frost lednice | 12990        | 15990           | 9000         | 217 | 24     | 20    |
+      | Popis            | Výchozí cena | Doporučená cena | Nákupní cena | PHE | Záruka | % DPH | Váha |
+      | No-Frost lednice | 12990        | 15990           | 9000         | 217 | 24     | 20    | 20   |
     A vyberu hodnotu "Indesit" ze seznamu "Značka"
     A kliknu na tlačítko "Vytvořit nový produkt"
     Pak bych měl vidět zprávu "Nový produkt Indesit 3D AA NX byl vytvořen"
