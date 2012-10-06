@@ -11,8 +11,6 @@ class Product < ActiveRecord::Base
 
   paginates_per 40
 
-  #has_one :purchasable, as: :goods
-
   # Categories through categorizations
   # - categories, that are "main" in given shop are called "preferred"
   # - remaining categoires are called "alternative"
@@ -48,7 +46,6 @@ class Product < ActiveRecord::Base
   has_many :defined_param_values, through: :parametrizations, source: :param_value
 
   attr_accessor :permalink
-  attr_accessible :permalink
 
   # Attributes
   def param_template
@@ -114,6 +111,7 @@ class Product < ActiveRecord::Base
             numericality: {only_integer: true}
 
   validates :weight,
+            allow_blank: true,
             numericality: {only_integer: true}
 
   #default_scope -> { order(:name) }
