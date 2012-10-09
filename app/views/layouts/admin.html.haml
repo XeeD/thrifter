@@ -10,6 +10,15 @@
       #header_wrapper
         %span#logo
           = link_to raw('<span id="shop">Spořílek</span> - administrační rozhraní'), admin_root_path, {title: "Úvodní strana administrace"}
+        #user_info
+          = link_to raw(image_tag "/assets/admin/icons/admin_ico.jpg"), "#"
+
+          #user_functions
+            %strong Hlavní administrátor
+
+            %ul
+              %li= link_to "Profil", "#"
+              %li= link_to "Odhlásit se", "#"
 
       #container_wrapper
         #sidebar-stitch
