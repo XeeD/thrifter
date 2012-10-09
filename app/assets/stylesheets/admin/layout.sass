@@ -13,8 +13,7 @@ body
   min-width: 320px
 
 #header_wrapper
-  line-height: 45px
-  height: 40px
+  height: 48px
   background:
     image: image_url('/assets/admin/layout/header_background.png')
     repeat: repeat-x
@@ -27,11 +26,13 @@ body
   top: 0
   left: 0
   right: 0
-
   @include single-box-shadow(rgba(0, 0, 0, 0.35), 0, 3px)
 
   #logo
-    margin-left: 20px
+    display: inline-block
+    margin:
+      left: 20px
+      top: 10px
     a
       text-decoration: none
       color: $theme_color
@@ -40,6 +41,50 @@ body
       span#shop
         color: white
 
+  #user_info
+    background:
+      image: image_url('/assets/admin/layout/inset.png')
+    height: 38px
+    float: right
+    padding: 2px 6px 2px 2px
+    margin:
+      right: 100px
+      top: 3px
+    @include border-radius(4px, 4px)
+    @include box-shadow(0 1px 0 rgba(255, 255, 255, 0.15), inset 0 1px 2px rgba(0, 0, 0, 0.5))
+
+    img
+      background:
+        image: image_url('/assets/admin/layout/admin_ico_background.png')
+      padding: 3px
+      height: 32px
+      width: 26px
+      float: left
+      margin:
+        right: 6px
+      @include border-radius(2px, 2px)
+
+    #user_functions
+      display: inline-block
+      strong
+        display: block
+        float: left
+        color: $theme_color
+        font:
+          size: 14px
+      ul
+        li
+          float: left
+          margin-right: 8px
+          a
+            display: block
+            text-decoration: none
+            color: white
+            font:
+              size: 11px
+            &:hover
+              text-decoration: underline
+
 #container_wrapper
   height: auto
   min-height: 100%
@@ -47,7 +92,7 @@ body
   z-index: 0
   background:
     color: #f0f0f0
-    image: url('/assets/admin/layout/paper_background.png')
+    image: image_url('/assets/admin/layout/paper_background.png')
 
   #sidebar
     width: 168px
