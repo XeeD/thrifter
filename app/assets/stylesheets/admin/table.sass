@@ -32,12 +32,31 @@ table.table_overview
 
   tbody, tfoot
     td
-      padding: 8px 16px
       border:
         left:
           width: 1px
           style: dotted
           color: #bebebe !important
+
+      ul.actions
+        li
+          display: inline-block
+          text-indent: -9999px
+          white-space: nowrap
+          margin:
+            top: 2px
+          a
+            display: block
+            width: 16px
+            height: 16px
+        li.edit
+          a
+            background:
+              image: image_url('/assets/admin/icons/action_edit.png')
+        li.delete
+          a
+            background:
+              image: image_url('/assets/admin/icons/action_delete.png')
 
     tr.odd
       background:

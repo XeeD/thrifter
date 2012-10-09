@@ -106,11 +106,6 @@ body
       ul
         padding:
           top: 1px
-        //background:
-          image: image_url('/assets/admin/menu/menu_ruler.png')
-          repeat: repeat-x
-          position: left top
-
         li, li.main
           position: relative
           padding:
@@ -146,14 +141,16 @@ body
     left: 159px
     width: 17px
     z-index: 2
-    background: url(/assets/admin/layout/sidebar_stitch.png) repeat-y
+    background:
+      image: image_url('/assets/admin/layout/sidebar_stitch.png')
+      repeat: repeat-y
 
   #sidebar-background
     left: 0
     z-index: 0
     width: 168px
-    background-image: url(/assets/admin/layout/sidebar_background.png)
     background:
+      image: image_url('/assets/admin/layout/sidebar_background.png')
       color: $theme_color
 
   #content_wrapper
@@ -180,13 +177,14 @@ body
       border-top: 1px solid #dadada
       position: absolute
 
-.clearfix::after
-  clear: both
-  content: ''
-  display: block
-  visibility: hidden
-  width: 0
-  height: 0
+.clearfix
+  &:after
+    clear: both
+    content: ''
+    display: block
+    visibility: hidden
+    width: 0
+    height: 0
 
 #content
   ul

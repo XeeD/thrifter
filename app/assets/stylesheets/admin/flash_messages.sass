@@ -1,0 +1,27 @@
+.notice, .error, .warning, .info, .help
+  border: 1px solid
+  margin: 10px 0px
+  padding: 17px 10px 15px 50px
+  font-weight: bold
+  @include border-radius(6px, 6px)
+  background:
+    position: 10px center
+    repeat: no-repeat
+
+@mixin flash_type($font_color, $background_color, $background_image)
+  background:
+    color: $background_color
+    image: image_url(#{$background_image})
+  color: $font_color
+
+.info
+  @include flash_type(#00529B, #BDE5F8, "/assets/admin/icons/flash_info_ico.png")
+
+.notice
+  @include flash_type(#4F8A10, #DFF2BF, "/assets/admin/icons/flash_notice_ico.png")
+
+.warning
+  @include flash_type(#9F6000, #FEEFB3, "/assets/admin/icons/flash_warning_ico.png")
+
+.error
+  @include flash_type(#D8000C, #FFBABA, "/assets/admin/icons/flash_error_ico.png")
