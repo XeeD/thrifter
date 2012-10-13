@@ -9,12 +9,12 @@ class Product < ActiveRecord::Base
 
   transliterate_permalink :url
 
-  paginates_per 40
+  paginates_per 2
 
   # Categories through categorizations
   # - categories, that are "main" in given shop are called "preferred"
   # - remaining categoires are called "alternative"
-  has_many :categorizations
+  has_many :categorizations, dependent: :delete_all
   has_many :categories, through: :categorizations
 
   # Categorizations - join table for sample preferred & alternative categories assigned to product
@@ -161,7 +161,11 @@ class Product < ActiveRecord::Base
     #after_transition :to => 'replaced', :do => replace!
   end
 
-  def after_save
-    categories.touch
+  protected
+
+  after_save :touch_categories
+
+  def touch_categories
+    categorizations.each { |categorization| categorization.category.touch }
   end
 end

@@ -7,7 +7,7 @@ class Category < ActiveRecord::Base
   transliterate_permalink :url
 
   # Associations
-  has_many :categorizations
+  has_many :categorizations, dependent: :destroy
   has_many :products, through: :categorizations
 
   belongs_to :shop

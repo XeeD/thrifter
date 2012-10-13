@@ -27,9 +27,6 @@ class OrderItem < ActiveRecord::Base
              to: "purchasable.goods"
   end
 
-  delegate :permalink,
-           to: :purchasable#, prefix: true
-
   def total
     quantity * price
   end
