@@ -118,7 +118,7 @@ ActiveRecord::Schema.define(:version => 20120921121649) do
   create_table "order_items", :force => true do |t|
     t.integer "quantity",       :limit => 2
     t.integer "price",          :limit => 3
-    t.integer "waste",          :limit => 2
+    t.integer "recycling_fee",  :limit => 2
     t.boolean "sent",                        :default => false
     t.integer "order_id"
     t.integer "purchasable_id"
