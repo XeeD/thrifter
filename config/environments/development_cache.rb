@@ -20,7 +20,8 @@ Thrifter::Application.configure do
 
   # Compress JavaScripts and CSS
   config.assets.compress = true
-  config.assets.digest = true
+  #config.assets.digest = false
+  #config.assets.debug = true
 
   # Don't care if the mailer can't send
   config.action_mailer.raise_delivery_errors = false
