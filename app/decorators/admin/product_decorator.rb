@@ -31,7 +31,7 @@ module Admin
 
     def category_inclusions
       unless categories.empty?
-        categories.collect(&:short_name).to_sentence
+        categories.collect(&:plural_name).to_sentence
       else
         "nezařazen"
       end

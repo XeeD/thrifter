@@ -16,7 +16,7 @@
       - for article in articles_paginated
         %tr{class: cycle("odd", "even")}
           %th= article.name
-          %td= article.categories.collect(&:short_name).to_sentence
+          %td= article.categories.collect(&:plural_name).to_sentence
           %td
             %ul.actions
               %li.edit= link_to "Upravit", edit_admin_shop_article_path(shop, article)
