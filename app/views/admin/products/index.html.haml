@@ -6,21 +6,24 @@
 - unless selected_products.empty?
   %h3.panel Seznam produktů
 
-  -#//= form_for([:admin, search_products]) do |f|
-  -#  //= f.text_field :name_contains
-  -#  //= f.submit
+  = form_for([:admin, search_products]) do |f|
+    = f.text_field :name_contains
+    //= f.
+    = f.submit
 
   %table#products.table_overview
     %thead
       %tr
         %th= raw(sort_link search_products, :name)
-        %th Zařazení
+        %th= raw(sort_link search_products, :categories_short_name, "Zařazení")
+        %th= raw(sort_link search_products, :default_price)
         %td Akce
     %tbody
       - for product in selected_products
         %tr{class: cycle("odd", "even")}
           %th= product.name
           %td= product.category_inclusions
+          %td= number_to_currency(product.default_price)
           %td
             %ul.actions
               %li.edit= link_to "Upravit", edit_admin_product_path(product)
