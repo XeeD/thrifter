@@ -9,7 +9,7 @@ class Product < ActiveRecord::Base
 
   transliterate_permalink :url
 
-  paginates_per 40
+  paginates_per 2
 
   # Categories through categorizations
   # - categories, that are "main" in given shop are called "preferred"
